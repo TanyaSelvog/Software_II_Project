@@ -6,16 +6,17 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: F5F5F5;">
+      <GridPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F5F5F5;">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="292.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="308.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="308.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="202.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="217.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="8.0" prefWidth="8.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="173.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="95.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="92.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="169.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -24,7 +25,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Button>
-            <Label fx:id="usernameLbl" text="Username: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+            <Label fx:id="usernameLbl" prefHeight="23.0" prefWidth="108.0" text="Username: " GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
@@ -34,9 +35,12 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameTF" prefHeight="29.0" prefWidth="418.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="usernameTF" prefHeight="29.0" prefWidth="204.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="passwordTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="zoneIdLbl" text="LABEL FOR DISPLAYING LOCATION" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+            <Label fx:id="zoneIdLbl" ellipsisString="" prefHeight="35.0" prefWidth="210.0" text="**ZONE ID***" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font></Label>
          </children>
       </GridPane>
    </children>
