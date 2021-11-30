@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainWindow">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
    <children>
-      <GridPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #F5F5F5;">
+      <GridPane layoutY="14.0" prefHeight="484.0" prefWidth="668.0" style="-fx-background-color: #F5F5F5;">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="302.0" minWidth="10.0" prefWidth="202.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="374.0" minWidth="10.0" prefWidth="217.0" />
@@ -20,7 +20,7 @@
           <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="logInBtn" mnemonicParsing="false" prefHeight="29.0" prefWidth="162.0" text="Log in" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="29.0" prefWidth="162.0" text="Log in" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
