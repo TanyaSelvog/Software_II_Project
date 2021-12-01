@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.loginController">
    <children>
       <GridPane layoutY="14.0" prefHeight="484.0" prefWidth="668.0" style="-fx-background-color: #F5F5F5;">
         <columnConstraints>
@@ -20,7 +20,7 @@
           <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="loginBtn" mnemonicParsing="false" prefHeight="29.0" prefWidth="162.0" text="Log in" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onLogin" prefHeight="29.0" prefWidth="162.0" text="Log in" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>

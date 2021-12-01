@@ -2,50 +2,49 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.AppointmentsView">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.apptsController">
    <children>
       <StackPane layoutX="37.0" layoutY="80.0" prefHeight="380.0" prefWidth="850.0">
          <children>
             <TabPane prefHeight="476.0" prefWidth="829.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab text="Monthly">
+                <Tab fx:id="monthlyApptTab" text="Monthly">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                      <TableView prefHeight="390.0" prefWidth="856.0">
+                      <TableView fx:id="monthlyTable" prefHeight="390.0" prefWidth="856.0">
                           <columns>
-                              <TableColumn prefWidth="75.0" text="Title" />
-                              <TableColumn prefWidth="75.0" text="Description" />
-                              <TableColumn prefWidth="75.0" text="Location" />
-                              <TableColumn prefWidth="75.0" text="Contact" />
-                              <TableColumn prefWidth="75.0" text="Type" />
-                              <TableColumn prefWidth="75.0" text="Start Date &amp; Time" />
-                              <TableColumn prefWidth="75.0" text="End Date &amp; Time" />
-                              <TableColumn prefWidth="75.0" text="Customer ID" />
-                              <TableColumn prefWidth="75.0" text="User ID" />
-                              <TableColumn prefWidth="75.0" text="Appointment ID" />
+                              <TableColumn fx:id="titleMonthly" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="descMonthly" prefWidth="75.0" text="Description" />
+                              <TableColumn fx:id="locationMonthly" prefWidth="75.0" text="Location" />
+                              <TableColumn fx:id="contactMonthly" prefWidth="75.0" text="Contact" />
+                              <TableColumn fx:id="typeMonthly" prefWidth="75.0" text="Type" />
+                              <TableColumn fx:id="startMonthly" prefWidth="75.0" text="Start Date &amp; Time" />
+                              <TableColumn fx:id="endMonthly" prefWidth="75.0" text="End Date &amp; Time" />
+                              <TableColumn fx:id="customerMonthly" prefWidth="105.0" text="Customer ID" />
+                              <TableColumn fx:id="userIDmonthly" prefWidth="45.0" text="User ID" />
+                              <TableColumn fx:id="apptIDmonthly" prefWidth="75.0" text="Appointment ID" />
                           </columns>
                       </TableView>
 
                   </content>
                 </Tab>
-                <Tab text="Weekly">
+                <Tab fx:id="weeklyApptTab" text="Weekly">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                      <TableView prefHeight="452.0" prefWidth="848.0">
+                      <TableView fx:id="weeklyTable" prefHeight="452.0" prefWidth="848.0">
                           <columns>
-                              <TableColumn prefWidth="75.0" text="Title" />
-                              <TableColumn prefWidth="75.0" text="Description" />
-                              <TableColumn prefWidth="75.0" text="Location" />
-                              <TableColumn prefWidth="75.0" text="Contact" />
-                              <TableColumn prefWidth="75.0" text="Type" />
-                              <TableColumn prefWidth="75.0" text="Start Date &amp; Time" />
-                              <TableColumn prefWidth="75.0" text="End Date &amp; Time" />
-                              <TableColumn prefWidth="75.0" text="Customer ID" />
-                              <TableColumn prefWidth="75.0" text="User ID" />
-                              <TableColumn prefWidth="75.0" text="Appointment ID" />
+                              <TableColumn fx:id="titleWeekly" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="descWeekly" prefWidth="75.0" text="Description" />
+                              <TableColumn fx:id="locationWeekly" prefWidth="75.0" text="Location" />
+                              <TableColumn fx:id="contactWeekly" prefWidth="75.0" text="Contact" />
+                              <TableColumn fx:id="typeWeekly" prefWidth="75.0" text="Type" />
+                              <TableColumn fx:id="startWeekly" prefWidth="75.0" text="Start Date &amp; Time" />
+                              <TableColumn fx:id="endWeekly" prefWidth="75.0" text="End Date &amp; Time" />
+                              <TableColumn fx:id="customerWeekly" prefWidth="75.0" text="Customer ID" />
+                              <TableColumn fx:id="userIDweekly" prefWidth="75.0" text="User ID" />
+                              <TableColumn fx:id="apptIDweekly" prefWidth="175.0" text="Appointment ID" />
                           </columns>
                       </TableView>
                   </content>
@@ -59,22 +58,22 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="43.0" layoutY="499.0" mnemonicParsing="false" text="New Appointment">
+      <Button fx:id="newApptBtn" layoutX="43.0" layoutY="499.0" mnemonicParsing="false" onAction="#onNewAppt" text="New Appointment">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="250.0" layoutY="499.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="91.0" text="Modify">
+      <Button fx:id="modifyApptBtn" layoutX="250.0" layoutY="499.0" mnemonicParsing="false" onAction="#onModifyAppt" prefHeight="35.0" prefWidth="91.0" text="Modify">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="358.0" layoutY="499.0" mnemonicParsing="false" text="Delete">
+      <Button fx:id="deleteApptBtn" layoutX="358.0" layoutY="499.0" mnemonicParsing="false" onAction="#onDeleteAppt" text="Delete">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="746.0" layoutY="504.0" mnemonicParsing="false" text="Back to Main">
+      <Button fx:id="backBtn" layoutX="810.0" layoutY="499.0" mnemonicParsing="false" onAction="#onBackToMain" text="Home">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
