@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="459.0" prefWidth="716.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
    <children>
-      <GridPane layoutX="-1.0" layoutY="32.0" prefHeight="401.0" prefWidth="716.0">
+      <GridPane layoutX="-1.0" layoutY="32.0" prefHeight="357.0" prefWidth="985.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -18,19 +19,30 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="customersBtn" mnemonicParsing="false" onAction="#onCustomersClick" text="Customers" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Button fx:id="customersBtn" mnemonicParsing="false" onAction="#onCustomersClick" text="Customers" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
-               </font></Button>
-            <Label text="Scheduler Homepage" GridPane.columnIndex="1">
+               </font>
+               <GridPane.margin>
+                  <Insets right="40.0" />
+               </GridPane.margin></Button>
+            <Label prefHeight="47.0" prefWidth="438.0" text="Scheduler Homepage" textFill="#1e1e1e" GridPane.columnIndex="1">
                <font>
-                  <Font name="Verdana" size="18.0" />
+                  <Font name="Verdana Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="apptsBtn" mnemonicParsing="false" onAction="#onAppointmentsClick" text="Appointments" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Button fx:id="apptsBtn" mnemonicParsing="false" onAction="#onAppointmentsClick" text="Appointments" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
+            </Button>
+            <Button fx:id="reportsLbl" mnemonicParsing="false" onAction="#onReportsClick" text="Reports" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
             </Button>
          </children>
       </GridPane>

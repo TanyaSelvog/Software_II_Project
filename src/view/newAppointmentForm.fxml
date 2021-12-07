@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.NewAppointmentForm">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.newApptController">
    <children>
       <GridPane layoutX="46.0" layoutY="96.0" prefHeight="374.0" prefWidth="865.0">
         <columnConstraints>
@@ -76,15 +75,15 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="apptID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="titleTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="descTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="userID" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField fx:id="custID" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="endTF" GridPane.columnIndex="4" />
+            <TextField fx:id="typeTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="startTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="New Appointment">
@@ -92,12 +91,12 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Label>
-      <Button layoutX="600.0" layoutY="529.0" mnemonicParsing="false" text="Save">
+      <Button fx:id="saveBtn" layoutX="600.0" layoutY="529.0" mnemonicParsing="false" onAction="#onSave" text="Save">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="699.0" layoutY="529.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="cancelBtn" layoutX="699.0" layoutY="529.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>

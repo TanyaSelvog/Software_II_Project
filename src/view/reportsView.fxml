@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.reportsController">
+   <children>
+      <Button layoutX="822.0" layoutY="495.0" mnemonicParsing="false" text="Home">
+         <font>
+            <Font name="Verdana" size="18.0" />
+         </font></Button>
+      <Label layoutX="447.0" layoutY="74.0" text="Reports">
+         <font>
+            <Font name="Verdana Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
