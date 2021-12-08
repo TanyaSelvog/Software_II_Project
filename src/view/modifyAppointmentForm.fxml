@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modifyApptController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modifyApptController">
    <children>
       <GridPane layoutX="46.0" layoutY="96.0" prefHeight="374.0" prefWidth="865.0">
         <columnConstraints>
@@ -91,15 +91,15 @@
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="Modify Appointment">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana Bold" size="24.0" />
          </font>
       </Label>
-      <Button layoutX="600.0" layoutY="529.0" mnemonicParsing="false" text="Save">
+      <Button fx:id="saveBtn" layoutX="600.0" layoutY="529.0" mnemonicParsing="false" onAction="#onSaveClick" text="Save">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <Button layoutX="699.0" layoutY="529.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="cancelBtn" layoutX="699.0" layoutY="529.0" mnemonicParsing="false" onAction="#onCancelClick" text="Cancel">
          <font>
             <Font name="Verdana" size="18.0" />
          </font>

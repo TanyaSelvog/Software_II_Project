@@ -70,7 +70,7 @@ public class apptsController {
     }
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");
         Scene scene = new Scene(root, 1000, 600);

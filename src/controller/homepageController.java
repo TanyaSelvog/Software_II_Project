@@ -9,11 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class mainController {
+public class homepageController {
 
     public Button customersBtn;
     public Button apptsBtn;
-    public Button reportsLbl;
+
+    public Button reportsBtn;
 
     public void onCustomersClick(ActionEvent actionEvent) throws Exception {
             Parent root = FXMLLoader.load(getClass().getResource("/view/customersView.fxml"));

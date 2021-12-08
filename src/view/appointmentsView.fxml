@@ -4,16 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.apptsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.apptsController">
    <children>
       <StackPane layoutX="37.0" layoutY="80.0" prefHeight="380.0" prefWidth="850.0">
          <children>
-            <TabPane prefHeight="476.0" prefWidth="829.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="378.0" prefWidth="837.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="monthlyApptTab" text="Monthly">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                      <TableView fx:id="monthlyTable" prefHeight="390.0" prefWidth="856.0">
+                      <TableView fx:id="monthlyTable" prefHeight="269.0" prefWidth="665.0">
                           <columns>
                               <TableColumn fx:id="titleMonthly" prefWidth="75.0" text="Title" />
                               <TableColumn fx:id="descMonthly" prefWidth="75.0" text="Description" />
@@ -55,7 +55,7 @@
       </StackPane>
       <Label layoutX="37.0" layoutY="40.0" text="Appointments">
          <font>
-            <Font name="Verdana" size="18.0" />
+            <Font name="Verdana Bold" size="24.0" />
          </font>
       </Label>
       <Button fx:id="newApptBtn" layoutX="43.0" layoutY="499.0" mnemonicParsing="false" onAction="#onNewAppt" text="New Appointment">

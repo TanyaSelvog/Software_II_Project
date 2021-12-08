@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f5f5f5;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.mainController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.homepageController">
    <children>
       <GridPane layoutX="-1.0" layoutY="32.0" prefHeight="357.0" prefWidth="985.0">
         <columnConstraints>
@@ -36,7 +36,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="reportsLbl" mnemonicParsing="false" onAction="#onReportsClick" text="Reports" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button fx:id="reportsBtn" mnemonicParsing="false" onAction="#onReportsClick" text="Reports" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>

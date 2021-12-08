@@ -23,7 +23,7 @@ public class customerFormController {
     public Button saveBtn;
 
     public void onHome(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/mainHome.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Modify Current Customer");
         Scene scene = new Scene(root, 1000, 600);

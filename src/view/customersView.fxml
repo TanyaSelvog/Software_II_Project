@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.customerController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
             <Label text="Customers">
                <font>
-                  <Font name="Verdana" size="18.0" />
+                  <Font name="Verdana Bold" size="24.0" />
                </font>
+               <StackPane.margin>
+                  <Insets left="20.0" />
+               </StackPane.margin>
             </Label>
          </children></StackPane>
-      <TableView fx:id="customersTable" layoutX="44.0" layoutY="106.0" prefHeight="376.0" prefWidth="861.0">
+      <TableView fx:id="customersTable" layoutX="44.0" layoutY="106.0" prefHeight="376.0" prefWidth="893.0">
         <columns>
-          <TableColumn fx:id="customerID" prefWidth="97.0" text="Customer ID" />
-          <TableColumn fx:id="name" prefWidth="53.0" text="Name" />
-            <TableColumn fx:id="address" prefWidth="75.0" text="Address" />
-            <TableColumn fx:id="postalCode" prefWidth="152.0" text="Postal Code" />
-            <TableColumn fx:id="phone" prefWidth="137.0" text="Phone Number" />
-            <TableColumn fx:id="country" prefWidth="101.0" text="Country" />
-            <TableColumn fx:id="division" prefWidth="130.0" text="Division" />
+          <TableColumn fx:id="customerID" prefWidth="90.0" text="Customer ID" />
+          <TableColumn fx:id="name" prefWidth="229.0" text="Name" />
+            <TableColumn fx:id="address" prefWidth="167.0" text="Address" />
+            <TableColumn fx:id="postalCode" prefWidth="94.0" text="Postal Code" />
+            <TableColumn fx:id="phone" prefWidth="110.0" text="Phone Number" />
+            <TableColumn fx:id="country" prefWidth="108.0" text="Country" />
+            <TableColumn fx:id="division" prefWidth="94.0" text="Division" />
         </columns>
       </TableView>
       <Button fx:id="addNewBtn" layoutX="44.0" layoutY="509.0" mnemonicParsing="false" onAction="#onAddNewCustomer" prefHeight="35.0" prefWidth="220.0" text="Add New Customer">
@@ -33,7 +37,7 @@
          <font>
             <Font name="Verdana" size="18.0" />
          </font></Button>
-      <Button fx:id="backBtn" layoutX="819.0" layoutY="509.0" mnemonicParsing="false" onAction="#onBackToMain" prefHeight="35.0" prefWidth="86.0" text="Home">
+      <Button fx:id="backBtn" layoutX="851.0" layoutY="509.0" mnemonicParsing="false" onAction="#onBackToMain" prefHeight="35.0" prefWidth="86.0" text="Home">
          <font>
             <Font name="Verdana" size="18.0" />
          </font></Button>
