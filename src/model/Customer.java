@@ -62,9 +62,19 @@ public class Customer {
     public void setCustomerName(String customerName){
         this.customerName = customerName;
     }
+
+    /**
+     * Getter for customerAddress
+     * @return customerAddress Address of customer
+     */
     public String getCustomerAddress(){
         return customerAddress;
     }
+
+    /**
+     * Setter for customerAddress
+     * @param customerAddress Address of customer
+     */
     public void setCustomerAddress(String customerAddress){
         this.customerAddress = customerAddress;
     }
