@@ -43,12 +43,16 @@ public class customerController implements Initializable {
         customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         name.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         address.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
+        postalCode.setCellValueFactory(new PropertyValueFactory<>("customerPostal"));
+        phone.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
+        country.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
+        division.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
         /** @TODO Created list example to test code; need to look into DB 12.8
          *
 
 
 */
-        customersList.add(new Customer(2, "Logan Roy", "100 Neverland"));
+        customersList.add(new Customer(2, "Logan Roy", "100 Neverland", 3, 3, "s", "Test"));
     }
 
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {

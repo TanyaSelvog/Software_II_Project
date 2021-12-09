@@ -11,16 +11,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class customerFormController {
-    public TextField nameTF;
-    public TextField phoneTF;
-    public TextField postalTF;
-    public TextField addressTF;
-    public TextField customerTF;
+
     public ComboBox countryComboBox;
     public ComboBox divisionComboBox;
     public Button homeBtn;
     public Button cancelBtn;
     public Button saveBtn;
+    public TextField customerName;
+    public TextField customerPhone;
+    public TextField customerPostalCode;
+    public TextField customerAddress;
+    public TextField customerID;
 
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));

@@ -15,16 +15,16 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                       <TableView fx:id="monthlyTable" prefHeight="269.0" prefWidth="665.0">
                           <columns>
-                              <TableColumn fx:id="titleMonthly" prefWidth="75.0" text="Title" />
-                              <TableColumn fx:id="descMonthly" prefWidth="75.0" text="Description" />
-                              <TableColumn fx:id="locationMonthly" prefWidth="75.0" text="Location" />
+                              <TableColumn fx:id="titleMonthly" prefWidth="59.0" text="Title" />
+                              <TableColumn fx:id="descMonthly" prefWidth="94.0" text="Description" />
+                              <TableColumn fx:id="locationMonthly" prefWidth="72.0" text="Location" />
                               <TableColumn fx:id="contactMonthly" prefWidth="75.0" text="Contact" />
-                              <TableColumn fx:id="typeMonthly" prefWidth="75.0" text="Type" />
-                              <TableColumn fx:id="startMonthly" prefWidth="75.0" text="Start Date &amp; Time" />
-                              <TableColumn fx:id="endMonthly" prefWidth="75.0" text="End Date &amp; Time" />
-                              <TableColumn fx:id="customerMonthly" prefWidth="105.0" text="Customer ID" />
-                              <TableColumn fx:id="userIDmonthly" prefWidth="45.0" text="User ID" />
-                              <TableColumn fx:id="apptIDmonthly" prefWidth="75.0" text="Appointment ID" />
+                              <TableColumn fx:id="typeMonthly" prefWidth="64.0" text="Type" />
+                              <TableColumn fx:id="startMonthly" prefWidth="125.0" text="Start Date &amp; Time" />
+                              <TableColumn fx:id="endMonthly" prefWidth="111.0" text="End Date &amp; Time" />
+                              <TableColumn fx:id="customerMonthly" prefWidth="87.0" text="Customer ID" />
+                              <TableColumn fx:id="userIDmonthly" prefWidth="55.0" text="User ID" />
+                              <TableColumn fx:id="apptIDmonthly" prefWidth="108.0" text="Appointment ID" />
                           </columns>
                       </TableView>
 
