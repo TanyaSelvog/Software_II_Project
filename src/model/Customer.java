@@ -19,6 +19,10 @@ public class Customer {
      * @param customerID
      * @param customerName
      * @param customerAddress
+     * @param customerPhone
+     * @param customerPostal
+     * @param customerCountry
+     * @param customerDivision
      */
     public Customer (int customerID, String customerName, String customerAddress, int customerPostal, int customerPhone,
                      String customerCountry, String customerDivision){
@@ -93,25 +97,52 @@ public class Customer {
     public void setCustomerCountry(String customerCountry){
         this.customerCountry = customerCountry;
     }
+
+    /**
+     * Getter for customerDivision
+     * @return customerDivision Customer locale
+     */
     public String getCustomerDivision(){
         return customerDivision;
     }
 
+    /**
+     * Setter for customerDivision
+     * @param customerDivision Customer locale
+     */
     public void setCustomerDivision(String customerDivision){
         this.customerDivision = customerDivision;
     }
+
+    /**
+     * Getter for customerPhone
+     * @return customerPhone Customer phone number
+     */
     public int getCustomerPhone(){
         return customerPhone;
     }
 
+    /**
+     * Setter for customerPhone
+     * @param customerPhone Customer phone number
+     */
 
     public void setCustomerPhone(int customerPhone){
         this.customerPhone = customerPhone;
     }
+
+    /**
+     * Getter for customerPostal
+     * @return customerPostal Postal code of customer
+     */
     public int getCustomerPostal(){
         return customerPostal;
     }
 
+    /**
+     * Setter for customerPostal
+     * @param customerPostal Postal code of customer
+     */
 
     public void setCustomerPostal(int customerPostal){
         this.customerPostal = customerPostal;
