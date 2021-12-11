@@ -46,6 +46,7 @@ public class newApptController implements Initializable {
         try {
             String apptDescription = descTF.getText();
 
+
         } catch (Exception displayE) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
             alert.showAndWait();

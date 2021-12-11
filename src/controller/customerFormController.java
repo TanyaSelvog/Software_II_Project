@@ -2,15 +2,21 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Customer;
 
-public class customerFormController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class customerFormController implements Initializable {
 
     public ComboBox countryComboBox;
     public ComboBox divisionComboBox;
@@ -22,6 +28,26 @@ public class customerFormController {
     public TextField customerPostalCode;
     public TextField customerAddress;
     public TextField customerID;
+
+    /**
+     * This method initializes the controller.
+     *
+     * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+    private Customer getCustomer() {
+        // @TODO Look at this after work 12.11.21
+        String customerName = customerName.getText();
+        String customerAddress = customerAddress.getText();
+        int customerPhone = Integer.parseInt(customerPhone.getText());
+        int customerPostal = Integer.parseInt(customerPostalCode.getText());
+        int customerID;
+
+    }
 
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
