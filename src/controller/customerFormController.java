@@ -6,12 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import model.Customer;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -39,11 +37,11 @@ public class customerFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-    private Customer getCustomer() {
-        // @TODO Look at this after work 12.11.21
-        String customerName = customerName.getText();
-        String customerAddress = customerAddress.getText();
-        int customerPhone = Integer.parseInt(customerPhone.getText());
+    private void getCustomer() {
+        // @TODO 12.13 updated vars; temp changed method to void
+        String custName = customerName.getText();
+        String custAddress = customerAddress.getText();
+        int custPhone = Integer.parseInt(customerPhone.getText());
         int customerPostal = Integer.parseInt(customerPostalCode.getText());
         int customerID;
 
