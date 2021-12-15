@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import model.Appointments;
 import model.Customer;
 
+import java.util.Optional;
+
 public class apptsController {
     public TableView monthlyTable;
     public TableColumn titleMonthly;
@@ -39,7 +41,7 @@ public class apptsController {
     public Button deleteApptBtn;
     public Button backBtn;
     public Tab monthlyApptTab;
-
+    public Appointments deletedAppt;
     private Appointments modAppointments;
 
     private int index;
@@ -71,7 +73,21 @@ public class apptsController {
             stage.show();
         }
     }
-    public void onDeleteAppt(ActionEvent actionEvent) throws Exception {
+    public void onDeleteAppt(ActionEvent actionEvent){
+//@TODO 12.14 Started
+        deletedAppt = (Appointments) monthlyTable.getSelectionModel().getSelectedItem();
+        if (deletedAppt != null) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Do you want to delete the selected appointment?");
+            Optional<ButtonType> userAnswer = alert.showAndWait();
+
+          /**  if (userAnswer.isPresent() && userAnswer.get() == ButtonType.OK) {
+                Inventory.deletePart(deletedPart);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, ("Select a Part to delete."));
+            alert.showAndWait();
+        }
         Parent root = FXMLLoader.load(getClass().getResource("/view/customerForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Modify Current Customer");
@@ -79,7 +95,9 @@ public class apptsController {
         stage.setScene(scene);
         stage.show();
     }
-
+           */
+        }
+    }
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -88,4 +106,7 @@ public class apptsController {
         stage.setScene(scene);
         stage.show();
     }
-}
+        }
+
+
+
