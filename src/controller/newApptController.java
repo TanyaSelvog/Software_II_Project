@@ -23,9 +23,9 @@ public class newApptController implements Initializable {
     public TextField locationTF;
     public TextField userID;
     public TextField custID;
-    public TextField endTF;
+
     public TextField typeTF;
-    public TextField startTF;
+
     public Button saveBtn;
     public Button cancelBtn;
     public DatePicker startDateNewAppt;

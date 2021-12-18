@@ -42,6 +42,18 @@ public class apptsController {
     public Button backBtn;
     public Tab monthlyApptTab;
     public Appointments deletedAppt;
+    public Tab allApptsTab;
+    public TableView allApptsTable;
+    public TableColumn titleAllAppts;
+    public TableColumn descAllAppts;
+    public TableColumn locationAllAppts;
+    public TableColumn contactAllAppts;
+    public TableColumn typeAllAppts;
+    public TableColumn startAllAppts;
+    public TableColumn endAllAppts;
+    public TableColumn customerAllAppts;
+    public TableColumn idUserAllAppts;
+    public TableColumn idApptAllAppt;
     private Appointments modAppointments;
 
     private int index;
