@@ -2,7 +2,7 @@ package utilities;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+//driver version installed 8.0.26
 public abstract class JDBC {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";

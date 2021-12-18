@@ -6,11 +6,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
 public class modifyApptController {
     public Button saveBtn;
     public Button cancelBtn;
+    public DatePicker startDateModAppt;
+    public DatePicker endDateModAppt;
 
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentsView.fxml"));

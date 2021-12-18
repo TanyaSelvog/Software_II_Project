@@ -84,9 +84,9 @@
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="4" />
             <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="startDateModAppt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="endDateModAppt" GridPane.columnIndex="4" />
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="Modify Appointment">

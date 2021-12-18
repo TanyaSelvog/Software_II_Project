@@ -81,9 +81,9 @@
             <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <TextField fx:id="userID" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <TextField fx:id="custID" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField fx:id="endTF" GridPane.columnIndex="4" />
             <TextField fx:id="typeTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="startTF" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="startDateNewAppt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <DatePicker fx:id="endDateNewAppt" GridPane.columnIndex="4" />
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="New Appointment">
@@ -101,5 +101,6 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
+      <DatePicker />
    </children>
 </AnchorPane>

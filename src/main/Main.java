@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utilities.JDBC;
 
+/** From Part 1 Video - notes
+ * "To test, in the "main" method, first line, do Locale.setDefault(newLocale("fr"));
+ */
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
