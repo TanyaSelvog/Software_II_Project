@@ -9,14 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
 
-public class modifyApptController {
+public class ModifyApptController {
     public Button saveBtn;
     public Button cancelBtn;
     public DatePicker startDateModAppt;
     public DatePicker endDateModAppt;
 
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");
         Scene scene = new Scene(root, 1000, 600);
@@ -25,7 +25,7 @@ public class modifyApptController {
     }
 
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");
         Scene scene = new Scene(root, 1000, 600);

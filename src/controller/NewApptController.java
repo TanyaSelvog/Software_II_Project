@@ -16,7 +16,7 @@ import model.Appointments;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class newApptController implements Initializable {
+public class NewApptController implements Initializable {
     public TextField apptID;
     public TextField titleTF;
     public TextField descTF;
@@ -60,7 +60,7 @@ public class newApptController implements Initializable {
         }
 
     public void onSave(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");
         Scene scene = new Scene(root, 1000, 600);
@@ -73,7 +73,7 @@ public class newApptController implements Initializable {
 
 
     public void onCancel(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");
         Scene scene = new Scene(root, 1000, 600);

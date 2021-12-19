@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.modifyCustomerFormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyCustomerFormController">
    <children>
       <GridPane layoutX="24.0" layoutY="116.0" prefHeight="478.0" prefWidth="976.0" style="-fx-background-color: #f9df69;" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="116.0">
         <columnConstraints>

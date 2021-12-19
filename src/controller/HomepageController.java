@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class homepageController {
+public class HomepageController {
 
     public Button customersBtn;
     public Button apptsBtn;
@@ -17,7 +17,7 @@ public class homepageController {
     public Button reportsBtn;
 
     public void onCustomersClick(ActionEvent actionEvent) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/customersView.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Customers");
             Scene scene = new Scene(root, 1000, 600);
@@ -27,7 +27,7 @@ public class homepageController {
     }
 
     public void onAppointmentsClick(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/appointmentsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Appointments");
         Scene scene = new Scene(root, 1000, 600);
@@ -38,7 +38,7 @@ public class homepageController {
 
 
     public void onReportsClick(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/reportsView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Reports");
         Scene scene = new Scene(root, 1000, 600);

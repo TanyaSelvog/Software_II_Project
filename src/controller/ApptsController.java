@@ -8,11 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
-import model.Customer;
 
 import java.util.Optional;
 
-public class apptsController {
+public class ApptsController {
     public TableView monthlyTable;
     public TableColumn titleMonthly;
     public TableColumn descMonthly;
@@ -58,7 +57,7 @@ public class apptsController {
 
     private int index;
     public void onNewAppt(ActionEvent actionEvent) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/view/newAppointmentForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("New Appointment");
         Scene scene = new Scene(root, 1000, 600);
@@ -77,7 +76,7 @@ public class apptsController {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/modifyAppointmentForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyAppointmentForm.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Modify Appointment");
             Scene scene = new Scene(root, 1000, 600);
@@ -100,7 +99,7 @@ public class apptsController {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select a Part to delete."));
             alert.showAndWait();
         }
-        Parent root = FXMLLoader.load(getClass().getResource("/view/customerForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Modify Current Customer");
         Scene scene = new Scene(root, 1000, 600);
@@ -111,7 +110,7 @@ public class apptsController {
         }
     }
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");
         Scene scene = new Scene(root, 1000, 600);

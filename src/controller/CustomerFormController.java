@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class customerFormController implements Initializable {
+public class CustomerFormController implements Initializable {
 
     public ComboBox countryComboBox;
     public ComboBox divisionComboBox;
@@ -48,7 +48,7 @@ public class customerFormController implements Initializable {
     }
 
     public void onHome(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Modify Current Customer");
         Scene scene = new Scene(root, 1000, 600);
@@ -57,7 +57,7 @@ public class customerFormController implements Initializable {
     }
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/customersView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Customers");
         Scene scene = new Scene(root, 1000, 600);
@@ -66,7 +66,7 @@ public class customerFormController implements Initializable {
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/customersView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Customers");
         Scene scene = new Scene(root, 1000, 600);

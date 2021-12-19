@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 
-public class loginController implements Initializable {
+public class LoginController implements Initializable {
 
 
     public Button loginBtn;
@@ -33,7 +33,7 @@ public class loginController implements Initializable {
     }
 
     public void onLogin(ActionEvent actionEvent) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Scheduler Homepage");
             Scene scene = new Scene(root, 1000, 600);

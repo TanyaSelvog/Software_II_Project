@@ -16,11 +16,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customer;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class customerController implements Initializable {
+public class CustomerController implements Initializable {
     public TableColumn customerID;
     public TableColumn name;
     public TableColumn address;
@@ -62,7 +61,7 @@ public class customerController implements Initializable {
     }
 
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/customerForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Add New Customer");
         Scene scene = new Scene(root, 1000, 600);
@@ -79,7 +78,7 @@ public class customerController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select a Customer to modify."));
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/customerForm.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Modify Current Customer");
             Scene scene = new Scene(root, 1000, 600);
@@ -91,7 +90,7 @@ public class customerController implements Initializable {
 
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/homepageWindow.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Scheduler Homepage");
             Scene scene = new Scene(root, 1000, 600);

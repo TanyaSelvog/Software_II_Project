@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utilities.JDBC;
+import utils.JDBC;
 
 /** From Part 1 Video - notes
  * "To test, in the "main" method, first line, do Locale.setDefault(newLocale("fr"));
