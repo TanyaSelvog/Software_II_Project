@@ -2,6 +2,9 @@ package utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 //driver version installed 8.0.26
 public abstract class ConnectionJDBC {
     private static final String protocol = "jdbc";
@@ -19,8 +22,16 @@ public abstract class ConnectionJDBC {
         try {
             Class.forName(driver); // Locate Driver
             connection = DriverManager.getConnection(jdbcUrl, userName, password); // Reference Connection object
-            System.out.println("Connection successful!");
+      //      System.out.println("Connection successful!");
+         //   Statement stmt = connection.createStatement();
+           /* String sqlStatement = "SELECT Country FROM Countries";
+            ResultSet result = stmt.executeQuery(sqlStatement);
+            while (result.next())
+            {
+            System.out.println(result.getString("Country"));
+        }*/
         }
+
         catch(Exception e)
         {
             System.out.println("Error:" + e.getMessage());
@@ -36,5 +47,8 @@ public abstract class ConnectionJDBC {
         {
             System.out.println("Error:" + e.getMessage());
         }
+    }
+    public static Connection getConnection(){
+        return connection;
     }
 }

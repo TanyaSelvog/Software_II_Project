@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import utils.CustDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,6 +56,7 @@ public class CustomerFormController implements Initializable {
             String custPhone = customerPhone.getText();
             String customerPostal =customerPostalCode.getText();
             System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal);
+
         }else {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
             alert.showAndWait();
@@ -88,6 +90,7 @@ public class CustomerFormController implements Initializable {
         Scene scene = new Scene(root, 1000, 600);
         stage.setScene(scene);
         stage.show();
+        CustDB.testCustomer();
     }
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception {
