@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -39,16 +40,46 @@ public class CustomerFormController implements Initializable {
     }
     private void getCustomer() {
         //@TODO 12.19 WORKING ON EDITING THIS; CHAPTER 11
-        String custName = customerName.getText();
+       /** String custName = customerName.getText();
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
+        */
+        if ((customerName.getText() != null && !customerName.getText().isEmpty()) ||
+            (customerAddress.getText() != null && !customerAddress.getText().isEmpty()) ||
+            (customerPhone.getText() != null && !customerPhone.getText().isEmpty()) ||
+            (customerPostalCode.getText() != null && !customerPostalCode.getText().isEmpty()))
+        {
+            String custName = customerName.getText();
+            String custAddress = customerAddress.getText();
+            String custPhone = customerPhone.getText();
+            String customerPostal =customerPostalCode.getText();
+            System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal);
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+            alert.showAndWait();
 
+        }
+        }
+                /**
+                 *
+
+                ||
+        (customerAddress.getText() != null && !customerAddress.getText().isEmpty()) ||
+                (customerPhone.getText() != null && !customerPhone.getText().isEmpty()) ||
+                (customerPostalCode.getText() != null && !customerPostalCode.getText().isEmpty()))
+        {
+            System.out.println("Okay");}
+        else { System.out.println("oops");
+            }
+        }
+                 */
+      //      .getText() != null && !comment.getText().isEmpty())
        // String custCountry = countryComboBox.getValue();
         //String custDivision = divisionComboBox.getValue();
       //  int customerID;
 
-    }
+
 
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
@@ -66,6 +97,7 @@ public class CustomerFormController implements Initializable {
         Scene scene = new Scene(root, 1000, 600);
         stage.setScene(scene);
         stage.show();
+        getCustomer();
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
