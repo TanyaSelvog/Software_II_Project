@@ -3,7 +3,7 @@ package utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 //driver version installed 8.0.26
-public abstract class JDBC {
+public abstract class ConnectionJDBC {
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
     private static final String location = "//localhost/";

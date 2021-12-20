@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import utils.JDBC;
+import utils.ConnectionJDBC;
 
 /** From Part 1 Video - notes
  * "To test, in the "main" method, first line, do Locale.setDefault(newLocale("fr"));
@@ -23,6 +23,6 @@ public class Main extends Application {
     public static void main(String [] args){
 
         launch(args);
-        JDBC.openConnection();
+        ConnectionJDBC.openConnection();
     }
 }

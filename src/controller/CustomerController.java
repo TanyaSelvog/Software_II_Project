@@ -57,7 +57,7 @@ public class CustomerController implements Initializable {
 
 
          */
-        customersList.add(new Customer(2, "Logan Roy", "100 Neverland", 3, 3, "s", "Test"));
+        customersList.add(new Customer(2, "Logan Roy", "100 Neverland" , "3","3", "s", "Test"));
     }
 
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {

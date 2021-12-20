@@ -38,12 +38,15 @@ public class CustomerFormController implements Initializable {
 
     }
     private void getCustomer() {
-        // @TODO 12.13 updated vars; temp changed method to void
+        //@TODO 12.19 WORKING ON EDITING THIS; CHAPTER 11
         String custName = customerName.getText();
         String custAddress = customerAddress.getText();
-        int custPhone = Integer.parseInt(customerPhone.getText());
-        int customerPostal = Integer.parseInt(customerPostalCode.getText());
-        int customerID;
+        String custPhone = customerPhone.getText();
+        String customerPostal =customerPostalCode.getText();
+
+       // String custCountry = countryComboBox.getValue();
+        //String custDivision = divisionComboBox.getValue();
+      //  int customerID;
 
     }
 

@@ -6,8 +6,8 @@ public class Customer {
     private String customerName;
     private String customerAddress;
 
-    private int customerPhone;
-    private int customerPostal;
+    private String customerPhone;
+    private String customerPostal;
 
     private String customerCountry;
 
@@ -24,7 +24,7 @@ public class Customer {
      * @param customerCountry
      * @param customerDivision
      */
-    public Customer (int customerID, String customerName, String customerAddress, int customerPostal, int customerPhone,
+    public Customer (int customerID, String customerName, String customerAddress, String customerPostal, String customerPhone,
                      String customerCountry, String customerDivision){
         this.customerID = customerID;
         this.customerName = customerName;
@@ -118,7 +118,7 @@ public class Customer {
      * Getter for customerPhone
      * @return customerPhone Customer phone number
      */
-    public int getCustomerPhone(){
+    public String getCustomerPhone(){
         return customerPhone;
     }
 
@@ -127,7 +127,7 @@ public class Customer {
      * @param customerPhone Customer phone number
      */
 
-    public void setCustomerPhone(int customerPhone){
+    public void setCustomerPhone(String customerPhone){
         this.customerPhone = customerPhone;
     }
 
@@ -135,7 +135,7 @@ public class Customer {
      * Getter for customerPostal
      * @return customerPostal Postal code of customer
      */
-    public int getCustomerPostal(){
+    public String getCustomerPostal(){
         return customerPostal;
     }
 
@@ -144,7 +144,7 @@ public class Customer {
      * @param customerPostal Postal code of customer
      */
 
-    public void setCustomerPostal(int customerPostal){
+    public void setCustomerPostal(String customerPostal){
         this.customerPostal = customerPostal;
     }
 }
