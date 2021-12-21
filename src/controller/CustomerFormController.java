@@ -90,7 +90,7 @@ public class CustomerFormController implements Initializable {
         Scene scene = new Scene(root, 1000, 600);
         stage.setScene(scene);
         stage.show();
-        CustDB.testCustomer();
+
     }
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception {

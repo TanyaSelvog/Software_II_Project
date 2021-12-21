@@ -30,6 +30,7 @@ public abstract class ConnectionJDBC {
             {
             System.out.println(result.getString("Country"));
         }*/
+            // PreparedStatement pstmt = ConnectionJDBC.getConnection().prepareStatement;
         }
 
         catch(Exception e)
