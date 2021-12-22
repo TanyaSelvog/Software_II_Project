@@ -38,6 +38,7 @@ public class CustomerFormController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
     }
     private void getCustomer() {
         //@TODO 12.19 WORKING ON EDITING THIS; CHAPTER 11

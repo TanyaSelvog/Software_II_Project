@@ -15,6 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Customer;
+import utils.CustDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -41,7 +42,9 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        customersTable.setItems(customersList);
+        customersTable.setItems(CustDB.getCustomerList());
+
+
 
 
         //fxid (for each column name) is 1st
@@ -57,7 +60,7 @@ public class CustomerController implements Initializable {
 
 
          */
-        customersList.add(new Customer(2, "Logan Roy", "100 Neverland" , "3","3", "s", "Test"));
+        //customersList.add(new Customer(2, "Logan Roy", "100 Neverland" , "3","3", "s", "Test"));
     }
 
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {
