@@ -102,6 +102,7 @@ public class CustomerFormController implements Initializable {
         stage.setScene(scene);
         stage.show();
         getCustomer();
+
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
