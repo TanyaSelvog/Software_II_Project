@@ -13,7 +13,7 @@ public class CustDB {
     public static ObservableList<Customer> getCustomerList() {
         ObservableList<Customer> customersList = FXCollections.observableArrayList();
         try {
-        String sqlStatement = "SELECT Customer_Name FROM CUSTOMERS";
+        String sqlStatement = "SELECT Country FROM Countries";
         PreparedStatement pstmt = ConnectionJDBC.getConnection().prepareStatement(sqlStatement);
 
         ResultSet result = pstmt.executeQuery(sqlStatement);

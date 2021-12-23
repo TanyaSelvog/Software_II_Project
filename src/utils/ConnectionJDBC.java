@@ -17,12 +17,12 @@ public abstract class ConnectionJDBC {
     private static String password = "Passw0rd!"; // Password
     public static Connection connection = null;  // Connection Interface
 
-    public static void openConnection()
+    public static Connection openConnection()
     {
         try {
             Class.forName(driver); // Locate Driver
             connection = DriverManager.getConnection(jdbcUrl, userName, password); // Reference Connection object
-      //      System.out.println("Connection successful!");
+            System.out.println("Connection successful!");
          //   Statement stmt = connection.createStatement();
            /* String sqlStatement = "SELECT Country FROM Countries";
             ResultSet result = stmt.executeQuery(sqlStatement);
@@ -37,6 +37,7 @@ public abstract class ConnectionJDBC {
         {
             System.out.println("Error:" + e.getMessage());
         }
+        return connection;
     }
 
     public static void closeConnection() {
