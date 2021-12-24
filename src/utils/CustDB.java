@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class CustDB {
 //@TODO 12.23.21 Returns ResultList of customer names thus far
-    public static ObservableList<Customer> getCustomerList() {
+    public static ObservableList<Customer> getCustomersList() {
         ObservableList<Customer> customersList = FXCollections.observableArrayList();
         try {
         String sqlStatement = "SELECT Customer_Name FROM Customers";

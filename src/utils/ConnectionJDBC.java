@@ -23,14 +23,7 @@ public abstract class ConnectionJDBC {
             Class.forName(driver); // Locate Driver
             connection = DriverManager.getConnection(jdbcUrl, userName, password); // Reference Connection object
             System.out.println("Connection successful!");
-         //   Statement stmt = connection.createStatement();
-           /* String sqlStatement = "SELECT Country FROM Countries";
-            ResultSet result = stmt.executeQuery(sqlStatement);
-            while (result.next())
-            {
-            System.out.println(result.getString("Country"));
-        }*/
-            // PreparedStatement pstmt = ConnectionJDBC.getConnection().prepareStatement;
+
         }
 
         catch(Exception e)
@@ -50,7 +43,8 @@ public abstract class ConnectionJDBC {
             System.out.println("Error:" + e.getMessage());
         }
     }
-    public static Connection getConnection(){
+  /**  public static Connection getConnection(){
         return connection;
     }
+   */
 }
