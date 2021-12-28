@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class CountryDB {
 
 
-    public static ObservableList<Country> getApptsList(){
+    public static ObservableList<Country> getCountryList(){
         ObservableList<Country> countriesList = FXCollections.observableArrayList();
 
         try {

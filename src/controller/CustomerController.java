@@ -14,7 +14,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Country;
 import model.Customer;
+import utils.CountryDB;
 import utils.CustDB;
 
 import java.net.URL;
@@ -34,7 +36,7 @@ public class CustomerController implements Initializable {
     public TableView customersTable;
 
     private ObservableList<Customer> customersList = FXCollections.observableArrayList();
-
+   private  ObservableList<Country> countriesList = FXCollections.observableArrayList();
     private Customer modCustomer;
 
     private int index;
@@ -42,7 +44,7 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        customersTable.setItems(CustDB.getCustomersList());
+        customersTable.setItems(CountryDB.getCountryList());
 
 
 

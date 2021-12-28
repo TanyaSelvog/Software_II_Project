@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,6 +13,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Country;
+import model.Customer;
+import utils.CountryDB;
 import utils.CustDB;
 
 import java.net.URL;
@@ -28,6 +33,7 @@ public class CustomerFormController implements Initializable {
     public TextField customerPostalCode;
     public TextField customerAddress;
     public TextField customerID;
+    private ObservableList<Country> countriesList = FXCollections.observableArrayList();
 
     /**
      * This method initializes the controller.
@@ -37,7 +43,8 @@ public class CustomerFormController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+// @TODO 12.26 need to look at this and edit tomorrow
+countryComboBox.setItems(CountryDB.getCountryList());
 
     }
     private void getCustomer() {
