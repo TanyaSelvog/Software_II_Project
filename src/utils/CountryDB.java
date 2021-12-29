@@ -14,14 +14,18 @@ public class CountryDB {
 
     public static ObservableList<Country> getCountryList(){
         ObservableList<Country> countriesList = FXCollections.observableArrayList();
-
+//Updated 12.29 Need to watch ComboBox video
         try {
-            String sqlStatement = "SELECT Country FROM Countries";
+            String sqlStatement = "SELECT * FROM Countries";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
             while(result.next()){
-                System.out.println(result.getString("Country"));
+                String countryName = result.getString("Country");
+                int countryID = result.getInt("Country_ID");
+
+                Country country = new Country(countryName, countryID);
+                countriesList.add(country);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
