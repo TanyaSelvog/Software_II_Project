@@ -7,6 +7,17 @@ public class Appointments {
     private String apptLocation;
     private String apptContact;
     private String apptType;
+    private int apptID;
+
+    public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
+                        String apptType){
+        this.apptID = apptID;
+        this.apptTitle = apptTitle;
+        this.apptDescription = apptDescription;
+        this.apptLocation = apptLocation;
+        this.apptContact = apptContact;
+        this.apptType = apptType;
+    }
 
     public String getApptTitle(){
         return apptTitle;
@@ -45,6 +56,14 @@ public class Appointments {
 
     public void setApptType(String apptType){
         this.apptType = apptType;
+    }
+
+    public int getApptID(){
+        return apptID;
+    }
+
+    public void setApptID(int apptID){
+        this.apptID = apptID;
     }
 
 }
