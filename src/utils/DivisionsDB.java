@@ -11,19 +11,21 @@ import java.sql.SQLException;
 
 public class DivisionsDB {
 
-    public static ObservableList<Division> getDivisionList(){
+    public static ObservableList<Division> getDivisionList(int countryID){
         ObservableList<Division> divisionList = FXCollections.observableArrayList();
 
         try {
-            String sqlStatement = "SELECT * FROM First_Level_Divisions";
+            String sqlStatement = "SELECT * FROM First_Level_Divisions WHERE Country_ID =?";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+            ps.setInt(0, countryID);
 
             ResultSet result = ps.executeQuery();
                 while (result.next()) {
                     String divisionName = result.getString("Division");
                     int divisionID = result.getInt("Division_ID");
 
-                    Division division = new Division(divisionName, divisionID);
+                    Division division = new Division(divisionName, divisionID, countryID);
                     divisionList.add(division);
                     }
                 }

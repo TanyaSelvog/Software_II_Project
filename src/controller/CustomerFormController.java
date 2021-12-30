@@ -46,7 +46,7 @@ public class CustomerFormController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 // @TODO 12.26 need to look at this and edit tomorrow
 countryComboBox.setItems(CountryDB.getCountryList());
-divisionComboBox.setItems(DivisionsDB.getDivisionList());
+//divisionComboBox.setItems(DivisionsDB.getDivisionList());
 
     }
     private void getCustomer() {
@@ -121,5 +121,12 @@ divisionComboBox.setItems(DivisionsDB.getDivisionList());
         Scene scene = new Scene(root, 1000, 600);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void onCountrySelected(ActionEvent actionEvent) {
+        Country selectedCountry = (Country) countryComboBox.getValue();
+        divisionComboBox.setItems(DivisionsDB.getDivisionList(selectedCountry.getCountryID()));
+
+
     }
 }
