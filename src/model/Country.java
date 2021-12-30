@@ -31,4 +31,9 @@ public class Country {
     public void setCountryID(int countryID){
         this.countryID = countryID;
     }
+    @Override
+    public String toString(){
+        // return (getClass().getName() + '@' + Integer.toHexString(hashCode()));
+        return (countryName);
+    }
 }

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 public class CountryDB {
 
 
-    public static ObservableList<Country> getCountryList(){
+    public static ObservableList<Country> getCountryList() {
         ObservableList<Country> countriesList = FXCollections.observableArrayList();
 //Updated 12.29 Need to watch ComboBox video
         try {
@@ -20,7 +20,7 @@ public class CountryDB {
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
-            while(result.next()){
+            while (result.next()) {
                 String countryName = result.getString("Country");
                 int countryID = result.getInt("Country_ID");
 
@@ -33,3 +33,4 @@ public class CountryDB {
         return countriesList;
     }
 }
+
