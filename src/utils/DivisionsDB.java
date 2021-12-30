@@ -15,7 +15,7 @@ public class DivisionsDB {
         ObservableList<Division> divisionList = FXCollections.observableArrayList();
 
         try {
-            String sqlStatement = "SELECT * FROM First-Level_Divisions";
+            String sqlStatement = "SELECT * FROM First_Level_Divisions";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
