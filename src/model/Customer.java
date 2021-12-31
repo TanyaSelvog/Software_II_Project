@@ -11,7 +11,10 @@ public class Customer {
 
     private String customerCountry;
 
+    private int divisionID;
+
     private String customerDivision;
+
 
 
     /**
@@ -21,17 +24,20 @@ public class Customer {
      * @param customerAddress
      * @param customerPhone
      * @param customerPostal
+     *  * @param divisionID
+     *  customerDivision
      * @param customerCountry
-     * @param customerDivision
+
      */
     public Customer (int customerID, String customerName, String customerAddress, String customerPostal, String customerPhone,
-                     String customerCountry, String customerDivision){
+                     String customerCountry, int divisionID, String customerDivision){
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress= customerAddress;
         this.customerPostal = customerPostal;
         this.customerPhone = customerPhone;
         this.customerCountry = customerCountry;
+        this.divisionID = divisionID;
         this.customerDivision = customerDivision;
     }
 
@@ -99,19 +105,19 @@ public class Customer {
     }
 
     /**
-     * Getter for customerDivision
-     * @return customerDivision Customer locale
+     * Getter for divisionID
+     * @return divisionID Customer locale
      */
-    public String getCustomerDivision(){
-        return customerDivision;
+    public int getDivisionID(){
+        return divisionID;
     }
 
     /**
-     * Setter for customerDivision
-     * @param customerDivision Customer locale
+     * Setter for divisionID
+     * @param divisionID Customer locale
      */
-    public void setCustomerDivision(String customerDivision){
-        this.customerDivision = customerDivision;
+    public void setDivisionID(int divisionID){
+        this.divisionID = divisionID;
     }
 
     /**
@@ -146,5 +152,13 @@ public class Customer {
 
     public void setCustomerPostal(String customerPostal){
         this.customerPostal = customerPostal;
+    }
+
+    public String getCustomerDivision(){
+        return customerDivision;
+    }
+
+    public void setCustomerDivision(String customerDivision){
+        this.customerDivision = customerDivision;
     }
 }

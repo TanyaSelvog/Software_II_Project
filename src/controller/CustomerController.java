@@ -44,7 +44,7 @@ public class CustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        customersTable.setItems(CountryDB.getCountryList());
+        customersTable.setItems(CustDB.getCustomersList());
 
 
 
