@@ -17,10 +17,12 @@ public class CustDB {
         try {
             //need to fix the SQL statement
             String sqlStatement = "SELECT Customers.Customer_ID, Customers.Customer_Name, Customers.Address, " +
-                    "Customers.Postal_Code, Customers.Phone, Customers.DivisionID, "+
+                    "Customers.Postal_Code, Customers.Phone, Customers.Division_ID, "+
                     "First_Level_Divisions.Division_ID, First_Level_Divisions.Division, Countries.Country_ID" +
-                    "FROM Customers INNER JOIN Customers ON First_Level_Divisions.Division_ID =Customers.Division_ID)" +
-                     "INNER JOIN Countries ON First_Level_Divisions.Country_ID = =Countries.Country_ID)";
+                    "FROM Customers INNER JOIN Customers ON First_Level_Divisions " +
+                    "ON Customers.Division_ID = First_Level_Divisions.Division_ID" +
+                    "INNER JOIN Countries ON First_Level_Divisions.Country_ID = Countries.Country_ID";
+
             /** "SELECT Customers.Customer_ID, Customers.Customer_Name,
              * Customers.Address, Customers.Postal_Code, Customers.Phone,
              * First_Level_Divisions.Division_ID, First_Level_Divisions.Division,
@@ -29,7 +31,9 @@ public class CustDB {
              * INNER JOIN Customers ON First_Level_Divisions.Division_ID =Customers.Division_ID)
              * INNER JOIN Countries ON First_Level_Divisions.Country_ID = =Countries.Country_ID)
              *
-             *
+             * "SELECT cx.Customer_ID, cx.Customer_Name, cx.Address, cx.Postal_Code, cx.Phone, cx.Division_ID, " +
+             *        "f.Division, f.COUNTRY_ID, co.Country FROM customers as cx INNER JOIN first_level_divisions " +
+             *      "as f on cx.Division_ID = f.Division_ID INNER JOIN countries as co ON f.COUNTRY_ID = co.Country_ID");
              *
              */
             PreparedStatement pstmt = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
@@ -48,6 +52,7 @@ public class CustDB {
 
                 Customer customer = new Customer(customerID, customerName, customerAddress,
                         customerPostal, customerPhone, customerCountry, divisionID, customerDivision);
+                customersList.add(customer);
             }
 
         } catch (SQLException exception) {
