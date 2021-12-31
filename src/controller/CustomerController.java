@@ -55,8 +55,8 @@ public class CustomerController implements Initializable {
         address.setCellValueFactory(new PropertyValueFactory<>("customerAddress"));
         postalCode.setCellValueFactory(new PropertyValueFactory<>("customerPostal"));
         phone.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
-        country.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         division.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
+        country.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
         /** @TODO Created list example to test code; need to look into DB 12.8
          *
 

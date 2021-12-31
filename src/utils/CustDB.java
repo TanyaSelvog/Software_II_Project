@@ -33,12 +33,12 @@ public class CustDB {
                 String customerAddress = result.getString("Address");
                 String customerPostal = result.getString("Postal_Code");
                 String customerPhone = result.getString("Phone");
-                String customerCountry = result.getString("Country");
                 int divisionID = result.getInt("Division_ID");
                 String customerDivision = result.getString("Division");
+                String customerCountry = result.getString("Country");
                 System.out.println(customerName + " " + customerAddress + " " + customerPostal);
                 Customer customer = new Customer(customerID, customerName, customerAddress,
-                       customerPostal, customerPhone, customerCountry, divisionID, customerDivision);
+                       customerPostal, customerPhone, divisionID, customerDivision, customerCountry);
                 customersList.add(customer);
 
 
@@ -48,7 +48,7 @@ public class CustDB {
             exception.printStackTrace();
 
     } return customersList;
-        // PreparedStatement pstmt = ConnectionJDBC.getConnection().prepareStatement;
+
 
 
 

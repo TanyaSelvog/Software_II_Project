@@ -29,16 +29,15 @@ public class Customer {
      * @param customerCountry
 
      */
-    public Customer (int customerID, String customerName, String customerAddress, String customerPostal, String customerPhone,
-                     String customerCountry, int divisionID, String customerDivision){
+    public Customer (int customerID, String customerName, String customerAddress, String customerPostal, String customerPhone, int divisionID, String customerDivision, String customerCountry){
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress= customerAddress;
         this.customerPostal = customerPostal;
         this.customerPhone = customerPhone;
-        this.customerCountry = customerCountry;
         this.divisionID = divisionID;
         this.customerDivision = customerDivision;
+        this.customerCountry = customerCountry;
     }
 
     /**
