@@ -49,19 +49,6 @@ public class CustomerFormController implements Initializable {
         countryComboBox.setItems(CountryDB.getCountryList());
     }
 
-
-       /** String custName = customerName.getText();
-        String custAddress = customerAddress.getText();
-        String custPhone = customerPhone.getText();
-        String customerPostal =customerPostalCode.getText();
-        */
-       /** if ((customerName.getText() != null && !customerName.getText().isEmpty()) ||
-            (customerAddress.getText() != null && !customerAddress.getText().isEmpty()) ||
-            (customerPhone.getText() != null && !customerPhone.getText().isEmpty()) ||
-            (customerPostalCode.getText() != null && !customerPostalCode.getText().isEmpty()))
-        {
-        */
-
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -82,25 +69,12 @@ public class CustomerFormController implements Initializable {
 
         if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Data is missing in fields.");
+            alert.setHeaderText("Missing input.");
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
         }else{
             System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country);
         }
-        /**
-                (customerAddress.getText() != null && !customerAddress.getText().isEmpty()) ||
-                (customerPhone.getText() != null && !customerPhone.getText().isEmpty()) ||
-                (customerPostalCode.getText() != null && !customerPostalCode.getText().isEmpty())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Data is missing in fields.");
-            alert.setContentText("Data is missing in one or more fields.");
-            alert.showAndWait();
-        }else{
-            System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country);
-        }
-         */
-
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

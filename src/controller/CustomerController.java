@@ -41,6 +41,8 @@ public class CustomerController implements Initializable {
 
     private int index;
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -57,12 +59,7 @@ public class CustomerController implements Initializable {
         phone.setCellValueFactory(new PropertyValueFactory<>("customerPhone"));
         division.setCellValueFactory(new PropertyValueFactory<>("customerDivision"));
         country.setCellValueFactory(new PropertyValueFactory<>("customerCountry"));
-        /** @TODO Created list example to test code; need to look into DB 12.8
-         *
 
-
-         */
-        //customersList.add(new Customer(2, "Logan Roy", "100 Neverland" , "3","3", "s", "Test"));
     }
 
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {
