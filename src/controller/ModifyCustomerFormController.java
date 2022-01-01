@@ -18,26 +18,24 @@ public class ModifyCustomerFormController implements Initializable {
     public ComboBox countryComboBox;
     public ComboBox divisionComboBox;
     public TextField customerID;
-
-    private Customer modCustomer;
+    private static int index;
+    private static Customer modCustomer;
+    public static Customer getModCustomer(){
+        return modCustomer;
+    }
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
-/**
-    selectedCustomer(modCustomer);
-
-    }
-
-    public void selectedCustomer(Customer customer){
 
 
-
-       customerName.setText(customer.getCustomerName());
 
 
     }
-*/
+    //Similar to TightEnd example in Passing The Football proj
+    public void modCustomer(Customer cust){
+        customerName.setText(cust.getCustomerName());
     }
+
     public void onSaveBtn(ActionEvent actionEvent) {
     }
 

@@ -33,13 +33,14 @@ public class CustomerController implements Initializable {
     public Button addNewBtn;
     public Button modifyBtn;
     public Button backBtn;
-    public TableView customersTable;
+    public TableView <Customer>customersTable;
+    private Stage stage;
+    private Parent scene;
 
     private ObservableList<Customer> customersList = FXCollections.observableArrayList();
    private  ObservableList<Country> countriesList = FXCollections.observableArrayList();
-    private Customer modCustomer;
+    private static Customer modCustomer;
 
-    private int index;
 
 
 
@@ -73,13 +74,37 @@ public class CustomerController implements Initializable {
 
     public void onModifyCurrent(ActionEvent actionEvent) throws Exception {
 
-        modCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
-        index = customersTable.getSelectionModel().getSelectedIndex();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifyCustomerForm.fxml"));
+        loader.load();
 
+        ModifyCustomerFormController controller = loader.getController();
+        Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
+
+        if (modCustomer == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Modify a Customer");
+            alert.setHeaderText("Error");
+            alert.setContentText("Select a Customer to modify.");
+            alert.showAndWait();
+        } else {
+            controller.modCustomer(modCustomer);
+            stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+            scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
+    }
+        /**
+
+
+
+    Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
         if (modCustomer == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select a Customer to modify."));
             alert.showAndWait();
+
         } else {
+
             Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Modify Current Customer");
@@ -89,7 +114,7 @@ public class CustomerController implements Initializable {
         }
 
     }
-
+*/
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));

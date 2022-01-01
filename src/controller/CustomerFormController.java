@@ -35,8 +35,14 @@ public class CustomerFormController implements Initializable {
     public TextField customerPostalCode;
     public TextField customerAddress;
     public TextField customerID;
+    private static Customer modCustomer;
     private ObservableList<Country> countriesList = FXCollections.observableArrayList();
+    public static Customer getModCustomer(){
+        return modCustomer;
 
+    }
+
+    private static int index;
     /**
      * This method initializes the controller.
      *
@@ -101,4 +107,5 @@ public class CustomerFormController implements Initializable {
 
 
     }
+
 }
