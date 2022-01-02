@@ -18,11 +18,7 @@ public class ModifyCustomerFormController implements Initializable {
     public ComboBox countryComboBox;
     public ComboBox divisionComboBox;
     public TextField customerID;
-    private static int index;
-    private static Customer modCustomer;
-    public static Customer getModCustomer(){
-        return modCustomer;
-    }
+
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
@@ -32,8 +28,11 @@ public class ModifyCustomerFormController implements Initializable {
 
     }
     //Similar to TightEnd example in Passing The Football proj
-    public void modCustomer(Customer cust){
-        customerName.setText(cust.getCustomerName());
+    //@ TODO 1.1.22 working on this method
+    public void modCustomer(Customer customer){
+        customerName.setText(customer.getCustomerName());
+        customerPhone.setText(customer.getCustomerPhone());
+        customerPostalCode.setText(customer.getCustomerPostal());
     }
 
     public void onSaveBtn(ActionEvent actionEvent) {
