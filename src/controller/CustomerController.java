@@ -94,27 +94,10 @@ public class CustomerController implements Initializable {
             stage.show();
         }
     }
-        /**
 
 
 
-    Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
-        if (modCustomer == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, ("Select a Customer to modify."));
-            alert.showAndWait();
 
-        } else {
-
-            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Modify Current Customer");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
-        }
-
-    }
-*/
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
