@@ -24,8 +24,8 @@ public class Customer {
      * @param customerAddress
      * @param customerPhone
      * @param customerPostal
-     *  * @param divisionID
-     *  customerDivision
+     * @param divisionID
+     * @param customerDivision
      * @param customerCountry
 
      */
