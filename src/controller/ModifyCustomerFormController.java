@@ -40,6 +40,8 @@ public class ModifyCustomerFormController implements Initializable {
         customerPhone.setText(customer.getCustomerPhone());
         customerAddress.setText(customer.getCustomerAddress());
         customerPostalCode.setText(customer.getCustomerPostal());
+        countryComboBox.setValue(customer.getCustomerCountry());
+        divisionComboBox.setValue(customer.getCustomerDivision());
     }
 
     public void onSaveBtn(ActionEvent actionEvent) {
