@@ -2,16 +2,22 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
+import utils.ApptsDB;
+import utils.CustDB;
 
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class ApptsController {
+public class ApptsController implements Initializable {
     public TableView monthlyTable;
     public TableColumn titleMonthly;
     public TableColumn descMonthly;
@@ -116,6 +122,40 @@ public class ApptsController {
         Scene scene = new Scene(root, 1000, 600);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        allApptsTable.setItems(ApptsDB.getApptsList());
+
+
+       /** allApptsTable;
+        public TableColumn titleAllAppts = null;
+        public TableColumn descAllAppts;
+        public TableColumn locationAllAppts;
+        public TableColumn contactAllAppts;
+        public TableColumn typeAllAppts;
+        public TableColumn startAllAppts;
+        public TableColumn endAllAppts;
+        public TableColumn customerAllAppts;
+        public TableColumn idUserAllAppts;
+        public TableColumn idApptAllAppt;
+        */
+
+
+        //fxid (for each column name) is 1s
+        titleAllAppts.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        descAllAppts.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("Contact"));
+        typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("Start_Date"));
+        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("End_Date"));
+        customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+        idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+
     }
         }
 
