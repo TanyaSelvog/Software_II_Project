@@ -33,10 +33,12 @@ public class ModifyCustomerFormController implements Initializable {
 
     }
     //Similar to TightEnd example in Passing The Football proj
-    //@ TODO 1.1.22 working on this method
+    //@ TODO 1.20.2022
     public void modCustomer(Customer customer){
+        customerID.setText(String.valueOf(customer.getCustomerID()));
         customerName.setText(customer.getCustomerName());
         customerPhone.setText(customer.getCustomerPhone());
+        customerAddress.setText(customer.getCustomerAddress());
         customerPostalCode.setText(customer.getCustomerPostal());
     }
 
