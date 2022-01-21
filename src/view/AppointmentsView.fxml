@@ -61,9 +61,9 @@
                                   <TableColumn fx:id="typeAllAppts" prefWidth="75.0" text="Type" />
                                   <TableColumn fx:id="startAllAppts" prefWidth="75.0" text="Start Date &amp; Time" />
                                   <TableColumn fx:id="endAllAppts" prefWidth="75.0" text="End Date &amp; Time" />
-                                  <TableColumn fx:id="customerAllAppts" prefWidth="75.0" text="Customer ID" />
-                                  <TableColumn fx:id="idUserAllAppts" prefWidth="75.0" text="User ID" />
-                                  <TableColumn fx:id="idApptAllAppt" prefWidth="235.0" text="Appointment ID" />
+                                  <TableColumn fx:id="customerAllAppts" prefWidth="137.0" text="Customer ID" />
+                                  <TableColumn fx:id="idUserAllAppts" prefWidth="74.0" text="User ID" />
+                                  <TableColumn fx:id="idApptAllAppt" prefWidth="174.0" text="Appointment ID" />
                               </columns>
                           </TableView>
                       </content>

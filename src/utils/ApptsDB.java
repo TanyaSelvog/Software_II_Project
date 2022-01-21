@@ -25,20 +25,20 @@ public class ApptsDB {
             while(result.next()){
                 int apptID = result.getInt("Appointment_ID");
                 int contactID = result.getInt("Contact_ID");
+                int customerID = result.getInt("Customer_ID");
+                int userID = result.getInt("User_ID");
                 String apptTitle = result.getString("Title");
                 String apptDescription = result.getString("Description");
                 String apptLocation = result.getString("Location");
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
                 System.out.println(apptTitle + " " + apptContact + " " + apptType);
-                Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType);
+                Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
+                        userID, contactID);
                     apptsList.add(appointments);
                 }
 
-            /**
-             *   public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
-             *                         String apptType){
-             */
+
         } catch (SQLException exception) {
                 exception.printStackTrace();
             }
