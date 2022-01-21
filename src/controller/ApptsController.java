@@ -145,16 +145,16 @@ public class ApptsController implements Initializable {
 
 
         //fxid (for each column name) is 1s
-        titleAllAppts.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        descAllAppts.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("Contact"));
-        typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        titleAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
+        descAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
+        locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
+        contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
+        typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptType"));
         startAllAppts.setCellValueFactory(new PropertyValueFactory<>("Start_Date"));
         endAllAppts.setCellValueFactory(new PropertyValueFactory<>("End_Date"));
-        customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-        idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+        customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("apptID"));
 
     }
         }
