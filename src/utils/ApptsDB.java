@@ -8,6 +8,7 @@ import model.Customer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class ApptsDB {
     // @TODO 12.24.21 STARTED THIS METHOD
@@ -32,9 +33,11 @@ public class ApptsDB {
                 String apptLocation = result.getString("Location");
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
+              //  LocalDateTime startDate = result.getLocalDateTime("Start");
+               // LocalDateTime endDate = result.getLocalDateTime("End");
                 System.out.println(apptTitle + " " + apptContact + " " + apptType);
                 Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
-                        userID, contactID);
+                        userID, contactID, startDate, endDate);
                     apptsList.add(appointments);
                 }
 
