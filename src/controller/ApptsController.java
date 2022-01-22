@@ -150,8 +150,8 @@ public class ApptsController implements Initializable {
         locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
         contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
         typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptType"));
-        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("Start_Date"));
-        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("End_Date"));
+        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("startDate"));
+        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("userID"));
         idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("apptID"));

@@ -1,6 +1,7 @@
 package model;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class Appointments {
@@ -13,11 +14,11 @@ public class Appointments {
     private int customerID;
     private int userID;
     private int contactID;
-    private LocalDateTime startDate;
-    private LocalDateTime endDate;
+    private Timestamp startDate;
+    private Timestamp endDate;
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
-                        String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate){
+                        String apptType, int customerID, int userID, int contactID, Timestamp startDate, Timestamp endDate){
         this.apptID = apptID;
         this.apptTitle = apptTitle;
         this.apptDescription = apptDescription;
@@ -99,17 +100,17 @@ public class Appointments {
         this.apptID = apptID;
     }
 
-    public LocalDateTime getStartDate(){
+    public Timestamp getStartDate(){
         return startDate;
     }
-    public void setStartDate(LocalDateTime startDate){
+    public void setStartDate(Timestamp startDate){
         this.startDate = startDate;
     }
-    public LocalDateTime getEndDate(){
+    public Timestamp getEndDate(){
         return endDate;
     }
 
-    public void setEndDate(LocalDateTime endDate){
+    public void setEndDate(Timestamp endDate){
         this.endDate = endDate;
     }
 }

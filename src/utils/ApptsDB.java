@@ -8,6 +8,7 @@ import model.Customer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class ApptsDB {
@@ -33,8 +34,8 @@ public class ApptsDB {
                 String apptLocation = result.getString("Location");
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
-              //  LocalDateTime startDate = result.getLocalDateTime("Start");
-               // LocalDateTime endDate = result.getLocalDateTime("End");
+                Timestamp startDate = result.getTimestamp("Start");
+                Timestamp endDate = result.getTimestamp("End");
                 System.out.println(apptTitle + " " + apptContact + " " + apptType);
                 Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
                         userID, contactID, startDate, endDate);
