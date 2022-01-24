@@ -59,6 +59,7 @@ public class ApptsController implements Initializable {
     public TableColumn customerAllAppts;
     public TableColumn idUserAllAppts;
     public TableColumn idApptAllAppt;
+    public TabPane apptsTabPane;
     private Appointments modAppointments;
 
     private int index;
@@ -71,11 +72,23 @@ public class ApptsController implements Initializable {
         stage.show();
 
     }
+    //testing for checking tab 1.23
+    public void testTab(){
+        Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
+        if (selectedTab == weeklyApptTab) {
+            System.out.println("good");
+        } else{
+            System.out.println("nope");
+        }
+    }
 
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
 
-        modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
-        index = weeklyTable.getSelectionModel().getSelectedIndex();
+        //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
+        modAppointments = (Appointments) allApptsTable.getSelectionModel().getSelectedItem();
+        index = allApptsTable.getSelectionModel().getSelectedIndex();
+      //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
+        //index = weeklyTable.getSelectionModel().getSelectedIndex();
 
 
         if (modAppointments == null) {
@@ -116,6 +129,7 @@ public class ApptsController implements Initializable {
         }
     }
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
+        testTab();
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");

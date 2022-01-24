@@ -8,7 +8,7 @@
    <children>
       <StackPane layoutX="46.0" layoutY="85.0" prefHeight="401.0" prefWidth="910.0">
          <children>
-            <TabPane prefHeight="393.0" prefWidth="902.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="apptsTabPane" prefHeight="393.0" prefWidth="902.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab fx:id="monthlyApptTab" text="Monthly">
                   <content>
