@@ -101,6 +101,6 @@
             <Font name="Verdana" size="18.0" />
          </font>
       </Button>
-      <DatePicker />
+
    </children>
 </AnchorPane>
