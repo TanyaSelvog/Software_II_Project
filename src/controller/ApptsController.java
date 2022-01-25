@@ -82,6 +82,7 @@ public class ApptsController implements Initializable {
         }
     }
 
+
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
 
         //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
