@@ -53,6 +53,22 @@ public class ApptsDB {
 /** SELECT appointment_ID, title, description, location, type, start, end, create_date, created_By,
  * customer_ID, user_ID, contact_ID
  *
- */
+ */     // 1.24. working on this method
+        public static String getContactName() {
 
+            String contactName = null;
+            try {
+                String sqlStatement = "SELECT contact_name Contacts;";
+                PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+                ResultSet result = ps.executeQuery();
+                while (result.next()) {
+                    contactName = result.getString("Contact_name");
+                    System.out.println(contactName);
+                }
+            } catch (SQLException exception) {
+                exception.printStackTrace();
+            }
+            return contactName;
+        }
 }
