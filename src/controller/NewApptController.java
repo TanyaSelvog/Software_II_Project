@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
 import utils.ApptsDB;
+import utils.ContactDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -38,7 +39,7 @@ public class NewApptController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-      contactComboBox.setValue(ApptsDB.getContactName());
+      contactComboBox.setItems(ContactDB.getContactList());
 
     }
 

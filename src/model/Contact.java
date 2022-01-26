@@ -39,4 +39,9 @@ public class Contact {
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
     }
+    @Override
+    public String toString(){
+        // return (getClass().getName() + '@' + Integer.toHexString(hashCode()));
+        return (contactName);
+    }
 }
