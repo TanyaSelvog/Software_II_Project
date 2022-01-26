@@ -58,12 +58,12 @@ public class ApptsDB {
 
             String contactName = null;
             try {
-                String sqlStatement = "SELECT contact_name Contacts;";
+                String sqlStatement = "SELECT Contact_Name FROM Contacts;";
                 PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
                 ResultSet result = ps.executeQuery();
                 while (result.next()) {
-                    contactName = result.getString("Contact_name");
+                    contactName = result.getString("Contact_Name");
                     System.out.println(contactName);
                 }
             } catch (SQLException exception) {
