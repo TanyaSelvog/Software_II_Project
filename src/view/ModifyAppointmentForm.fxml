@@ -69,7 +69,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <ComboBox prefHeight="29.0" prefWidth="274.0" GridPane.columnIndex="1" />
+            <ComboBox fx:id="contactComboBox" prefHeight="29.0" prefWidth="274.0" GridPane.columnIndex="1" />
             <Label text="Contact">
                <font>
                   <Font name="Verdana" size="18.0" />
