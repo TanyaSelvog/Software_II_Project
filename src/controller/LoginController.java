@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.scene.Node;
@@ -25,6 +26,8 @@ public class LoginController implements Initializable {
     public TextField usernameTF;
     public TextField passwordTF;
     public Label zoneIdLbl;
+
+    private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
