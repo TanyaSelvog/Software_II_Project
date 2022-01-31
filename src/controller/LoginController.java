@@ -27,7 +27,7 @@ public class LoginController implements Initializable {
     public TextField passwordTF;
     public Label zoneIdLbl;
 
-    private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
+   // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
