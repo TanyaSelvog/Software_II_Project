@@ -79,12 +79,12 @@
                <font>
                   <Font name="Verdana" size="18.0" />
                </font></TextField>
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="titleTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="descriptionTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="userIDTF" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <TextField fx:id="customerIDTF" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <TextField fx:id="typeTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <DatePicker fx:id="startDateModAppt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="endDateModAppt" GridPane.columnIndex="4" />
          </children>

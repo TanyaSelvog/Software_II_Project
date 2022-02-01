@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import utils.ContactDB;
 
@@ -21,6 +22,12 @@ public class ModifyApptController implements Initializable {
     public DatePicker startDateModAppt;
     public DatePicker endDateModAppt;
     public ComboBox contactComboBox;
+    public TextField titleTF;
+    public TextField descriptionTF;
+    public TextField locationTF;
+    public TextField userIDTF;
+    public TextField customerIDTF;
+    public TextField typeTF;
 
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
@@ -43,7 +50,16 @@ public class ModifyApptController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(ContactDB.getContactList());
-
+/**
+ *  public void modCustomer(Customer customer){
+ *         customerID.setText(String.valueOf(customer.getCustomerID()));
+ *         customerName.setText(customer.getCustomerName());
+ *         customerPhone.setText(customer.getCustomerPhone());
+ *         customerAddress.setText(customer.getCustomerAddress());
+ *         customerPostalCode.setText(customer.getCustomerPostal());
+ *         countryComboBox.setValue(customer.getCustomerCountry());
+ *         divisionComboBox.setValue(customer.getCustomerDivision());
+ */
     }
 
 }
