@@ -11,8 +11,8 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="371.0" minWidth="10.0" prefWidth="194.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="240.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="0.0" prefWidth="20.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="181.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="250.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="175.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="580.0" minWidth="10.0" prefWidth="248.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -24,7 +24,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Customer ID" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label text="Start Time" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
@@ -54,17 +54,12 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="Start Date &amp; Time" GridPane.rowIndex="6">
+            <Label text="Date" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="End Date &amp; Time" GridPane.columnIndex="3">
-               <font>
-                  <Font name="Verdana" size="18.0" />
-               </font>
-            </Label>
-            <Label text="User ID" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Label text="End Time" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
@@ -75,15 +70,23 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="apptID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="apptID" editable="false" text="Auto-Generated" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font></TextField>
             <TextField fx:id="titleTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="descTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="userID" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField fx:id="custID" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-            <TextField fx:id="typeTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <DatePicker fx:id="startDateNewAppt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <DatePicker fx:id="endDateNewAppt" GridPane.columnIndex="4" />
+            <ComboBox fx:id="typeComboBox" prefHeight="29.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <DatePicker fx:id="endDateNewAppt" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <ComboBox fx:id="startTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <ComboBox fx:id="endTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label text="Customer" GridPane.columnIndex="3">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font></Label>
+
+            <ComboBox fx:id="customerComboBox" prefWidth="236.0" GridPane.columnIndex="4" />
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="New Appointment">
