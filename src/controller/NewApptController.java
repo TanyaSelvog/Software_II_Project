@@ -46,6 +46,9 @@ public class NewApptController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
       contactComboBox.setItems(ContactDB.getContactList());
       customerComboBox.setItems(CustDB.getCustomersList());
+      //2.2.21 working on this - going to modify in future
+      startTimeCB.getItems().add("8:00 AM");
+
 
     }
 

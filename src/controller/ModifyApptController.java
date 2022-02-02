@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Appointments;
 import utils.ContactDB;
+import utils.CustDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,7 +54,8 @@ public class ModifyApptController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-    //    contactComboBox.setItems(ContactDB.getContactList());
+        contactComboBox.setItems(ContactDB.getContactList());
+        customerComboBox.setItems(CustDB.getCustomersList());
        // descriptionTF.setText(Appointments.getApptDescription());
 /**
  *  public void modCustomer(Customer customer){

@@ -160,4 +160,10 @@ public class Customer {
     public void setCustomerDivision(String customerDivision){
         this.customerDivision = customerDivision;
     }
+
+    @Override
+    public String toString(){
+        // return (getClass().getName() + '@' + Integer.toHexString(hashCode()));
+        return (customerName);
+    }
 }
