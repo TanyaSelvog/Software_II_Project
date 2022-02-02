@@ -20,15 +20,18 @@ import java.util.ResourceBundle;
 public class ModifyApptController implements Initializable {
     public Button saveBtn;
     public Button cancelBtn;
-    public DatePicker startDateModAppt;
-    public DatePicker endDateModAppt;
+
     public ComboBox contactComboBox;
     public TextField titleTF;
     public TextField descriptionTF;
     public TextField locationTF;
-    public TextField userIDTF;
-    public TextField customerIDTF;
+
     public TextField typeTF;
+    public ComboBox typeComboBox;
+    public ComboBox customerComboBox;
+    public ComboBox startTimeCB;
+    public ComboBox endTimeCB;
+    public DatePicker modApptDate;
 
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));

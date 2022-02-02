@@ -78,7 +78,7 @@
             <TextField fx:id="descTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ComboBox fx:id="typeComboBox" prefHeight="29.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <DatePicker fx:id="endDateNewAppt" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <DatePicker fx:id="newApptDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <ComboBox fx:id="startTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <ComboBox fx:id="endTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="Customer" GridPane.columnIndex="3">

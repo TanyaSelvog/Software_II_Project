@@ -35,8 +35,10 @@ public class ContactDB {
 
 
     }
-
-    public static String getContactName() {
+/**
+ * Working on this 2.2.22
+ * Method formerly called getContactName() - not sure if I will need to use this
+    public static String getContact() {
 
         String contactName = null;
         try {
@@ -53,4 +55,5 @@ public class ContactDB {
         }
         return contactName;
     }
+ */
 }

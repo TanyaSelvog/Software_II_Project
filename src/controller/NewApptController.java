@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import model.Appointments;
 import utils.ApptsDB;
 import utils.ContactDB;
+import utils.CustDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,9 +28,13 @@ public class NewApptController implements Initializable {
 
     public Button saveBtn;
     public Button cancelBtn;
-    public DatePicker startDateNewAppt;
-    public DatePicker endDateNewAppt;
+
     public ComboBox contactComboBox;
+    public ComboBox typeComboBox;
+    public ComboBox startTimeCB;
+    public ComboBox endTimeCB;
+    public ComboBox customerComboBox;
+    public DatePicker newApptDate;
 
     /**
      * This method initializes the controller.
@@ -40,6 +45,7 @@ public class NewApptController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
       contactComboBox.setItems(ContactDB.getContactList());
+      customerComboBox.setItems(CustDB.getCustomersList());
 
     }
 

@@ -11,11 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CustDB {
-//@TODO 12.23.21 Returns ResultList of customer names thus far with System.println
+
     public static ObservableList<Customer> getCustomersList() {
         ObservableList<Customer> customersList = FXCollections.observableArrayList();
         try {
-            //need to fix the SQL statement
 
             String sqlStatement = "Select customer_ID, customer_Name, address, postal_code, phone, " +
           "  customers.division_ID, first_level_divisions.division, countries.country_ID, " +
@@ -53,6 +52,7 @@ public class CustDB {
 
 
     }
+
 
 }
 
