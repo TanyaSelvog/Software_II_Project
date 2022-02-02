@@ -24,11 +24,6 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Customer ID" GridPane.columnIndex="3" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Verdana" size="18.0" />
-               </font>
-            </Label>
             <Label text="Appointment ID" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
@@ -64,11 +59,6 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="User ID" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <font>
-                  <Font name="Verdana" size="18.0" />
-               </font>
-            </Label>
             <ComboBox fx:id="contactComboBox" prefHeight="29.0" prefWidth="274.0" GridPane.columnIndex="1" />
             <Label text="Contact">
                <font>
@@ -82,8 +72,6 @@
             <TextField fx:id="titleTF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="descriptionTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField fx:id="userIDTF" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <TextField fx:id="customerIDTF" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <TextField fx:id="typeTF" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <DatePicker fx:id="startDateModAppt" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <DatePicker fx:id="endDateModAppt" GridPane.columnIndex="4" />
