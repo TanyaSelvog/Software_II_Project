@@ -35,6 +35,7 @@ public class NewApptController implements Initializable {
     public ComboBox endTimeCB;
     public ComboBox customerComboBox;
     public DatePicker newApptDate;
+    public ComboBox userComboBox;
 
     /**
      * This method initializes the controller.
