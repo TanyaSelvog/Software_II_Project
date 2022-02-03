@@ -54,12 +54,12 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="Date" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label prefHeight="23.0" prefWidth="118.0" text="Start Date" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="End Time" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Label text="End Time" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
@@ -80,13 +80,19 @@
             <ComboBox fx:id="typeComboBox" prefHeight="29.0" prefWidth="274.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <DatePicker fx:id="newApptDate" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <ComboBox fx:id="startTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <ComboBox fx:id="endTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <ComboBox fx:id="endTimeCB" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
             <Label text="Customer" GridPane.columnIndex="3">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font></Label>
 
             <ComboBox fx:id="customerComboBox" prefWidth="236.0" GridPane.columnIndex="4" />
+            <Label text="End Date" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+            </Label>
+            <DatePicker prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="New Appointment">

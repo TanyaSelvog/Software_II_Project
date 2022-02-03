@@ -49,7 +49,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="Date" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label text="Start Date" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <Label text="End Time" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Label text="End Time" GridPane.columnIndex="3" GridPane.rowIndex="4">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
@@ -87,7 +87,13 @@
                </font>
             </Label>
             <ComboBox fx:id="startTimeCB" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-            <ComboBox fx:id="endTimeCB" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <ComboBox fx:id="endTimeCB" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <DatePicker prefHeight="29.0" prefWidth="234.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Label text="End Date" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Verdana" size="18.0" />
+               </font>
+            </Label>
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="Modify Appointment">

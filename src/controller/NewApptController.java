@@ -24,7 +24,7 @@ public class NewApptController implements Initializable {
     public TextField userID;
     public TextField custID;
 
-    public TextField typeTF;
+
 
     public Button saveBtn;
     public Button cancelBtn;
