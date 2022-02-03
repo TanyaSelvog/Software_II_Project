@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contact;
+import model.Customer;
+import model.User;
 import utils.ApptsDB;
 import utils.ContactDB;
 import utils.CustDB;
@@ -19,7 +21,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NewApptController implements Initializable {
-    public TextField apptIDTF;
+
     public TextField titleTF;
     public TextField descTF;
     public TextField locationTF;
@@ -33,9 +35,9 @@ public class NewApptController implements Initializable {
     public ComboBox typeComboBox;
     public ComboBox startTimeCB;
     public ComboBox endTimeCB;
-    public ComboBox customerComboBox;
+    public ComboBox <Customer> customerComboBox;
     public DatePicker newApptDate;
-    public ComboBox userComboBox;
+    public ComboBox <User> userComboBox;
 
     /**
      * This method initializes the controller.
@@ -49,10 +51,8 @@ public class NewApptController implements Initializable {
       customerComboBox.setItems(CustDB.getCustomersList());
       //2.2.21 working on this - going to modify in future
       startTimeCB.getItems().add("8:00 AM");
-      typeComboBox.getItems().add("Initial Meeting");
-        typeComboBox.getItems().add("Follow-up Consultation");
-        typeComboBox.getItems().add("Lunch Meeting");
-        typeComboBox.getItems().add("Closing Session");
+      typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
+
 
         userComboBox.setItems(UserDB.getUserList());
 
@@ -67,8 +67,8 @@ public class NewApptController implements Initializable {
         String apptDescription = descTF.getText();
         String apptLocation = locationTF.getText();
         String apptTitle = titleTF.getText();
-        String apptID = apptIDTF.getText();
         Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
+        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
         /**
          *
          */
