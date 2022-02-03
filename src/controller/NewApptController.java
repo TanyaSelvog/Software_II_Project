@@ -12,6 +12,7 @@ import model.Appointments;
 import utils.ApptsDB;
 import utils.ContactDB;
 import utils.CustDB;
+import utils.UserDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +54,8 @@ public class NewApptController implements Initializable {
         typeComboBox.getItems().add("Follow-up Consultation");
         typeComboBox.getItems().add("Lunch Meeting");
         typeComboBox.getItems().add("Closing Session");
+
+        userComboBox.setItems(UserDB.getUserList());
 
 
 
