@@ -69,6 +69,7 @@ public class NewApptController implements Initializable {
         String apptTitle = titleTF.getText();
         Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+        String apptType = (String) typeComboBox.getValue();
         /**
          *
          */
@@ -79,7 +80,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-       System.out.println(apptTitle + " " + contactSelected);
+       System.out.println(apptTitle + " " + contactSelected+ " " + apptType);
 
     }
 
