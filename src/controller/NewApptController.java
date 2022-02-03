@@ -48,6 +48,11 @@ public class NewApptController implements Initializable {
       customerComboBox.setItems(CustDB.getCustomersList());
       //2.2.21 working on this - going to modify in future
       startTimeCB.getItems().add("8:00 AM");
+      typeComboBox.getItems().add("Initial Meeting");
+        typeComboBox.getItems().add("Follow-up Consultation");
+        typeComboBox.getItems().add("Lunch Meeting");
+        typeComboBox.getItems().add("Closing Session");
+
 
 
     }
