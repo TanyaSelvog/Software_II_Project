@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Contact;
 import utils.ApptsDB;
 import utils.ContactDB;
 import utils.CustDB;
@@ -18,19 +19,17 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class NewApptController implements Initializable {
-    public TextField apptID;
+    public TextField apptIDTF;
     public TextField titleTF;
     public TextField descTF;
     public TextField locationTF;
-    public TextField userID;
-    public TextField custID;
 
 
 
     public Button saveBtn;
     public Button cancelBtn;
 
-    public ComboBox contactComboBox;
+    public ComboBox<Contact> contactComboBox;
     public ComboBox typeComboBox;
     public ComboBox startTimeCB;
     public ComboBox endTimeCB;
@@ -62,23 +61,17 @@ public class NewApptController implements Initializable {
     }
 
 
-    /** TODO started on method to get data from users; need to make System.out.println/String methods for testing
-     */
 
-    public Appointments newAppointment() {
-        try {
-            String apptDescription = descTF.getText();
-
-
-        } catch (Exception displayE) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
-            alert.showAndWait();
-
-        }
-            return null;
-        }
 
     public void onSave(ActionEvent actionEvent) throws Exception {
+        String apptDescription = descTF.getText();
+        String apptLocation = locationTF.getText();
+        String apptTitle = titleTF.getText();
+        String apptID = apptIDTF.getText();
+        Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
+        /**
+         *
+         */
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");
@@ -86,7 +79,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-        Appointments appt = newAppointment();
+       System.out.println(apptTitle + " " + contactSelected);
 
     }
 
