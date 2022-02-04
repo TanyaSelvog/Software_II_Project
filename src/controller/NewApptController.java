@@ -32,7 +32,7 @@ public class NewApptController implements Initializable {
     public Button cancelBtn;
 
     public ComboBox<Contact> contactComboBox;
-    public ComboBox typeComboBox;
+    public ComboBox <String> typeComboBox;
     public ComboBox startTimeCB;
     public ComboBox endTimeCB;
     public ComboBox <Customer> customerComboBox;
@@ -69,7 +69,8 @@ public class NewApptController implements Initializable {
         String apptTitle = titleTF.getText();
         Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
-        String apptType = (String) typeComboBox.getValue();
+        String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
+        User userSelected = userComboBox.getSelectionModel().getSelectedItem();
         /**
          *
          */
@@ -80,7 +81,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-       System.out.println(apptTitle + " " + contactSelected+ " " + apptType);
+       System.out.println(apptTitle + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected);
 
     }
 
