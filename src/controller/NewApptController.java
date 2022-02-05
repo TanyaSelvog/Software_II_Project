@@ -18,6 +18,8 @@ import utils.CustDB;
 import utils.UserDB;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class NewApptController implements Initializable {
@@ -33,11 +35,12 @@ public class NewApptController implements Initializable {
 
     public ComboBox<Contact> contactComboBox;
     public ComboBox <String> typeComboBox;
-    public ComboBox startTimeCB;
-    public ComboBox endTimeCB;
+    public ComboBox <LocalTime>startTimeCB;
+    public ComboBox <LocalTime> endTimeCB;
     public ComboBox <Customer> customerComboBox;
     public DatePicker newApptDate;
     public ComboBox <User> userComboBox;
+    public DatePicker endDatePicker;
 
     /**
      * This method initializes the controller.
@@ -50,7 +53,9 @@ public class NewApptController implements Initializable {
       contactComboBox.setItems(ContactDB.getContactList());
       customerComboBox.setItems(CustDB.getCustomersList());
       //2.2.21 working on this - going to modify in future
-      startTimeCB.getItems().add("8:00 AM");
+     // startTimeCB.getItems().addAll("8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM");
+      //2.4.22 Working on this - temporary
+       // endTimeCB.getItems().addAll("8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM");
       typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
 
 
@@ -71,6 +76,8 @@ public class NewApptController implements Initializable {
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
         String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
+        LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
+
         /**
          *
          */
