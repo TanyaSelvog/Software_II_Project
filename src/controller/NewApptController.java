@@ -52,14 +52,8 @@ public class NewApptController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
       contactComboBox.setItems(ContactDB.getContactList());
       customerComboBox.setItems(CustDB.getCustomersList());
-      //2.2.21 working on this - going to modify in future
-     // startTimeCB.getItems().addAll("8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM");
-      //2.4.22 Working on this - temporary
-       // endTimeCB.getItems().addAll("8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM", "12:00 PM");
       typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
-
-
-        userComboBox.setItems(UserDB.getUserList());
+      userComboBox.setItems(UserDB.getUserList());
 
 
 
@@ -78,7 +72,8 @@ public class NewApptController implements Initializable {
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
         LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
 
-        /**
+        /**static ZonedDateTime 	of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone)
+         Obtains an instance of ZonedDateTime from a year, month, day, hour, minute, second, nanosecond and time-zone.
          *
          */
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
