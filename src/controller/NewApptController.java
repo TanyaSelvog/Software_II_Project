@@ -61,6 +61,8 @@ public class NewApptController implements Initializable {
 
     }
     //2.5.2022 Started on this method; working on figuring out time breakdown
+    // page 300 Chapter 5
+
     private void businessHours(){
         ZoneId easternStandardTime = ZoneId.of("America/New_York");
         ZonedDateTime startTime = ZonedDateTime.of(2022, 1, 1, 8, 0, 0, 0, easternStandardTime);

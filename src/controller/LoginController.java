@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -30,8 +32,11 @@ public class LoginController implements Initializable {
    // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    LocalDate today = LocalDate.now();
+    System.out.println(today);
+    zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
-
+           // =  zoneLbl.setText(ZoneId.systemDefault().getId());
 
     }
 
