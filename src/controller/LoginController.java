@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -35,6 +36,7 @@ public class LoginController implements Initializable {
     LocalDate today = LocalDate.now();
     System.out.println(today);
     zoneIdLbl.setText(ZoneId.systemDefault().getId());
+
 
            // =  zoneLbl.setText(ZoneId.systemDefault().getId());
 

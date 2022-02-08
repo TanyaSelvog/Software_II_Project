@@ -56,6 +56,7 @@ public class NewApptController implements Initializable {
       customerComboBox.setItems(CustDB.getCustomersList());
       typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
       userComboBox.setItems(UserDB.getUserList());
+      businessHours();
 
 
 
@@ -63,11 +64,15 @@ public class NewApptController implements Initializable {
     //2.5.2022 Started on this method; working on figuring out time breakdown
     // page 300 Chapter 5
 
-    private void businessHours(){
+    public void businessHours(){
         ZoneId easternStandardTime = ZoneId.of("America/New_York");
         ZonedDateTime startTime = ZonedDateTime.of(2022, 1, 1, 8, 0, 0, 0, easternStandardTime);
         ZonedDateTime endTime = ZonedDateTime.of(2022, 1, 1, 22, 0, 0, 0, easternStandardTime);
+        LocalTime startOfBusiness = startTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
+        LocalTime endOfBusiness = endTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
 
+
+        System.out.println(endOfBusiness);
     }
 
 
