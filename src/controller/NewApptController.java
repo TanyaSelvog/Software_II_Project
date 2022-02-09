@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class NewApptController implements Initializable {
@@ -58,23 +59,31 @@ public class NewApptController implements Initializable {
         customerComboBox.setItems(CustDB.getCustomersList());
         typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
         userComboBox.setItems(UserDB.getUserList());
+
+
         startTimeCB.setItems(getTimeList());
+        endTimeCB.setItems(getTimeList());
     }
 
         //2.9 Displays time but want to fix display 12:00+
-        public static ObservableList<LocalTime> getTimeList() {
+        public ObservableList<LocalTime> getTimeList() {
+            ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+
             ZoneId easternStandardTime = ZoneId.of("America/New_York");
             ZonedDateTime startTime = ZonedDateTime.of(2022, 1, 1, 8, 0, 0, 0, easternStandardTime);
             ZonedDateTime endTime = ZonedDateTime.of(2022, 1, 1, 22, 0, 0, 0, easternStandardTime);
+
             LocalTime startOfBusiness = startTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
             LocalTime endOfBusiness = endTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
-            ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
-            //  LocalTime startTime = LocalTime.of(4, 0);
-            //LocalTime endTime = LocalTime.of(23, 0);
 
-            while (startOfBusiness.isBefore(endOfBusiness)) {
-                startOfBusiness = startOfBusiness.plusMinutes(15);
-                timeList.add(startOfBusiness);
+            LocalTime startAdjustedTime = startOfBusiness.minusMinutes(15);
+            //LocalTime localTime = LocalTime.parse(STRING, dtf);
+
+            while(startAdjustedTime.isBefore(endOfBusiness)) {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
+
+                startAdjustedTime = startAdjustedTime.plusMinutes(15);
+                timeList.add(startAdjustedTime);
             }
 
             return timeList;
