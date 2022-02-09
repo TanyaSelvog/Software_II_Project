@@ -38,7 +38,7 @@ public class LoginController implements Initializable {
     zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
 
-           // =  zoneLbl.setText(ZoneId.systemDefault().getId());
+
 
     }
 
