@@ -20,10 +20,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -46,6 +43,8 @@ public class NewApptController implements Initializable {
     public DatePicker newApptDate;
     public ComboBox <User> userComboBox;
     public DatePicker endDatePicker;
+    public ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
 
     /**
      * This method initializes the controller.
@@ -61,13 +60,13 @@ public class NewApptController implements Initializable {
         userComboBox.setItems(UserDB.getUserList());
 
 
-        startTimeCB.setItems(getTimeList());
+        startTimeCB.setItems(timeList);
         endTimeCB.setItems(getTimeList());
     }
 
         //2.9 Displays time but want to fix display 12:00+
         public ObservableList<LocalTime> getTimeList() {
-            ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+           // ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
 
             ZoneId easternStandardTime = ZoneId.of("America/New_York");
             ZonedDateTime startTime = ZonedDateTime.of(2022, 1, 1, 8, 0, 0, 0, easternStandardTime);
@@ -80,15 +79,30 @@ public class NewApptController implements Initializable {
             //LocalTime localTime = LocalTime.parse(STRING, dtf);
 
             while(startAdjustedTime.isBefore(endOfBusiness)) {
-                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
-
-                startAdjustedTime = startAdjustedTime.plusMinutes(15);
+                 startAdjustedTime = startAdjustedTime.plusMinutes(15);
                 timeList.add(startAdjustedTime);
+
             }
 
+            System.out.println(timeList);
             return timeList;
         }
 
+    /**Example from Java Documentation - to look at
+     * LocalDate date = LocalDate.now();
+     *   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
+     *   String text = date.format(formatter);
+     *   LocalDate parsedDate = LocalDate.parse(text, formatter);
+     * @param actionEvent
+     * @throws Exception
+     *
+     *
+     *
+     * LocalTime time = time.plusMinutes(30);
+     * DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
+     * String textTime = time.format(dtf);
+     * LocalTime timeAgain = LocalTime.parse(textTime, dtf);
+     */
 
     public void onSave(ActionEvent actionEvent) throws Exception {
 
