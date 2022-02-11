@@ -76,15 +76,27 @@ public class NewApptController implements Initializable {
             LocalTime endOfBusiness = endTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
 
             LocalTime startAdjustedTime = startOfBusiness.minusMinutes(15);
+
             //LocalTime localTime = LocalTime.parse(STRING, dtf);
 
-            while(startAdjustedTime.isBefore(endOfBusiness)) {
+           while(startAdjustedTime.isBefore(endOfBusiness)) {
                  startAdjustedTime = startAdjustedTime.plusMinutes(15);
+
+
+      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
+      String textTime = startAdjustedTime.format(dtf);
+      LocalTime timeAgain = LocalTime.parse(textTime, dtf);
                 timeList.add(startAdjustedTime);
+                System.out.println(timeAgain);
+                System.out.println(startOfBusiness);
+                System.out.println(endOfBusiness);
 
             }
 
-            System.out.println(timeList);
+            System.out.println(startAdjustedTime);
+         //   System.out.println(timeAgain);
+
+            timeList.add(startAdjustedTime);
             return timeList;
         }
 
