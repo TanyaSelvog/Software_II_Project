@@ -56,7 +56,7 @@ public class NewApptController implements Initializable {
         userComboBox.setItems(UserDB.getUserList());
 
 
-        startTimeCB.setItems(timeList);
+        startTimeCB.setItems(getTimeList());
         endTimeCB.setItems(timeList);
     }
 
@@ -74,7 +74,10 @@ public class NewApptController implements Initializable {
 
             for(LocalTime startAdjustedTime = startOfBusiness; startAdjustedTime.isBefore(endOfBusiness); startAdjustedTime =startAdjustedTime.plusMinutes(15)){
                 timeList.add(startAdjustedTime);
+                System.out.println(startAdjustedTime);
+
             }
+            System.out.println(timeList);
 
             return timeList;
 
