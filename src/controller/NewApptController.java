@@ -10,16 +10,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Appointments;
 import model.Contact;
 import model.Customer;
 import model.User;
 import utils.*;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -37,14 +33,14 @@ public class NewApptController implements Initializable {
 
     public ComboBox<Contact> contactComboBox;
     public ComboBox <String> typeComboBox;
-    public ComboBox <LocalTime>startTimeCB;
-    public ComboBox <LocalTime> endTimeCB;
+    public ComboBox <LocalTime> startTimeCB;
+    public ComboBox <LocalTime>endTimeCB;
     public ComboBox <Customer> customerComboBox;
     public DatePicker newApptDate;
     public ComboBox <User> userComboBox;
     public DatePicker endDatePicker;
     public ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
-    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+   public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
 
     /**
      * This method initializes the controller.
@@ -61,12 +57,13 @@ public class NewApptController implements Initializable {
 
 
         startTimeCB.setItems(timeList);
-        endTimeCB.setItems(getTimeList());
+        endTimeCB.setItems(timeList);
     }
 
         //2.9 Displays time but want to fix display 12:00+
         public ObservableList<LocalTime> getTimeList() {
-           // ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+            ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+
 
             ZoneId easternStandardTime = ZoneId.of("America/New_York");
             ZonedDateTime startTime = ZonedDateTime.of(2022, 1, 1, 8, 0, 0, 0, easternStandardTime);
@@ -80,6 +77,11 @@ public class NewApptController implements Initializable {
             }
 
             return timeList;
+
+
+
+
+
         }
 
     /**Example from Java Documentation - to look at
