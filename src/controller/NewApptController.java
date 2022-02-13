@@ -33,13 +33,13 @@ public class NewApptController implements Initializable {
 
     public ComboBox<Contact> contactComboBox;
     public ComboBox <String> typeComboBox;
-    public ComboBox <LocalTime> startTimeCB;
-    public ComboBox <LocalTime>endTimeCB;
+    public ComboBox <String> startTimeCB;
+    public ComboBox <String>endTimeCB;
     public ComboBox <Customer> customerComboBox;
     public DatePicker newApptDate;
     public ComboBox <User> userComboBox;
     public DatePicker endDatePicker;
-    public ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+    public ObservableList<String> timeList = FXCollections.observableArrayList();
    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
 
     /**
@@ -58,11 +58,13 @@ public class NewApptController implements Initializable {
 
         startTimeCB.setItems(getTimeList());
         endTimeCB.setItems(timeList);
+
+   //  String textTime = timeList.format(dtf);
     }
 
         //2.9 Displays time but want to fix display 12:00+
-        public ObservableList<LocalTime> getTimeList() {
-            ObservableList<LocalTime> timeList = FXCollections.observableArrayList();
+        public ObservableList<String> getTimeList() {
+            ObservableList<String> timeList = FXCollections.observableArrayList();
 
 
             ZoneId easternStandardTime = ZoneId.of("America/New_York");
@@ -73,11 +75,13 @@ public class NewApptController implements Initializable {
             LocalTime endOfBusiness = endTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
 
             for(LocalTime startAdjustedTime = startOfBusiness; startAdjustedTime.isBefore(endOfBusiness); startAdjustedTime =startAdjustedTime.plusMinutes(15)){
-                timeList.add(startAdjustedTime);
+              // timeList.add(LocalTime.parse(startAdjustedTime.toString()));
                 System.out.println(startAdjustedTime);
-
+                String textTime = startAdjustedTime.format(dtf);
+                timeList.add(textTime);
+                System.out.println(textTime);
             }
-            System.out.println(timeList);
+
 
             return timeList;
 
@@ -112,7 +116,7 @@ public class NewApptController implements Initializable {
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
         String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
-        LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
+       // LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
 
         /**static ZonedDateTime 	of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone)
          Obtains an instance of ZonedDateTime from a year, month, day, hour, minute, second, nanosecond and time-zone.
