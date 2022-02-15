@@ -57,7 +57,7 @@ public class NewApptController implements Initializable {
 
 
         startTimeCB.setItems(getTimeList());
-        endTimeCB.setItems(timeList);
+        endTimeCB.setItems(getTimeList());
 
    //  String textTime = timeList.format(dtf);
     }
@@ -76,10 +76,10 @@ public class NewApptController implements Initializable {
 
             for(LocalTime startAdjustedTime = startOfBusiness; startAdjustedTime.isBefore(endOfBusiness); startAdjustedTime =startAdjustedTime.plusMinutes(15)){
               // timeList.add(LocalTime.parse(startAdjustedTime.toString()));
-                System.out.println(startAdjustedTime);
+
                 String textTime = startAdjustedTime.format(dtf);
                 timeList.add(textTime);
-                System.out.println(textTime);
+
             }
 
 
