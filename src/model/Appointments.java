@@ -31,6 +31,17 @@ public class Appointments {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+    // Constructor for NewApptController 'onSave' - Working on
+    //2.18 Constructor Overloading notes - Java class can have multiple constructors as long as parameters are not the same
+    public Appointments(String apptDescription,String apptLocation, String apptTitle, String apptType, String apptContact, Timestamp startDate, Timestamp endDate){
+        this.apptDescription = apptDescription;
+        this.apptLocation = apptLocation;
+        this.apptTitle = apptTitle;
+        this.apptType = apptType;
+        this.apptContact = apptContact;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 
     public String getApptTitle(){
         return apptTitle;

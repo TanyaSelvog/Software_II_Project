@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Contact;
 import model.Customer;
 import model.User;
@@ -120,7 +121,6 @@ public class NewApptController implements Initializable {
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
         LocalDate startDate = newApptDate.getValue();
         LocalDate endDate = endDatePicker.getValue();
-
       //  LocalDateTime startDate = newApptDate.getSelectionModel().getSelectedValue();
 
 
