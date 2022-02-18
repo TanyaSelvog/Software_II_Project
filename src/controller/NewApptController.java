@@ -123,6 +123,8 @@ public class NewApptController implements Initializable {
         LocalDate endDate = endDatePicker.getValue();
       //  LocalDateTime startDate = newApptDate.getSelectionModel().getSelectedValue();
 
+        Appointments newAppt = new Appointments(apptDescription, apptLocation, apptTitle, apptType, contactSelected,
+                startDate, endDate);
 
        // LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
 

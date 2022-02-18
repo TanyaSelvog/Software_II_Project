@@ -14,11 +14,11 @@ public class Appointments {
     private int customerID;
     private int userID;
     private int contactID;
-    private Timestamp startDate;
-    private Timestamp endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
-                        String apptType, int customerID, int userID, int contactID, Timestamp startDate, Timestamp endDate){
+                        String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate){
         this.apptID = apptID;
         this.apptTitle = apptTitle;
         this.apptDescription = apptDescription;
@@ -33,7 +33,7 @@ public class Appointments {
     }
     // Constructor for NewApptController 'onSave' - Working on
     //2.18 Constructor Overloading notes - Java class can have multiple constructors as long as parameters are not the same
-    public Appointments(String apptDescription,String apptLocation, String apptTitle, String apptType, String apptContact, Timestamp startDate, Timestamp endDate){
+    public Appointments(){
         this.apptDescription = apptDescription;
         this.apptLocation = apptLocation;
         this.apptTitle = apptTitle;
