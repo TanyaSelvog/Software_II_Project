@@ -3,6 +3,8 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -116,6 +118,12 @@ public class NewApptController implements Initializable {
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
         String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
+        LocalDate startDate = newApptDate.getValue();
+        LocalDate endDate = endDatePicker.getValue();
+
+      //  LocalDateTime startDate = newApptDate.getSelectionModel().getSelectedValue();
+
+
        // LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
 
         /**static ZonedDateTime 	of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone)
@@ -129,7 +137,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-       System.out.println(apptTitle + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected);
+       System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" + startDate);
 
     }
 
