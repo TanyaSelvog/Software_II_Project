@@ -34,10 +34,12 @@ public class ApptsDB {
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
                 Timestamp startDate = result.getTimestamp("Start");
+                LocalDateTime testDate = startDate.toLocalDateTime();
                 Timestamp endDate = result.getTimestamp("End");
+                LocalDateTime testEnd = endDate.toLocalDateTime();
                 System.out.println(apptTitle + " " + apptContact + " " + apptType);
                 Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
-                        userID, contactID, startDate, endDate);
+                        userID, contactID, testDate, testEnd);
                     apptsList.add(appointments);
                 }
 

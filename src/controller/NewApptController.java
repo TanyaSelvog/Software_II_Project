@@ -64,7 +64,7 @@ public class NewApptController implements Initializable {
 
    //  String textTime = timeList.format(dtf);
     }
-
+        //2.9 STILL Need to Fix time with dtf
         //2.9 Displays time but want to fix display 12:00+
         public ObservableList<String> getTimeList() {
             ObservableList<String> timeList = FXCollections.observableArrayList();
@@ -123,8 +123,8 @@ public class NewApptController implements Initializable {
         LocalDate endDate = endDatePicker.getValue();
       //  LocalDateTime startDate = newApptDate.getSelectionModel().getSelectedValue();
 
-        Appointments newAppt = new Appointments(apptDescription, apptLocation, apptTitle, apptType, contactSelected,
-                startDate, endDate);
+   //     Appointments newAppt = new Appointments(apptDescription, apptLocation, apptTitle, apptType, contactSelected,
+      //          startDate, endDate);
 
        // LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
 
