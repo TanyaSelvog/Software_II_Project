@@ -123,9 +123,6 @@ public class NewApptController implements Initializable {
         LocalDate endDate = endDatePicker.getValue();
       //  LocalDateTime startDate = newApptDate.getSelectionModel().getSelectedValue();
 
-   //     Appointments newAppt = new Appointments(apptDescription, apptLocation, apptTitle, apptType, contactSelected,
-      //          startDate, endDate);
-
        // LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
 
         /**static ZonedDateTime 	of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone)
@@ -139,7 +136,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-       System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" + startDate);
+    //   System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" + startDate);
 
     }
 

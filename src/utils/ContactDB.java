@@ -35,25 +35,27 @@ public class ContactDB {
 
 
     }
-/**
- * Working on this 2.2.22
- * Method formerly called getContactName() - not sure if I will need to use this
-    public static String getContact() {
+    /**
 
-        String contactName = null;
+ // Working on this 2.2.22
+ //* Method formerly called getContactName() - not sure if I will need to use this
+    public static String getContact() {
+        ObservableList<String> contactNames = FXCollections.observableArrayList();
+
+
         try {
             String sqlStatement = "SELECT Contact_Name FROM Contacts;";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
             while (result.next()) {
-                contactName = result.getString("Contact_Name");
-                System.out.println(contactName);
+                String contacttestNames = result.getString("Contact_Name");
+                System.out.println(contactNames);
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
-        return contactName;
+        return contactNames;
     }
- */
+*/
 }
