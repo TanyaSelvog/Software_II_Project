@@ -66,6 +66,20 @@ public class NewApptController implements Initializable {
     }
         //2.9 STILL Need to Fix time with dtf
         //2.9 Displays time but want to fix display 12:00+
+
+    /**
+     * Scratch from written notes 2.23
+     * startTimeComboBox.setCellFactory((ListView<LocalTime>)-> new ListCell<LocalTime>{
+     * @Override public void updateItem(LocalTime item, boolean empty){
+     *     super.updateItem(item, empty);
+     *     if(item == null).setText("");
+     *     else setText(item.format(formatter));
+     *     }
+     *     });
+     * }
+     * }</LocalTime></LocalTime>
+     * @return
+     */
         public ObservableList<String> getTimeList() {
             ObservableList<String> timeList = FXCollections.observableArrayList();
 
