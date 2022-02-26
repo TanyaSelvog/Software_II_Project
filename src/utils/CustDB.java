@@ -53,6 +53,16 @@ public class CustDB {
 
     }
 
+    public static void addCustomer() throws SQLException{
+
+        String sqlStatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Create_Date, Created_By, " +
+               "Last_Update, LastUpdatedBy) VALUES(?, ?,?,?,?,?, ?, ?, ?)";
+
+        PreparedStatement pstmt = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+
+    }
+
     /*
     Chapter 16 - page 1059 notes
     public static void addCustomer(){
