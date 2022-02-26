@@ -53,6 +53,26 @@ public class CustDB {
 
     }
 
+    /*
+    Chapter 16 - page 1059 notes
+    public static void addCustomer(){
+           String sqlstatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Created_By) VALUES (?,?,?,?,?,?)";
+           PreparedStatement pstmt = DBConnection.getConnection().prepareStatement(sqlstatement);
+
+           ps.setString(1, name);
+           ps.setString(2, address);
+           ps.setString(3, postalCode);
+           ps.setString(4, phone);
+           ps.setInt(5, divisionID);
+           ps.setString(6, User.getCurrentUser().getUsername());
+
+           ps.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+     */
+
 
 }
 
