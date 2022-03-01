@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Customer;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,8 +50,37 @@ public class ApptsDB {
             }
             return apptsList;
             }
+/**working on this method 2.28*/
+    public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
+                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
+                                         String inputAppt, String updateAppt, int customerID, int userID,
+                                         int contactID) {
+        String sqlStatement = "INSERT INTO appointments (Title, Description, Location, " +
+                "Type, Start, End, Created_By," +
+                "Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+            ps.setString(1, apptTitle);
+            ps.setString(2, apptDesc);
+            ps.setString(3, apptLocation);
+            ps.setString(4, apptType);
+            ps.setTimestamp(5, Timestamp.valueOf(startAppt));
+            ps.setTimestamp(6, Timestamp.valueOf(endAppt));
+            ps.setString(7, inputAppt);
+            ps.setString(8, updateAppt);
+            ps.setInt(9, customerID);
+            ps.setInt(10, userID);
+            ps.setInt(11, contactID);
 
 
+
+
+
+            ps.execute();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 
 
 }
