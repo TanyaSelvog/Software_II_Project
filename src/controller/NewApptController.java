@@ -118,14 +118,8 @@ public class NewApptController implements Initializable {
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
         LocalDate startDate = newApptDate.getValue();
         LocalDate endDate = endDatePicker.getValue();
-      //  LocalDateTime startDate = newApptDate.getSelectionModel().getSelectedValue();
 
-       // LocalDateTime start = LocalDateTime.of(newApptDate.getValue(), startTimeCB.getValue());
-
-        /**static ZonedDateTime 	of(int year, int month, int dayOfMonth, int hour, int minute, int second, int nanoOfSecond, ZoneId zone)
-         Obtains an instance of ZonedDateTime from a year, month, day, hour, minute, second, nanosecond and time-zone.
-         *
-         */
+        //ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDate, endDate);
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");

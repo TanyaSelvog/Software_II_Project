@@ -49,39 +49,28 @@ public class CustDB {
     } return customersList;
 
 
-
+    //3.2 createCustomer() started
 
     }
 
-    public static void addCustomer() throws SQLException{
-
-        String sqlStatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Create_Date, Created_By, " +
-               "Last_Update, LastUpdatedBy) VALUES(?, ?,?,?,?,?, ?, ?, ?)";
+    public static void createCustomer(String name, String address, String postalCode, String phone, int divisionID) throws SQLException{
+        try{
+        String sqlStatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID VALUES(?, ?,?,?,?)";
 
         PreparedStatement pstmt = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+        pstmt.setString(1, name);
+        pstmt.setString(2, address);
+        pstmt.setString(3,postalCode);
+        pstmt.setString(4, phone);
+        pstmt.setInt(5, divisionID);
 
+        pstmt.execute();
 
-    }
-
-    /*
-    Chapter 16 - page 1059 notes
-    public static void addCustomer(){
-           String sqlstatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID, Created_By) VALUES (?,?,?,?,?,?)";
-           PreparedStatement pstmt = DBConnection.getConnection().prepareStatement(sqlstatement);
-
-           ps.setString(1, name);
-           ps.setString(2, address);
-           ps.setString(3, postalCode);
-           ps.setString(4, phone);
-           ps.setInt(5, divisionID);
-           ps.setString(6, User.getCurrentUser().getUsername());
-
-           ps.execute();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
-     */
+
 
 
 }
