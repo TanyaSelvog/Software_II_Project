@@ -71,7 +71,7 @@ public class CustomerFormController implements Initializable {
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
         Country country = (Country) countryComboBox.getValue();
-        Division division = (Division) divisionComboBox.getValue();
+        Division division = (Division)divisionComboBox.getValue();
 
         if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -79,6 +79,7 @@ public class CustomerFormController implements Initializable {
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
         }else{
+         //   CustDB.createCustomer(custName, custAddress, custPhone, customerPostal, division);
             System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country);
         }
 
