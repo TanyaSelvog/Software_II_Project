@@ -1,5 +1,7 @@
 package model;
 
+import javax.sql.RowSet;
+
 public class User {
 
     private int userID;
@@ -9,6 +11,8 @@ public class User {
         this.userID = userID;
         this.userName = userName;
     }
+
+
 
     public int getUserID() {
         return userID;

@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Country;
 import model.Customer;
+import model.User;
 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,10 +18,10 @@ public class CustDB {
         try {
 
             String sqlStatement = "Select customer_ID, customer_Name, address, postal_code, phone, " +
-          "  customers.division_ID, first_level_divisions.division, countries.country_ID, " +
-           "  countries.country from customers, first_level_divisions, countries WHERE " +
-            "customers.division_ID = first_level_divisions.division_ID AND " +
-            "countries.country_ID = first_level_divisions.country_ID";
+                    "  customers.division_ID, first_level_divisions.division, countries.country_ID, " +
+                    "  countries.country from customers, first_level_divisions, countries WHERE " +
+                    "customers.division_ID = first_level_divisions.division_ID AND " +
+                    "countries.country_ID = first_level_divisions.country_ID";
 
             PreparedStatement pstmt = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
@@ -37,7 +38,7 @@ public class CustDB {
                 String customerCountry = result.getString("Country");
                 System.out.println(customerName + " " + customerAddress + " " + customerPostal);
                 Customer customer = new Customer(customerID, customerName, customerAddress,
-                       customerPostal, customerPhone, divisionID, customerDivision, customerCountry);
+                        customerPostal, customerPhone, divisionID, customerDivision, customerCountry);
                 customersList.add(customer);
 
 
@@ -46,34 +47,34 @@ public class CustDB {
         } catch (SQLException exception) {
             exception.printStackTrace();
 
-    } return customersList;
+        }
+        return customersList;
 
 
-    //3.2 createCustomer() started
 
     }
 
+
     public static void createCustomer(String name, String address, String postalCode, String phone, int divisionID) {
-        try{
-        String sqlStatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID VALUES(?, ?,?,?,?)";
+        try {
+            String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES (?,?,?,?,?)";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sql);
 
-        PreparedStatement pstmt = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
-        pstmt.setString(1, name);
-        pstmt.setString(2, address);
-        pstmt.setString(3,postalCode);
-        pstmt.setString(4, phone);
-        pstmt.setInt(5, divisionID);
+            ps.setString(1, name);
+            ps.setString(2, address);
+            ps.setString(3, postalCode);
+            ps.setString(4, phone);
+            ps.setInt(5, divisionID);
 
-        pstmt.execute();
 
+            ps.execute();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
 
-
-
 }
+
 
 
 
