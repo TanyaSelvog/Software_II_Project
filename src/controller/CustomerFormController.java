@@ -72,6 +72,7 @@ public class CustomerFormController implements Initializable {
         String customerPostal =customerPostalCode.getText();
         Country country = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
+        int divisionID = division.getDivisionID();
 
         if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -79,8 +80,8 @@ public class CustomerFormController implements Initializable {
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
         }else{
-         //   CustDB.createCustomer(custName, custAddress, custPhone, customerPostal, division);
-            System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country);
+            CustDB.createCustomer(custName, custAddress, custPhone, customerPostal, divisionID);
+            System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country + " " + divisionID);
         }
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));

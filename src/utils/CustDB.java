@@ -53,7 +53,7 @@ public class CustDB {
 
     }
 
-    public static void createCustomer(String name, String address, String postalCode, String phone, int divisionID) throws SQLException{
+    public static void createCustomer(String name, String address, String postalCode, String phone, int divisionID) {
         try{
         String sqlStatement = "INSERT INTO Customers (Customer_Name, Address, Postal_Code, Phone, Division_ID VALUES(?, ?,?,?,?)";
 
