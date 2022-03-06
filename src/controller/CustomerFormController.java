@@ -81,7 +81,7 @@ public class CustomerFormController implements Initializable {
             alert.showAndWait();
         }else{
             CustDB.createCustomer(custName, custAddress, custPhone, customerPostal, divisionID);
-            System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country + " " + divisionID);
+           // System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country + " " + divisionID);
         }
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));

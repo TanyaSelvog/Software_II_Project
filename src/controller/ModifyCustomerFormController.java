@@ -9,7 +9,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Country;
 import model.Customer;
+import model.Division;
+import utils.CustDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -24,6 +27,8 @@ public class ModifyCustomerFormController implements Initializable {
     public ComboBox divisionComboBox;
     public TextField customerID;
 
+    public Customer customerModify = null;
+
 
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
@@ -34,6 +39,7 @@ public class ModifyCustomerFormController implements Initializable {
     }
     //Similar to TightEnd example in Passing The Football proj
     //@ TODO 1.20.2022
+    //@TODO 3.6 Need to fix comboboxes
     public void modCustomer(Customer customer){
         customerID.setText(String.valueOf(customer.getCustomerID()));
         customerName.setText(customer.getCustomerName());
@@ -44,7 +50,21 @@ public class ModifyCustomerFormController implements Initializable {
         divisionComboBox.setValue(customer.getCustomerDivision());
     }
 
-    public void onSaveBtn(ActionEvent actionEvent) {
+    public void onSaveBtn(ActionEvent actionEvent) throws Exception{
+        int id = Integer.parseInt(customerID.getText());
+        String custName = customerName.getText();
+        String custAddress = customerAddress.getText();
+        String custPhone = customerPhone.getText();
+        String customerPostal =customerPostalCode.getText();
+      //  Country country = (Country) countryComboBox.getValue();
+      //  Country country = (Country) countryComboBox.getValue();
+        Division division = (Division)divisionComboBox.getValue();
+        int divisionID = division.getDivisionID();
+      //  int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
+      //  int divisionID = division.getDivisionID();
+
+        CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
+        System.out.println(custName);
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
