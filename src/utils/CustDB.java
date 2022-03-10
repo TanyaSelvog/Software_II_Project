@@ -76,7 +76,7 @@ public class CustDB {
     //3.3
     public static void modifyCustomer(int customer_id, String name, String address, String postalCode, String phone, int divisionID){
         try {
-            String sql = "UPDATE Customers set name = ?, address = ?, postalCode = ?, phone = ?, divisionID = ? WHERE customer_id =?";
+            String sql = "UPDATE Customers set Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID =?";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sql);
 
             ps.setString(1, name);

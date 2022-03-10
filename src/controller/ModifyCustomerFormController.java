@@ -54,8 +54,11 @@ public class ModifyCustomerFormController implements Initializable {
     //@ TODO 1.20.2022
     //@TODO 3.6 Need to fix comboboxes
     public void modCustomer(Customer customer){
+        int id = customer.getCustomerID();
+        customerID.setText(String.valueOf(id));
+        System.out.println(id);
 
-        customerID.setText(String.valueOf(customer.getCustomerID()));
+      //  customerID.setText(String.valueOf(customer.getCustomerID()));
 
         String nameTest = customer.getCustomerName();
         customerName.setText(nameTest);
@@ -76,15 +79,21 @@ public class ModifyCustomerFormController implements Initializable {
         System.out.println(postalCode);
        // customerPostalCode.setText(customer.getCustomerPostal());
 
+        String countryTest = customer.getCustomerCountry();
+        countryComboBox.setValue(countryTest);
+        System.out.println(countryTest);
 
+        String divisionTest = customer.getCustomerDivision();
+        divisionComboBox.setValue(divisionTest);
+        System.out.println(divisionTest);
         //Country country = (Country) countryComboBox.getValue();
         //Division division = (Division)divisionComboBox.getValue();
-        countryComboBox.setValue(customer.getCustomerCountry());
+        //countryComboBox.setValue(customer.getCustomerCountry());
         divisionComboBox.setValue(customer.getCustomerDivision());
-        System.out.println(customer.getCustomerName());
+
 
     }
-
+    // 3.10 Works - Need to filter to check for user input
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
         int id = Integer.parseInt(customerID.getText());
         String custName = customerName.getText();
@@ -92,16 +101,20 @@ public class ModifyCustomerFormController implements Initializable {
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-       Country country = (Country) countryComboBox.getValue();
 
-      //  Country country = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
         int divisionID = division.getDivisionID();
-   //   int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
-      //  int divisionID = division.getDivisionID();
+
+
 
         CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
-        System.out.println(custName);
+        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("All Customers");
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
+
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
