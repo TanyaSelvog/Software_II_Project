@@ -58,7 +58,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </TextField>
-            <ComboBox fx:id="countryComboBox" prefHeight="29.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="countryComboBox" onAction="#countrySelected" prefHeight="29.0" prefWidth="285.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <ComboBox fx:id="divisionComboBox" prefHeight="29.0" prefWidth="270.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <Label text="Country" GridPane.rowIndex="5">
                <font>

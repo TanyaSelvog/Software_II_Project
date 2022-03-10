@@ -4,7 +4,8 @@ public class Country {
 
     private String countryName;
     private int countryID;
-    /**
+    private int divisionID;
+/**
     Constructor
     * @param  countryName
     * @param countryID
@@ -40,7 +41,13 @@ public class Country {
         return countryID;
 
     }
+    public int getDivisionID(){
 
+        return divisionID;
+    }
+    public void setDivisionID(int divisionID){
+        this.divisionID = divisionID;
+    }
     /**
      * Setter for countryID
      * @param countryID

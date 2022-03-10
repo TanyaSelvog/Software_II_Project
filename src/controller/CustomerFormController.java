@@ -70,7 +70,7 @@ public class CustomerFormController implements Initializable {
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-        Country country = (Country) countryComboBox.getValue();
+        Country countryName = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
         int divisionID = division.getDivisionID();
 
@@ -81,7 +81,7 @@ public class CustomerFormController implements Initializable {
             alert.showAndWait();
         }else{
             CustDB.createCustomer(custName, custAddress, custPhone, customerPostal, divisionID);
-           // System.out.println(custName + " " + custAddress + " " +custPhone + " " + customerPostal + division + country + " " + divisionID);
+            System.out.println(custName + " " + custAddress + " " +custPhone + " " +" "+  customerPostal+ " " + " " + division + " " + countryName + " " + divisionID);
         }
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));

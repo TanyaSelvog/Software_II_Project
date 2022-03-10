@@ -41,7 +41,9 @@ public class CustomerController implements Initializable {
    private  ObservableList<Country> countriesList = FXCollections.observableArrayList();
     private static Customer modCustomer;
 
-
+    public static Customer getModCustomer(){
+        return modCustomer;
+    }
 
 
     @Override

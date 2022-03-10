@@ -12,7 +12,9 @@ import javafx.stage.Stage;
 import model.Country;
 import model.Customer;
 import model.Division;
+import utils.CountryDB;
 import utils.CustDB;
+import utils.DivisionsDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -23,11 +25,12 @@ public class ModifyCustomerFormController implements Initializable {
     public TextField customerPhone;
     public TextField customerPostalCode;
     public TextField customerAddress;
-    public ComboBox countryComboBox;
+    public ComboBox <Country> countryComboBox;
     public ComboBox divisionComboBox;
     public TextField customerID;
 
     public Customer customerModify = null;
+
 
 
     @Override
@@ -36,6 +39,15 @@ public class ModifyCustomerFormController implements Initializable {
 
 
 
+        countryComboBox.setItems(CountryDB.getCountryList());
+    //    divisionComboBox.setItems(DivisionsDB.getDivisionList());
+
+    }
+
+    public void countrySelected(ActionEvent actionEvent) throws Exception{
+
+        Country countrySelected = (Country) countryComboBox.getValue();
+        divisionComboBox.setItems(DivisionsDB.getDivisionList(countrySelected.getCountryID()));
     }
     //Similar to TightEnd example in Passing The Football proj
     //@ TODO 1.20.2022
@@ -46,8 +58,13 @@ public class ModifyCustomerFormController implements Initializable {
         customerPhone.setText(customer.getCustomerPhone());
         customerAddress.setText(customer.getCustomerAddress());
         customerPostalCode.setText(customer.getCustomerPostal());
-        countryComboBox.setValue(customer.getCustomerCountry());
+        String test = customer.getCustomerCountry();
+        System.out.println(test);
+        //countryComboBox.setValue(String.valueOf(customer.getCustomerCountry()));
         divisionComboBox.setValue(customer.getCustomerDivision());
+        System.out.println(customer.getCustomerName());
+      //  System.out.println(customerID + " " + customerName + " " + customerPhone + " " + customerAddress + " " +
+         //       customerPhone + " " + customerPostalCode);
     }
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
@@ -56,11 +73,11 @@ public class ModifyCustomerFormController implements Initializable {
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-      //  Country country = (Country) countryComboBox.getValue();
+       Country country =  countryComboBox.getValue();
       //  Country country = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
         int divisionID = division.getDivisionID();
-      //  int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
+   //   int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
       //  int divisionID = division.getDivisionID();
 
         CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
