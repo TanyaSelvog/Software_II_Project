@@ -25,7 +25,7 @@ public class ModifyCustomerFormController implements Initializable {
     public TextField customerPhone;
     public TextField customerPostalCode;
     public TextField customerAddress;
-    public ComboBox <Country> countryComboBox;
+    public ComboBox  countryComboBox;
     public ComboBox divisionComboBox;
     public TextField customerID;
 
@@ -36,7 +36,8 @@ public class ModifyCustomerFormController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
 
-
+        String custName = customerName.getText();
+        System.out.println(custName);
 
 
         countryComboBox.setItems(CountryDB.getCountryList());
@@ -53,27 +54,46 @@ public class ModifyCustomerFormController implements Initializable {
     //@ TODO 1.20.2022
     //@TODO 3.6 Need to fix comboboxes
     public void modCustomer(Customer customer){
+
         customerID.setText(String.valueOf(customer.getCustomerID()));
-        customerName.setText(customer.getCustomerName());
-        customerPhone.setText(customer.getCustomerPhone());
-        customerAddress.setText(customer.getCustomerAddress());
-        customerPostalCode.setText(customer.getCustomerPostal());
-        String test = customer.getCustomerCountry();
-        System.out.println(test);
-        //countryComboBox.setValue(String.valueOf(customer.getCustomerCountry()));
+
+        String nameTest = customer.getCustomerName();
+        customerName.setText(nameTest);
+        System.out.println(nameTest);
+
+        String phone = customer.getCustomerPhone();
+        customerPhone.setText(phone);
+        System.out.println(phone);
+       // customerPhone.setText(customer.getCustomerPhone());
+
+        String address = customer.getCustomerAddress();
+        customerAddress.setText(address);
+        System.out.println(address);
+        //customerAddress.setText(customer.getCustomerAddress());
+
+        String postalCode = customer.getCustomerPostal();
+        customerPostalCode.setText(postalCode);
+        System.out.println(postalCode);
+       // customerPostalCode.setText(customer.getCustomerPostal());
+
+
+        //Country country = (Country) countryComboBox.getValue();
+        //Division division = (Division)divisionComboBox.getValue();
+        countryComboBox.setValue(customer.getCustomerCountry());
         divisionComboBox.setValue(customer.getCustomerDivision());
         System.out.println(customer.getCustomerName());
-      //  System.out.println(customerID + " " + customerName + " " + customerPhone + " " + customerAddress + " " +
-         //       customerPhone + " " + customerPostalCode);
+
     }
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
         int id = Integer.parseInt(customerID.getText());
         String custName = customerName.getText();
+        System.out.println(custName);
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-       Country country =  countryComboBox.getValue();
+       Country country = (Country) countryComboBox.getValue();
+
       //  Country country = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
         int divisionID = division.getDivisionID();

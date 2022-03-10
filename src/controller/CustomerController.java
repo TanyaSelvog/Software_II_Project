@@ -76,10 +76,6 @@ public class CustomerController implements Initializable {
 
     public void onModifyCurrent(ActionEvent actionEvent) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifyCustomerForm.fxml"));
-        loader.load();
-
-        ModifyCustomerFormController controller = loader.getController();
         Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
 
         if (modCustomer == null) {
@@ -88,15 +84,48 @@ public class CustomerController implements Initializable {
             alert.setHeaderText("Error");
             alert.setContentText("Select a Customer to modify.");
             alert.showAndWait();
-        } else {
-            controller.modCustomer(modCustomer);
-            stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
-            scene = loader.getRoot();
-            stage.setScene(new Scene(scene));
-            stage.show();
-        }
-    }
+    }else {
+            try {
 
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifyCustomerForm.fxml"));
+                Parent root = loader.load();
+
+                // must get access to the controller to make the screen
+                //so using the getController method
+                ModifyCustomerFormController controller = loader.getController();
+                controller.modCustomer(modCustomer);
+
+                //set the stage
+                stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                scene = loader.getRoot();
+                stage.setScene(new Scene(scene));
+                stage.show();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+
+                /**  FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifyCustomerForm.fxml"));
+                 loader.load();
+
+                 ModifyCustomerFormController controller = loader.getController();
+                 Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
+
+                 if (modCustomer == null) {
+                 Alert alert = new Alert(Alert.AlertType.ERROR);
+                 alert.setTitle("Modify a Customer");
+                 alert.setHeaderText("Error");
+                 alert.setContentText("Select a Customer to modify.");
+                 alert.showAndWait();
+                 } else {
+                 controller.modCustomer(modCustomer);
+                 stage = (Stage)((Button)actionEvent.getSource()).getScene().getWindow();
+                 scene = loader.getRoot();
+                 stage.setScene(new Scene(scene));
+                 stage.show();
+                 }
+                 */
+            }
+        }}
 
 
 
