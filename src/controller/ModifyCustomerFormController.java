@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -50,9 +51,7 @@ public class ModifyCustomerFormController implements Initializable {
         Country countrySelected = (Country) countryComboBox.getValue();
         divisionComboBox.setItems(DivisionsDB.getDivisionList(countrySelected.getCountryID()));
     }
-    //Similar to TightEnd example in Passing The Football proj
-    //@ TODO 1.20.2022
-    //@TODO 3.6 Need to fix comboboxes
+
     public void modCustomer(Customer customer){
         int id = customer.getCustomerID();
         customerID.setText(String.valueOf(id));
@@ -86,34 +85,47 @@ public class ModifyCustomerFormController implements Initializable {
         String divisionTest = customer.getCustomerDivision();
         divisionComboBox.setValue(divisionTest);
         System.out.println(divisionTest);
+
+        int customerID = customer.getDivisionID();
+        System.out.println(customerID);
         //Country country = (Country) countryComboBox.getValue();
         //Division division = (Division)divisionComboBox.getValue();
         //countryComboBox.setValue(customer.getCustomerCountry());
-        divisionComboBox.setValue(customer.getCustomerDivision());
+       // divisionComboBox.setValue(customer.getCustomerDivision());
 
 
     }
     // 3.10 Works - Need to filter to check for user input
+    //need to fix division
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
         int id = Integer.parseInt(customerID.getText());
         String custName = customerName.getText();
-        System.out.println(custName);
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-
+        Country countryName = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
+
         int divisionID = division.getDivisionID();
 
+        /**
+        if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Missing input.");
+            alert.setContentText("Data is missing in one or more fields.");
+            alert.showAndWait();
 
-
+        } else {
+            CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
+        }
+         */
         CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
-        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("All Customers");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
+            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("All Customers");
+            Scene scene = new Scene(root, 1000, 600);
+            stage.setScene(scene);
+            stage.show();
 
     }
 
