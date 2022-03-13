@@ -103,7 +103,10 @@ public class ModifyCustomerFormController implements Initializable {
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-        Country countryName = (Country) countryComboBox.getValue();
+            // @todo WORKING ON 3.13
+
+       // Country countryName = (Country) countryComboBox.getValue();
+
         Division division = (Division)divisionComboBox.getValue();
 
         int divisionID = division.getDivisionID();
