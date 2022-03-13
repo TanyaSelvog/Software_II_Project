@@ -94,6 +94,12 @@ public class ModifyCustomerFormController implements Initializable {
        // divisionComboBox.setValue(customer.getCustomerDivision());
 
 
+
+
+    }
+    //created 3.13. breakdown onSaveBtn issues
+    public void modCustomerSave(){
+
     }
     // 3.10 Works - Need to filter to check for user input
     //need to fix division
@@ -104,6 +110,8 @@ public class ModifyCustomerFormController implements Initializable {
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
             // @todo WORKING ON 3.13
+        Country countryName = (Country)countryComboBox.getSelectionModel().getSelectedItem();
+
 
        // Country countryName = (Country) countryComboBox.getValue();
 
