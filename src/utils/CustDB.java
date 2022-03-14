@@ -36,7 +36,7 @@ public class CustDB {
                 int divisionID = result.getInt("Division_ID");
                 String customerDivision = result.getString("Division");
                 String customerCountry = result.getString("Country");
-                System.out.println(customerName + " " + customerAddress + " " + customerPostal);
+               // System.out.println(customerName + " " + customerAddress + " " + customerPostal);
                 Customer customer = new Customer(customerID, customerName, customerAddress,
                         customerPostal, customerPhone, divisionID, customerDivision, customerCountry);
                 customersList.add(customer);

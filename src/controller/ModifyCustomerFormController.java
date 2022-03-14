@@ -54,16 +54,16 @@ public class ModifyCustomerFormController implements Initializable {
 
         Division division = DivisionsDB.getCustomerDivision(customer.getDivisionID());
         divisionComboBox.getSelectionModel().select(division);
-        System.out.println("division from modCustomer(): " +division);
+        System.out.println("Division division from modCustomer(): " +division);
         int id = customer.getCustomerID();
         customerID.setText(String.valueOf(id));
-        System.out.println("id from modCustomer(): " +id);
+        System.out.println("int customerID from modCustomer(): " +id);
 
       //  customerID.setText(String.valueOf(customer.getCustomerID()));
 
         String nameTest = customer.getCustomerName();
         customerName.setText(nameTest);
-        System.out.println("nametest from modCustomer " +nameTest);
+        System.out.println("String nametest from modCustomer() " +nameTest);
 
         String phone = customer.getCustomerPhone();
         customerPhone.setText(phone);
@@ -106,7 +106,7 @@ public class ModifyCustomerFormController implements Initializable {
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
         int id = Integer.parseInt(customerID.getText());
-        System.out.println(id);
+        System.out.println("int id from onSaveBtn() " +id);
         String custName = customerName.getText();
         System.out.println(custName);
         String custAddress = customerAddress.getText();
