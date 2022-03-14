@@ -22,10 +22,11 @@ public class DivisionsDB {
 
             ResultSet result = ps.executeQuery();
                 while (result.next()) {
-                    String divisionName = result.getString("Division");
                     int divisionID = result.getInt("Division_ID");
+                    String divisionName = result.getString("Division");
 
-                    Division division = new Division(divisionName, divisionID, countryID);
+
+                    Division division = new Division(divisionID, divisionName, countryID);
                     divisionList.add(division);
                     }
                 }
@@ -35,5 +36,28 @@ public class DivisionsDB {
         return divisionList;
         }
 
+    public static Division getCustomerDivision(int divisionID){
+        Division div = null;
+
+        try {
+            String sqlStatement = "SELECT * FROM First_Level_Divisions WHERE Division_ID =?";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+            ps.setInt(1, divisionID);
+
+            ResultSet result = ps.executeQuery();
+            result.next();
+                String divisionName = result.getString("Division");
+                int countryID = result.getInt("Country_ID");
+
+                 div = new Division(divisionID, divisionName, countryID);
+
+            }
+
+        catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return div;
+        }
 
 }

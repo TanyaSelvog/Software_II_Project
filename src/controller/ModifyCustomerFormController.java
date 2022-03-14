@@ -27,7 +27,7 @@ public class ModifyCustomerFormController implements Initializable {
     public TextField customerPostalCode;
     public TextField customerAddress;
     public ComboBox  countryComboBox;
-    public ComboBox divisionComboBox;
+    public ComboBox<Division> divisionComboBox;
     public TextField customerID;
 
     public Customer customerModify = null;
@@ -37,31 +37,33 @@ public class ModifyCustomerFormController implements Initializable {
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
 
-        String custName = customerName.getText();
-        System.out.println(custName);
-
 
         countryComboBox.setItems(CountryDB.getCountryList());
-    //    divisionComboBox.setItems(DivisionsDB.getDivisionList());
+
 
     }
 
     public void countrySelected(ActionEvent actionEvent) throws Exception{
 
-        Country countrySelected = (Country) countryComboBox.getValue();
+        Country countrySelected = (Country) countryComboBox.getSelectionModel().getSelectedItem();
+        System.out.println("countrySelected from countrySelected method: " +countrySelected);
         divisionComboBox.setItems(DivisionsDB.getDivisionList(countrySelected.getCountryID()));
     }
 
     public void modCustomer(Customer customer){
+
+        Division division = DivisionsDB.getCustomerDivision(customer.getDivisionID());
+        divisionComboBox.getSelectionModel().select(division);
+        System.out.println("division from modCustomer(): " +division);
         int id = customer.getCustomerID();
         customerID.setText(String.valueOf(id));
-        System.out.println(id);
+        System.out.println("id from modCustomer(): " +id);
 
       //  customerID.setText(String.valueOf(customer.getCustomerID()));
 
         String nameTest = customer.getCustomerName();
         customerName.setText(nameTest);
-        System.out.println(nameTest);
+        System.out.println("nametest from modCustomer " +nameTest);
 
         String phone = customer.getCustomerPhone();
         customerPhone.setText(phone);
@@ -78,16 +80,19 @@ public class ModifyCustomerFormController implements Initializable {
         System.out.println(postalCode);
        // customerPostalCode.setText(customer.getCustomerPostal());
 
+
         String countryTest = customer.getCustomerCountry();
         countryComboBox.setValue(countryTest);
         System.out.println(countryTest);
 
-        String divisionTest = customer.getCustomerDivision();
+
+/**
+        Stri/ng divisionTest = customer.getCustomerDivision();
         divisionComboBox.setValue(divisionTest);
         System.out.println(divisionTest);
-
+*/
         int customerID = customer.getDivisionID();
-        System.out.println(customerID);
+        System.out.println("modcustomer() customerID : " +customerID);
         //Country country = (Country) countryComboBox.getValue();
         //Division division = (Division)divisionComboBox.getValue();
         //countryComboBox.setValue(customer.getCustomerCountry());
@@ -97,27 +102,20 @@ public class ModifyCustomerFormController implements Initializable {
 
 
     }
-    //created 3.13. breakdown onSaveBtn issues
-    public void modCustomerSave(){
 
-    }
-    // 3.10 Works - Need to filter to check for user input
-    //need to fix division
+
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
         int id = Integer.parseInt(customerID.getText());
+        System.out.println(id);
         String custName = customerName.getText();
+        System.out.println(custName);
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
         String customerPostal =customerPostalCode.getText();
-            // @todo WORKING ON 3.13
-        Country countryName = (Country)countryComboBox.getSelectionModel().getSelectedItem();
 
 
-       // Country countryName = (Country) countryComboBox.getValue();
-
-        Division division = (Division)divisionComboBox.getValue();
-
-        int divisionID = division.getDivisionID();
+        int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
+        System.out.println("onSaveBtn()'s divisionID " + divisionID);
 
         /**
         if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){

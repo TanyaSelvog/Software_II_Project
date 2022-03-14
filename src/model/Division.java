@@ -3,7 +3,7 @@ package model;
 public class Division {
     private String divisionName;
     private int divisionID;
-    private int countryID;
+    private int countryID; //country_ID is foreign key in First_Level_Divisions table
 
     /**
      * Constructor for Division
@@ -11,9 +11,9 @@ public class Division {
      * @param divisionID
      * @param countryID
      */
-    public Division(String divisionName, int divisionID, int countryID){
-        this.divisionName = divisionName;
+    public Division(int divisionID, String divisionName, int countryID){
         this.divisionID = divisionID;
+        this.divisionName = divisionName;
         this.countryID = countryID;
     }
 
