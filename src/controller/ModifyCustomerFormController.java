@@ -102,23 +102,20 @@ public class ModifyCustomerFormController implements Initializable {
 
 
     }
+//3.14. working on - similar to getproduct in project one
 
-
-    public void onSaveBtn(ActionEvent actionEvent) throws Exception{
+    public void getCustomerModification() {
         int id = Integer.parseInt(customerID.getText());
-        System.out.println("int id from onSaveBtn() " +id);
+        System.out.println("int id from onSaveBtn() " + id);
         String custName = customerName.getText();
         System.out.println(custName);
         String custAddress = customerAddress.getText();
         String custPhone = customerPhone.getText();
-        String customerPostal =customerPostalCode.getText();
-
-
+        String customerPostal = customerPostalCode.getText();
         int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
         System.out.println("onSaveBtn()'s divisionID " + divisionID);
 
-        /**
-        if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){
+        if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Missing input.");
             alert.setContentText("Data is missing in one or more fields.");
@@ -127,8 +124,11 @@ public class ModifyCustomerFormController implements Initializable {
         } else {
             CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
         }
-         */
-        CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
+    }
+
+        public void onSaveBtn(ActionEvent actionEvent) throws Exception{
+     //   CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);\
+            getCustomerModification();
             Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("All Customers");
