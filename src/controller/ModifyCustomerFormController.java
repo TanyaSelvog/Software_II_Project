@@ -104,40 +104,47 @@ public class ModifyCustomerFormController implements Initializable {
     }
 //3.14. working on - similar to getproduct in project one
 
-    public void getCustomerModification() {
+    public Customer getCustomerModification() {
+        try{
+            int id = Integer.parseInt(customerID.getText());
+            System.out.println("int id from onSaveBtn() " + id);
+            String custName = customerName.getText();
+            System.out.println(custName);
+            String custAddress = customerAddress.getText();
+            String custPhone = customerPhone.getText();
+            String customerPostal = customerPostalCode.getText();
+            int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
+            System.out.println("onSaveBtn()'s divisionID " + divisionID);
 
-        int id = Integer.parseInt(customerID.getText());
-        System.out.println("int id from onSaveBtn() " + id);
-        String custName = customerName.getText();
-        System.out.println(custName);
-        String custAddress = customerAddress.getText();
-        String custPhone = customerPhone.getText();
-        String customerPostal = customerPostalCode.getText();
-        int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
-        System.out.println("onSaveBtn()'s divisionID " + divisionID);
-            CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
-        if(custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()) {
+            if(custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Missing input.");
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
+            }
+            else{
+                Customer newCustomer = new Customer(id, custName, custAddress, custPhone, customerPostal, divisionID);
+                CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
+                return newCustomer;
+            }
+        } catch(Exception displayE){
+            Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+            alert.showAndWait();}
+
+        return null;
         }
-
-
-        }
-
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
 
-            getCustomerModification();
-
+            Customer customer =  getCustomerModification();
+            if (customer !=null){
             Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("All Customers");
             Scene scene = new Scene(root, 1000, 600);
             stage.setScene(scene);
             stage.show();
-
+        }
     }
 
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
