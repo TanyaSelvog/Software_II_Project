@@ -40,6 +40,9 @@ public class Customer {
         this.customerCountry = customerCountry;
     }
 
+    public Customer(int id, String custName, String custAddress, String custPhone, String customerPostal, int divisionID) {
+    }
+
     /**
      * Getter for customerID
      * @return customerID Unique ID for each customer

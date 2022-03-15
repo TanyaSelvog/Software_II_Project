@@ -105,6 +105,7 @@ public class ModifyCustomerFormController implements Initializable {
 //3.14. working on - similar to getproduct in project one
 
     public void getCustomerModification() {
+
         int id = Integer.parseInt(customerID.getText());
         System.out.println("int id from onSaveBtn() " + id);
         String custName = customerName.getText();
@@ -114,21 +115,22 @@ public class ModifyCustomerFormController implements Initializable {
         String customerPostal = customerPostalCode.getText();
         int divisionID = divisionComboBox.getSelectionModel().getSelectedItem().getDivisionID();
         System.out.println("onSaveBtn()'s divisionID " + divisionID);
-
-        if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()) {
+            CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
+        if(custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Missing input.");
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
-
-        } else {
-            CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);
         }
-    }
 
-        public void onSaveBtn(ActionEvent actionEvent) throws Exception{
-     //   CustDB.modifyCustomer(id, custName, custAddress, customerPostal, custPhone, divisionID);\
+
+        }
+
+
+    public void onSaveBtn(ActionEvent actionEvent) throws Exception{
+
             getCustomerModification();
+
             Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("All Customers");
