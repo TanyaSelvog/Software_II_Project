@@ -36,7 +36,7 @@ public class NewApptController implements Initializable {
 
     public ComboBox<Contact> contactComboBox;
     public ComboBox <String> typeComboBox;
-    public ComboBox <String> startTimeCB;
+    public ComboBox<String> startTimeCB;
     public ComboBox <String>endTimeCB;
     public ComboBox <Customer> customerComboBox;
     public DatePicker newApptDate;
@@ -96,8 +96,7 @@ public class NewApptController implements Initializable {
      *   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
      *   String text = date.format(formatter);
      *   LocalDate parsedDate = LocalDate.parse(text, formatter);
-     * @param actionEvent
-     * @throws Exception
+     *
      *
      *
      *
@@ -107,6 +106,17 @@ public class NewApptController implements Initializable {
      * LocalTime timeAgain = LocalTime.parse(textTime, dtf);
      */
 
+    //Working on this; need to adjust time 3.16
+
+    private LocalDateTime getStartDateTime() {
+
+        LocalDate startDate = newApptDate.getValue();
+        LocalTime startTime = LocalTime.parse(startTimeCB.getValue(), dtf);
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+        System.out.println(startDateTime);
+        return startDateTime;
+
+    }
     public void onSave(ActionEvent actionEvent) throws Exception {
 
         String apptDescription = descTF.getText();
@@ -119,6 +129,7 @@ public class NewApptController implements Initializable {
         LocalDate startDate = newApptDate.getValue();
         LocalDate endDate = endDatePicker.getValue();
 
+        getStartDateTime();
         //ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDate, endDate);
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

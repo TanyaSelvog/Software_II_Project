@@ -9,6 +9,7 @@ public class User {
     private String userName;
     private String password;
     private LocalDateTime lastUpdate;
+    private static User currentUser;
 
     private String lastUpdatedBy;
 
@@ -25,6 +26,12 @@ public class User {
         this.userID = userID;
         this.userName = userName;}
 
+    public static User getCurrentUser(){
+       return currentUser;
+    }
+    public void setCurrentUser(User user){
+       currentUser = user;
+    }
     public int getUserID() {
         return userID;
     }

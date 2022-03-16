@@ -52,12 +52,11 @@ public class ApptsDB {
             }
     //3.16
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
-                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt, String createdBy,
-                                         String lastUpdate, String lastUpdatedBy, int customerID, int userID,
-                                         int contactID) {
+                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
+                                          int customerID, int contactID) {
         String sqlStatement = "INSERT INTO appointments (Title, Description, Location, " +
                 "Type, Start, End, Created_By," +
-                "Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
+                " Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
             ps.setString(1, apptTitle);
@@ -66,12 +65,11 @@ public class ApptsDB {
             ps.setString(4, apptType);
             ps.setTimestamp(5, Timestamp.valueOf(startAppt));
             ps.setTimestamp(6, Timestamp.valueOf(endAppt));
-            ps.setString(7, createdBy);
-            ps.setString(8, lastUpdate);
-            ps.setString(9, lastUpdatedBy);
-            ps.setInt(10, customerID);
-            ps.setInt(11, userID);
-            ps.setInt(12, contactID);
+            ps.setString(7, User.getCurrentUser().getUserName());
+            ps.setInt(8, customerID);
+            ps.setInt(9, User.getCurrentUser().getUserID());
+            ps.setInt(10, contactID);
+
 
 
 
