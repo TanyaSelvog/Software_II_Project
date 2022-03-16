@@ -141,8 +141,10 @@ public class ApptsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        //need to show monthly & weekly appts
         allApptsTable.setItems(ApptsDB.getApptsList());
+
+
 
 
        /** allApptsTable;
