@@ -50,10 +50,10 @@ public class ApptsDB {
             }
             return apptsList;
             }
-/**working on this method 2.28*/
+    //3.16
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
-                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
-                                         String inputAppt, String updateAppt, int customerID, int userID,
+                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt, String createdBy,
+                                         String lastUpdate, String lastUpdatedBy, int customerID, int userID,
                                          int contactID) {
         String sqlStatement = "INSERT INTO appointments (Title, Description, Location, " +
                 "Type, Start, End, Created_By," +
@@ -66,11 +66,12 @@ public class ApptsDB {
             ps.setString(4, apptType);
             ps.setTimestamp(5, Timestamp.valueOf(startAppt));
             ps.setTimestamp(6, Timestamp.valueOf(endAppt));
-            ps.setString(7, inputAppt);
-            ps.setString(8, updateAppt);
-            ps.setInt(9, customerID);
-            ps.setInt(10, userID);
-            ps.setInt(11, contactID);
+            ps.setString(7, createdBy);
+            ps.setString(8, lastUpdate);
+            ps.setString(9, lastUpdatedBy);
+            ps.setInt(10, customerID);
+            ps.setInt(11, userID);
+            ps.setInt(12, contactID);
 
 
 
