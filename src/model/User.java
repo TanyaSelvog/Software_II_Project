@@ -1,18 +1,23 @@
 package model;
 
 import javax.sql.RowSet;
+import java.time.LocalDateTime;
 
 public class User {
 
     private int userID;
     private String userName;
     private String password;
+    private LocalDateTime lastUpdate;
+
     private String lastUpdatedBy;
 
-    public User(int userID, String userName, String password, String lastUpdatedBy) {
+
+    public User(int userID, String userName, String password, LocalDateTime lastUpdate, String lastUpdatedBy) {
         this.userID = userID;
         this.userName = userName;
         this.password = password;
+        this.lastUpdate = lastUpdate;
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
@@ -42,6 +47,14 @@ public class User {
 
     public void setPassword(String password){
         this.password = password;
+    }
+
+    public LocalDateTime getLastUpdate(){
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdate){
+        this.lastUpdate = lastUpdate;
     }
 
     public String getLastUpdatedBy(){
