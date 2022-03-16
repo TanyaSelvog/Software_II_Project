@@ -67,11 +67,11 @@ public class Appointments {
         this.apptLocation = apptLocation;
     }
 
-    public String getApptContact(String apptContact){
+    public String getApptContact(){
         return apptContact;
     }
 
-    public void setApptContact(){
+    public void setApptContact(String apptContact){
         this.apptContact = apptContact;
     }
 
