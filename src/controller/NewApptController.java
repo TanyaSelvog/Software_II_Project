@@ -127,7 +127,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-    //   System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" + startDate);
+      System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" + startDate);
 
     }
 
