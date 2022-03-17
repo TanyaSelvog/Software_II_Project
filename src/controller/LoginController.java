@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 import model.User;
 
 
-public class LoginController implements Initializable {
+public class LoginController extends AuthorizedController implements Initializable {
 
 
     public Button loginBtn;

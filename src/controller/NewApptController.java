@@ -142,7 +142,8 @@ public class NewApptController extends AuthorizedController implements Initializ
         //LocalDate startDate = newApptDate.getValue();
         LocalDateTime endDateTime = getEndDateTime();
 
-        ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, contactID);
+        ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
+                contactID);
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");

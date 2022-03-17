@@ -53,7 +53,7 @@ public class ApptsDB {
     //3.16
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
                                          String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
-                                         int customerID, int contactID) {
+                                         String createdBy, int customerID, int userID, int contactID) {
         String sqlStatement = "INSERT INTO appointments (Title, Description, Location, " +
                 "Type, Start, End, Created_By," +
                 " Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -65,9 +65,9 @@ public class ApptsDB {
             ps.setString(4, apptType);
             ps.setTimestamp(5, Timestamp.valueOf(startAppt));
             ps.setTimestamp(6, Timestamp.valueOf(endAppt));
-            ps.setString(7, User.getCurrentUser().getUserName());
+            ps.setString(7, createdBy);
             ps.setInt(8, customerID);
-            ps.setInt(9, User.getCurrentUser().getUserID());
+            ps.setInt(9, userID);
             ps.setInt(10, contactID);
 
 
