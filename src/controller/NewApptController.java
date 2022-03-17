@@ -117,20 +117,33 @@ public class NewApptController implements Initializable {
         return startDateTime;
 
     }
+    private LocalDateTime getEndDateTime() {
+
+        LocalDate endDate = endDatePicker.getValue();
+        LocalTime endTime = LocalTime.parse(endTimeCB.getValue(), dtf);
+        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+        System.out.println(endDateTime);
+        return endDateTime;
+
+    }
     public void onSave(ActionEvent actionEvent) throws Exception {
 
         String apptDescription = descTF.getText();
         String apptLocation = locationTF.getText();
         String apptTitle = titleTF.getText();
         Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
+        int contactID = contactSelected.getContactID();
+
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+        int customerID = customerSelected.getCustomerID();
         String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
         User userSelected = userComboBox.getSelectionModel().getSelectedItem();
-        LocalDate startDate = newApptDate.getValue();
-        LocalDate endDate = endDatePicker.getValue();
+        LocalDateTime startDateTime = getStartDateTime();
+        //LocalDate startDate = newApptDate.getValue();
+        LocalDateTime endDateTime = getEndDateTime();
 
-        getStartDateTime();
-        //ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDate, endDate);
+        //fails at this point
+        ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, contactID);
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");
@@ -138,7 +151,7 @@ public class NewApptController implements Initializable {
         stage.setScene(scene);
         stage.show();
 
-      System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" + startDate);
+      System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" );
 
     }
 

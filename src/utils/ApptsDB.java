@@ -53,7 +53,7 @@ public class ApptsDB {
     //3.16
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
                                          String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
-                                          int customerID, int contactID) {
+                                         int customerID, int contactID) {
         String sqlStatement = "INSERT INTO appointments (Title, Description, Location, " +
                 "Type, Start, End, Created_By," +
                 " Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -74,12 +74,12 @@ public class ApptsDB {
 
 
 
-
             ps.execute();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
+
 
 
 }
