@@ -23,7 +23,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class NewApptController implements Initializable {
+public class NewApptController extends AuthorizedController implements Initializable {
 
     public TextField titleTF;
     public TextField descTF;
@@ -142,7 +142,6 @@ public class NewApptController implements Initializable {
         //LocalDate startDate = newApptDate.getValue();
         LocalDateTime endDateTime = getEndDateTime();
 
-        //fails at this point
         ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, contactID);
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

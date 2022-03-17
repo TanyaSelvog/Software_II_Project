@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.User;
 
 
 public class LoginController implements Initializable {
@@ -29,7 +30,7 @@ public class LoginController implements Initializable {
     public TextField usernameTF;
     public TextField passwordTF;
     public Label zoneIdLbl;
-
+    private static User currentUser;
    // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -37,8 +38,7 @@ public class LoginController implements Initializable {
     System.out.println(today);
     zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
-
-
+    String userNameTest = usernameTF.getText();
 
     }
 
