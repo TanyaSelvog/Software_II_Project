@@ -11,8 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class UserDB {
-
-    public static ObservableList<User> getUserList(){
+    public static String userName;
+    public static ObservableList<User> getUserList() {
         ObservableList<User> userList = FXCollections.observableArrayList();
 
         try {
@@ -27,12 +27,37 @@ public class UserDB {
 
                 User user = new User(userID, userName);
                 userList.add(user);
+                System.out.println(userID);
+                System.out.println(userName);
 
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
         return userList;
+
+    }
+    public static User getUser(String userName){
+            try {
+                String sqlStatement = "SELECT * FROM Users WHERE User_Name = ?";
+                PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+                ps.setString(1, userName);
+
+                ResultSet rs = ps.executeQuery();
+                rs.next();
+
+                int id = rs.getInt("User_ID");
+                String password = rs.getString("Password");
+
+                User user = new User(id, userName, password);
+                System.out.println(user);
+                return user;
+
+                }catch (SQLException exception) {
+                    exception.printStackTrace();
+                }
+                return null;
+        }
 
 
     }
@@ -48,4 +73,4 @@ public class UserDB {
 
 
 
-}
+

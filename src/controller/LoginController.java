@@ -19,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.User;
+import utils.UserDB;
 
 
 public class LoginController extends AuthorizedController implements Initializable {
@@ -38,11 +39,14 @@ public class LoginController extends AuthorizedController implements Initializab
     System.out.println(today);
     zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
-    String userNameTest = usernameTF.getText();
 
     }
 
     public void onLogin(ActionEvent actionEvent) throws Exception {
+        String userName = usernameTF.getText();
+        String userPassword = passwordTF.getText();
+
+
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Scheduler Homepage");
