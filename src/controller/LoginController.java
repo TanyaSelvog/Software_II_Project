@@ -43,18 +43,32 @@ public class LoginController extends AuthorizedController implements Initializab
     }
 
 
-    public void onLogin(ActionEvent actionEvent) throws Exception {
-
-        String userName = usernameTF.getText();
-        String userPassword = passwordTF.getText();
+    public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Scheduler Homepage");
             Scene scene = new Scene(root, 1000, 600);
             stage.setScene(scene);
             stage.show();
         }
+
+        public void userLogin(){
+
+            String userName = usernameTF.getText();
+            String userPassword = passwordTF.getText();
+        }
+        //checkDB()
+
+        public void checkDB(){
+        //is the username from textfield the same as db;
+            // String userName + UserDB User getUser (returns user)
+
+        }
+
+    //getCurrentUser()
+
+
     }
 

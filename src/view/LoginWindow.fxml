@@ -17,7 +17,7 @@
           <RowConstraints maxHeight="201.0" minHeight="10.0" prefHeight="149.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onLogin" prefHeight="29.0" prefWidth="162.0" text="Log in" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#onLoginBtnClicked" prefHeight="29.0" prefWidth="162.0" text="Log in" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font>
