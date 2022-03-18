@@ -42,7 +42,9 @@ public class LoginController extends AuthorizedController implements Initializab
 
     }
 
+
     public void onLogin(ActionEvent actionEvent) throws Exception {
+
         String userName = usernameTF.getText();
         String userPassword = passwordTF.getText();
 
