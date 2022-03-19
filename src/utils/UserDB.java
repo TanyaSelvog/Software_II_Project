@@ -56,6 +56,7 @@ public class UserDB {
             String password = result.getString("Password");
 
             User user = new User(id, username, password);
+            System.out.println("user DB");
             return user;
         }catch (SQLException exception) {
         System.out.println("Error in DB");
@@ -66,6 +67,7 @@ public class UserDB {
             alert.showAndWait();
 
         }
+        System.out.println("after catch");
         return null;}}
 
 

@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -55,19 +56,26 @@ public class LoginController extends AuthorizedController implements Initializab
         }
 
         public boolean userLogin() {
-
+            boolean isLoginValid = true;
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
-
+//3.19 working on
             User result = UserDB.getUser(userName);
-            if (result != null) {
-                return true;
-            }else{
-                return false;
+            if (result == null) {
+                isLoginValid = false;
+                System.out.println("isLoginValid = false");
+            }
+            return isLoginValid;
 
     }
-
-        }
+        public void returnLoginWindow(ActionEvent actionEvent) throws IOException{
+            Parent root = FXMLLoader.load(getClass().getResource("/view/loginWindow.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Scheduler Homepage");
+            Scene scene = new Scene(root, 1000, 600);
+            stage.setScene(scene);
+            stage.show();
+        }}
         //checkDB()
         //babyStep()
     //isUserLogin valid?
@@ -91,7 +99,7 @@ public class LoginController extends AuthorizedController implements Initializab
 
 
     */
-        }
+
 
     //getCurrentUser()
 
