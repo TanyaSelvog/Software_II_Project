@@ -69,6 +69,9 @@ public class LoginController extends AuthorizedController implements Initializab
 
         }
         //checkDB()
+        //babyStep()
+    //isUserLogin valid?
+    // yes then proceed (right now just println) if no then present erro mess
 
     // validate login
     // is result valid or null?

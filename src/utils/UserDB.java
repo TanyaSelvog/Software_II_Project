@@ -3,6 +3,7 @@ package utils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Contact;
 import model.User;
 
@@ -10,8 +11,11 @@ import model.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 public class UserDB {
     public static String userName;
+
     public static ObservableList<User> getUserList() {
         ObservableList<User> userList = FXCollections.observableArrayList();
 
@@ -37,30 +41,33 @@ public class UserDB {
         return userList;
 
     }
-    public static User getUser(String userName){
-            try {
-                String sqlStatement = "SELECT * FROM Users WHERE User_Name = ?";
-                PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
-                ps.setString(1, userName);
+    public static User getUser(String username) {
+        try {
+            String sqlStatement = "SELECT * FROM users WHERE User_Name = ?";
 
-                ResultSet rs = ps.executeQuery();
-                rs.next();
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+            ps.setString(1, username);
 
-                int id = rs.getInt("User_ID");
-                String password = rs.getString("Password");
+            ResultSet result = ps.executeQuery();
+            //while (result.next()) {
+            result.next();
 
-                User user = new User(id, userName, password);
-                System.out.println(user);
-                return user;
+            int id = result.getInt("User_ID");
+            String password = result.getString("Password");
 
-                }catch (SQLException exception) {
-                    exception.printStackTrace();
-                }
-                return null;
+            User user = new User(id, username, password);
+            return user;
+        }catch (SQLException exception) {
+        System.out.println("Error in DB");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid Username");
+            alert.setHeaderText("Error");
+            alert.setContentText("Enter username .");
+            alert.showAndWait();
+
         }
+        return null;}}
 
-
-    }
 
 
 
