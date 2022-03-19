@@ -45,7 +45,7 @@ public class LoginController extends AuthorizedController implements Initializab
 
     public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
 
-
+        userLogin();
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Scheduler Homepage");
@@ -54,21 +54,44 @@ public class LoginController extends AuthorizedController implements Initializab
             stage.show();
         }
 
-        public void userLogin(){
+        public boolean userLogin() {
 
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
+
+            User result = UserDB.getUser(userName);
+            if (result != null) {
+                return true;
+            }else{
+                return false;
+
+    }
+
         }
         //checkDB()
 
-        public void checkDB(){
-        //is the username from textfield the same as db;
-            // String userName + UserDB User getUser (returns user)
+    // validate login
+    // is result valid or null?
+    // result == true else no result == false
+    // does result exist or not? if result doesn't exist, then false
+   /**
+    * public Boolean isValidLogin(User userResult){
+    * boolean resultStatus
+    *     if (result != null)
+    *     resultStatus = true;
+    *     else
+    *     resultStatus=false;
+    *     }
+    *
+    *
+    * }
 
+
+    */
         }
 
     //getCurrentUser()
 
 
-    }
+
 
