@@ -61,8 +61,7 @@ public class UserDB {
         }catch (SQLException exception) {
         System.out.println("Error in DB");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Invalid Username");
-            alert.setHeaderText("Error");
+            alert.setTitle("Error");
             alert.setContentText("Enter username .");
             alert.showAndWait();
 

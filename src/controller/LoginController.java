@@ -43,17 +43,26 @@ public class LoginController extends AuthorizedController implements Initializab
 
     }
 
-
-    public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
-
-        userLogin();
-        Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Scheduler Homepage");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
+    //user this to check to authenticate user
+  /**  public void validateUser() {
+        if (userLogin() == true){
+            onLoginBtnClicked(actionEvent);
         }
+        userLogin();
+
+        }
+*/
+    public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
+        if (userLogin() != true) {
+            returnLoginWindow(actionEvent);
+        } else {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Scheduler Homepage");
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
+    }}
 
         public boolean userLogin() {
             boolean isLoginValid = true;
@@ -76,6 +85,7 @@ public class LoginController extends AuthorizedController implements Initializab
             stage.setScene(scene);
             stage.show();
         }}
+
         //checkDB()
         //babyStep()
     //isUserLogin valid?
