@@ -53,21 +53,21 @@ public class LoginController extends AuthorizedController implements Initializab
         }
 */
     public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
-        if (userLogin() != true) {
-            returnLoginWindow(actionEvent);
-        } else {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("Scheduler Homepage");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
-    }}
+            if (userLogin() != true) {
+                returnLoginWindow(actionEvent);
+            } else {
+                Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("Scheduler Homepage");
+                Scene scene = new Scene(root, 1000, 600);
+                stage.setScene(scene);
+                stage.show();}}
 
         public boolean userLogin() {
             boolean isLoginValid = true;
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
+            System.out.println(userName);
 //3.19 working on
             User result = UserDB.getUser(userName);
             if (result == null) {
@@ -77,6 +77,7 @@ public class LoginController extends AuthorizedController implements Initializab
             return isLoginValid;
 
     }
+
         public void returnLoginWindow(ActionEvent actionEvent) throws IOException{
             Parent root = FXMLLoader.load(getClass().getResource("/view/loginWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
