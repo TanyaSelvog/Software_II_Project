@@ -63,6 +63,8 @@ public class LoginController extends AuthorizedController implements Initializab
                 stage.setScene(scene);
                 stage.show();}}
 
+
+
         public boolean userLogin() {
             boolean isLoginValid = true;
             String userName = usernameTF.getText();
@@ -73,6 +75,9 @@ public class LoginController extends AuthorizedController implements Initializab
             if (result == null) {
                 isLoginValid = false;
                 System.out.println("isLoginValid = false");
+            } else if (result != null){
+                User.getPassword(userPassword);
+                System.out.println("User Password: " + userPassword);
             }
             return isLoginValid;
 

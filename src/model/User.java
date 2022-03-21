@@ -7,7 +7,7 @@ public class User {
 
     private int userID;
     private String userName;
-    private String password;
+    private static String password;
 
     private static User currentUser;
 
@@ -34,6 +34,9 @@ public class User {
     public static User getCurrentUser(){
        return currentUser;
     }
+
+
+
     public void setCurrentUser(User user){
        currentUser = user;
     }
@@ -53,7 +56,7 @@ public class User {
         this.userName = userName;
     }
 
-    public String getPassword(){
+    public  static String getPassword(String userPassword){
         return password;
     }
 
