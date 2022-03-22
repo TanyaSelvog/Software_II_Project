@@ -1,12 +1,14 @@
 package model;
 
+import utils.UserDB;
+
 import javax.sql.RowSet;
 import java.time.LocalDateTime;
 
 public class User {
 
     private int userID;
-    private String userName;
+    private static String userName;
     private static String password;
 
     private static User currentUser;
@@ -48,7 +50,7 @@ public class User {
         this.userID = userID;
     }
 
-    public String getUserName() {
+    public static String getUserName() {
         return userName;
     }
 
@@ -56,13 +58,16 @@ public class User {
         this.userName = userName;
     }
 
-    public  static String getPassword(String userPassword){
+    public static String getPassword(String password){
         return password;
     }
 
     public void setPassword(String password){
         this.password = password;
     }
+
+
+
 
 
 

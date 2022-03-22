@@ -33,12 +33,23 @@ public class LoginController extends AuthorizedController implements Initializab
     public TextField passwordTF;
     public Label zoneIdLbl;
     private static User currentUser;
+
    // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Locale userLocale = Locale.getDefault();
+        zoneIdLbl.setText(ZoneId.systemDefault().toString());
+        ResourceBundle rb = ResourceBundle.getBundle("Resources/Login");
+        usernameLbl.setText(rb.getString("userNameLabel"));
+        passwordLbl.setText(rb.getString("passwordLabel"));
+        loginBtn.setText(rb.getString("loginButton"));
+
     LocalDate today = LocalDate.now();
     System.out.println(today);
-    zoneIdLbl.setText(ZoneId.systemDefault().getId());
+    //zoneIdLbl.setText(ZoneId.systemDefault().getId());
+
+
 
 
     }
@@ -75,13 +86,11 @@ public class LoginController extends AuthorizedController implements Initializab
             if (result == null) {
                 isLoginValid = false;
                 System.out.println("isLoginValid = false");
-            } else if (result != null){
-                User.getPassword(userPassword);
-                System.out.println("User Password: " + userPassword);
             }
             return isLoginValid;
 
     }
+
 
         public void returnLoginWindow(ActionEvent actionEvent) throws IOException{
             Parent root = FXMLLoader.load(getClass().getResource("/view/loginWindow.fxml"));
