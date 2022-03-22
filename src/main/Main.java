@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.ConnectionJDBC;
 
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 /** From Part 1 Video - notes
  * "To test, in the "main" method, first line, do Locale.setDefault(newLocale("fr"));
  */
@@ -21,8 +24,14 @@ public class Main extends Application {
     }
 
     public static void main(String [] args){
+        //For testing
+        //Locale.setDefault(new Locale("fr"));
+
 
         launch(args);
         ConnectionJDBC.openConnection();
     }
+
+
+
 }

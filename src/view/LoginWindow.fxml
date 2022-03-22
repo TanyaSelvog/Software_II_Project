@@ -40,7 +40,7 @@
                </font></Label>
          </children>
       </GridPane>
-      <Label layoutX="340.0" layoutY="106.0" text="Welcome to Scheduler  " textFill="#4b4a4b">
+      <Label fx:id="headerLbl" layoutX="340.0" layoutY="106.0" text="Welcome to Scheduler  " textFill="#4b4a4b">
          <font>
             <Font name="Verdana Bold" size="27.0" />
          </font>

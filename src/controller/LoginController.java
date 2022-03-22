@@ -33,8 +33,9 @@ public class LoginController extends AuthorizedController implements Initializab
     public TextField passwordTF;
     public Label zoneIdLbl;
     private static User currentUser;
+    public Label headerLbl;
 
-   // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
+    // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -101,29 +102,11 @@ public class LoginController extends AuthorizedController implements Initializab
             stage.show();
         }}
 
-        //checkDB()
-        //babyStep()
-    //isUserLogin valid?
-    // yes then proceed (right now just println) if no then present erro mess
-
-    // validate login
-    // is result valid or null?
-    // result == true else no result == false
-    // does result exist or not? if result doesn't exist, then false
-   /**
-    * public Boolean isValidLogin(User userResult){
-    * boolean resultStatus
-    *     if (result != null)
-    *     resultStatus = true;
-    *     else
-    *     resultStatus=false;
-    *     }
-    *
-    *
-    * }
 
 
-    */
+
+
+
 
 
     //getCurrentUser()
