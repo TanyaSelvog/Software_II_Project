@@ -34,7 +34,7 @@ public class LoginController extends AuthorizedController implements Initializab
     public Label zoneIdLbl;
     private static User currentUser;
     public Label headerLbl;
-
+   public static String password;
     // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,11 +83,16 @@ public class LoginController extends AuthorizedController implements Initializab
             String userPassword = passwordTF.getText();
             System.out.println(userName);
 //3.19 working on
-            User result = UserDB.getUser(userName);
+            User result = UserDB.getUser(userName, userPassword);
+            System.out.println("Result: " + result);
+
             if (result == null) {
                 isLoginValid = false;
-                System.out.println("isLoginValid = false");
+                System.out.println("isLoginValid = false " );
             }
+        //    if (password.equals(userPassword)){
+            //    System.out.println("okay");
+          //  }
             return isLoginValid;
 
     }

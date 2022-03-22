@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 public class UserDB {
     public static String userName;
-
+    public static String password;
     public static ObservableList<User> getUserList() {
         ObservableList<User> userList = FXCollections.observableArrayList();
 
@@ -41,7 +41,7 @@ public class UserDB {
         return userList;
 
     }
-    public static User getUser(String username) {
+    public static User getUser(String username, String password) {
         try {
             String sqlStatement = "SELECT * FROM users WHERE User_Name = ?";
 
@@ -49,14 +49,20 @@ public class UserDB {
             ps.setString(1, username);
 
             ResultSet result = ps.executeQuery();
-            //while (result.next()) {
             result.next();
 
             int id = result.getInt("User_ID");
-            String password = result.getString("Password");
+            String passwordDB= result.getString("Password");
 
             User user = new User(id, username, password);
-            System.out.println("user DB");
+            System.out.println("username from DB: " + username + " password: " + passwordDB);
+            System.out.println("passwordStatic and what the user enters: " + password);
+            System.out.println("passwordDB - what is in DB: " + passwordDB);
+            if (!passwordDB.equals(password)) {
+                System.out.println("Not ok");
+                return null;
+            }
+            //if (password != )
             return user;
         }catch (SQLException exception) {
         System.out.println("Error in DB");
