@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class ApptsDB {
 
     public static User currentUser;
+    public static int userID;
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
@@ -82,34 +83,34 @@ public class ApptsDB {
             throwables.printStackTrace();
         }
     }
-    /**
+
     public static Appointments getUserAppt(){
         Appointments userAppt = null;
 
-        try {
-            String sqlStatement = "SELECT appointment_ID, start, description, start, user_ID from appointments where User_ID= " + currentUser.getUserID();
-            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+            try {
+                String sqlStatement = "SELECT appointment_ID, start, description, " +
+                        "user_ID from appointments where User_ID = " +currentUser.getUserID();
 
-            ResultSet result = ps.executeQuery();
-            while(result.next()){
-                int apptID = result.getInt("Appointment_ID");
-                int userID = result.getInt("User_ID");
-                String apptDescription = result.getString("Description");
-                Timestamp startDate = result.getTimestamp("Start");
-                LocalDateTime startDateTime = startDate.toLocalDateTime();
+                PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
-                userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
+                ResultSet result = ps.executeQuery();
+                while (result.next()) {
+                    int apptID = result.getInt("Appointment_ID");
+                    int userID = result.getInt("User_ID");
+                    String apptDescription = result.getString("Description");
+                    Timestamp startDate = result.getTimestamp("Start");
+                    LocalDateTime startDateTime = startDate.toLocalDateTime();
 
+                    userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
+                    System.out.println("startDateTime: " + startDateTime + " userID: " + userID);
+                }
+
+            } catch (SQLException exception) {
+                exception.printStackTrace();
 
             }
-
-        catch (SQLException exception){
-            exception.printStackTrace();
+            return userAppt;
         }
-        return div;
+//SELECT appointment_ID, start, description, appointments.user_ID from appointments, users where users.user_ID = appointments.user_ID ;
+
     }
-     */
-
-
-
-}

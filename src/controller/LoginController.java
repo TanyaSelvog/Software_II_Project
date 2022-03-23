@@ -22,6 +22,8 @@ import javafx.stage.Stage;
 import model.User;
 import utils.UserDB;
 
+import static utils.ApptsDB.getUserAppt;
+
 
 public class LoginController extends AuthorizedController implements Initializable {
 
@@ -67,7 +69,9 @@ public class LoginController extends AuthorizedController implements Initializab
     public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
             if (userLogin() != true) {
                 returnLoginWindow(actionEvent);
+
             } else {
+                getUserAppt();
                 Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 stage.setTitle("Scheduler Homepage");
@@ -93,6 +97,10 @@ public class LoginController extends AuthorizedController implements Initializab
         //    if (password.equals(userPassword)){
             //    System.out.println("okay");
           //  }
+            if (result!=null){
+                currentUser = result;
+                System.out.println("Current user from LoginController: " + currentUser);
+            }
             return isLoginValid;
 
     }

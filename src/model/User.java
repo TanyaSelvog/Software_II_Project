@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class User {
 
-    private int userID;
+    private static int userID;
     private static String userName;
     private static String password;
 
@@ -42,7 +42,7 @@ public class User {
     public void setCurrentUser(User user){
        currentUser = user;
     }
-    public int getUserID() {
+    public static int getUserID() {
         return userID;
     }
 
