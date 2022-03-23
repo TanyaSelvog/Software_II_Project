@@ -44,6 +44,13 @@ public class Appointments {
         this.endDate = endDate;
     }
 
+    public Appointments(int apptID, String apptDescription, LocalDateTime startDate, int userID){
+        this.apptID = apptID;
+        this.apptDescription = apptDescription;
+        this.startDate = startDate;
+        this.userID = userID;
+    }
+
     public String getApptTitle(){
         return apptTitle;
     }

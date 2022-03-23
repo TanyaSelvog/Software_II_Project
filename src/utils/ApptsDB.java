@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Customer;
+import model.Division;
 import model.User;
 
 import java.sql.PreparedStatement;
@@ -13,6 +14,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class ApptsDB {
+
+    public static User currentUser;
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
@@ -79,6 +82,33 @@ public class ApptsDB {
             throwables.printStackTrace();
         }
     }
+    /**
+    public static Appointments getUserAppt(){
+        Appointments userAppt = null;
+
+        try {
+            String sqlStatement = "SELECT appointment_ID, start, description, start, user_ID from appointments where User_ID= " + currentUser.getUserID();
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+            ResultSet result = ps.executeQuery();
+            while(result.next()){
+                int apptID = result.getInt("Appointment_ID");
+                int userID = result.getInt("User_ID");
+                String apptDescription = result.getString("Description");
+                Timestamp startDate = result.getTimestamp("Start");
+                LocalDateTime startDateTime = startDate.toLocalDateTime();
+
+                userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
+
+
+            }
+
+        catch (SQLException exception){
+            exception.printStackTrace();
+        }
+        return div;
+    }
+     */
 
 
 
