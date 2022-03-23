@@ -59,7 +59,11 @@ public class UserDB {
             System.out.println("passwordStatic and what the user enters: " + password);
             System.out.println("passwordDB - what is in DB: " + passwordDB);
             if (!passwordDB.equals(password)) {
-                System.out.println("Not ok");
+                System.out.println("PasswordDB != password");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Invalid password.");
+                alert.showAndWait();
                 return null;
             }
             //if (password != )
@@ -68,7 +72,7 @@ public class UserDB {
         System.out.println("Error in DB");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
-            alert.setContentText("Enter username .");
+            alert.setContentText("Invalid username.");
             alert.showAndWait();
 
         }

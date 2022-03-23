@@ -157,6 +157,13 @@ public class ModifyCustomerFormController implements Initializable {
 
     }
 
-    public void onHome(ActionEvent actionEvent) {
+    public void onHome(ActionEvent actionEvent) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/loginWindow.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Scheduler Homepage");
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
     }
+
 }
