@@ -18,6 +18,7 @@ public class ApptsDB {
 
     public static User currentUser;
     public static int userID;
+    public static LocalDateTime loginTime;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
 
     public static ObservableList<Appointments> getApptsList(){
@@ -88,6 +89,7 @@ public class ApptsDB {
 
     public static Appointments getUserAppt(){
         Appointments userAppt = null;
+        LocalDateTime loginTime = LocalDateTime.now();
 
             try {
                 String sqlStatement = "SELECT appointment_ID, start, description, " +
@@ -107,6 +109,15 @@ public class ApptsDB {
                     System.out.println("startDateTime: " + startDateTime + " userID: " + userID);
                     String apptTimeNotice=dtf.format(startDateTime);
                     System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
+
+                    if (loginTime.isBefore(startDateTime)){
+                        System.out.println("Login time is before startDateTime " + loginTime);
+                    }
+
+                    LocalDateTime timeAfterAppt = startDateTime.plusMinutes(15);
+                    LocalDateTime timeBeforeAppt = startDateTime.minusMinutes(15);
+                    System.out.println("timeAfterAppt: " + timeAfterAppt + " This is for 15 minutes after start of appt");
+                    System.out.println("timeBeforeAppt: " + timeBeforeAppt + "This is for the 15 minutes before an appt starts");
                 }
 
             } catch (SQLException exception) {

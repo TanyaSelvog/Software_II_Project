@@ -37,6 +37,7 @@ public class LoginController extends AuthorizedController implements Initializab
     public Label headerLbl;
    public static String password;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+    public static LocalDateTime loginTime;
     // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -50,11 +51,8 @@ public class LoginController extends AuthorizedController implements Initializab
 
     LocalDate today = LocalDate.now();
         LocalDateTime loginTime = LocalDateTime.now();
-        System.out.println(loginTime);
-        System.out.println(loginTime.minusMinutes(15));
         String login = dtf.format(loginTime);
         System.out.println("String login: " + login + " this currently is activated at init; will need to move to work with login button");
-    System.out.println(today);
 
     //zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
