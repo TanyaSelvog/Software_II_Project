@@ -12,11 +12,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class ApptsDB {
 
     public static User currentUser;
     public static int userID;
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
@@ -103,6 +105,8 @@ public class ApptsDB {
 
                     userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
                     System.out.println("startDateTime: " + startDateTime + " userID: " + userID);
+                    String apptTimeNotice=dtf.format(startDateTime);
+                    System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
                 }
 
             } catch (SQLException exception) {
