@@ -2,6 +2,7 @@ package utils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.Appointments;
 import model.Customer;
 import model.Division;
@@ -91,9 +92,10 @@ public class ApptsDB {
         Appointments userAppt = null;
         LocalDateTime loginTime = LocalDateTime.now();
 
+
             try {
                 String sqlStatement = "SELECT appointment_ID, start, description, " +
-                        "user_ID from appointments where User_ID = " +currentUser.getUserID();
+                        "user_ID from appointments where User_ID= " + User.getUserID();
 
                 PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
@@ -102,22 +104,41 @@ public class ApptsDB {
                     int apptID = result.getInt("Appointment_ID");
                     int userID = result.getInt("User_ID");
                     String apptDescription = result.getString("Description");
-                    Timestamp startDate = result.getTimestamp("Start");
-                    LocalDateTime startDateTime = startDate.toLocalDateTime();
+                    LocalDateTime startDateTime = result.getTimestamp("Start").toLocalDateTime();
 
                     userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
                     System.out.println("startDateTime: " + startDateTime + " userID: " + userID);
+                    System.out.println("apptID: " + apptID);
                     String apptTimeNotice=dtf.format(startDateTime);
                     System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
 
-                    if (loginTime.isBefore(startDateTime)){
-                        System.out.println("Login time is before startDateTime " + loginTime);
-                    }
+                  //  if (loginTime.isBefore(startDateTime)){
+                    //    System.out.println("Login time is before startDateTime " + loginTime);
+                    //}
+
+                    //time before appt
+                    LocalDateTime timeBeforeAppt = startDateTime.minusMinutes(15);
+
+                   // System.out.println("timeBeforeAppt: " + timeBeforeAppt + "This is for the 15 minutes before an appt starts");
+                    String beforeTime = dtf.format(timeBeforeAppt);
+                    System.out.println("In String format, beforeTime: " + beforeTime);
+
+                    //time after appt starts
 
                     LocalDateTime timeAfterAppt = startDateTime.plusMinutes(15);
-                    LocalDateTime timeBeforeAppt = startDateTime.minusMinutes(15);
-                    System.out.println("timeAfterAppt: " + timeAfterAppt + " This is for 15 minutes after start of appt");
-                    System.out.println("timeBeforeAppt: " + timeBeforeAppt + "This is for the 15 minutes before an appt starts");
+                  //  System.out.println("timeAfterAppt: " + timeAfterAppt + " This is for 15 minutes after start of appt");
+                    String afterTime = dtf.format(timeAfterAppt);
+                    System.out.println("In String format, afterTime: " + afterTime);
+
+                    //checking to see if a time is between two times
+                    if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)){
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, ("You have an appointment (Appointment ID: "+ apptID + ") "
+                                + "at " + apptTimeNotice + "." ));
+                        alert.setTitle("Upcoming appointment");
+                        alert.showAndWait();
+                        System.out.println("Appointment time of: " + loginTime + " is between "+ timeBeforeAppt + " and " + timeAfterAppt);
+                    }
+                //need to fix time
                 }
 
             } catch (SQLException exception) {

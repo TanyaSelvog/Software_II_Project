@@ -48,12 +48,12 @@ public class LoginController extends AuthorizedController implements Initializab
         usernameLbl.setText(rb.getString("userNameLabel"));
         passwordLbl.setText(rb.getString("passwordLabel"));
         loginBtn.setText(rb.getString("loginButton"));
-
+/**
     LocalDate today = LocalDate.now();
         LocalDateTime loginTime = LocalDateTime.now();
         String login = dtf.format(loginTime);
         System.out.println("String login: " + login + " this currently is activated at init; will need to move to work with login button");
-
+*/
     //zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
 
