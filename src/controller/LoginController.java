@@ -6,9 +6,8 @@ import javafx.fxml.Initializable;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -37,6 +36,7 @@ public class LoginController extends AuthorizedController implements Initializab
     private static User currentUser;
     public Label headerLbl;
    public static String password;
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,6 +49,9 @@ public class LoginController extends AuthorizedController implements Initializab
         loginBtn.setText(rb.getString("loginButton"));
 
     LocalDate today = LocalDate.now();
+        LocalDateTime loginTime = LocalDateTime.now();
+        String login = dtf.format(loginTime);
+        System.out.println("String login: " + login + " this currently is activated at init; will need to move to work with login button");
     System.out.println(today);
     //zoneIdLbl.setText(ZoneId.systemDefault().getId());
 
