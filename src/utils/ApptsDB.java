@@ -8,12 +8,10 @@ import model.Customer;
 import model.Division;
 import model.User;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class ApptsDB {
 
@@ -21,6 +19,7 @@ public class ApptsDB {
     public static int userID;
     public static LocalDateTime loginTime;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
@@ -42,13 +41,14 @@ public class ApptsDB {
                 String apptLocation = result.getString("Location");
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
-                Timestamp startDate = result.getTimestamp("Start");
-                LocalDateTime testDate = startDate.toLocalDateTime();
-                Timestamp endDate = result.getTimestamp("End");
-                LocalDateTime testEnd = endDate.toLocalDateTime();
-                System.out.println(apptTitle + " " + apptContact + " " + apptType);
-                Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
-                        userID, contactID, testDate, testEnd);
+                LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
+
+                 String startTimeString = dtf.format(startDate);
+                LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
+                String endTimeString = dtf.format(endDate);
+              Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
+                        userID, contactID, startDate, endDate);
+
                     apptsList.add(appointments);
                 }
 

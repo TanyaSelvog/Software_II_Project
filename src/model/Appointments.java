@@ -15,7 +15,9 @@ public class Appointments {
     private int userID;
     private int contactID;
     private LocalDateTime startDate;
+    private String startDateString;
     private LocalDateTime endDate;
+    private String endDateString;
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
                         String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate){
@@ -44,12 +46,29 @@ public class Appointments {
         this.endDate = endDate;
     }
 
+    public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
+                        String apptType, int customerID, int userID, int contactID, String startDateString, String endDateString){
+        this.apptID = apptID;
+        this.apptTitle = apptTitle;
+        this.apptDescription = apptDescription;
+        this.apptLocation = apptLocation;
+        this.apptContact = apptContact;
+        this.apptType = apptType;
+        this.customerID = customerID;
+        this.userID = userID;
+        this.contactID = contactID;
+        this.startDateString = startDateString;
+        this.endDateString = endDateString;
+    }
+
     public Appointments(int apptID, String apptDescription, LocalDateTime startDate, int userID){
         this.apptID = apptID;
         this.apptDescription = apptDescription;
         this.startDate = startDate;
         this.userID = userID;
     }
+
+
 
     public String getApptTitle(){
         return apptTitle;
@@ -119,6 +138,19 @@ public class Appointments {
         this.apptID = apptID;
     }
 
+    public String getStartDateString(){
+        return startDateString;
+    }
+    public void setStartDateString(String startDate){
+        this.startDateString = startDateString;
+    }
+    public String getEndDateString(){
+        return endDateString;
+    }
+
+    public void setEndDate(String endDateString){
+        this.endDateString = endDateString;
+    }
     public LocalDateTime getStartDate(){
         return startDate;
     }
