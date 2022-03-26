@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,14 +12,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import utils.ApptsDB;
-import utils.CustDB;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ApptsController implements Initializable {
-    public TableView monthlyTable;
+    public TableView <Appointments> monthlyTable;
     public TableColumn titleMonthly;
     public TableColumn descMonthly;
     public TableColumn locationMonthly;
@@ -48,21 +49,27 @@ public class ApptsController implements Initializable {
     public Tab monthlyApptTab;
     public Appointments deletedAppt;
     public Tab allApptsTab;
-    public TableView allApptsTable;
+    public TableView <Appointments> allApptsTable;
     public TableColumn titleAllAppts;
     public TableColumn descAllAppts;
     public TableColumn locationAllAppts;
     public TableColumn contactAllAppts;
     public TableColumn typeAllAppts;
-    public TableColumn startAllAppts;
-    public TableColumn endAllAppts;
+    public TableColumn <Appointments, LocalDateTime> startAllAppts;
+    public TableColumn <Appointments, LocalDateTime> endAllAppts;
     public TableColumn customerAllAppts;
     public TableColumn idUserAllAppts;
     public TableColumn idApptAllAppt;
     public TabPane apptsTabPane;
     private Appointments modAppointments;
+    private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+
 
     private int index;
+
+
+
+
     public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -142,7 +149,9 @@ public class ApptsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
-        allApptsTable.setItems(ApptsDB.getApptsList());
+        allApptsTable.setItems(appointmentList);
+//       allApptsTable.setItems(ApptsDB.getApptsList());
+
 
 
 

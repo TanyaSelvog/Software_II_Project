@@ -19,7 +19,7 @@ public class ApptsDB {
     public static int userID;
     public static LocalDateTime loginTime;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
-
+    public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
@@ -43,9 +43,10 @@ public class ApptsDB {
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
 
-                 String startTimeString = dtf.format(startDate);
+                 String startTimeString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
                 String endTimeString = dtf.format(endDate);
+                System.out.println(startTimeString);
               Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
                         userID, contactID, startDate, endDate);
 
