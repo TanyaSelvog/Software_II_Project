@@ -47,7 +47,7 @@ public class Appointments {
     }
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
-                        String apptType, int customerID, int userID, int contactID, String startDateString, String endDateString){
+                        String apptType, int customerID, int userID, int contactID,LocalDateTime startDate, LocalDateTime endDate, String startDateString, String endDateString){
         this.apptID = apptID;
         this.apptTitle = apptTitle;
         this.apptDescription = apptDescription;
@@ -57,6 +57,8 @@ public class Appointments {
         this.customerID = customerID;
         this.userID = userID;
         this.contactID = contactID;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.startDateString = startDateString;
         this.endDateString = endDateString;
     }

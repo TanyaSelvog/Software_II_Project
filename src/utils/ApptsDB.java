@@ -42,13 +42,12 @@ public class ApptsDB {
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
-
-                 String startTimeString = dateTime.format(startDate);
+                String startDateString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
-                String endTimeString = dtf.format(endDate);
-                System.out.println(startTimeString);
+                String endDateString = dateTime.format(endDate);
+                System.out.println(startDateString);
               Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
-                        userID, contactID, startDate, endDate);
+                        userID, contactID, startDate, endDate, startDateString, endDateString);
 
                     apptsList.add(appointments);
                 }

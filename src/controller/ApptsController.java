@@ -55,8 +55,8 @@ public class ApptsController implements Initializable {
     public TableColumn locationAllAppts;
     public TableColumn contactAllAppts;
     public TableColumn typeAllAppts;
-    public TableColumn <Appointments, LocalDateTime> startAllAppts;
-    public TableColumn <Appointments, LocalDateTime> endAllAppts;
+    public TableColumn  startAllAppts;
+    public TableColumn endAllAppts;
     public TableColumn customerAllAppts;
     public TableColumn idUserAllAppts;
     public TableColumn idApptAllAppt;
@@ -176,8 +176,8 @@ public class ApptsController implements Initializable {
         locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
         contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
         typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptType"));
-        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("startDate"));
-        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("endDate"));
+        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
+        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
         customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("userID"));
         idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("apptID"));
