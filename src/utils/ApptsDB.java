@@ -4,14 +4,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import model.Appointments;
-import model.Customer;
-import model.Division;
 import model.User;
 
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
 
 public class ApptsDB {
 
@@ -137,18 +134,18 @@ public class ApptsDB {
                         alert.setTitle("Upcoming appointment");
                         alert.showAndWait();
                         System.out.println("Appointment time of: " + loginTime + " is between " + timeBeforeAppt + " and " + timeAfterAppt);
-                    } else {
-                        Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
-                    msg.setTitle("No appointments");
-                    msg.showAndWait();
-                    System.out.println("User has no appointments in the next 15 minutes.");
                     }
+
+
+
                 //need to fix time
+
                 }
 
             } catch (SQLException exception) {
                 exception.printStackTrace();
             }
+
             return userAppt;
         }
 //SELECT appointment_ID, start, description, appointments.user_ID from appointments, users where users.user_ID = appointments.user_ID ;
