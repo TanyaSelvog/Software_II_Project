@@ -61,15 +61,6 @@ public class LoginController extends AuthorizedController implements Initializab
 
     }
 
-    //user this to check to authenticate user
-  /**  public void validateUser() {
-        if (userLogin() == true){
-            onLoginBtnClicked(actionEvent);
-        }
-        userLogin();
-
-        }
-*/
     public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
             if (userLogin() != true) {
                 returnLoginWindow(actionEvent);

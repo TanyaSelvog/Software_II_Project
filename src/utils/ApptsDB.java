@@ -131,19 +131,23 @@ public class ApptsDB {
                     System.out.println("In String format, afterTime: " + afterTime);
 
                     //checking to see if a time is between two times
-                    if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)){
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION, ("You have an appointment (Appointment ID: "+ apptID + ") "
-                                + "at " + apptTimeNotice + "." ));
+                    if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, ("You have an appointment (Appointment ID: " + apptID + ") "
+                                + "at " + apptTimeNotice + "."));
                         alert.setTitle("Upcoming appointment");
                         alert.showAndWait();
-                        System.out.println("Appointment time of: " + loginTime + " is between "+ timeBeforeAppt + " and " + timeAfterAppt);
+                        System.out.println("Appointment time of: " + loginTime + " is between " + timeBeforeAppt + " and " + timeAfterAppt);
+                    } else {
+                        Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
+                    msg.setTitle("No appointments");
+                    msg.showAndWait();
+                    System.out.println("User has no appointments in the next 15 minutes.");
                     }
                 //need to fix time
                 }
 
             } catch (SQLException exception) {
                 exception.printStackTrace();
-
             }
             return userAppt;
         }
