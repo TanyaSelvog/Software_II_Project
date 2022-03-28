@@ -72,7 +72,7 @@ public class ModifyApptController implements Initializable {
  *         divisionComboBox.setValue(customer.getCustomerDivision());
  */
     }
-    // 2.1.22 WORKING ON THIS
+    // 3.28.2022 Setting up to get object from modifyApptController
     public void modAppointment(Appointments appointment){
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time, user
         contactComboBox.setItems(ContactDB.getContactList());

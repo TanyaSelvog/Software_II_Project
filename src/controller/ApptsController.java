@@ -94,6 +94,7 @@ public class ApptsController implements Initializable {
 
         //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
         modAppointments = (Appointments) allApptsTable.getSelectionModel().getSelectedItem();
+        System.out.println("modAppointments from onModifyAppt() in apptsController: " + modAppointments);
         index = allApptsTable.getSelectionModel().getSelectedIndex();
       //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
         //index = weeklyTable.getSelectionModel().getSelectedIndex();
