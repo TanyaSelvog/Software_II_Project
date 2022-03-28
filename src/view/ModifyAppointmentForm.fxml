@@ -60,7 +60,7 @@
                   <Font name="Verdana" size="18.0" />
                </font>
             </Label>
-            <TextField editable="false" text="Auto-Generated" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="apptIDTF" editable="false" text="Auto-Generated" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="Verdana" size="18.0" />
                </font></TextField>
