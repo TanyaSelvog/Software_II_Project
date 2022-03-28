@@ -12,6 +12,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Contact;
 import utils.ApptsDB;
 import utils.ContactDB;
 import utils.CustDB;
@@ -75,17 +76,23 @@ public class ModifyApptController implements Initializable {
     // 3.28.2022 Setting up to get object from modifyApptController
     public void modAppointment(Appointments appointment){
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time, user
-        contactComboBox.setItems(ContactDB.getContactList());
+     //   Contact contact = ContactDB.getContactList(appointment.getContactID());
+//3.28 need to fix
+        String contactTest = String.valueOf(appointment.getContactID());
+        contactComboBox.setValue(contactTest);
+        System.out.println(contactTest);
+       // contactComboBox.getSelectionModel().select(contact);
+  //  ContactDB.getContactList());
        //need to fix this apptIDTF.setText(ApptsDB.getUserAppt());
         titleTF.setText(appointment.getApptTitle());
         descriptionTF.setText(appointment.getApptDescription());
         locationTF.setText(appointment.getApptLocation());
-        typeTF.setText(appointment.getApptType());
-       customerComboBox.setItems(CustDB.getCustomersList());
+       // typeTF.setText(appointment.getApptType());
+     //  customerComboBox.setItems(CustDB.getCustomersList());
 
 
 
-       userComboBox.setItems(UserDB.getUserList());
+       //userComboBox.setItems(UserDB.getUserList());
 
     }
 

@@ -62,6 +62,8 @@ public class ApptsController implements Initializable {
     public TableColumn idApptAllAppt;
     public TabPane apptsTabPane;
     private Appointments modAppointments;
+    private Stage stage;
+    private Parent scene;
     private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
 
 
@@ -93,24 +95,41 @@ public class ApptsController implements Initializable {
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
 
         //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-        modAppointments = (Appointments) allApptsTable.getSelectionModel().getSelectedItem();
+        Appointments modAppt = allApptsTable.getSelectionModel().getSelectedItem();
         System.out.println("modAppointments from onModifyAppt() in apptsController: " + modAppointments);
         index = allApptsTable.getSelectionModel().getSelectedIndex();
       //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
         //index = weeklyTable.getSelectionModel().getSelectedIndex();
 
 
-        if (modAppointments == null) {
+        if (modAppt == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
             alert.showAndWait();
         } else {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyAppointmentForm.fxml"));
+            try{
+             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifyAppointmentForm.fxml"));
+             Parent root = loader.load();
+
+             // must get access to the controller to make the screen
+             //so using the getController method
+             ModifyApptController controller = loader.getController();
+             controller.modAppointment(modAppt);
+
+             //set the stage
+             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+             scene = loader.getRoot();
+             stage.setScene(new Scene(scene));
+             stage.show();
+          /**  Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyAppointmentForm.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Modify Appointment");
             Scene scene = new Scene(root, 1000, 600);
             stage.setScene(scene);
             stage.show();
-        }
+             */
+            } catch (Exception e) {
+                e.printStackTrace();
+        }}
     }
     public void onDeleteAppt(ActionEvent actionEvent){
 //@TODO 12.14 Started

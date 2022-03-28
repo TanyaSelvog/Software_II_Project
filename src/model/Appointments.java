@@ -18,6 +18,8 @@ public class Appointments {
     private String startDateString;
     private LocalDateTime endDate;
     private String endDateString;
+    // PROBABLY WILL DELETE CONTACTNAME 3.28
+    private String contactName;
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
                         String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate){
@@ -47,7 +49,25 @@ public class Appointments {
     }
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
-                        String apptType, int customerID, int userID, int contactID,LocalDateTime startDate, LocalDateTime endDate, String startDateString, String endDateString){
+                        String apptType, int customerID, int userID, int contactID, String contactName, LocalDateTime startDate, LocalDateTime endDate, String startDateString, String endDateString){
+        this.apptID = apptID;
+        this.apptTitle = apptTitle;
+        this.apptDescription = apptDescription;
+        this.apptLocation = apptLocation;
+        this.apptContact = apptContact;
+        this.apptType = apptType;
+        this.customerID = customerID;
+        this.userID = userID;
+        this.contactID = contactID;
+        this.contactName = contactName;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startDateString = startDateString;
+        this.endDateString = endDateString;
+    }
+
+    public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
+                        String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate, String startDateString, String endDateString){
         this.apptID = apptID;
         this.apptTitle = apptTitle;
         this.apptDescription = apptDescription;
@@ -62,7 +82,6 @@ public class Appointments {
         this.startDateString = startDateString;
         this.endDateString = endDateString;
     }
-
     public Appointments(int apptID, String apptDescription, LocalDateTime startDate, int userID){
         this.apptID = apptID;
         this.apptDescription = apptDescription;
@@ -128,6 +147,15 @@ public class Appointments {
     public int getContactID(){
         return contactID;
     }
+/** 3.28 PROBABLY WILL DELETE
+    public String getContactName(){
+        return contactName;
+    }
+
+    public void setContactName(String contactName){
+        this.contactName = contactName;
+    }
+ */
 
     public void setContactID(int contactID){
         this.contactID = contactID;
@@ -165,5 +193,10 @@ public class Appointments {
 
     public void setEndDate(LocalDateTime endDate){
         this.endDate = endDate;
+    }
+    @Override
+    public String toString(){
+        // return (getClass().getName() + '@' + Integer.toHexString(hashCode()));
+        return (contactName);
     }
 }
