@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -71,16 +72,10 @@ public class LoginController extends AuthorizedController implements Initializab
             } else {
                 getUserAppt();
 
-                /**
-                 *
-                 *
-                 *  else {
-                 *                         Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
-                 *                     msg.setTitle("No appointments");
-                 *                     msg.showAndWait();
-                 *                     System.out.println("User has no appointments in the next 15 minutes.");
-                 *                     }
-                 */
+                Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
+                msg.setTitle("No appointments");
+                msg.showAndWait();
+                System.out.println("User has no appointments in the next 15 minutes.");
                 Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 stage.setTitle("Scheduler Homepage");
