@@ -30,6 +30,7 @@ public class ApptsDB {
             ResultSet result = ps.executeQuery();
             while(result.next()){
                 int apptID = result.getInt("Appointment_ID");
+                System.out.println("apptID from apptsDB: " + apptID);
                 int contactID = result.getInt("Contact_ID");
                 int customerID = result.getInt("Customer_ID");
                 int userID = result.getInt("User_ID");
@@ -37,6 +38,7 @@ public class ApptsDB {
                 String apptDescription = result.getString("Description");
                 String apptLocation = result.getString("Location");
                 String apptContact = result.getString("Contact_Name");
+                System.out.println("apptContact Name from apptDB :" + apptContact);
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
                 String startDateString = dateTime.format(startDate);

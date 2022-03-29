@@ -78,7 +78,8 @@ public class ApptsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
-      //  allApptsTable.setItems(appointmentList);
+       allApptsTable.setItems(appointmentList);
+       weeklyTable.setItems(appointmentList);
         //allApptsTable.setItems(ApptsDB.getApptsList());
 
         //testing monthly table
@@ -92,6 +93,8 @@ public class ApptsController implements Initializable {
         locationMonthly.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
         contactMonthly.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
         typeMonthly.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        startMonthly.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
+        endMonthly.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
         customerMonthly.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         userIDmonthly.setCellValueFactory(new PropertyValueFactory<>("userID"));
         apptIDmonthly.setCellValueFactory(new PropertyValueFactory<>("apptID"));
@@ -102,37 +105,11 @@ public class ApptsController implements Initializable {
         locationWeekly.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
         contactWeekly.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
         typeWeekly.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        startWeekly.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
+        endWeekly.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
         customerWeekly.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         userIDweekly.setCellValueFactory(new PropertyValueFactory<>("userID"));
         apptIDweekly.setCellValueFactory(new PropertyValueFactory<>("apptID"));
-
-
-        /** allApptsTable;
-         public TableColumn titleAllAppts = null;
-         public TableColumn descAllAppts;
-         public TableColumn locationAllAppts;
-         public TableColumn contactAllAppts;
-         public TableColumn typeAllAppts;
-         public TableColumn startAllAppts;
-         public TableColumn endAllAppts;
-         public TableColumn customerAllAppts;
-         public TableColumn idUserAllAppts;
-         public TableColumn idApptAllAppt;
-         */
-
-
-        /** allApptsTable;
-         public TableColumn titleAllAppts = null;
-         public TableColumn descAllAppts;
-         public TableColumn locationAllAppts;
-         public TableColumn contactAllAppts;
-         public TableColumn typeAllAppts;
-         public TableColumn startAllAppts;
-         public TableColumn endAllAppts;
-         public TableColumn customerAllAppts;
-         public TableColumn idUserAllAppts;
-         public TableColumn idApptAllAppt;
-         */
 
 
         //fxid (for each column name) is 1s
@@ -162,7 +139,7 @@ public class ApptsController implements Initializable {
     public void testTab(){
         Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
         if (selectedTab == weeklyApptTab) {
-            System.out.println("good");
+            System.out.println("weekly appt tab is selected");
         } else{
             System.out.println("nope");
         }
@@ -172,14 +149,17 @@ public class ApptsController implements Initializable {
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
 
         //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-        Appointments modAppt = monthlyTable.getSelectionModel().getSelectedItem();
-        System.out.println("modAppt from onModifyAppt() in apptsController: " + modAppt);
+        Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
+        System.out.println("modAppt from onModifyAppt() in apptsController: " + appointment);
+        System.out.println(appointment.getApptID());
+        System.out.println(appointment.getApptContact());
+        System.out.println(appointment.getApptType());
      //   index = allApptsTable.getSelectionModel().getSelectedIndex();
       //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
         //index = weeklyTable.getSelectionModel().getSelectedIndex();
 
 
-       if (modAppt == null) {
+       if (appointment == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
             alert.showAndWait();
         } else {
@@ -191,7 +171,7 @@ public class ApptsController implements Initializable {
              // must get access to the controller to make the screen
              //so using the getController method
              ModifyApptController controller = loader.getController();
-             controller.modAppointment(modAppt);
+             controller.modAppointment(appointment);
 
              //set the stage
              stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

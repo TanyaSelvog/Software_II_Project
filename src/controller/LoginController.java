@@ -44,6 +44,7 @@ public class LoginController extends AuthorizedController implements Initializab
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
         Locale userLocale = Locale.getDefault();
         zoneIdLbl.setText(ZoneId.systemDefault().toString());
         ResourceBundle rb = ResourceBundle.getBundle("Resources/Login");

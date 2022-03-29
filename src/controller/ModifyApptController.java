@@ -88,7 +88,13 @@ public class ModifyApptController implements Initializable {
        // contactComboBox.getSelectionModel().select(contact);
   //  ContactDB.getContactList());
        //need to fix this apptIDTF.setText(ApptsDB.getUserAppt());
-        titleTF.setText(appointment.getApptTitle());
+
+        String titleTest = appointment.getApptTitle();
+        titleTF.setText(titleTest);
+        System.out.println("Title from appointment is: " + titleTest);
+       // titleTF.setText(appointment.getApptTitle());
+
+
         descriptionTF.setText(appointment.getApptDescription());
         locationTF.setText(appointment.getApptLocation());
        // typeTF.setText(appointment.getApptType());
