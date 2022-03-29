@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import model.Appointments;
 import model.Customer;
 import utils.ApptsDB;
@@ -80,9 +82,10 @@ public class ApptsController implements Initializable {
         //allApptsTable.setItems(ApptsDB.getApptsList());
 
         //testing monthly table
-        monthlyTable.setItems(appointmentList);
+       // monthlyTable.setItems(appointmentList);
 
-
+        //testing weekly table
+        monthlyTable.setItems(ApptsDB.getApptsList());
 
         titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
@@ -92,6 +95,17 @@ public class ApptsController implements Initializable {
         customerMonthly.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         userIDmonthly.setCellValueFactory(new PropertyValueFactory<>("userID"));
         apptIDmonthly.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+
+
+        titleWeekly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
+        descWeekly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
+        locationWeekly.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
+        contactWeekly.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
+        typeWeekly.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        customerWeekly.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        userIDweekly.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        apptIDweekly.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+
 
         /** allApptsTable;
          public TableColumn titleAllAppts = null;
@@ -158,9 +172,9 @@ public class ApptsController implements Initializable {
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
 
         //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-        Appointments modAppt = allApptsTable.getSelectionModel().getSelectedItem();
+        Appointments modAppt = monthlyTable.getSelectionModel().getSelectedItem();
         System.out.println("modAppt from onModifyAppt() in apptsController: " + modAppt);
-        index = allApptsTable.getSelectionModel().getSelectedIndex();
+     //   index = allApptsTable.getSelectionModel().getSelectedIndex();
       //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
         //index = weeklyTable.getSelectionModel().getSelectedIndex();
 
