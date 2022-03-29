@@ -73,9 +73,69 @@ public class ApptsController implements Initializable {
     private int index;
 
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        //need to show monthly & weekly appts
+      //  allApptsTable.setItems(appointmentList);
+        //allApptsTable.setItems(ApptsDB.getApptsList());
+
+        //testing monthly table
+        monthlyTable.setItems(appointmentList);
 
 
-    public void onNewAppt(ActionEvent actionEvent) throws Exception{
+
+        titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
+        descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
+        locationMonthly.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
+        contactMonthly.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
+        typeMonthly.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        customerMonthly.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        userIDmonthly.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        apptIDmonthly.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+
+        /** allApptsTable;
+         public TableColumn titleAllAppts = null;
+         public TableColumn descAllAppts;
+         public TableColumn locationAllAppts;
+         public TableColumn contactAllAppts;
+         public TableColumn typeAllAppts;
+         public TableColumn startAllAppts;
+         public TableColumn endAllAppts;
+         public TableColumn customerAllAppts;
+         public TableColumn idUserAllAppts;
+         public TableColumn idApptAllAppt;
+         */
+
+
+        /** allApptsTable;
+         public TableColumn titleAllAppts = null;
+         public TableColumn descAllAppts;
+         public TableColumn locationAllAppts;
+         public TableColumn contactAllAppts;
+         public TableColumn typeAllAppts;
+         public TableColumn startAllAppts;
+         public TableColumn endAllAppts;
+         public TableColumn customerAllAppts;
+         public TableColumn idUserAllAppts;
+         public TableColumn idApptAllAppt;
+         */
+
+
+        //fxid (for each column name) is 1s
+        titleAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
+        descAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
+        locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
+        contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
+        typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
+        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
+        customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+
+    }
+
+        public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("New Appointment");
@@ -170,43 +230,8 @@ public class ApptsController implements Initializable {
         stage.show();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        //need to show monthly & weekly appts
-        allApptsTable.setItems(appointmentList);
-       //allApptsTable.setItems(ApptsDB.getApptsList());
 
 
-
-
-
-       /** allApptsTable;
-        public TableColumn titleAllAppts = null;
-        public TableColumn descAllAppts;
-        public TableColumn locationAllAppts;
-        public TableColumn contactAllAppts;
-        public TableColumn typeAllAppts;
-        public TableColumn startAllAppts;
-        public TableColumn endAllAppts;
-        public TableColumn customerAllAppts;
-        public TableColumn idUserAllAppts;
-        public TableColumn idApptAllAppt;
-        */
-
-
-        //fxid (for each column name) is 1s
-        titleAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
-        descAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
-        locationAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptLocation"));
-        contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
-        typeAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptType"));
-        startAllAppts.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
-        endAllAppts.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
-        customerAllAppts.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        idUserAllAppts.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        idApptAllAppt.setCellValueFactory(new PropertyValueFactory<>("apptID"));
-
-    }
         }
 
 
