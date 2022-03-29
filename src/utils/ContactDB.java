@@ -33,5 +33,26 @@ public class ContactDB {
         }
         return contactsList;
     }
+    public static Contact getCustomerContact(int contactID) {
+       Contact con = null;
+        try {
+            String sqlStatement = "SELECT * FROM Contacts WHERE Contact_ID =?";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+            ps.setInt(1, contactID);
+            ResultSet result = ps.executeQuery();
+            result.next();
+              //  int contactID = result.getInt("Contact_ID");
+                String contactName = result.getString("Contact_Name");
+                String contactEmail = result.getString("Email");
+
+                Contact contact = new Contact(contactID, contactName, contactEmail);
+
+            } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+        return con;
+    }
 
 }

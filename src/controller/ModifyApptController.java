@@ -78,9 +78,13 @@ public class ModifyApptController implements Initializable {
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time, user
      //   Contact contact = ContactDB.getContactList(appointment.getContactID());
 //3.28 need to fix
-        String contactTest = String.valueOf(appointment.getContactID());
-        contactComboBox.setValue(contactTest);
-        System.out.println(contactTest);
+      //  String contactTest = String.valueOf(appointment.getContactID());
+        //contactComboBox.setValue(contactTest);
+        //System.out.println(contactTest);
+
+       Contact contact = ContactDB.getCustomerContact(appointment.getContactID());
+        contactComboBox.getSelectionModel().select(contact);
+        System.out.println("Contact contact from modifyApptController is: " + contact);
        // contactComboBox.getSelectionModel().select(contact);
   //  ContactDB.getContactList());
        //need to fix this apptIDTF.setText(ApptsDB.getUserAppt());

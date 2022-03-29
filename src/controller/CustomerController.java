@@ -77,7 +77,7 @@ public class CustomerController implements Initializable {
     public void onModifyCurrent(ActionEvent actionEvent) throws Exception {
 
         Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
-
+        System.out.println("modCustomer from onModifyCurrent() in custController: " + modCustomer);
         if (modCustomer == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Modify a Customer");

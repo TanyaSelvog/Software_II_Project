@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
+import model.Customer;
 import utils.ApptsDB;
 
 import java.net.URL;
@@ -65,6 +66,8 @@ public class ApptsController implements Initializable {
     private Stage stage;
     private Parent scene;
     private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+   // private static Appointments modCustomer;
+
 
 
     private int index;
@@ -96,16 +99,17 @@ public class ApptsController implements Initializable {
 
         //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
         Appointments modAppt = allApptsTable.getSelectionModel().getSelectedItem();
-        System.out.println("modAppointments from onModifyAppt() in apptsController: " + modAppointments);
+        System.out.println("modAppt from onModifyAppt() in apptsController: " + modAppt);
         index = allApptsTable.getSelectionModel().getSelectedIndex();
       //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
         //index = weeklyTable.getSelectionModel().getSelectedIndex();
 
 
-        if (modAppt == null) {
+       if (modAppt == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
             alert.showAndWait();
         } else {
+
             try{
              FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/modifyAppointmentForm.fxml"));
              Parent root = loader.load();
@@ -170,7 +174,7 @@ public class ApptsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
         allApptsTable.setItems(appointmentList);
-//       allApptsTable.setItems(ApptsDB.getApptsList());
+       //allApptsTable.setItems(ApptsDB.getApptsList());
 
 
 
