@@ -19,7 +19,9 @@ import utils.CustDB;
 import utils.UserDB;
 
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -37,10 +39,13 @@ public class ModifyApptController implements Initializable {
     public ComboBox customerComboBox;
     public ComboBox startTimeCB;
     public ComboBox endTimeCB;
-    public DatePicker modApptDate;
     public ComboBox userComboBox;
     public TextField apptIDTF;
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    public DatePicker startDateDP;
+    public DatePicker endDateDP;
+
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -121,18 +126,30 @@ public class ModifyApptController implements Initializable {
         customerComboBox.setValue(customerTest);
         System.out.println("customerTest from MAC " + customerTest);
 
-
+        //modify startTime
         LocalDateTime ldtStart = appointment.getStartDate();
-        String startDateDP = dateOnlyTime.format(ldtStart);
-        startTimeCB.setValue(startDateDP);
+        String startTime = dtf.format(ldtStart);
+        startTimeCB.setValue(startTime);
 
+        //modify startDate
+        LocalDateTime stTest = appointment.getStartDate();
+        LocalDate sDate = stTest.toLocalDate();
+        startDateDP.setValue(sDate);
+
+
+        //modify end time
         LocalDateTime ldtTest = appointment.getEndDate();
-        String endLDT = dateOnlyTime.format(ldtTest);
+        String endLDT = dtf.format(ldtTest);
         endTimeCB.setValue(endLDT);
+
+
+        //modify endDate
+        LocalDateTime ld = appointment.getEndDate();
+        LocalDate ldtTestDate = ld.toLocalDate();
+       endDateDP.setValue(ldtTestDate);
+     //   endTimeCB.setValue(endLDT);
         System.out.println(ldtTest);
         System.out.println(endLDT);
-
-
 
 
 

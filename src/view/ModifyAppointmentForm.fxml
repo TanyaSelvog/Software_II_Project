@@ -68,7 +68,7 @@
             <TextField fx:id="descriptionTF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="locationTF" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-            <DatePicker fx:id="modApptDate" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <DatePicker fx:id="startDateDP" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             <Label text="Start Time" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font name="Verdana" size="18.0" />
@@ -88,7 +88,7 @@
             </Label>
             <ComboBox fx:id="startTimeCB" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             <ComboBox fx:id="endTimeCB" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-            <DatePicker prefHeight="29.0" prefWidth="234.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <DatePicker fx:id="endDateDP" prefHeight="29.0" prefWidth="234.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
             <Label text="End Date" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font name="Verdana" size="18.0" />
