@@ -19,6 +19,8 @@ import utils.CustDB;
 import utils.UserDB;
 
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ModifyApptController implements Initializable {
@@ -38,7 +40,7 @@ public class ModifyApptController implements Initializable {
     public DatePicker modApptDate;
     public ComboBox userComboBox;
     public TextField apptIDTF;
-
+    public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -89,6 +91,7 @@ public class ModifyApptController implements Initializable {
   //  ContactDB.getContactList());
        //need to fix this apptIDTF.setText(ApptsDB.getUserAppt());
         String contactTest = appointment.getApptContact();
+        System.out.println(contactTest);
         contactComboBox.setValue(contactTest);
 
         String titleTest = appointment.getApptTitle();
@@ -114,11 +117,28 @@ public class ModifyApptController implements Initializable {
         typeComboBox.setValue(typeTest);
         System.out.println("typeTest from MAC: " + typeTest);
 
-
-
-
         String customerTest = appointment.getCustomerName();
         customerComboBox.setValue(customerTest);
+        System.out.println("customerTest from MAC " + customerTest);
+
+
+        LocalDateTime ldtStart = appointment.getStartDate();
+        String startDateDP = dateOnlyTime.format(ldtStart);
+        startTimeCB.setValue(startDateDP);
+
+        LocalDateTime ldtTest = appointment.getEndDate();
+        String endLDT = dateOnlyTime.format(ldtTest);
+        endTimeCB.setValue(endLDT);
+        System.out.println(ldtTest);
+        System.out.println(endLDT);
+
+
+
+
+
+
+
+    //    customerComboBox.setValue(customerTest);
 
 
 

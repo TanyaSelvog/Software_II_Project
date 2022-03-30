@@ -7,6 +7,7 @@ import model.Appointments;
 import model.User;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,15 +18,27 @@ public class ApptsDB {
     public static LocalDateTime loginTime;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
+    public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
 
         try {
-            String sqlStatement = "SELECT title, description, location, type, start, end, customer_ID, " +
+           /** String sqlStatement = "SELECT title, description, location, type, start, end, customer_ID, " +
                     " user_ID, appointment_ID, contacts.contact_ID, contacts.contact_name FROM Appointments, Contacts WHERE " +
                     "contacts.contact_ID = appointments.contact_ID";
+            */
+               /** String sqlStatement = "SELECT * FROM appointments LEFT OUTER JOIN contacts ON " +
+                        "appointments.Contact_ID = contacts.Contact_ID";
+                */
+               String sqlStatement = "SELECT Appointments.*, Customers.Customer_Name, Contacts.Contact_Name " +
+                       "FROM appointments JOIN customers ON appointments.customer_ID = " +
+                       "customers.customer_ID JOIN contacts ON appointments.Contact_ID = Contacts.Contact_ID";
 
+                      /** "SELECT * FROM appointments, Customers.Customer_Name, Contacts.Contact_Name FROM" +
+                       "appointments JOIN customers ON appointments.customer_ID = customers.customer_ID JOIN contacts" +
+                       "ON appointments.Contact_ID = Contacts.Contact_ID";
+                       */
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
@@ -34,8 +47,10 @@ public class ApptsDB {
                 System.out.println("apptID from apptsDB: " + apptID);
                 int contactID = result.getInt("Contact_ID");
                 int customerID = result.getInt("Customer_ID");
-              //  String customerName = customerID.getCustomerName;
+                String custName = result.getString("Customer_Name");
+                System.out.println("CustomerID is : " + customerID);
                 int userID = result.getInt("User_ID");
+                System.out.println("User ID is: " + userID);
                 String apptTitle = result.getString("Title");
                 String apptDescription = result.getString("Description");
                 String apptLocation = result.getString("Location");
@@ -45,9 +60,11 @@ public class ApptsDB {
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
                 String startDateString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
+                String endTimeString = dateOnlyTime.format(endDate);
+                System.out.println(endTimeString);
                 String endDateString = dateTime.format(endDate);
                 System.out.println(startDateString);
-                Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
+                Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID, custName,
                         userID, contactID, startDate, endDate, startDateString, endDateString);
                     apptsList.add(appointments);
                 }

@@ -14,9 +14,12 @@ public class Appointments {
     private int customerID;
     private String customerName;
     private int userID;
+    private String userName;
     private int contactID;
     private LocalDateTime startDate;
     private String startDateString;
+    private String endTimeString;
+    private String startTimeString;
     private LocalDateTime endDate;
     private String endDateString;
     // PROBABLY WILL DELETE CONTACTNAME 3.28
@@ -67,6 +70,7 @@ public class Appointments {
         this.endDateString = endDateString;
     }
 
+    //for getAllAppts() in ApptsDB
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
                         String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate, String startDateString, String endDateString){
         this.apptID = apptID;
@@ -78,6 +82,27 @@ public class Appointments {
         this.customerID = customerID;
     //    this.customerName = customerName;
         this.userID = userID;
+        this.contactID = contactID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.startDateString = startDateString;
+        this.endDateString = endDateString;
+    }
+
+    //for getAllAppts() -rev 2; adding customerName & userName
+    public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
+                        String apptType, int customerID, String customerName, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate, String startDateString, String endDateString)
+    {
+        this.apptID = apptID;
+        this.apptTitle = apptTitle;
+        this.apptDescription = apptDescription;
+        this.apptLocation = apptLocation;
+        this.apptContact = apptContact;
+        this.apptType = apptType;
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.userID = userID;
+       // this.userName = userName;
         this.contactID = contactID;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -148,6 +173,12 @@ public class Appointments {
     public void setUserID(int userID){
         this.userID = userID;
     }
+    public String getUserName(){
+        return userName;
+    }
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
     public int getContactID(){
         return contactID;
     }
@@ -181,6 +212,12 @@ public class Appointments {
 
     public String getStartDateString(){
         return startDateString;
+    }
+    public String getEndTimeString(){
+        return endTimeString;
+    }
+    public String getStartTimeString(){
+        return startTimeString;
     }
     public void setStartDateString(String startDate){
         this.startDateString = startDateString;
