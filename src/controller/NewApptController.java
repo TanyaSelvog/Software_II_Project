@@ -126,6 +126,8 @@ public class NewApptController extends AuthorizedController implements Initializ
         return endDateTime;
 
     }
+
+    //fields in here so far gets user input
     public void onSave(ActionEvent actionEvent) throws Exception {
 
         String apptDescription = descTF.getText();
@@ -137,7 +139,7 @@ public class NewApptController extends AuthorizedController implements Initializ
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
         int customerID = customerSelected.getCustomerID();
         String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
-        User userSelected = userComboBox.getSelectionModel().getSelectedItem();
+       //3.30 THIS USER CB WILL PROBABLY BE DELETED;  User userSelected = userComboBox.getSelectionModel().getSelectedItem();
         LocalDateTime startDateTime = getStartDateTime();
         //LocalDate startDate = newApptDate.getValue();
         LocalDateTime endDateTime = getEndDateTime();
@@ -151,7 +153,7 @@ public class NewApptController extends AuthorizedController implements Initializ
         stage.setScene(scene);
         stage.show();
 
-      System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + userSelected+ " " + customerSelected + "" );
+      System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + endDateTime+ " " + customerSelected + "" );
 
     }
 
