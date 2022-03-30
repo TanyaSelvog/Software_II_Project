@@ -12,6 +12,7 @@ public class Appointments {
     private String apptType;
     private int apptID;
     private int customerID;
+    private String customerName;
     private int userID;
     private int contactID;
     private LocalDateTime startDate;
@@ -75,6 +76,7 @@ public class Appointments {
         this.apptContact = apptContact;
         this.apptType = apptType;
         this.customerID = customerID;
+    //    this.customerName = customerName;
         this.userID = userID;
         this.contactID = contactID;
         this.startDate = startDate;
@@ -88,6 +90,8 @@ public class Appointments {
         this.startDate = startDate;
         this.userID = userID;
     }
+
+
 
 
 
@@ -146,6 +150,13 @@ public class Appointments {
     }
     public int getContactID(){
         return contactID;
+    }
+
+    public String getCustomerName(){
+        return customerName;}
+
+    public void setCustomerName(String customerName){
+        this.customerName = customerName;
     }
 /** 3.28 PROBABLY WILL DELETE
     public String getContactName(){

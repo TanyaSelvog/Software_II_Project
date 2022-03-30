@@ -25,6 +25,7 @@ public class ApptsDB {
             String sqlStatement = "SELECT title, description, location, type, start, end, customer_ID, " +
                     " user_ID, appointment_ID, contacts.contact_ID, contacts.contact_name FROM Appointments, Contacts WHERE " +
                     "contacts.contact_ID = appointments.contact_ID";
+
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
@@ -33,6 +34,7 @@ public class ApptsDB {
                 System.out.println("apptID from apptsDB: " + apptID);
                 int contactID = result.getInt("Contact_ID");
                 int customerID = result.getInt("Customer_ID");
+              //  String customerName = customerID.getCustomerName;
                 int userID = result.getInt("User_ID");
                 String apptTitle = result.getString("Title");
                 String apptDescription = result.getString("Description");
@@ -45,9 +47,8 @@ public class ApptsDB {
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
                 String endDateString = dateTime.format(endDate);
                 System.out.println(startDateString);
-              Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
+                Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID,
                         userID, contactID, startDate, endDate, startDateString, endDateString);
-
                     apptsList.add(appointments);
                 }
 

@@ -82,23 +82,43 @@ public class ModifyApptController implements Initializable {
         //contactComboBox.setValue(contactTest);
         //System.out.println(contactTest);
 
-       Contact contact = ContactDB.getCustomerContact(appointment.getContactID());
-        contactComboBox.getSelectionModel().select(contact);
-        System.out.println("Contact contact from modifyApptController is: " + contact);
+      // Contact contact = ContactDB.getCustomerContact(appointment.getContactID());
+        //contactComboBox.getSelectionModel().select(contact);
+        //System.out.println("Contact contact from modifyApptController is: " + contact);
        // contactComboBox.getSelectionModel().select(contact);
   //  ContactDB.getContactList());
        //need to fix this apptIDTF.setText(ApptsDB.getUserAppt());
+        String contactTest = appointment.getApptContact();
+        contactComboBox.setValue(contactTest);
 
         String titleTest = appointment.getApptTitle();
         titleTF.setText(titleTest);
         System.out.println("Title from appointment is: " + titleTest);
        // titleTF.setText(appointment.getApptTitle());
 
+        String descriptionTest = appointment.getApptDescription();
+        descriptionTF.setText(descriptionTest);
 
-        descriptionTF.setText(appointment.getApptDescription());
-        locationTF.setText(appointment.getApptLocation());
+        //descriptionTF.setText(appointment.getApptDescription());
+
+        String location = appointment.getApptLocation();
+        locationTF.setText(location);
+       // locationTF.setText(appointment.getApptLocation());
        // typeTF.setText(appointment.getApptType());
      //  customerComboBox.setItems(CustDB.getCustomersList());
+        int id = appointment.getApptID();
+        apptIDTF.setText(String.valueOf(id));
+        System.out.println("int apptID from modApptController is: " + id);
+
+        String typeTest = appointment.getApptType();
+        typeComboBox.setValue(typeTest);
+        System.out.println("typeTest from MAC: " + typeTest);
+
+
+
+
+        String customerTest = appointment.getCustomerName();
+        customerComboBox.setValue(customerTest);
 
 
 
