@@ -90,7 +90,6 @@ public class LoginController extends AuthorizedController implements Initializab
             boolean isLoginValid = true;
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
-            System.out.println(userName);
 //3.19 working on
             User result = UserDB.getUser(userName, userPassword);
             System.out.println("Result: " + result);
@@ -99,9 +98,6 @@ public class LoginController extends AuthorizedController implements Initializab
                 isLoginValid = false;
                 System.out.println("isLoginValid = false " );
             }
-        //    if (password.equals(userPassword)){
-            //    System.out.println("okay");
-          //  }
             if (result!=null){
                 currentUser = result;
                 System.out.println("Current user from LoginController: " + currentUser);

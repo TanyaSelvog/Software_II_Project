@@ -31,7 +31,7 @@ public class ModifyApptController implements Initializable {
     public Button saveBtn;
     public Button cancelBtn;
 
-    public ComboBox contactComboBox;
+    public ComboBox <Contact>contactComboBox;
     public TextField titleTF;
     public TextField descriptionTF;
     public TextField locationTF;
@@ -76,6 +76,7 @@ public class ModifyApptController implements Initializable {
     }
 
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
+        getApptModification();
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");
@@ -85,21 +86,23 @@ public class ModifyApptController implements Initializable {
 
     }
     //3.30 METHOD to for getting Appts object and passing to next controller
-    private Appointments getModAppt() {
+    private Appointments getApptModification() {
 
         String apptDescription = descriptionTF.getText();
+        System.out.println("apptDescription from MAC: " + apptDescription);
         String apptLocation = locationTF.getText();
         String apptTitle = titleTF.getText();
         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
-        int contactID = contactSelected.getContactID();
+        //int contactID = contactSelected.getContactID();
 
         Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
         int customerID = customerSelected.getCustomerID();
-        //String apptType =  typeComboBox.getSelectionModel().getSelectedItem();
+        String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
+        System.out.println("apptType: " + apptType);
         //  User userSelected = userComboBox.getSelectionModel().getSelectedItem();
         //LocalDateTime startDateTime = getStartDateTime();
         //LocalDate startDate = newApptDate.getValue();
-        LocalDateTime endDateTime = getEndDateTime();
+    //    LocalDateTime endDateTime = getEndDateTime();
 /**
  ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
  contactID);
@@ -120,7 +123,9 @@ return null;
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(ContactDB.getContactList());
         customerComboBox.setItems(CustDB.getCustomersList());
-       // descriptionTF.setText(Appointments.getApptDescription());
+        typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
+
+        // descriptionTF.setText(Appointments.getApptDescription());
 /**
  *  public void modCustomer(Customer customer){
  *         customerID.setText(String.valueOf(customer.getCustomerID()));
@@ -135,10 +140,13 @@ return null;
     // 3.28.2022 Setting up to get object from modifyApptController
     public void modAppointment(Appointments appointment){
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time
+    //   Contact contact = appointment.getContactName();
+      //  contactComboBox.getSelectionModel().select(contact);
+        //System.out.println("Contact contact : " + contact);
+        contactComboBox.getSelectionModel().select(ContactDB.getCustomerContact(appointment.getContactID()));
+       // String contactTest = appointment.getApptContact();
 
-        String contactTest = appointment.getApptContact();
-        System.out.println(contactTest);
-        contactComboBox.setValue(contactTest);
+     //   contactComboBox.setValue(contactTest);
 
         String titleTest = appointment.getApptTitle();
         titleTF.setText(titleTest);
