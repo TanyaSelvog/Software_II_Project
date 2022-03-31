@@ -93,10 +93,11 @@ public class ModifyApptController implements Initializable {
         String apptLocation = locationTF.getText();
         String apptTitle = titleTF.getText();
         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
+        System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
         //int contactID = contactSelected.getContactID();
 
-        Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
-        int customerID = customerSelected.getCustomerID();
+     //   Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
+       // int customerID = customerSelected.getCustomerID();
         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
         System.out.println("apptType: " + apptType);
         //  User userSelected = userComboBox.getSelectionModel().getSelectedItem();
@@ -113,7 +114,7 @@ public class ModifyApptController implements Initializable {
  stage.setScene(scene);
  stage.show();
 */
- System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + " " + customerSelected + "" );
+ System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + " "  + "" );
 
 
 return null;
