@@ -97,6 +97,23 @@ public class CustDB {
     public static void deleteCustomer(int id){
 
     }
+
+    public static Customer getCustomerName(int customer_ID) {
+        Customer con = null;
+        try {
+            String sqlStatement = "SELECT * FROM Customers WHERE Customer_ID =?";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+            ps.setInt(1, customer_ID);
+            ResultSet result = ps.executeQuery();        result.next();
+            int customerID = result.getInt("Customer_ID");
+
+            String customerName = result.getString("Customer_Name");
+            String customerAddress = result.getString("Address");
+            con = new Customer(customerID, customerName, customerAddress);
+        } catch (SQLException e) {
+            e.printStackTrace();    }
+        return con;}
+
 }
 
 

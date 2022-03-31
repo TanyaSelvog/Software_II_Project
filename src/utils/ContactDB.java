@@ -46,7 +46,7 @@ public class ContactDB {
                 String contactName = result.getString("Contact_Name");
                 String contactEmail = result.getString("Email");
 
-                con = new Contact(contactID, contactName, contactEmail);
+                 con = new Contact(contactID, contactName, contactEmail);
 
             } catch (SQLException e) {
             e.printStackTrace();

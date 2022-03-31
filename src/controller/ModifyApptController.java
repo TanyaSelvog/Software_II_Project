@@ -145,6 +145,7 @@ return null;
       //  contactComboBox.getSelectionModel().select(contact);
         //System.out.println("Contact contact : " + contact);
         contactComboBox.getSelectionModel().select(ContactDB.getCustomerContact(appointment.getContactID()));
+        customerComboBox.getSelectionModel().select(CustDB.getCustomerName(appointment.getCustomerID()));
        // String contactTest = appointment.getApptContact();
 
      //   contactComboBox.setValue(contactTest);
@@ -171,10 +172,6 @@ return null;
         String typeTest = appointment.getApptType();
         typeComboBox.setValue(typeTest);
         System.out.println("typeTest from MAC: " + typeTest);
-
-        String customerTest = appointment.getCustomerName();
-        customerComboBox.setValue(customerTest);
-        System.out.println("customerTest from MAC " + customerTest);
 
         //modify startTime
         LocalDateTime ldtStart = appointment.getStartDate();

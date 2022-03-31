@@ -43,6 +43,12 @@ public class Customer {
     public Customer(int id, String custName, String custAddress, String custPhone, String customerPostal, int divisionID) {
     }
 
+    public Customer(int customerID, String customerName, String customerAddress){
+        this.customerID = customerID;
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+    }
+
     /**
      * Getter for customerID
      * @return customerID Unique ID for each customer
