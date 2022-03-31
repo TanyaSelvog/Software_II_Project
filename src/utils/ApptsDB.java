@@ -49,22 +49,17 @@ public class ApptsDB {
                 int contactID = result.getInt("Contact_ID");
                 int customerID = result.getInt("Customer_ID");
                 String custName = result.getString("Customer_Name");
-                System.out.println("CustomerID is : " + customerID);
                 int userID = result.getInt("User_ID");
-                System.out.println("User ID is: " + userID);
                 String apptTitle = result.getString("Title");
                 String apptDescription = result.getString("Description");
                 String apptLocation = result.getString("Location");
                 String apptContact = result.getString("Contact_Name");
-                System.out.println("apptContact Name from apptDB :" + apptContact);
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
                 String startDateString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
                 String endTimeString = dateOnlyTime.format(endDate);
-                System.out.println(endTimeString);
                 String endDateString = dateTime.format(endDate);
-                System.out.println(startDateString);
                 Appointments appointments = new Appointments(apptID, apptTitle,apptDescription,apptLocation, apptContact, apptType, customerID, custName,
                         userID, contactID, startDate, endDate, startDateString, endDateString);
                     apptsList.add(appointments);
@@ -168,14 +163,14 @@ public class ApptsDB {
 
                 // System.out.println("timeBeforeAppt: " + timeBeforeAppt + "This is for the 15 minutes before an appt starts");
                 String beforeTime = dtf.format(timeBeforeAppt);
-                System.out.println("In String format, beforeTime: " + beforeTime);
+
 
                 //time after appt starts
 
                 LocalDateTime timeAfterAppt = startDateTime.plusMinutes(15);
                 //  System.out.println("timeAfterAppt: " + timeAfterAppt + " This is for 15 minutes after start of appt");
                 String afterTime = dtf.format(timeAfterAppt);
-                System.out.println("In String format, afterTime: " + afterTime);
+
 
                 //checking to see if a time is between two times
 
@@ -184,16 +179,10 @@ public class ApptsDB {
                             + "at " + apptTimeNotice + "."));
                     alert.setTitle("Upcoming appointment");
                     alert.showAndWait();
-                    System.out.println("Appointment time of: " + loginTime + " is between " + timeBeforeAppt + " and " + timeAfterAppt);
+
                 }
 
             }
-
-
-                //need to fix time
-
-
-
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

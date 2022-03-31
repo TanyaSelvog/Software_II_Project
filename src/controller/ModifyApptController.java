@@ -41,7 +41,7 @@ public class ModifyApptController implements Initializable {
     public TextField typeTF;
     public ComboBox typeComboBox;
     public ComboBox customerComboBox;
-    public ComboBox startTimeCB;
+    public ComboBox <String> startTimeCB;
     public ComboBox endTimeCB;
 
     public TextField apptIDTF;
@@ -115,9 +115,14 @@ public class ModifyApptController implements Initializable {
         int customerID = customerSelected.getCustomerID();
         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
         System.out.println("apptType: " + apptType);
+        String startTime = startTimeCB.getValue();
+        LocalTime lt = LocalTime.parse(startTime,dtf);
 
-       startTimeCB.getSelectionModel().getSelectedItem();
-       System.out.println("StartTimeCB");
+        System.out.println("3.31 startTime " + startTime);
+
+
+      // LocalTime lt = (LocalTime) startTimeCB.getSelectionModel().getSelectedItem();
+     //  System.out.println("StartTimeCB" + lt);
     //    LocalTime lt = LocalTime.parse(startTime, dtf);
       //  LocalDate ld = LocalDate.parse(sDate, dateOnlyTime);
         //System.out.println("localTime: " + lt);
