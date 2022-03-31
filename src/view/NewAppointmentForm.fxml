@@ -93,12 +93,7 @@
                </font>
             </Label>
             <DatePicker fx:id="endDatePicker" prefHeight="29.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-            <ComboBox prefHeight="29.0" prefWidth="236.0" fx:id="userComboBox" GridPane.columnIndex="4" GridPane.rowIndex="5" />
-            <Label text="User" GridPane.columnIndex="3" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Verdana" size="18.0" />
-               </font>
-            </Label>
+
          </children>
       </GridPane>
       <Label layoutX="46.0" layoutY="56.0" text="New Appointment">

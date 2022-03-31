@@ -102,8 +102,8 @@ public class Appointments {
         this.userID = userID;
     }
 
-
-
+    public Appointments(String apptTitle, String apptDescription, String apptLocation, String apptType, LocalDateTime startDateTime, LocalDateTime endDateTime, int customerID, int userID, int contactID) {
+    }
 
 
     public String getApptTitle(){

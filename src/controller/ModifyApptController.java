@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,11 +23,11 @@ import utils.CustDB;
 import utils.UserDB;
 
 import java.net.URL;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import static controller.AuthorizedController.currentUser;
 
 public class ModifyApptController implements Initializable {
     public Button saveBtn;
@@ -57,6 +59,14 @@ public class ModifyApptController implements Initializable {
         stage.show();
     }
 
+   /** public LocalDateTime getModStartDateTime(String startTime, String sDate){
+        LocalTime lt = LocalTime.parse(startTime, dtf);
+        LocalDate ld = LocalDate.parse(sDate, dateOnlyTime);
+        System.out.println("localTime: " + lt);
+        LocalDateTime ltd = ld.atTime(lt);
+        return ltd;
+    }
+    /**
     private LocalDateTime getStartDateTime() {
 
         LocalDate startDate = startDateDP.getValue();
@@ -74,9 +84,12 @@ public class ModifyApptController implements Initializable {
         System.out.println(endDateTime);
         return endDateTime;
     }
+*/
+
 
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
         getApptModification();
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Appointments");
@@ -88,22 +101,34 @@ public class ModifyApptController implements Initializable {
     //3.30 METHOD to for getting Appts object and passing to next controller
     private Appointments getApptModification() {
 
+        String apptTitle = titleTF.getText();
         String apptDescription = descriptionTF.getText();
         System.out.println("apptDescription from MAC: " + apptDescription);
         String apptLocation = locationTF.getText();
-        String apptTitle = titleTF.getText();
+
         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
+        int contactID = contactSelected.getContactID();
         System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
         //int contactID = contactSelected.getContactID();
 
-     //   Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
-       // int customerID = customerSelected.getCustomerID();
+        Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
+        int customerID = customerSelected.getCustomerID();
         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
         System.out.println("apptType: " + apptType);
+
+       startTimeCB.getSelectionModel().getSelectedItem();
+       System.out.println("StartTimeCB");
+    //    LocalTime lt = LocalTime.parse(startTime, dtf);
+      //  LocalDate ld = LocalDate.parse(sDate, dateOnlyTime);
+        //System.out.println("localTime: " + lt);
+        //LocalDateTime ltd = ld.atTime(lt);
         //  User userSelected = userComboBox.getSelectionModel().getSelectedItem();
-        //LocalDateTime startDateTime = getStartDateTime();
+      //  LocalDateTime startDateTime = getStartDateTime();
         //LocalDate startDate = newApptDate.getValue();
-    //    LocalDateTime endDateTime = getEndDateTime();
+      //  LocalDateTime endDateTime = getEndDateTime();
+
+    //    ApptsDB.modifyAppt(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
+        //        contactID);
 /**
  ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
  contactID);
@@ -119,40 +144,50 @@ public class ModifyApptController implements Initializable {
 
 return null;
     }
+    public ObservableList<String> getTimeList() {
+        ObservableList<String> timeList = FXCollections.observableArrayList();
+
+
+        ZoneId easternStandardTime = ZoneId.of("America/New_York");
+        ZonedDateTime startTime = ZonedDateTime.of(2022, 1, 1, 8, 0, 0, 0, easternStandardTime);
+        ZonedDateTime endTime = ZonedDateTime.of(2022, 1, 1, 22, 0, 0, 0, easternStandardTime);
+
+        LocalTime startOfBusiness = startTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
+        LocalTime endOfBusiness = endTime.withZoneSameInstant(ZoneId.systemDefault()).toLocalTime();
+
+        for(LocalTime startAdjustedTime = startOfBusiness; startAdjustedTime.isBefore(endOfBusiness); startAdjustedTime =startAdjustedTime.plusMinutes(15)){
+            // timeList.add(LocalTime.parse(startAdjustedTime.toString()));
+
+            String textTime = startAdjustedTime.format(dtf);
+            timeList.add(textTime);
+
+        }
+
+
+        return timeList;
+
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(ContactDB.getContactList());
+        startTimeCB.setItems(getTimeList());
+        endTimeCB.setItems(getTimeList());
         customerComboBox.setItems(CustDB.getCustomersList());
         typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
 
         // descriptionTF.setText(Appointments.getApptDescription());
-/**
- *  public void modCustomer(Customer customer){
- *         customerID.setText(String.valueOf(customer.getCustomerID()));
- *         customerName.setText(customer.getCustomerName());
- *         customerPhone.setText(customer.getCustomerPhone());
- *         customerAddress.setText(customer.getCustomerAddress());
- *         customerPostalCode.setText(customer.getCustomerPostal());
- *         countryComboBox.setValue(customer.getCustomerCountry());
- *         divisionComboBox.setValue(customer.getCustomerDivision());
- */
+
     }
     // 3.28.2022 Setting up to get object from modifyApptController
     public void modAppointment(Appointments appointment){
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time
-    //   Contact contact = appointment.getContactName();
-      //  contactComboBox.getSelectionModel().select(contact);
-        //System.out.println("Contact contact : " + contact);
+
         contactComboBox.getSelectionModel().select(ContactDB.getCustomerContact(appointment.getContactID()));
         customerComboBox.getSelectionModel().select(CustDB.getCustomerName(appointment.getCustomerID()));
-       // String contactTest = appointment.getApptContact();
-
-     //   contactComboBox.setValue(contactTest);
 
         String titleTest = appointment.getApptTitle();
         titleTF.setText(titleTest);
-        System.out.println("Title from appointment is: " + titleTest);
        // titleTF.setText(appointment.getApptTitle());
 
         String descriptionTest = appointment.getApptDescription();
@@ -167,7 +202,6 @@ return null;
      //  customerComboBox.setItems(CustDB.getCustomersList());
         int id = appointment.getApptID();
         apptIDTF.setText(String.valueOf(id));
-        System.out.println("int apptID from modApptController is: " + id);
 
         String typeTest = appointment.getApptType();
         typeComboBox.setValue(typeTest);
@@ -195,8 +229,6 @@ return null;
         LocalDate ldtTestDate = ld.toLocalDate();
        endDateDP.setValue(ldtTestDate);
      //   endTimeCB.setValue(endLDT);
-        System.out.println(ldtTest);
-        System.out.println(endLDT);
 
 
 

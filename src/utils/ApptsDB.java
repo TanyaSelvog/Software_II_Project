@@ -76,6 +76,37 @@ public class ApptsDB {
             }
             return apptsList;
             }
+
+            //MODIFY/UPDATE APPOINTENTS
+
+    public static void modifyAppt(String apptTitle, String apptDesc, String apptLocation,
+                String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
+                String createdBy, int customerID, int userID, int contactID) {
+        try {
+
+            String sql = "UPDATE Appointments set Title = ?, Description = ?, Location = ?, Type = ?, Start = ?" +
+                    "End = ?, Created_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID =?";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sql);
+
+                ps.setString(1, apptTitle);
+                ps.setString(2, apptDesc);
+                ps.setString(3, apptLocation);
+                ps.setString(4, apptType);
+                ps.setTimestamp(5, Timestamp.valueOf(startAppt));
+                ps.setTimestamp(6, Timestamp.valueOf(endAppt));
+                ps.setString(7, createdBy);
+                ps.setInt(8, customerID);
+                ps.setInt(9, userID);
+                ps.setInt(10, contactID);
+
+
+            ps.execute();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+    }
+
     //3.16
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
                                          String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
