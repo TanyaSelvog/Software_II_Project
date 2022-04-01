@@ -185,6 +185,19 @@ public class ApptsDB {
         }
         return null;
 
-//SELECT appointment_ID, start, description, appointments.user_ID from appointments, users where users.user_ID = appointments.user_ID ;
+    }
 
-    }}
+
+    public static void deleteAppointment(int apptID){
+            try {
+        String sqlStatement = "DELETE FROM Appointments WHERE Appointment_ID = ?";
+        PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+        ps.setInt(1, apptID);
+        ps.execute();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+}

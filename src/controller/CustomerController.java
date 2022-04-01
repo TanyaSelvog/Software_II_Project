@@ -140,7 +140,7 @@ public class CustomerController implements Initializable {
             stage.show();
         }
 
-    public void onDeleteClick(ActionEvent actionEvent) {
+    public void onDeleteClick(ActionEvent actionEvent) throws Exception {
     }
 }
 
