@@ -195,19 +195,29 @@ public class ApptsController implements Initializable {
     }
     public void onDeleteAppt(ActionEvent actionEvent){
 //@TODO 12.14 Started
-        deletedAppt = (Appointments) monthlyTable.getSelectionModel().getSelectedItem();
+        Appointments deletedAppt = (Appointments) monthlyTable.getSelectionModel().getSelectedItem();
         if (deletedAppt != null) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setContentText("Do you want to delete the selected appointment?");
-            Optional<ButtonType> userAnswer = alert.showAndWait();
+            Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
+            alertDelete.setContentText("Do you want to delete the selected appointment?");
+            Optional<ButtonType> userAnswer = alertDelete.showAndWait();
 
-          /**  if (userAnswer.isPresent() && userAnswer.get() == ButtonType.OK) {
-                Inventory.deletePart(deletedPart);
+            if (userAnswer.isPresent() && userAnswer.get() == ButtonType.OK) {
+                int apptID = deletedAppt.getApptID();
+                System.out.println(apptID);
+                String apptType = deletedAppt.getApptType();
+                System.out.println(apptType);
+                ApptsDB.deleteAppointment(deletedAppt.getApptID());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                        (apptType +" with appointment ID: " + apptID + " has been deleted."));
+
+                alert.setTitle("Appointment deleted.");
+                alert.showAndWait();
             }
         } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, ("Select a Part to delete."));
+            Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to delete."));
             alert.showAndWait();
         }
+        /**
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Modify Current Customer");
@@ -217,7 +227,7 @@ public class ApptsController implements Initializable {
     }
            */
         }
-    }
+
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
         testTab();
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
