@@ -3,6 +3,7 @@ package controller;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -126,6 +127,9 @@ public class ApptsController implements Initializable {
 
     }
 
+    public void onMonthlyApptSelected(Event event) {
+    }
+
         public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -226,7 +230,7 @@ public class ApptsController implements Initializable {
 
 
 
-        }
+}
 
 
 

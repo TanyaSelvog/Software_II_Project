@@ -34,6 +34,7 @@ public class CustomerController implements Initializable {
     public Button modifyBtn;
     public Button backBtn;
     public TableView <Customer>customersTable;
+    public Button deleteCustomerBtn;
     private Stage stage;
     private Parent scene;
 
@@ -138,5 +139,8 @@ public class CustomerController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+
+    public void onDeleteClick(ActionEvent actionEvent) {
     }
+}
 
