@@ -74,13 +74,12 @@ public class ApptsDB {
 
             //MODIFY/UPDATE APPOINTENTS
 
-    public static void modifyAppt(String apptTitle, String apptDesc, String apptLocation,
+    public static void modifyAppt(int apptID, String apptTitle, String apptDesc, String apptLocation,
                 String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
-                String createdBy, int customerID, int userID, int contactID) {
+                 String lastUpdatedBy, int customerID, int userID, int contactID) {
         try {
 
-            String sql = "UPDATE Appointments set Title = ?, Description = ?, Location = ?, Type = ?, Start = ?" +
-                    "End = ?, Created_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID =?";
+            String sql = "UPDATE Appointments set Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID =?";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sql);
 
                 ps.setString(1, apptTitle);
@@ -89,11 +88,12 @@ public class ApptsDB {
                 ps.setString(4, apptType);
                 ps.setTimestamp(5, Timestamp.valueOf(startAppt));
                 ps.setTimestamp(6, Timestamp.valueOf(endAppt));
-                ps.setString(7, createdBy);
+              //  ps.setTimestamp(7, Timestamp.toLocalDateTime());
+                ps.setString(7, lastUpdatedBy);
                 ps.setInt(8, customerID);
                 ps.setInt(9, userID);
                 ps.setInt(10, contactID);
-
+                ps.setInt(11, apptID);
 
             ps.execute();
         } catch (SQLException ex) {
@@ -121,9 +121,6 @@ public class ApptsDB {
             ps.setInt(8, customerID);
             ps.setInt(9, userID);
             ps.setInt(10, contactID);
-
-
-
 
 
             ps.execute();

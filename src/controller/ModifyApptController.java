@@ -23,6 +23,7 @@ import utils.CustDB;
 import utils.UserDB;
 
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -42,7 +43,7 @@ public class ModifyApptController implements Initializable {
     public ComboBox typeComboBox;
     public ComboBox customerComboBox;
     public ComboBox <String> startTimeCB;
-    public ComboBox endTimeCB;
+    public ComboBox <String> endTimeCB;
 
     public TextField apptIDTF;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
@@ -102,13 +103,15 @@ public class ModifyApptController implements Initializable {
     private Appointments getApptModification() {
 
         String apptTitle = titleTF.getText();
+        System.out.println(apptTitle);
         String apptDescription = descriptionTF.getText();
         System.out.println("apptDescription from MAC: " + apptDescription);
         String apptLocation = locationTF.getText();
-
+        int id = Integer.parseInt(apptIDTF.getText());
         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
         int contactID = contactSelected.getContactID();
         System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
+        System.out.println(contactID);
         //int contactID = contactSelected.getContactID();
 
         Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
@@ -116,24 +119,22 @@ public class ModifyApptController implements Initializable {
         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
         System.out.println("apptType: " + apptType);
         String startTime = startTimeCB.getValue();
-        LocalTime lt = LocalTime.parse(startTime,dtf);
+        LocalTime startLT = LocalTime.parse(startTime,dtf);
+        LocalDate startDate = startDateDP.getValue();
+        LocalDateTime startDateTime = startDate.atTime(startLT);
+        String endTime = endTimeCB.getValue();
+        LocalTime endLT = LocalTime.parse(endTime,dtf);
+        LocalDate endLD = endDateDP.getValue();
+        LocalDateTime endDateTime = endLD.atTime(endLT);
+        System.out.println("EndDateTime: " + endDateTime);
+        //LocalDateTime lastUpdate = LocalDateTime.now();
+        String lastUpdatedBy = User.getUserName();
+        System.out.println(lastUpdatedBy);
+        int userID = User.getUserID();
+        System.out.println(userID);
 
-        System.out.println("3.31 startTime " + startTime);
-
-
-      // LocalTime lt = (LocalTime) startTimeCB.getSelectionModel().getSelectedItem();
-     //  System.out.println("StartTimeCB" + lt);
-    //    LocalTime lt = LocalTime.parse(startTime, dtf);
-      //  LocalDate ld = LocalDate.parse(sDate, dateOnlyTime);
-        //System.out.println("localTime: " + lt);
-        //LocalDateTime ltd = ld.atTime(lt);
-        //  User userSelected = userComboBox.getSelectionModel().getSelectedItem();
-      //  LocalDateTime startDateTime = getStartDateTime();
-        //LocalDate startDate = newApptDate.getValue();
-      //  LocalDateTime endDateTime = getEndDateTime();
-
-    //    ApptsDB.modifyAppt(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
-        //        contactID);
+        ApptsDB.modifyAppt(id, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
+                lastUpdatedBy, customerID, userID, contactID);
 /**
  ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
  contactID);
