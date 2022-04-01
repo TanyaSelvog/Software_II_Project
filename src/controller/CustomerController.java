@@ -8,18 +8,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
 import model.Country;
 import model.Customer;
+import utils.ApptsDB;
 import utils.CountryDB;
 import utils.CustDB;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
@@ -141,6 +141,26 @@ public class CustomerController implements Initializable {
         }
 
     public void onDeleteClick(ActionEvent actionEvent) throws Exception {
+        Customer deletedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
+        if (deletedCustomer != null) {
+            Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
+            alertDelete.setContentText("Do you want to delete the selected customer?");
+            Optional<ButtonType> userAnswer = alertDelete.showAndWait();
+
+            if (userAnswer.isPresent() && userAnswer.get() == ButtonType.OK) {
+                int custID = deletedCustomer.getCustomerID();
+                System.out.println(custID);
+                CustDB.deleteCustomer(custID);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                        ("The records for " + deletedCustomer.getCustomerName()  + " have been deleted."));
+
+                alert.setTitle("Customer deleted.");
+                alert.showAndWait();
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to delete."));
+            alert.showAndWait();
+        }
     }
 }
 

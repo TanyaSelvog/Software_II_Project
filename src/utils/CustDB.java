@@ -94,14 +94,21 @@ public class CustDB {
         }
     }
     //3.3.
-    public static void deleteCustomer(int customerID){
+    public static void deleteCustomer (int customerID){
 
             try {
-                String sqlStatement = "DELETE FROM Customers WHERE Customer_ID = ?";
-                PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+                String sql = "DELETE from Appointments Where Customer_ID = ?";
+                PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sql);
 
                 ps.setInt(1, customerID);
                 ps.execute();
+
+                String sqlStatement = "DELETE FROM Customers WHERE Customer_ID = ?";
+                PreparedStatement ps1 = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+                ps1.setInt(1, customerID);
+                ps1.execute();
             } catch (SQLException e) {
                 e.printStackTrace();
             }

@@ -40,7 +40,7 @@ public class Customer {
         this.customerCountry = customerCountry;
     }
 
-    public Customer(int id, String custName, String custAddress, String custPhone, String customerPostal, int divisionID) {
+    public Customer(int id, String custName, String custAddress, String customerPostal, String customerPhone, int divisionID) {
     }
 
     public Customer(int customerID, String customerName, String customerAddress){

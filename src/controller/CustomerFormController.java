@@ -68,8 +68,9 @@ public class CustomerFormController implements Initializable {
     public void onSaveBtn(ActionEvent actionEvent) throws Exception {
         String custName = customerName.getText();
         String custAddress = customerAddress.getText();
-        String custPhone = customerPhone.getText();
+
         String customerPostal =customerPostalCode.getText();
+        String custPhone = customerPhone.getText();
         Country countryName = (Country) countryComboBox.getValue();
         Division division = (Division)divisionComboBox.getValue();
         int divisionID = division.getDivisionID();
@@ -80,7 +81,7 @@ public class CustomerFormController implements Initializable {
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
         }else{
-            CustDB.createCustomer(custName, custAddress, custPhone, customerPostal, divisionID);
+            CustDB.createCustomer(custName, custAddress, customerPostal, custPhone, divisionID);
             System.out.println(custName + " " + custAddress + " " +custPhone + " " +" "+  customerPostal+ " " + " " + division + " " + countryName + " " + divisionID);
         }
 
