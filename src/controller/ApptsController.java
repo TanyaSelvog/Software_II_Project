@@ -140,7 +140,7 @@ public class ApptsController implements Initializable {
 
     }
     //testing for checking tab 1.23
-    public void testTab(){
+    public void selectTableTab(){
         Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
         if (selectedTab == weeklyApptTab) {
             System.out.println("weekly appt tab is selected");
@@ -229,7 +229,7 @@ public class ApptsController implements Initializable {
         }
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
-        testTab();
+        selectTableTab();
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");
