@@ -13,6 +13,28 @@
                 <Tab fx:id="weeklyTab" onSelectionChanged="#onWeeklyTab" text="Weekly">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                      <TableView fx:id="weeklyTable" prefHeight="452.0" prefWidth="848.0">
+                          <columns>
+
+                              <TableColumn fx:id="titleWeekly" prefWidth="75.0" text="Title" />
+                              <TableColumn fx:id="descWeekly" prefWidth="102.0" text="Description" />
+                              <TableColumn fx:id="locationWeekly" prefWidth="89.0" text="Location" />
+                              <TableColumn fx:id="contactWeekly" prefWidth="60.0" text="Contact" />
+                              <TableColumn fx:id="typeWeekly" prefWidth="79.0" text="Type" />
+                              <TableColumn fx:id="startWeekly" prefWidth="125.0" text="Start Date &amp; Time" />
+                              <TableColumn fx:id="endWeekly" prefWidth="112.0" text="End Date &amp; Time" />
+                              <TableColumn fx:id="customerWeekly" prefWidth="89.0" text="Customer ID" />
+                              <TableColumn fx:id="userIDweekly" prefWidth="61.0" text="User ID" />
+                              <TableColumn fx:id="apptIDweekly" prefWidth="118.0" text="Appointment ID" />
+
+                          </columns>
+                      </TableView>
+
+                  </content>
+                </Tab>
+                <Tab fx:id="monthlyTab" onSelectionChanged="#onMonthlyTab" text="Monthly">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                       <TableView fx:id="monthlyTable" prefHeight="366.0" prefWidth="896.0">
                           <columns>
                               <TableColumn fx:id="titleMonthly" prefWidth="59.0" text="Title" />
@@ -25,26 +47,8 @@
                               <TableColumn fx:id="customerMonthly" prefWidth="87.0" text="Customer ID" />
                               <TableColumn fx:id="userIDmonthly" prefWidth="55.0" text="User ID" />
                               <TableColumn fx:id="apptIDmonthly" prefWidth="168.0" text="Appointment ID" />
-                          </columns>
-                      </TableView>
 
-                  </content>
-                </Tab>
-                <Tab fx:id="monthlyTab" onSelectionChanged="#onMonthlyTab" text="Monthly">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                      <TableView fx:id="weeklyTable" prefHeight="452.0" prefWidth="848.0">
-                          <columns>
-                              <TableColumn fx:id="titleWeekly" prefWidth="75.0" text="Title" />
-                              <TableColumn fx:id="descWeekly" prefWidth="102.0" text="Description" />
-                              <TableColumn fx:id="locationWeekly" prefWidth="89.0" text="Location" />
-                              <TableColumn fx:id="contactWeekly" prefWidth="60.0" text="Contact" />
-                              <TableColumn fx:id="typeWeekly" prefWidth="79.0" text="Type" />
-                              <TableColumn fx:id="startWeekly" prefWidth="125.0" text="Start Date &amp; Time" />
-                              <TableColumn fx:id="endWeekly" prefWidth="112.0" text="End Date &amp; Time" />
-                              <TableColumn fx:id="customerWeekly" prefWidth="89.0" text="Customer ID" />
-                              <TableColumn fx:id="userIDweekly" prefWidth="61.0" text="User ID" />
-                              <TableColumn fx:id="apptIDweekly" prefWidth="118.0" text="Appointment ID" />
+
                           </columns>
                       </TableView>
                   </content>
