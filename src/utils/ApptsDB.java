@@ -158,9 +158,7 @@ public class ApptsDB {
                 //time before appt
                 LocalDateTime timeBeforeAppt = startDateTime.minusMinutes(15);
 
-                // System.out.println("timeBeforeAppt: " + timeBeforeAppt + "This is for the 15 minutes before an appt starts");
                 String beforeTime = dtf.format(timeBeforeAppt);
-
 
                 //time after appt starts
 

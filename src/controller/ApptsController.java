@@ -50,7 +50,7 @@ public class ApptsController implements Initializable {
     public Button modifyApptBtn;
     public Button deleteApptBtn;
     public Button backBtn;
-    public Tab monthlyApptTab;
+
     public Appointments deletedAppt;
     public Tab allApptsTab;
     public TableView <Appointments> allApptsTable;
