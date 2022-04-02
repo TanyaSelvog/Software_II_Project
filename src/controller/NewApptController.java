@@ -37,7 +37,6 @@ public class NewApptController extends AuthorizedController implements Initializ
     public ComboBox <String>endTimeCB;
     public ComboBox <Customer> customerComboBox;
     public DatePicker newApptDate;
-    public ComboBox <User> userComboBox;
     public DatePicker endDatePicker;
     public ObservableList<String> timeList = FXCollections.observableArrayList();
    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
