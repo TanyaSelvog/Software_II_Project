@@ -65,6 +65,8 @@ public class ApptsController implements Initializable {
     public TableColumn idUserAllAppts;
     public TableColumn idApptAllAppt;
     public TabPane apptsTabPane;
+    public Tab weeklyTab;
+    public Tab monthlyTab;
     private Appointments modAppointments;
     private Stage stage;
     private Parent scene;
@@ -239,7 +241,14 @@ public class ApptsController implements Initializable {
     }
 
 
+    public void onWeeklyTab(Event event) {
+    }
 
+    public void onMonthlyTab(Event event) {
+    }
+
+    public void onAllApptsTab(Event event) {
+    }
 }
 
 
