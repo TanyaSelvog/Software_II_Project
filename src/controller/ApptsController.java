@@ -93,6 +93,7 @@ public class ApptsController implements Initializable {
         //need to show monthly & weekly appts
        allApptsTable.setItems(appointmentList);
        updateWeeklyTable();
+       updateMonthlyTable();
     //   weeklyTable.setItems(appointmentList);
         //allApptsTable.setItems(ApptsDB.getApptsList());
 
@@ -100,7 +101,7 @@ public class ApptsController implements Initializable {
        // monthlyTable.setItems(appointmentList);
 
         //testing weekly table
-        monthlyTable.setItems(ApptsDB.getApptsList());
+    //    monthlyTable.setItems(ApptsDB.getApptsList());
 
         titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
@@ -257,35 +258,25 @@ public class ApptsController implements Initializable {
 
     public void updateWeeklyTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
-        //4.2 TODO working on making OL
+        FilteredList<Appointments> apptWeekFilter = new FilteredList<>(appointmentList, n -> true);
+
         LocalDateTime userLogin = LocalDateTime.now();
         LocalDateTime logTimePlusDays = userLogin.plusDays(7);
-        String logTimePlusSeven = dateTime.format(logTimePlusDays);
-        System.out.println("logTimePlusSeven: " + logTimePlusSeven);
 
+        apptWeekFilter.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusDays));
+        weeklyTable.setItems(apptWeekFilter);
 
-        apptFilteredList.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusDays));
-        weeklyTable.setItems(apptFilteredList);
-
-
-
-        //login time
-      //  LocalDateTime userLogin = LocalDateTime.now();
-
-        //time plus seven days
-       // LocalDateTime logTimePlusDays = userLogin.plusDays(7);
-        //String logTimePlusSeven = dateTime.format(logTimePlusDays);
-        System.out.println("logTimePlusSeven: " + logTimePlusSeven);
-
-        //if (apptTime is within user login time and LDT addtimes
-     //   Appointments appTest = (Appointments) appointmentList.getSelectionModel().getSelectedItem();
-
-       // if(startDate.isAfter(userLogin) && startDate.isBefore(logTimePlusDays)) {
-
-
-     //   weeklyTable.setItems(weeklyApptList);
     }
+    public void updateMonthlyTable(){
+        ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+        FilteredList<Appointments> apptMonthFilter = new FilteredList<>(appointmentList, n -> true);
 
+        LocalDateTime userLogin = LocalDateTime.now();
+        LocalDateTime logTimePlusMonth = userLogin.plusMonths(1);
+
+        apptMonthFilter.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusMonth));
+        monthlyTable.setItems(apptMonthFilter);
+    }
     public void onMonthlyTab(Event event) {
     }
 
