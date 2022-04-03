@@ -190,7 +190,7 @@ public class ApptsDB {
 
     public static void deleteAppointment(int apptID){
             try {
-        String sqlStatement = "DELETE FROM Appointments WHERE Appointment_ID = ?";
+        String sqlStatement = "DELETE From Appointments WHERE Appointment_ID = ?";
         PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
         ps.setInt(1, apptID);
@@ -200,60 +200,40 @@ public class ApptsDB {
     }
 }
 
+    public static ObservableList<Appointments> getCustomerAppts(int customerID){
 
-  /**  public static ObservableList<Appointments> getWeeklyList(){
+        ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
 
-        ObservableList<Appointments> weekApptList = FXCollections.observableArrayList();
-       // getApptsList()
-       Appointments apptTest =
+        try {
+            String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
+            ps.setInt(1, customerID);
 
-                //login time
-                LocalDateTime userLogin = LocalDateTime.now();
+            ResultSet rs = ps.executeQuery();
 
-                //time plus seven days
-                LocalDateTime logTimePlusDays = userLogin.plusDays(7);
-                String logTimePlusSeven = dateTime.format(logTimePlusDays);
-                System.out.println("logTimePlusSeven: " + logTimePlusSeven);
+            while(rs.next()) {
+                    int id = rs.getInt("Appointment_ID");
+                    String title = rs.getString("Title");
+                    String description = rs.getString("Description");
+                    String location = rs.getString("Location");
+                    String type = rs.getString("Type");
+                    LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
+                    LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                    LocalDateTime created = rs.getTimestamp("Create_Date").toLocalDateTime();
+                    int userID = rs.getInt("User_ID");
+                    int contactID = rs.getInt("Contact_ID");
 
-                //if (apptTime is within user login time and LDT addtimes
-                if(startDate.isAfter(userLogin) && startDate.isBefore(logTimePlusDays)) {
-                    Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptLocation, apptContact, apptType, customerID, custName,
-                            userID, contactID, startDate, endDate, startDateString, endDateString);
-                    weekApptList.add(appointments);
-                }
-                //userLogin
-                //logTimePlusDays
-                //startDate
-                //checking to see if a time is between two times
+                    Appointments appointments = new Appointments(id, customerID, contactID, title, description, location, type, start, end, created, userID);
+
+                    custApptsList.add(appointments);            }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
 
-
-        } catch (SQLException exception) {
-            exception.printStackTrace();
+            return custApptsList;
         }
-        return null;
     }
-
-
-        /**    //login time
-                LocalDateTime userLogin = LocalDateTime.now();
-
-
-                //time plus seven days
-                LocalDateTime logTimePlusDays = userLogin.plusDays(7);
-                String logTimePlusSeven = dateTime.format(logTimePlusDays);
-                System.out.println("logTimePlusSeven: " + logTimePlusSeven);
-
-                //if (apptTime is within user login time and LDT addtimes
-
-
-                //userLogin
-                //logTimePlusDays
-                //startDate
-                //checking to see if a time is between two times
-
-       */
 
 
 }

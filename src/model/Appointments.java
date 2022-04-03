@@ -105,6 +105,9 @@ public class Appointments {
     public Appointments(String apptTitle, String apptDescription, String apptLocation, String apptType, LocalDateTime startDateTime, LocalDateTime endDateTime, int customerID, int userID, int contactID) {
     }
 
+    public Appointments(int id, int customerID, int contactID, String title, String description, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime created, int userID) {
+    }
+
 
     public String getApptTitle(){
         return apptTitle;
