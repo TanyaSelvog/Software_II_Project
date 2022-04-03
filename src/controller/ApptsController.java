@@ -2,6 +2,7 @@ package controller;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +20,10 @@ import utils.ApptsDB;
 
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Filter;
 
 public class ApptsController implements Initializable {
     public TableView <Appointments> monthlyTable;
@@ -71,6 +74,12 @@ public class ApptsController implements Initializable {
     private Stage stage;
     private Parent scene;
     private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+    private FilteredList<Appointments> apptFilteredList = new FilteredList<>(appointmentList, n -> true);
+    public static LocalDateTime loginTime;
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+    public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
+    public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+
     //private ObservableList<Appointments> weeklyApptList = ApptsDB.getWeeklyList();
    // private static Appointments modCustomer;
 
@@ -82,8 +91,9 @@ public class ApptsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
-      // allApptsTable.setItems(appointmentList);
-       weeklyTable.setItems(appointmentList);
+       allApptsTable.setItems(appointmentList);
+       updateWeeklyTable();
+    //   weeklyTable.setItems(appointmentList);
         //allApptsTable.setItems(ApptsDB.getApptsList());
 
         //testing monthly table
@@ -241,8 +251,37 @@ public class ApptsController implements Initializable {
 
 
     public void onWeeklyTab(Event event) {
-      //  private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+       // weeklyTable.setItems(filteredData);
+        updateWeeklyTable();
+    }
+
+    public void updateWeeklyTable(){
+        ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
         //4.2 TODO working on making OL
+        LocalDateTime userLogin = LocalDateTime.now();
+        LocalDateTime logTimePlusDays = userLogin.plusDays(7);
+        String logTimePlusSeven = dateTime.format(logTimePlusDays);
+        System.out.println("logTimePlusSeven: " + logTimePlusSeven);
+
+
+        apptFilteredList.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusDays));
+        weeklyTable.setItems(apptFilteredList);
+
+
+
+        //login time
+      //  LocalDateTime userLogin = LocalDateTime.now();
+
+        //time plus seven days
+       // LocalDateTime logTimePlusDays = userLogin.plusDays(7);
+        //String logTimePlusSeven = dateTime.format(logTimePlusDays);
+        System.out.println("logTimePlusSeven: " + logTimePlusSeven);
+
+        //if (apptTime is within user login time and LDT addtimes
+     //   Appointments appTest = (Appointments) appointmentList.getSelectionModel().getSelectedItem();
+
+       // if(startDate.isAfter(userLogin) && startDate.isBefore(logTimePlusDays)) {
+
 
      //   weeklyTable.setItems(weeklyApptList);
     }
