@@ -71,6 +71,7 @@ public class ApptsController implements Initializable {
     private Stage stage;
     private Parent scene;
     private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+    //private ObservableList<Appointments> weeklyApptList = ApptsDB.getWeeklyList();
    // private static Appointments modCustomer;
 
 
@@ -240,7 +241,10 @@ public class ApptsController implements Initializable {
 
 
     public void onWeeklyTab(Event event) {
-        weeklyTable.setItems(appointmentList);
+      //  private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+        //4.2 TODO working on making OL
+
+     //   weeklyTable.setItems(weeklyApptList);
     }
 
     public void onMonthlyTab(Event event) {

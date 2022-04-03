@@ -56,6 +56,7 @@ public class ApptsDB {
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
+                System.out.println("StartDate from LIST: " + startDate);
                 String startDateString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
                 String endTimeString = dateOnlyTime.format(endDate);
@@ -167,6 +168,7 @@ public class ApptsDB {
                 String afterTime = dtf.format(timeAfterAppt);
 
 
+
                 //checking to see if a time is between two times
 
                 if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)) {
@@ -197,5 +199,61 @@ public class ApptsDB {
         e.printStackTrace();
     }
 }
+
+
+  /**  public static ObservableList<Appointments> getWeeklyList(){
+
+        ObservableList<Appointments> weekApptList = FXCollections.observableArrayList();
+       // getApptsList()
+       Appointments apptTest =
+
+
+                //login time
+                LocalDateTime userLogin = LocalDateTime.now();
+
+                //time plus seven days
+                LocalDateTime logTimePlusDays = userLogin.plusDays(7);
+                String logTimePlusSeven = dateTime.format(logTimePlusDays);
+                System.out.println("logTimePlusSeven: " + logTimePlusSeven);
+
+                //if (apptTime is within user login time and LDT addtimes
+                if(startDate.isAfter(userLogin) && startDate.isBefore(logTimePlusDays)) {
+                    Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptLocation, apptContact, apptType, customerID, custName,
+                            userID, contactID, startDate, endDate, startDateString, endDateString);
+                    weekApptList.add(appointments);
+                }
+                //userLogin
+                //logTimePlusDays
+                //startDate
+                //checking to see if a time is between two times
+            }
+
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        return null;
+    }
+
+
+        /**    //login time
+                LocalDateTime userLogin = LocalDateTime.now();
+
+
+                //time plus seven days
+                LocalDateTime logTimePlusDays = userLogin.plusDays(7);
+                String logTimePlusSeven = dateTime.format(logTimePlusDays);
+                System.out.println("logTimePlusSeven: " + logTimePlusSeven);
+
+                //if (apptTime is within user login time and LDT addtimes
+
+
+                //userLogin
+                //logTimePlusDays
+                //startDate
+                //checking to see if a time is between two times
+
+       */
+
 
 }
