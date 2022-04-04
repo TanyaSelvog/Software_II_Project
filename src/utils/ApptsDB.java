@@ -20,6 +20,7 @@ public class ApptsDB {
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    public static ObservableList<Appointments> custApptsList;
 
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();

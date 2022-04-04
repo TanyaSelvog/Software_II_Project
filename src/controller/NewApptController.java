@@ -2,6 +2,7 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -12,10 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import model.Appointments;
-import model.Contact;
-import model.Customer;
-import model.User;
+import model.*;
 import utils.*;
 
 import java.net.URL;
@@ -42,6 +40,7 @@ public class NewApptController extends AuthorizedController implements Initializ
     public DatePicker endDatePicker;
     public ObservableList<String> timeList = FXCollections.observableArrayList();
     public static ObservableList<Appointments>getCustomerAppts = FXCollections.observableArrayList();
+    public static ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public TextField apptIDTF;
 
@@ -125,7 +124,7 @@ public class NewApptController extends AuthorizedController implements Initializ
 
     //fields in here so far gets user input
     public void onSave(ActionEvent actionEvent) throws Exception {
-        compareCustomerApptTimes();
+
         Appointments appt = getNewAppt();
         if (appt != null){
             Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
@@ -181,10 +180,21 @@ public class NewApptController extends AuthorizedController implements Initializ
         stage.show();
     }
 
-    public void compareCustomerApptTimes() {
-        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
-        int customerID = customerSelected.getCustomerID();
-        System.out.println("Customer appt: " + getCustomerAppts(customerID));
+    //4.3.2022 WORKING ON
+    public void getCustApptsCompare(){
+
+        ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+        FilteredList<Appointments> apptCompare = new FilteredList<>(custApptsList, n -> true);
+
+        LocalDateTime userLogin = LocalDateTime.now();
+        LocalDateTime logTimePlusDays = userLogin.plusDays(7);
+
+        apptCompare.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusDays));
+     //   weeklyTable.setItems(apptWeekFilter);
+
+        //custApptsList.
+    }
+
     }
 
 
@@ -192,7 +202,7 @@ public class NewApptController extends AuthorizedController implements Initializ
 
 
 
-    }
+
 
 
 
