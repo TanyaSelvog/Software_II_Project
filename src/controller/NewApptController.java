@@ -23,6 +23,8 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import static utils.ApptsDB.getCustomerAppts;
+
 public class NewApptController extends AuthorizedController implements Initializable {
 
     public TextField titleTF;
@@ -39,6 +41,7 @@ public class NewApptController extends AuthorizedController implements Initializ
     public DatePicker newApptDate;
     public DatePicker endDatePicker;
     public ObservableList<String> timeList = FXCollections.observableArrayList();
+    public static ObservableList<Appointments>getCustomerAppts = FXCollections.observableArrayList();
    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public TextField apptIDTF;
 
@@ -122,6 +125,7 @@ public class NewApptController extends AuthorizedController implements Initializ
 
     //fields in here so far gets user input
     public void onSave(ActionEvent actionEvent) throws Exception {
+        compareCustomerApptTimes();
         Appointments appt = getNewAppt();
         if (appt != null){
             Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
@@ -145,6 +149,7 @@ public class NewApptController extends AuthorizedController implements Initializ
 
             Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
             int customerID = customerSelected.getCustomerID();
+            System.out.println("customerID " + customerID);
             String apptType = typeComboBox.getSelectionModel().getSelectedItem();
             LocalDateTime startDateTime = getStartDateTime();
             //LocalDate startDate = newApptDate.getValue();
@@ -158,7 +163,7 @@ public class NewApptController extends AuthorizedController implements Initializ
             return apt;
 
         } catch (Exception displayE) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+           Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
             alert.showAndWait();
 
 
@@ -176,4 +181,19 @@ public class NewApptController extends AuthorizedController implements Initializ
         stage.show();
     }
 
-}
+    public void compareCustomerApptTimes() {
+        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+        int customerID = customerSelected.getCustomerID();
+        System.out.println("Customer appt: " + getCustomerAppts(customerID));
+    }
+
+
+         //   ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
+
+
+
+    }
+
+
+
+

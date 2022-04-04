@@ -220,15 +220,15 @@ public class ApptsDB {
                     String type = rs.getString("Type");
                     LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
                     LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
-                    LocalDateTime created = rs.getTimestamp("Create_Date").toLocalDateTime();
+                   // LocalDateTime created = rs.getTimestamp("Create_Date").toLocalDateTime();
                     int userID = rs.getInt("User_ID");
                     int contactID = rs.getInt("Contact_ID");
 
-                    Appointments appointments = new Appointments(id, customerID, contactID, title, description, location, type, start, end, created, userID);
+                    Appointments appointments = new Appointments(id, customerID, contactID, title, description, location, type, start, end, userID);
 
                     custApptsList.add(appointments);            }
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
 
             return custApptsList;
@@ -236,4 +236,3 @@ public class ApptsDB {
     }
 
 
-}
