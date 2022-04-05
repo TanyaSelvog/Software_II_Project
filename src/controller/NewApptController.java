@@ -18,6 +18,7 @@ import utils.*;
 
 import java.net.URL;
 import java.time.*;
+import java.time.chrono.ChronoLocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -138,7 +139,13 @@ public class NewApptController extends AuthorizedController implements Initializ
         }
 
     private Appointments getNewAppt(){
-
+        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+        int customerID = customerSelected.getCustomerID();
+        System.out.println("customerID " + customerID);
+        String apptType = typeComboBox.getSelectionModel().getSelectedItem();
+        LocalDateTime startDateTime = getStartDateTime();
+        //LocalDate startDate = newApptDate.getValue();
+        LocalDateTime endDateTime = getEndDateTime();
         try {
             String apptDescription = descTF.getText();
             String apptLocation = locationTF.getText();
@@ -146,27 +153,30 @@ public class NewApptController extends AuthorizedController implements Initializ
             Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
             int contactID = contactSelected.getContactID();
 
-            Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
-            int customerID = customerSelected.getCustomerID();
-            System.out.println("customerID " + customerID);
+          //  Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+            //int customerID = customerSelected.getCustomerID();
+        /**    System.out.println("customerID " + customerID);
             String apptType = typeComboBox.getSelectionModel().getSelectedItem();
             LocalDateTime startDateTime = getStartDateTime();
             //LocalDate startDate = newApptDate.getValue();
-            LocalDateTime endDateTime = getEndDateTime();
+       *////     LocalDateTime endDateTime = getEndDateTime();
 
             ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
                     contactID);
             Appointments apt = new Appointments(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, currentUser.getUserID(),
                     contactID);
-            System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + endDateTime+ " " + customerSelected + "" );
+
+
+            System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + endDateTime+ " " + customerID + "" );
             return apt;
 
         } catch (Exception displayE) {
            Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
             alert.showAndWait();
 
-
         }
+        getCustApptsCompare(customerID, startDateTime, endDateTime);
+
        return null;
     }
 
@@ -181,26 +191,36 @@ public class NewApptController extends AuthorizedController implements Initializ
     }
 
     //4.3.2022 WORKING ON
-    public void getCustApptsCompare(){
+    //look at java 1 project maincontroller for similar-ish example
+    private boolean getCustApptsCompare(int customerID, LocalDateTime startDateTime, LocalDateTime endDateTime) {
 
-        ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
-        FilteredList<Appointments> apptCompare = new FilteredList<>(custApptsList, n -> true);
+        ObservableList<Appointments> custComparisonList = ApptsDB.getCustomerAppts(customerID);
+        System.out.println(custComparisonList);
+        boolean isCompareValid = true;
 
-        LocalDateTime userLogin = LocalDateTime.now();
-        LocalDateTime logTimePlusDays = userLogin.plusDays(7);
+        for (Appointments apptInDB : custComparisonList) {
+            LocalDateTime startTime = apptInDB.getStartDate();
+            System.out.println("getCustAppts Compare: " + startDateTime);
+            LocalDateTime endTime = apptInDB.getEndDate();
+            System.out.println("getCustomersApptsCompare() " + endTime + " endtime");
 
-        apptCompare.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusDays));
-     //   weeklyTable.setItems(apptWeekFilter);
+            if (startTime.isBefore(startDateTime) & endTime.isAfter(endDateTime)) {
+                System.out.println("TOBE start time is before apptDB starttime & TOBE endTime is before apptDB");
+                return false;
+            }
+            if (startTime.isBefore(endDateTime) & startTime.isAfter(endDateTime)) {
+                return false;
+            }
+            if (endTime.isBefore(endDateTime) & endTime.isAfter(startDateTime)) {
+                return false;
+            } else {
+                return true;
 
-        //custApptsList.
-    }
-
-    }
+            }
+        } return true;
 
 
-         //   ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
-
-
+    }}
 
 
 

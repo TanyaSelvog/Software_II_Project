@@ -46,7 +46,7 @@ public class ApptsDB {
             ResultSet result = ps.executeQuery();
             while(result.next()){
                 int apptID = result.getInt("Appointment_ID");
-                System.out.println("apptID from apptsDB: " + apptID);
+                //System.out.println("apptID from apptsDB: " + apptID);
                 int contactID = result.getInt("Contact_ID");
                 int customerID = result.getInt("Customer_ID");
                 String custName = result.getString("Customer_Name");
@@ -57,7 +57,7 @@ public class ApptsDB {
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
-                System.out.println("StartDate from LIST: " + startDate);
+               // System.out.println("StartDate from LIST: " + startDate);
                 String startDateString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
                 String endTimeString = dateOnlyTime.format(endDate);
@@ -151,7 +151,7 @@ public class ApptsDB {
 
                 userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
                 String apptTimeNotice = dtf.format(startDateTime);
-                System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
+              //  System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
 
                 //  if (loginTime.isBefore(startDateTime)){
                 //    System.out.println("Login time is before startDateTime " + loginTime);
@@ -204,9 +204,9 @@ public class ApptsDB {
     public static ObservableList<Appointments> getCustomerAppts(int customerID){
 
         ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
-
+        String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
         try {
-            String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
+          //  String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ps.setInt(1, customerID);
