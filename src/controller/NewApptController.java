@@ -176,6 +176,7 @@ public class NewApptController extends AuthorizedController implements Initializ
 
         }
         getCustApptsCompare(customerID, startDateTime, endDateTime);
+        System.out.println("past catch and before return in ()");
 
        return null;
     }
@@ -194,36 +195,19 @@ public class NewApptController extends AuthorizedController implements Initializ
     //look at java 1 project maincontroller for similar-ish example
     private boolean getCustApptsCompare(int customerID, LocalDateTime startDateTime, LocalDateTime endDateTime) {
 
+// || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {
         ObservableList<Appointments> custComparisonList = ApptsDB.getCustomerAppts(customerID);
-        System.out.println(custComparisonList);
-        boolean isCompareValid = true;
-
-        for (Appointments apptInDB : custComparisonList) {
-            LocalDateTime startTime = apptInDB.getStartDate();
-            System.out.println("getCustAppts Compare: " + startDateTime);
-            LocalDateTime endTime = apptInDB.getEndDate();
-            System.out.println("getCustomersApptsCompare() " + endTime + " endtime");
-
-            if (startTime.isBefore(startDateTime) & endTime.isAfter(endDateTime)) {
-                System.out.println("TOBE start time is before apptDB starttime & TOBE endTime is before apptDB");
-                return false;
-            }
-            if (startTime.isBefore(endDateTime) & startTime.isAfter(endDateTime)) {
-                return false;
-            }
-            if (endTime.isBefore(endDateTime) & endTime.isAfter(startDateTime)) {
-                return false;
-            } else {
-                return true;
+        for (Appointments appt : custComparisonList) {
+            if (startDateTime.isEqual(appt.getStartDate()) || startDateTime.isAfter(appt.getStartDate()) && startDateTime.isBefore(appt.getEndDate()) ||
+                endDateTime.isAfter(appt.getStartDate()) && endDateTime.isBefore(appt.getEndDate()) ||
+                startDateTime.isBefore(appt.getStartDate()) && endDateTime.isAfter(appt.getEndDate()) ||
+                startDateTime.isEqual(appt.getStartDate()) && endDateTime.isEqual(appt.getEndDate())){
 
             }
-        } return true;
 
 
+
+
+        }
+        return true;
     }}
-
-
-
-
-
-

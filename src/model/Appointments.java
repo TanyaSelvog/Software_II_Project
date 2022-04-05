@@ -208,6 +208,7 @@ public class Appointments {
     public String getEndTimeString(){
         return endTimeString;
     }
+
     public String getStartTimeString(){
         return startTimeString;
     }
@@ -221,9 +222,12 @@ public class Appointments {
     public void setEndDate(String endDateString){
         this.endDateString = endDateString;
     }
+
+    //getSTartDate
     public LocalDateTime getStartDate(){
         return startDate;
     }
+
     public void setStartDate(LocalDateTime startDate){
         this.startDate = startDate;
     }
