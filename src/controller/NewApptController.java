@@ -32,6 +32,7 @@ public class NewApptController extends AuthorizedController implements Initializ
     public Button saveBtn;
     public Button cancelBtn;
 
+
     public ComboBox<Contact> contactComboBox;
     public ComboBox <String> typeComboBox;
     public ComboBox<String> startTimeCB;
@@ -44,6 +45,7 @@ public class NewApptController extends AuthorizedController implements Initializ
     public static ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
    public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public TextField apptIDTF;
+  //  public static User currentUser;
 
     /**
      * This method initializes the controller.
@@ -56,7 +58,7 @@ public class NewApptController extends AuthorizedController implements Initializ
         contactComboBox.setItems(ContactDB.getContactList());
         customerComboBox.setItems(CustDB.getCustomersList());
         typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
-     //   userComboBox.setItems(UserDB.getUserList());
+
 
 
         startTimeCB.setItems(getTimeList());
@@ -125,61 +127,50 @@ public class NewApptController extends AuthorizedController implements Initializ
 
     //fields in here so far gets user input
     public void onSave(ActionEvent actionEvent) throws Exception {
-
-        Appointments appt = getNewAppt();
-        if (appt != null){
-            Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("All Appointments");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
-        }
-
-        }
-
-    private Appointments getNewAppt(){
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
         int customerID = customerSelected.getCustomerID();
+
         System.out.println("customerID " + customerID);
         String apptType = typeComboBox.getSelectionModel().getSelectedItem();
         LocalDateTime startDateTime = getStartDateTime();
+
         //LocalDate startDate = newApptDate.getValue();
         LocalDateTime endDateTime = getEndDateTime();
-        try {
-            String apptDescription = descTF.getText();
-            String apptLocation = locationTF.getText();
-            String apptTitle = titleTF.getText();
-            Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
-            int contactID = contactSelected.getContactID();
+        String apptDescription = descTF.getText();
+        String apptLocation = locationTF.getText();
+        String apptTitle = titleTF.getText();
+        Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
+        int contactID = contactSelected.getContactID();
+        User u = User.getCurrentUser();
 
-          //  Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
-            //int customerID = customerSelected.getCustomerID();
-        /**    System.out.println("customerID " + customerID);
-            String apptType = typeComboBox.getSelectionModel().getSelectedItem();
-            LocalDateTime startDateTime = getStartDateTime();
-            //LocalDate startDate = newApptDate.getValue();
-       *////     LocalDateTime endDateTime = getEndDateTime();
+        String testUser = String.valueOf(currentUser);
+        int testID = User.getUserID();
 
-            ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
+        if (getCustApptsCompare(customerID, startDateTime, endDateTime)) {
+            ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, testUser, customerID, testID,
                     contactID);
-            Appointments apt = new Appointments(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, currentUser.getUserID(),
+            Appointments apt = new Appointments(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, testID,
                     contactID);
 
-
-            System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + apptType + " " + endDateTime+ " " + customerID + "" );
-            return apt;
-
-        } catch (Exception displayE) {
-           Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
-            alert.showAndWait();
+            System.out.println(apptTitle + " " + apptDescription + " " + contactSelected + " " + apptType + " " + endDateTime + " " + customerID + "");
 
         }
-        getCustApptsCompare(customerID, startDateTime, endDateTime);
-        System.out.println("past catch and before return in ()");
 
-       return null;
-    }
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("All Appointments");
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
+        }
+
+
+
+
+
+
+
 
 
     public void onCancel(ActionEvent actionEvent) throws Exception {
@@ -196,13 +187,22 @@ public class NewApptController extends AuthorizedController implements Initializ
     private boolean getCustApptsCompare(int customerID, LocalDateTime startDateTime, LocalDateTime endDateTime) {
 
 // || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {
-        ObservableList<Appointments> custComparisonList = ApptsDB.getCustomerAppts(customerID);
-        for (Appointments appt : custComparisonList) {
-            if (startDateTime.isEqual(appt.getStartDate()) || startDateTime.isAfter(appt.getStartDate()) && startDateTime.isBefore(appt.getEndDate()) ||
-                endDateTime.isAfter(appt.getStartDate()) && endDateTime.isBefore(appt.getEndDate()) ||
-                startDateTime.isBefore(appt.getStartDate()) && endDateTime.isAfter(appt.getEndDate()) ||
-                startDateTime.isEqual(appt.getStartDate()) && endDateTime.isEqual(appt.getEndDate())){
+        ObservableList<Appointments> custApptsList = ApptsDB.getCustomerAppts(customerID);
+        for (Appointments appt : custApptsList) {
+            if (startDateTime.isEqual(appt.getStartDate())
+                    || startDateTime.isAfter(appt.getStartDate())
+                    && startDateTime.isBefore(appt.getEndDate())
+                    || endDateTime.isAfter(appt.getStartDate())
+                        && endDateTime.isBefore(appt.getEndDate())
+                    || startDateTime.isBefore(appt.getStartDate())
+                        && endDateTime.isAfter(appt.getEndDate())){
+                  //  || startDateTime.isEqual(appt.getStartDate())
+                    //&& endDateTime.isEqual(appt.getEndDate())){
 
+                Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with " +
+                        appt.getApptType() + " at " + appt.getStartDateString() + " - " + appt.getEndDateString()));
+                alert.showAndWait();
+                return false;
             }
 
 

@@ -36,10 +36,15 @@ public class LoginController extends AuthorizedController implements Initializab
     public TextField passwordTF;
     public Label zoneIdLbl;
     private static User currentUser;
+    public static User getCurrentUser(){
+        return currentUser;
+    }
     public Label headerLbl;
    public static String password;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static LocalDateTime loginTime;
+
+
     // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -91,15 +96,16 @@ public class LoginController extends AuthorizedController implements Initializab
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
 //3.19 working on
-            User result = UserDB.getUser(userName, userPassword);
-            System.out.println("Result: " + result);
 
-            if (result == null) {
+            User currentUser = UserDB.getUser(userName, userPassword);
+            System.out.println("Result: " + currentUser);
+
+            if (currentUser == null) {
                 isLoginValid = false;
                 System.out.println("isLoginValid = false " );
             }
-            if (result!=null){
-                currentUser = result;
+            if (currentUser!=null){
+               // currentUser = result;
                 System.out.println("Current user from LoginController: " + currentUser);
             }
             return isLoginValid;
