@@ -141,16 +141,12 @@ public class NewApptController extends AuthorizedController implements Initializ
         String apptTitle = titleTF.getText();
         Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
         int contactID = contactSelected.getContactID();
-        User u = User.getCurrentUser();
 
-        String testUser = String.valueOf(currentUser);
-        int testID = User.getUserID();
 
         if (getCustApptsCompare(customerID, startDateTime, endDateTime)) {
-            ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, testUser, customerID, testID,
+            ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
                     contactID);
-            Appointments apt = new Appointments(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID, testID,
-                    contactID);
+
 
             System.out.println(apptTitle + " " + apptDescription + " " + contactSelected + " " + apptType + " " + endDateTime + " " + customerID + "");
 
@@ -184,23 +180,23 @@ public class NewApptController extends AuthorizedController implements Initializ
 
     //4.3.2022 WORKING ON
     //look at java 1 project maincontroller for similar-ish example
-    private boolean getCustApptsCompare(int customerID, LocalDateTime startDateTime, LocalDateTime endDateTime) {
+    private boolean getCustApptsCompare(int customerID, LocalDateTime startDate, LocalDateTime endDate) {
 
 // || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {
-        ObservableList<Appointments> custApptsList = ApptsDB.getCustomerAppts(customerID);
-        for (Appointments appt : custApptsList) {
-            if (startDateTime.isEqual(appt.getStartDate())
-                    || startDateTime.isAfter(appt.getStartDate())
-                    && startDateTime.isBefore(appt.getEndDate())
-                    || endDateTime.isAfter(appt.getStartDate())
-                        && endDateTime.isBefore(appt.getEndDate())
-                    || startDateTime.isBefore(appt.getStartDate())
-                        && endDateTime.isAfter(appt.getEndDate())){
+        ObservableList<Appointments> custApptsList = getCustomerAppts(customerID);
+        for (Appointments appointments : custApptsList) {
+            if (startDate.isEqual(appointments.getStartDate())
+
+                    || startDate.isAfter(appointments.getStartDate())
+                    && startDate.isBefore(appointments.getEndDate())
+                    || endDate.isAfter(appointments.getStartDate())
+                        && endDate.isBefore(appointments.getEndDate())
+                    || startDate.isBefore(appointments.getStartDate())
+                        && endDate.isAfter(appointments.getEndDate())){
                   //  || startDateTime.isEqual(appt.getStartDate())
                     //&& endDateTime.isEqual(appt.getEndDate())){
 
-                Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with " +
-                        appt.getApptType() + " at " + appt.getStartDateString() + " - " + appt.getEndDateString()));
+                Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
                 alert.showAndWait();
                 return false;
             }

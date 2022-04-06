@@ -104,8 +104,8 @@ public class ApptsDB {
 
     //3.16
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
-                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt, String createdBy,
-                                          int customerID, int userID, int contactID) {
+                                         String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
+                                         int customerID, int contactID) {
         String sqlStatement = "INSERT INTO appointments (Title, Description, Location, " +
                 "Type, Start, End, Created_By," +
                 " Customer_ID, User_ID, Contact_ID) VALUES (?,?,?,?,?,?,?,?,?,?)";
@@ -202,9 +202,9 @@ public class ApptsDB {
     public static ObservableList<Appointments> getCustomerAppts(int customerID){
 
         ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
-        String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
+       // String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
         try {
-          //  String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
+            String sqlStatement = "SELECT * From Appointments WHERE CUSTOMER_ID = ?";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ps.setInt(1, customerID);
@@ -217,13 +217,13 @@ public class ApptsDB {
                     String description = rs.getString("Description");
                     String location = rs.getString("Location");
                     String type = rs.getString("Type");
-                    LocalDateTime start = rs.getTimestamp("Start").toLocalDateTime();
-                    LocalDateTime end = rs.getTimestamp("End").toLocalDateTime();
+                    LocalDateTime startDate = rs.getTimestamp("Start").toLocalDateTime();
+                    LocalDateTime endDate = rs.getTimestamp("End").toLocalDateTime();
                    // LocalDateTime created = rs.getTimestamp("Create_Date").toLocalDateTime();
                     int userID = rs.getInt("User_ID");
                     int contactID = rs.getInt("Contact_ID");
 
-                    Appointments appointments = new Appointments(id, customerID, contactID, title, description, location, type, start, end, userID);
+                    Appointments appointments = new Appointments(id, customerID, contactID, title, description, location, type, startDate, endDate, userID);
 
                     custApptsList.add(appointments);            }
             } catch (SQLException e) {

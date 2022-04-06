@@ -35,10 +35,8 @@ public class LoginController extends AuthorizedController implements Initializab
     public TextField usernameTF;
     public TextField passwordTF;
     public Label zoneIdLbl;
-    private static User currentUser;
-    public static User getCurrentUser(){
-        return currentUser;
-    }
+
+
     public Label headerLbl;
    public static String password;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
