@@ -94,7 +94,7 @@ public class ModifyApptController implements Initializable {
         String apptDescription = descriptionTF.getText();
         System.out.println("apptDescription from MAC: " + apptDescription);
         String apptLocation = locationTF.getText();
-        int id = Integer.parseInt(apptIDTF.getText());
+        int apptID = Integer.parseInt(apptIDTF.getText());
         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
         int contactID = contactSelected.getContactID();
         System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
@@ -120,7 +120,8 @@ public class ModifyApptController implements Initializable {
         int userID = User.getUserID();
         System.out.println(userID);
 
-        ApptsDB.modifyAppt(id, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
+        if (compareAppts(apptID, customerID, startDateTime, endDateTime))
+            ApptsDB.modifyAppt(apptID, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
                 lastUpdatedBy, customerID, userID, contactID);
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
@@ -274,13 +275,13 @@ public class ModifyApptController implements Initializable {
     }
 
     //look at java 1 project maincontroller for similar-ish example
-    private boolean getCustApptsCompare(int customerID, LocalDateTime startDate, LocalDateTime endDate) {
+    private boolean compareAppts (int apptID, int customerID, LocalDateTime startDate, LocalDateTime endDate) {
 
 // || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {
         ObservableList<Appointments> custApptsList = getCustomerAppts(customerID);
         for (Appointments appointments : custApptsList) {
+          if (apptID != appointments.getApptID()){
             if (startDate.isEqual(appointments.getStartDate())
-
                     || startDate.isAfter(appointments.getStartDate())
                     && startDate.isBefore(appointments.getEndDate())
                     || endDate.isAfter(appointments.getStartDate())
@@ -289,7 +290,6 @@ public class ModifyApptController implements Initializable {
                     && endDate.isAfter(appointments.getEndDate())){
                 //  || startDateTime.isEqual(appt.getStartDate())
                 //&& endDateTime.isEqual(appt.getEndDate())){
-
                 Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
                 alert.showAndWait();
                 return false;
@@ -298,7 +298,7 @@ public class ModifyApptController implements Initializable {
 
 
 
-        }
+        }}
         return true;
     }}
 
