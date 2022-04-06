@@ -8,10 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contact;
@@ -29,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import static controller.AuthorizedController.currentUser;
+import static utils.ApptsDB.getCustomerAppts;
 
 public class ModifyApptController implements Initializable {
     public Button saveBtn;
@@ -88,19 +86,8 @@ public class ModifyApptController implements Initializable {
 */
 
 
-    public void onSaveClick(ActionEvent actionEvent) throws Exception {
-        getApptModification();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("All Appointments");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
-
-    }
     //3.30 METHOD to for getting Appts object and passing to next controller
-    private Appointments getApptModification() {
+    public void onSaveClick(ActionEvent actionEvent) throws Exception {
 
         String apptTitle = titleTF.getText();
         System.out.println(apptTitle);
@@ -119,11 +106,11 @@ public class ModifyApptController implements Initializable {
         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
         System.out.println("apptType: " + apptType);
         String startTime = startTimeCB.getValue();
-        LocalTime startLT = LocalTime.parse(startTime,dtf);
+        LocalTime startLT = LocalTime.parse(startTime, dtf);
         LocalDate startDate = startDateDP.getValue();
         LocalDateTime startDateTime = startDate.atTime(startLT);
         String endTime = endTimeCB.getValue();
-        LocalTime endLT = LocalTime.parse(endTime,dtf);
+        LocalTime endLT = LocalTime.parse(endTime, dtf);
         LocalDate endLD = endDateDP.getValue();
         LocalDateTime endDateTime = endLD.atTime(endLT);
         System.out.println("EndDateTime: " + endDateTime);
@@ -135,7 +122,53 @@ public class ModifyApptController implements Initializable {
 
         ApptsDB.modifyAppt(id, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
                 lastUpdatedBy, customerID, userID, contactID);
-/**
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("All Appointments");
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
+    }
+        /** private Appointments getApptModification() {
+
+         String apptTitle = titleTF.getText();
+         System.out.println(apptTitle);
+         String apptDescription = descriptionTF.getText();
+         System.out.println("apptDescription from MAC: " + apptDescription);
+         String apptLocation = locationTF.getText();
+         int id = Integer.parseInt(apptIDTF.getText());
+         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
+         int contactID = contactSelected.getContactID();
+         System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
+         System.out.println(contactID);
+         //int contactID = contactSelected.getContactID();
+
+         Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
+         int customerID = customerSelected.getCustomerID();
+         String apptType = String.value
+         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
+         System.out.println("apptType: " + apptType);
+         String startTime = startTimeCB.getValue();
+         LocalTime startLT = LocalTime.parse(startTime,dtf);
+         LocalDate startDate = startDateDP.getValue();
+         LocalDateTime startDateTime = startDate.atTime(startLT);
+         String endTime = endTimeCB.getValue();
+         LocalTime endLT = LocalTime.parse(endTime,dtf);
+         LocalDate endLD = endDateDP.getValue();
+         LocalDateTime endDateTime = endLD.atTime(endLT);
+         System.out.println("EndDateTime: " + endDateTime);
+         //LocalDateTime lastUpdate = LocalDateTime.now();
+         String lastUpdatedBy = User.getUserName();
+         System.out.println(lastUpdatedBy);
+         int userID = User.getUserID();
+         System.out.println(userID);
+
+         ApptsDB.modifyAppt(id, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
+         lastUpdatedBy, customerID, userID, contactID);
+         ???
+
+        /**
  ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
  contactID);
  Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
@@ -145,11 +178,7 @@ public class ModifyApptController implements Initializable {
  stage.setScene(scene);
  stage.show();
 */
- System.out.println(apptTitle + " " + apptDescription + " " + contactSelected+ " " + " "  + "" );
 
-
-return null;
-    }
     public ObservableList<String> getTimeList() {
         ObservableList<String> timeList = FXCollections.observableArrayList();
 
@@ -244,4 +273,36 @@ return null;
 
     }
 
-}
+    //look at java 1 project maincontroller for similar-ish example
+    private boolean getCustApptsCompare(int customerID, LocalDateTime startDate, LocalDateTime endDate) {
+
+// || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {
+        ObservableList<Appointments> custApptsList = getCustomerAppts(customerID);
+        for (Appointments appointments : custApptsList) {
+            if (startDate.isEqual(appointments.getStartDate())
+
+                    || startDate.isAfter(appointments.getStartDate())
+                    && startDate.isBefore(appointments.getEndDate())
+                    || endDate.isAfter(appointments.getStartDate())
+                    && endDate.isBefore(appointments.getEndDate())
+                    || startDate.isBefore(appointments.getStartDate())
+                    && endDate.isAfter(appointments.getEndDate())){
+                //  || startDateTime.isEqual(appt.getStartDate())
+                //&& endDateTime.isEqual(appt.getEndDate())){
+
+                Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
+                alert.showAndWait();
+                return false;
+            }
+
+
+
+
+        }
+        return true;
+    }}
+
+
+
+
+
