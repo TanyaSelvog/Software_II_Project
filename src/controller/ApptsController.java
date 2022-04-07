@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
@@ -102,31 +103,43 @@ public class ApptsController implements Initializable {
             if (monthlyTab.isSelected()) {
                 updateMonthlyTable();
                 System.out.println("OKAY TAB MONTHLY");
+                ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
+
+                selectedItems.addListener(
+                        new ListChangeListener<>() {
+                            @Override
+                            public void onChanged(
+                                    Change<? extends Appointments> change) {
+                                System.out.println(
+                                        "Monthly appts changed: " + change.getList());
+                            }
+                        });
             }});
 
         weeklyTab.setOnSelectionChanged(event-> {
             if (weeklyTab.isSelected()) {
                 updateWeeklyTable();
-             //   Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
-               // System.out.println(appt.toString());
-                System.out.println("OKAY TAB weekly");
+
+                ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
+
+                selectedItems.addListener(
+                        (ListChangeListener<Appointments>) change -> System.out.println(
+                                "Weekly Table changed: " + change.getList()));
             }});
 
         allApptsTab.setOnSelectionChanged(event-> {
             if (allApptsTab.isSelected()){
                 allApptsTable.setItems(appointmentList);
                 System.out.println("All appts tab");
+                // Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
+                ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
+
+                selectedItems.addListener(
+                        (ListChangeListener<Appointments>) change -> System.out.println(
+                                "All appointments table changed: " + change.getList()));
             }});
 
-        // selectTableTab();
-    //   weeklyTable.setItems(appointmentList);
-        //allApptsTable.setItems(ApptsDB.getApptsList());
 
-        //testing monthly table
-       // monthlyTable.setItems(appointmentList);
-
-        //testing weekly table
-    //    monthlyTable.setItems(ApptsDB.getApptsList());
 
         titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
