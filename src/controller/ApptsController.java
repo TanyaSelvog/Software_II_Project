@@ -39,7 +39,7 @@ public class ApptsController implements Initializable {
     public TableColumn apptIDmonthly;
     public Tab weeklyApptTab;
     public TableColumn titleWeekly;
-    public TableView weeklyTable;
+    public TableView <Appointments> weeklyTable;
     public TableColumn descWeekly;
     public TableColumn locationWeekly;
     public TableColumn typeWeekly;
@@ -141,8 +141,7 @@ public class ApptsController implements Initializable {
 
     }
 
-    public void onMonthlyApptSelected(Event event) {
-    }
+
 
         public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
@@ -155,11 +154,16 @@ public class ApptsController implements Initializable {
     }
     //testing for checking tab 1.23
     public void selectTableTab(){
+
         Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-        if (selectedTab == weeklyApptTab) {
+        if (selectedTab == weeklyTab) {
+
             System.out.println("weekly appt tab is selected");
-        } else{
-            System.out.println("nope");
+        } else if (selectedTab == monthlyTab){
+            System.out.println("Monthly tab is selected");
+
+        } else {
+            System.out.println("allApptsTab is selected.");
         }
     }
 
@@ -252,8 +256,8 @@ public class ApptsController implements Initializable {
 
 
     public void onWeeklyTab(Event event) {
-       // weeklyTable.setItems(filteredData);
-        updateWeeklyTable();
+        Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
+
     }
 
     public void updateWeeklyTable(){
@@ -277,11 +281,16 @@ public class ApptsController implements Initializable {
         apptMonthFilter.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusMonth));
         monthlyTable.setItems(apptMonthFilter);
     }
-    public void onMonthlyTab(Event event) {
+  /**  public void onMonthlyTab(Event monthlySelected) {
+
+        Appointments appt = monthlyTable.getSelectionModel().getSelectedItem();
+        System.out.println(appt);
     }
 
     public void onAllApptsTab(Event event) {
+        Appointments appt = allApptsTable.getSelectionModel().getSelectedItem();
     }
+*/
 }
 
 
