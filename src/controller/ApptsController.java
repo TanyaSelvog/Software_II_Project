@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -68,6 +70,7 @@ public class ApptsController implements Initializable {
     public TableColumn idUserAllAppts;
     public TableColumn idApptAllAppt;
     public TabPane apptsTabPane;
+
     public Tab weeklyTab;
     public Tab monthlyTab;
     private Appointments modAppointments;
@@ -92,8 +95,30 @@ public class ApptsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
        allApptsTable.setItems(appointmentList);
-       updateWeeklyTable();
-       updateMonthlyTable();
+     //  updateWeeklyTable();
+      // updateMonthlyTable();
+
+        monthlyTab.setOnSelectionChanged(event-> {
+            if (monthlyTab.isSelected()) {
+                updateMonthlyTable();
+                System.out.println("OKAY TAB MONTHLY");
+            }});
+
+        weeklyTab.setOnSelectionChanged(event-> {
+            if (weeklyTab.isSelected()) {
+                updateWeeklyTable();
+             //   Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
+               // System.out.println(appt.toString());
+                System.out.println("OKAY TAB weekly");
+            }});
+
+        allApptsTab.setOnSelectionChanged(event-> {
+            if (allApptsTab.isSelected()){
+                allApptsTable.setItems(appointmentList);
+                System.out.println("All appts tab");
+            }});
+
+        // selectTableTab();
     //   weeklyTable.setItems(appointmentList);
         //allApptsTable.setItems(ApptsDB.getApptsList());
 
@@ -126,7 +151,6 @@ public class ApptsController implements Initializable {
         userIDweekly.setCellValueFactory(new PropertyValueFactory<>("userID"));
         apptIDweekly.setCellValueFactory(new PropertyValueFactory<>("apptID"));
 
-
         //fxid (for each column name) is 1s
         titleAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
@@ -141,8 +165,6 @@ public class ApptsController implements Initializable {
 
     }
 
-
-
         public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -152,20 +174,7 @@ public class ApptsController implements Initializable {
         stage.show();
 
     }
-    //testing for checking tab 1.23
-    public void selectTableTab(){
 
-        Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-        if (selectedTab == weeklyTab) {
-
-            System.out.println("weekly appt tab is selected");
-        } else if (selectedTab == monthlyTab){
-            System.out.println("Monthly tab is selected");
-
-        } else {
-            System.out.println("allApptsTab is selected.");
-        }
-    }
 
 
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
@@ -245,7 +254,7 @@ public class ApptsController implements Initializable {
         }
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
-        selectTableTab();
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("Scheduler Homepage");
@@ -255,10 +264,7 @@ public class ApptsController implements Initializable {
     }
 
 
-    public void onWeeklyTab(Event event) {
-        Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
 
-    }
 
     public void updateWeeklyTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
@@ -281,16 +287,19 @@ public class ApptsController implements Initializable {
         apptMonthFilter.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusMonth));
         monthlyTable.setItems(apptMonthFilter);
     }
-  /**  public void onMonthlyTab(Event monthlySelected) {
 
-        Appointments appt = monthlyTable.getSelectionModel().getSelectedItem();
-        System.out.println(appt);
-    }
 
     public void onAllApptsTab(Event event) {
         Appointments appt = allApptsTable.getSelectionModel().getSelectedItem();
     }
-*/
+
+    public void onWeeklyTab(Event event) {
+        Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
+
+    }
+    //need to keep this for now 4.7
+    public void event(Event event) {
+    }
 }
 
 
