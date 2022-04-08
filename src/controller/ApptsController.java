@@ -84,7 +84,7 @@ public class ApptsController implements Initializable {
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static String ap;
-
+    public static  ObservableList<Appointments> selectedItems;
     //private ObservableList<Appointments> weeklyApptList = ApptsDB.getWeeklyList();
    // private static Appointments modCustomer;
 
@@ -98,6 +98,7 @@ public class ApptsController implements Initializable {
         //need to show monthly & weekly appts
        allApptsTable.setItems(appointmentList);
         updateWeeklyTable();
+        updateMonthlyTable();
 
         titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
@@ -139,11 +140,25 @@ public class ApptsController implements Initializable {
         public void decisionTab(){
         if (weeklyTab.isSelected()){
             ap = "a";
+            ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
+            Appointments appointment = selectedItems.get(0);
             System.out.println("weekTab is selected");
+            System.out.println("appt weekly table: " + appointment);
         }
         if (monthlyTab.isSelected()){
             ap = "b";
+            ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
+            Appointments appointment = selectedItems.get(0);
+            System.out.println("appt monthly table: " + appointment);
+
             System.out.println("monthTab");
+        }
+        if (allApptsTab.isSelected()){
+            ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
+            Appointments appointment = selectedItems.get(0);
+            System.out.println("appt allAppts table: " + appointment);
+            ap = "c";
+            System.out.println("allAppts tab is selected");
         }
         }
         public void tabSelection() {
@@ -160,7 +175,7 @@ public class ApptsController implements Initializable {
                 if (allApptsTab.isSelected()){
                     allApptsTable.setItems(appointmentList);
                     System.out.println("All appts tab");
-                    // Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
+               //      Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
                     ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
 
 
@@ -172,7 +187,7 @@ public class ApptsController implements Initializable {
                 if (monthlyTab.isSelected()) {
                     updateMonthlyTable();
                     ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
-
+               //     Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
                     selectedItems.addListener(
                             new ListChangeListener<>() {
                                 @Override
@@ -204,6 +219,7 @@ public class ApptsController implements Initializable {
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
         tabSelection();
         decisionTab();
+
 
         /**
         Appointments a = weeklyTable.getSelectionModel().getSelectedItem();
