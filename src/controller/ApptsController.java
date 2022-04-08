@@ -83,6 +83,7 @@ public class ApptsController implements Initializable {
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    public static String ap;
 
     //private ObservableList<Appointments> weeklyApptList = ApptsDB.getWeeklyList();
    // private static Appointments modCustomer;
@@ -96,49 +97,7 @@ public class ApptsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
        allApptsTable.setItems(appointmentList);
-
-        monthlyTab.setOnSelectionChanged(event-> {
-            if (monthlyTab.isSelected()) {
-                updateMonthlyTable();
-                ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
-
-                selectedItems.addListener(
-                        new ListChangeListener<>() {
-                            @Override
-                            public void onChanged(
-                                    Change<? extends Appointments> change) {
-                                System.out.println(
-                                        "Monthly appts changed: " + change.getList());
-                                System.out.println(change);
-                            }
-                        });
-            }});
-
-        weeklyTab.setOnSelectionChanged(event-> {
-            if (weeklyTab.isSelected()) {
-                updateWeeklyTable();
-
-                ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
-
-                selectedItems.addListener(
-                        (ListChangeListener<Appointments>) change -> change.getList());
-
-            }});
-
-        allApptsTab.setOnSelectionChanged(event-> {
-            if (allApptsTab.isSelected()){
-                allApptsTable.setItems(appointmentList);
-                System.out.println("All appts tab");
-                // Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
-                ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
-
-
-                selectedItems.addListener(
-                        (ListChangeListener<Appointments>) change -> System.out.println(
-                                "All appointments table changed: " + change.getList()));
-            }});
-
-
+        updateWeeklyTable();
 
         titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
@@ -177,6 +136,59 @@ public class ApptsController implements Initializable {
 
     }
 
+        public void decisionTab(){
+        if (weeklyTab.isSelected()){
+            ap = "a";
+            System.out.println("weekTab is selected");
+        }
+        if (monthlyTab.isSelected()){
+            ap = "b";
+            System.out.println("monthTab");
+        }
+        }
+        public void tabSelection() {
+            weeklyTab.setOnSelectionChanged(event -> {
+                if (weeklyTab.isSelected()) {
+                    updateWeeklyTable();
+                    ap = "a";
+                    ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
+                    selectedItems.addListener(
+                            (ListChangeListener<Appointments>) change -> change.getList());}
+                });
+
+            allApptsTab.setOnSelectionChanged(event-> {
+                if (allApptsTab.isSelected()){
+                    allApptsTable.setItems(appointmentList);
+                    System.out.println("All appts tab");
+                    // Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
+                    ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
+
+
+                    selectedItems.addListener(
+                            (ListChangeListener<Appointments>) change -> System.out.println(
+                                    "All appointments table changed: " + change.getList()));
+                }});
+            monthlyTab.setOnSelectionChanged(event-> {
+                if (monthlyTab.isSelected()) {
+                    updateMonthlyTable();
+                    ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
+
+                    selectedItems.addListener(
+                            new ListChangeListener<>() {
+                                @Override
+                                public void onChanged(
+                                        Change<? extends Appointments> change) {
+                                    System.out.println(
+                                            "Monthly appts changed: " + change.getList());
+                                    System.out.println(change);
+                                }
+                            });
+                }});
+
+
+
+        }
+
         public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -190,13 +202,19 @@ public class ApptsController implements Initializable {
 
 
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
+        tabSelection();
+        decisionTab();
+
+        /**
         Appointments a = weeklyTable.getSelectionModel().getSelectedItem();
         Appointments b = monthlyTable.getSelectionModel().getSelectedItem();
         Appointments c = allApptsTable.getSelectionModel().getSelectedItem();
+         */
 
-       ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
-        Appointments appointment = selectedItems.get(0);
 
+       //ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
+        //Appointments appointment = selectedItems.get(0);
+        Appointments appointment = allApptsTable.getSelectionModel().getSelectedItem();
 
             if (appointment == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
