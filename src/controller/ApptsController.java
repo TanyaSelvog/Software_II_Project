@@ -96,13 +96,10 @@ public class ApptsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //need to show monthly & weekly appts
        allApptsTable.setItems(appointmentList);
-     //  updateWeeklyTable();
-      // updateMonthlyTable();
 
         monthlyTab.setOnSelectionChanged(event-> {
             if (monthlyTab.isSelected()) {
                 updateMonthlyTable();
-                System.out.println("OKAY TAB MONTHLY");
                 ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
 
                 selectedItems.addListener(
@@ -112,6 +109,7 @@ public class ApptsController implements Initializable {
                                     Change<? extends Appointments> change) {
                                 System.out.println(
                                         "Monthly appts changed: " + change.getList());
+                                System.out.println(change);
                             }
                         });
             }});
@@ -123,8 +121,8 @@ public class ApptsController implements Initializable {
                 ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
 
                 selectedItems.addListener(
-                        (ListChangeListener<Appointments>) change -> System.out.println(
-                                "Weekly Table changed: " + change.getList()));
+                        (ListChangeListener<Appointments>) change -> change.getList());
+
             }});
 
         allApptsTab.setOnSelectionChanged(event-> {
@@ -133,6 +131,7 @@ public class ApptsController implements Initializable {
                 System.out.println("All appts tab");
                 // Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
                 ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
+
 
                 selectedItems.addListener(
                         (ListChangeListener<Appointments>) change -> System.out.println(
@@ -191,17 +190,15 @@ public class ApptsController implements Initializable {
 
 
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
+        Appointments a = weeklyTable.getSelectionModel().getSelectedItem();
+        Appointments b = monthlyTable.getSelectionModel().getSelectedItem();
+        Appointments c = allApptsTable.getSelectionModel().getSelectedItem();
 
-        //Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-        Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
-        System.out.println("modAppt from onModifyAppt() in apptsController: " + appointment);
-
-     //   index = allApptsTable.getSelectionModel().getSelectedIndex();
-      //  modAppointments = (Appointments) weeklyTable.getSelectionModel().getSelectedItem();
-        //index = weeklyTable.getSelectionModel().getSelectedIndex();
+       ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
+        Appointments appointment = selectedItems.get(0);
 
 
-       if (appointment == null) {
+            if (appointment == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
             alert.showAndWait();
         } else {
@@ -230,7 +227,7 @@ public class ApptsController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
         }}
-    }
+        }
     public void onDeleteAppt(ActionEvent actionEvent){
 //@TODO 12.14 Started
         Appointments deletedAppt = (Appointments) monthlyTable.getSelectionModel().getSelectedItem();
