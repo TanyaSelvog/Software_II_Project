@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ContactScheduleController">
+
+    <Label layoutX="334.0" layoutY="38.0" text="Contact Schedule Report">   <font>
+        <Font name="Verdana Bold" size="24.0" />   </font>
+    </Label>
+   <TableView layoutX="348.0" layoutY="137.0" prefHeight="200.0" prefWidth="578.0">
+     <columns>
+       <TableColumn prefWidth="75.0" text="Appt ID" />
+         <TableColumn prefWidth="75.0" text="Column X" />
+       <TableColumn prefWidth="75.0" text="C2" />
+         <TableColumn prefWidth="75.0" text="Column X" />
+         <TableColumn prefWidth="75.0" text="Column X" />
+         <TableColumn prefWidth="75.0" text="Column X" />
+         <TableColumn prefWidth="75.0" text="Column X" />
+     </columns>
+   </TableView>
+   <ComboBox layoutX="143.0" layoutY="169.0" prefHeight="29.0" prefWidth="174.0" />
+   <Button layoutX="143.0" layoutY="283.0" mnemonicParsing="false" text="Generate Report">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
+   <Label layoutX="54.0" layoutY="172.0" text="Contact">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Label>
+   <Button layoutX="679.0" layoutY="453.0" mnemonicParsing="false" text="Reports" />
+   <Button layoutX="789.0" layoutY="453.0" mnemonicParsing="false" text="Home" />
+
+
+</AnchorPane>

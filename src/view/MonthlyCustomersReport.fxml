@@ -12,20 +12,35 @@
         <font>
         <Font name="Verdana Bold" size="24.0" />
         </font></Label>
-   <ComboBox layoutX="228.0" layoutY="206.0" prefWidth="150.0" />
-   <ComboBox layoutX="627.0" layoutY="206.0" prefWidth="150.0" />
-   <Label layoutX="161.0" layoutY="209.0" text="Month">
+   <ComboBox layoutX="142.0" layoutY="192.0" prefHeight="29.0" prefWidth="174.0" />
+   <ComboBox layoutX="142.0" layoutY="275.0" prefHeight="29.0" prefWidth="174.0" />
+   <Label layoutX="72.0" layoutY="195.0" text="Month">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <Label layoutX="446.0" layoutY="209.0" text="Appointment Type">
+   <Label layoutX="78.0" layoutY="278.0" text="Type">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <TextArea editable="false" layoutX="217.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.63" prefHeight="113.0" prefWidth="521.0">
+   <TextArea editable="false" layoutX="382.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.63" prefHeight="136.0" prefWidth="548.0">
       <font>
          <Font name="Verdana" size="26.0" />
       </font>
    </TextArea>
+   <Button layoutX="843.0" layoutY="449.0" mnemonicParsing="false" text="Home">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
+   <Button layoutX="142.0" layoutY="348.0" mnemonicParsing="false" text="Generate Report">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
+   <Button layoutX="704.0" layoutY="449.0" mnemonicParsing="false" text="Reports ">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
 
 </AnchorPane>
