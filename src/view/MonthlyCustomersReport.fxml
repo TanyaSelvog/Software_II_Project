@@ -22,11 +22,14 @@
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <TextArea editable="false" layoutX="382.0" layoutY="195.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.63" prefHeight="136.0" prefWidth="548.0">
-      <font>
-         <Font name="Verdana" size="26.0" />
-      </font>
-   </TextArea>
+   <TableView fx:id="monthCust" layoutX="348.0" layoutY="137.0" prefHeight="200.0" prefWidth="578.0">
+      <columns>
+         <TableColumn fx:id="monthCol" prefWidth="75.0" text="Month" />
+         <TableColumn fx:id="typeCol" prefWidth="75.0" text="Type" />
+         <TableColumn fx:id="apptCol" prefWidth="75.0" text="# of Appts" />
+
+      </columns>
+   </TableView>
    <Button fx:id="home" layoutX="843.0" layoutY="449.0" mnemonicParsing="false" onAction="#onHomeBtn" text="Home">
       <font>
          <Font name="Verdana" size="18.0" />

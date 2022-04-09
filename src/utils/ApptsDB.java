@@ -199,6 +199,35 @@ public class ApptsDB {
     }
 }
 
+    public static ObservableList<Appointments> getMonthType(int month) {
+        ObservableList<Appointments> monthTypeList = FXCollections.observableArrayList();
+
+        try{
+
+            String sqlStatement = "SELECT COUNT(Appointment_ID), Type FROM appointments WHERE MONTH(Start) = ? GROUP BY Type";
+
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+            ps.setInt(1, month);
+            ResultSet resultSet = ps.executeQuery();
+
+            while (resultSet.next()) {
+
+                int apptID = resultSet.getInt("COUNT(Appointment_ID)");
+                String apptType = resultSet.getString("Type");
+
+                Appointments appt = new Appointments(apptID, apptType);
+                System.out.println("apptID: " + apptID + " apptType " + apptType);
+                monthTypeList.add(appt);
+
+            }
+
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return monthTypeList;
+    }
     public static ObservableList<Appointments> getCustomerAppts(int customerID){
 
         ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();

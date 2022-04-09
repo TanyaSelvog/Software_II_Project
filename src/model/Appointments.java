@@ -139,6 +139,11 @@ public class Appointments {
 
     }
 
+    public Appointments(int apptID, String apptType) {
+        this.apptID=apptID;
+        this.apptType=apptType;
+    }
+
 
     public String getApptTitle() {
         return apptTitle;
