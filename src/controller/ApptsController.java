@@ -336,7 +336,7 @@ public class ApptsController implements Initializable {
         Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
 
     }
-    //need to keep this for now 4.7
+
     public void event(Event event) {
     }
 }
