@@ -9,15 +9,15 @@
     <Label layoutX="334.0" layoutY="38.0" text="Contact Schedule Report">   <font>
         <Font name="Verdana Bold" size="24.0" />   </font>
     </Label>
-   <TableView layoutX="348.0" layoutY="137.0" prefHeight="200.0" prefWidth="578.0">
+   <TableView fx:id="contactTable" layoutX="348.0" layoutY="137.0" prefHeight="200.0" prefWidth="578.0">
      <columns>
-       <TableColumn prefWidth="75.0" text="Appt ID" />
-         <TableColumn prefWidth="75.0" text="Column X" />
-       <TableColumn prefWidth="75.0" text="C2" />
-         <TableColumn prefWidth="75.0" text="Column X" />
-         <TableColumn prefWidth="75.0" text="Column X" />
-         <TableColumn prefWidth="75.0" text="Column X" />
-         <TableColumn prefWidth="75.0" text="Column X" />
+       <TableColumn fx:id="apptIDCol" prefWidth="75.0" text="Appt ID" />
+         <TableColumn fx:id="titleCol" prefWidth="75.0" text="Title" />
+       <TableColumn fx:id="typeCol" prefWidth="75.0" text="Type" />
+         <TableColumn fx:id="descCol" prefWidth="75.0" text="Description" />
+         <TableColumn fx:id="startCol" prefWidth="75.0" text="Start Date &amp; Time" />
+         <TableColumn fx:id="endCol" prefWidth="75.0" text="End Date &amp; Time" />
+         <TableColumn fx:id="custIDCol" prefWidth="75.0" text="Customer ID" />
      </columns>
    </TableView>
    <ComboBox layoutX="143.0" layoutY="169.0" prefHeight="29.0" prefWidth="174.0" />
@@ -31,8 +31,17 @@
          <Font name="Verdana" size="18.0" />
       </font>
    </Label>
-   <Button layoutX="679.0" layoutY="453.0" mnemonicParsing="false" text="Reports" />
-   <Button layoutX="789.0" layoutY="453.0" mnemonicParsing="false" text="Home" />
 
+   <Button fx:id="reportsBtn" layoutX="679.0" layoutY="453.0" mnemonicParsing="false" onAction="#onReportsBtn" text="Reports">
+   <font>
+        <Font name="Verdana" size="18.0" />
+    </font>
+</Button>
+
+   <Button fx:id="homeBtn" layoutX="789.0" layoutY="453.0" mnemonicParsing="false" onAction="#onHomeBtn" text="Home">
+    <font>
+        <Font name="Verdana" size="18.0" />
+    </font>
+</Button>
 
 </AnchorPane>

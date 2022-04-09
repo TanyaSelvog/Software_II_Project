@@ -27,7 +27,7 @@
          <Font name="Verdana" size="26.0" />
       </font>
    </TextArea>
-   <Button layoutX="843.0" layoutY="449.0" mnemonicParsing="false" text="Home">
+   <Button fx:id="home" layoutX="843.0" layoutY="449.0" mnemonicParsing="false" onAction="#onHomeBtn" text="Home">
       <font>
          <Font name="Verdana" size="18.0" />
       </font>
@@ -37,7 +37,7 @@
          <Font name="Verdana" size="18.0" />
       </font>
    </Button>
-   <Button layoutX="704.0" layoutY="449.0" mnemonicParsing="false" text="Reports ">
+   <Button fx:id="reports" layoutX="704.0" layoutY="449.0" mnemonicParsing="false" onAction="#onReportsBtn" text="Reports ">
       <font>
          <Font name="Verdana" size="18.0" />
       </font>
