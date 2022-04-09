@@ -220,19 +220,11 @@ public class ApptsController implements Initializable {
         tabSelection();
         decisionTab();
 
+        TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
+          monthlyTab.isSelected() ? monthlyTable: allApptsTable;
+          Appointments appointment = currentTable.getSelectionModel().getSelectedItem();
 
-        /**
-        Appointments a = weeklyTable.getSelectionModel().getSelectedItem();
-        Appointments b = monthlyTable.getSelectionModel().getSelectedItem();
-        Appointments c = allApptsTable.getSelectionModel().getSelectedItem();
-         */
-
-
-       //ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
-        //Appointments appointment = selectedItems.get(0);
-        Appointments appointment = allApptsTable.getSelectionModel().getSelectedItem();
-
-            if (appointment == null) {
+          if (appointment == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to modify."));
             alert.showAndWait();
         } else {
@@ -263,8 +255,11 @@ public class ApptsController implements Initializable {
         }}
         }
     public void onDeleteAppt(ActionEvent actionEvent){
-//@TODO 12.14 Started
-        Appointments deletedAppt = (Appointments) monthlyTable.getSelectionModel().getSelectedItem();
+
+        TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
+                monthlyTab.isSelected() ? monthlyTable: allApptsTable;
+                Appointments deletedAppt = currentTable.getSelectionModel().getSelectedItem();
+
         if (deletedAppt != null) {
             Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
             alertDelete.setContentText("Do you want to delete the selected appointment?");
