@@ -8,12 +8,12 @@
 
 
 
-    <Label layoutX="279.0" layoutY="77.0" text="Monthly Customer Appointments">
+    <Label layoutX="279.0" layoutY="77.0" text="Monthly Customer Appointment Report">
         <font>
         <Font name="Verdana Bold" size="24.0" />
         </font></Label>
-   <ComboBox layoutX="142.0" layoutY="192.0" prefHeight="29.0" prefWidth="174.0" />
-   <ComboBox layoutX="142.0" layoutY="275.0" prefHeight="29.0" prefWidth="174.0" />
+   <ComboBox fx:id="monthCB" layoutX="142.0" layoutY="192.0" prefHeight="29.0" prefWidth="174.0" />
+   <ComboBox fx:id="typeCB" layoutX="142.0" layoutY="275.0" prefHeight="29.0" prefWidth="174.0" />
    <Label layoutX="72.0" layoutY="195.0" text="Month">
       <font>
          <Font name="Verdana" size="18.0" />

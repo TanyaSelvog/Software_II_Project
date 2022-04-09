@@ -20,7 +20,7 @@
          <TableColumn fx:id="custIDCol" prefWidth="75.0" text="Customer ID" />
      </columns>
    </TableView>
-   <ComboBox layoutX="143.0" layoutY="169.0" prefHeight="29.0" prefWidth="174.0" />
+   <ComboBox fx:id="contactCB" layoutX="143.0" layoutY="169.0" prefHeight="29.0" prefWidth="174.0" />
    <Button layoutX="143.0" layoutY="283.0" mnemonicParsing="false" text="Generate Report">
       <font>
          <Font name="Verdana" size="18.0" />

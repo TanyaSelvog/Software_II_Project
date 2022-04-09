@@ -6,11 +6,14 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
 
 public class MonthlyCustomersReportController {
     public Button reports;
     public Button home;
+    public ComboBox monthCB;
+    public ComboBox typeCB;
 
     public void onReportsBtn(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsView.fxml"));
