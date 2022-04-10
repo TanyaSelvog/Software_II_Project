@@ -47,7 +47,7 @@ public class MonthlyCustomersReportController implements Initializable {
         //NEED TO FIX THIS; 4.9.2022
         monthCol.setCellValueFactory(new PropertyValueFactory<>("monthA"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
-        apptCol.setCellValueFactory(new PropertyValueFactory<>("monthB"));
+        apptCol.setCellValueFactory(new PropertyValueFactory<>("apptID"));
 
         monthCB.setItems(months);
     }

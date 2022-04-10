@@ -305,8 +305,11 @@ public class Appointments {
         this.monthB = monthB;
     }
 
-    public int getMonthB(){
-        return monthB;
+
+    public Appointments(Month monthA, String apptType, int apptID){
+        this.monthA = monthA;
+        this.apptType = apptType;
+        this.apptID = apptID;
     }
     // @Override
 
