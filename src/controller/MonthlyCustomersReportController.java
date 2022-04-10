@@ -16,6 +16,7 @@ import utils.CustDB;
 import javafx.fxml.Initializable;
 
 import java.net.URL;
+import java.time.Month;
 import java.util.ResourceBundle;
 
 public class MonthlyCustomersReportController implements Initializable{
@@ -30,6 +31,7 @@ public class MonthlyCustomersReportController implements Initializable{
     public TableColumn typeCol;
     public TableColumn apptCol;
     private int month;
+
     private static ObservableList<String> months = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December");
 

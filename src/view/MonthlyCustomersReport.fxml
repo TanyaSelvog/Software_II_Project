@@ -22,11 +22,11 @@
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <TableView fx:id="monthCust" layoutX="348.0" layoutY="137.0" prefHeight="200.0" prefWidth="578.0">
+   <TableView fx:id="monthCust" layoutX="365.0" layoutY="137.0" prefHeight="219.0" prefWidth="561.0">
       <columns>
-         <TableColumn fx:id="monthCol" prefWidth="75.0" text="Month" />
-         <TableColumn fx:id="typeCol" prefWidth="75.0" text="Type" />
-         <TableColumn fx:id="apptCol" prefWidth="75.0" text="# of Appts" />
+         <TableColumn fx:id="monthCol" prefWidth="181.0" text="Month" />
+         <TableColumn fx:id="typeCol" prefWidth="255.0" text="Type" />
+         <TableColumn fx:id="apptCol" prefWidth="124.0" text="# of Appts" />
 
       </columns>
    </TableView>
