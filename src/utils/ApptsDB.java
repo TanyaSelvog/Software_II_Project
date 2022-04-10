@@ -8,6 +8,7 @@ import model.User;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 public class ApptsDB {
@@ -211,11 +212,12 @@ public class ApptsDB {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-
+                Month monthA = Month.valueOf("APRIL");
+                //hardcoded this for testing; need to change it
                 int apptID = resultSet.getInt("COUNT(Appointment_ID)");
                 String apptType = resultSet.getString("Type");
 
-                Appointments appt = new Appointments(apptID, apptType);
+                Appointments appt = new Appointments(monthA, apptType, apptID);
                 System.out.println("apptID: " + apptID + " apptType " + apptType);
                 monthTypeList.add(appt);
 
