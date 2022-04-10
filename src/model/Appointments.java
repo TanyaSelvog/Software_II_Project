@@ -3,6 +3,7 @@ package model;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 public class Appointments {
     private String apptTitle;
@@ -24,6 +25,8 @@ public class Appointments {
     private String endDateString;
     // PROBABLY WILL DELETE CONTACTNAME 3.28
     private Contact contactName;
+    private Month monthA;
+    private int monthB;
 
     public Appointments(int apptID, String apptTitle, String apptDescription, String apptLocation, String apptContact,
                         String apptType, int customerID, int userID, int contactID, LocalDateTime startDate, LocalDateTime endDate) {
@@ -289,6 +292,22 @@ public class Appointments {
         return contactName;
     }
 
+
+    public void setMonthA(Month monthA){
+        this.monthA = monthA;
+    }
+
+    public Month getMonthA(){
+        return monthA;
+    }
+
+    public void setMonthA(int monthB){
+        this.monthB = monthB;
+    }
+
+    public int getMonthB(){
+        return monthB;
+    }
     // @Override
 
 

@@ -45,9 +45,9 @@ public class MonthlyCustomersReportController implements Initializable {
 
         typeCB.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
         //NEED TO FIX THIS; 4.9.2022
-        monthCol.setCellValueFactory(new PropertyValueFactory<>("month"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        apptCol.setCellValueFactory(new PropertyValueFactory<>("appt"));
+        monthCol.setCellValueFactory(new PropertyValueFactory<>("monthA"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        apptCol.setCellValueFactory(new PropertyValueFactory<>("monthB"));
 
         monthCB.setItems(months);
     }
@@ -71,13 +71,13 @@ public class MonthlyCustomersReportController implements Initializable {
         stage.show();
     }
 
-    public void onGenerateRpt(ActionEvent actionEvent) {
-        //     ObservableList<Appointments> monthTypeList = FXCollections.observableArrayList();
+    public void onGenerateRpt(ActionEvent actionEvent) throws Exception{
+             ObservableList<Appointments> monthTypeList = FXCollections.observableArrayList();
         //() to click to generate report based on user month & type selection
 
         month = monthCB.getSelectionModel().getSelectedItem().getValue();
         System.out.println(month + "month from MonthlyController onGenerateReportBtn");
-        if (ApptsDB.getMonthType(month).isEmpty()) {
+        /**if (ApptsDB.getMonthType(month).isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No Appointments");
@@ -85,9 +85,13 @@ public class MonthlyCustomersReportController implements Initializable {
             alert.showAndWait();
 
             //  }
+
+         */
            monthCust.setItems(ApptsDB.getMonthType(month));
-            System.out.println(ApptsDB.getMonthType(month));
-        }
+           //got text in 2 cols; 3rd col text is wrong and need to figure out month
+        //   System.out.println(monthTypeList + "monthtypelist");
+          //  System.out.println(ApptsDB.getMonthType(month));
+
 
 
     }
