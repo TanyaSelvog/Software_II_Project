@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 
 import java.net.URL;
 import java.time.Month;
+
 import java.util.ResourceBundle;
 
 public class MonthlyCustomersReportController implements Initializable {
@@ -26,7 +27,7 @@ public class MonthlyCustomersReportController implements Initializable {
 
 
     public ComboBox<Month> monthCB;
-    public ComboBox typeCB;
+
     public Button generateBtn;
     public TextArea reportsTA;
     public TableView monthCust;
@@ -43,8 +44,6 @@ public class MonthlyCustomersReportController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        typeCB.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
-        //NEED TO FIX THIS; 4.9.2022
         monthCol.setCellValueFactory(new PropertyValueFactory<>("monthA"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
         apptCol.setCellValueFactory(new PropertyValueFactory<>("apptID"));
@@ -77,20 +76,17 @@ public class MonthlyCustomersReportController implements Initializable {
 
         month = monthCB.getSelectionModel().getSelectedItem().getValue();
         System.out.println(month + "month from MonthlyController onGenerateReportBtn");
-        /**if (ApptsDB.getMonthType(month).isEmpty()) {
+        monthCust.setItems(ApptsDB.getMonthType(month));
+        if (ApptsDB.getMonthType(month).isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("No Appointments");
             alert.setContentText("No appointments in this month.");
             alert.showAndWait();
 
-            //  }
+        }
+         //  monthCust.setItems(ApptsDB.getMonthType(month));
 
-         */
-           monthCust.setItems(ApptsDB.getMonthType(month));
-           //got text in 2 cols; 3rd col text is wrong and need to figure out month
-        //   System.out.println(monthTypeList + "monthtypelist");
-          //  System.out.println(ApptsDB.getMonthType(month));
 
 
 

@@ -10,6 +10,8 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
 public class ApptsDB {
 
@@ -202,7 +204,7 @@ public class ApptsDB {
 
     public static ObservableList<Appointments> getMonthType(int month) {
         ObservableList<Appointments> monthTypeList = FXCollections.observableArrayList();
-
+        Locale locale = Locale.getDefault();
         try{
 
             String sqlStatement = "SELECT COUNT(Appointment_ID), Type FROM appointments WHERE MONTH(Start) = ? GROUP BY Type";
@@ -212,7 +214,8 @@ public class ApptsDB {
             ResultSet resultSet = ps.executeQuery();
 
             while (resultSet.next()) {
-                Month monthA = Month.valueOf("APRIL");
+                Month monthA = Month.of(month);
+
                 //hardcoded this for testing; need to change it
                 int apptID = resultSet.getInt("COUNT(Appointment_ID)");
                 String apptType = resultSet.getString("Type");

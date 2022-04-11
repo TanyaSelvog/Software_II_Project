@@ -13,15 +13,13 @@
         <Font name="Verdana Bold" size="24.0" />
         </font></Label>
    <ComboBox fx:id="monthCB" layoutX="142.0" layoutY="192.0" prefHeight="29.0" prefWidth="174.0" />
-   <ComboBox fx:id="typeCB" layoutX="142.0" layoutY="275.0" prefHeight="29.0" prefWidth="174.0" />
+
+
    <Label layoutX="72.0" layoutY="195.0" text="Month">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
-   <Label layoutX="78.0" layoutY="278.0" text="Type">
-      <font>
-         <Font name="Verdana" size="18.0" />
-      </font></Label>
+
    <TableView fx:id="monthCust" layoutX="365.0" layoutY="137.0" prefHeight="219.0" prefWidth="561.0">
       <columns>
          <TableColumn fx:id="monthCol" prefWidth="181.0" text="Month" />
