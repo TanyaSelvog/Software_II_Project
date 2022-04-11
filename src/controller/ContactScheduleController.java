@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -31,11 +32,20 @@ public class ContactScheduleController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        apptIDCol.setCellValueFactory(new PropertyValueFactory<>("apptID"));
+
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
+        //contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
+
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
+        custIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+
+
 
         contactCB.getItems().addAll("Anika Costa", "Daniel Garcia", "Li Lee");
-        //temporarily hard coding month
-
-
 
 
     }
