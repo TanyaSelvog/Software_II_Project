@@ -233,6 +233,36 @@ public class ApptsDB {
 
         return monthTypeList;
     }
+
+    public static ObservableList<Appointments> getContactList(){
+
+        ObservableList<Appointments> contactList = FXCollections.observableArrayList();
+
+        try {
+            String sqlStatement = "SELECT * From Appointments WHERE CONTACT_ID = ?";
+            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                int id = rs.getInt("Appointment_ID");
+                String title = rs.getString("Title");
+                String description = rs.getString("Description");
+                String type = rs.getString("Type");
+                LocalDateTime startDate = rs.getTimestamp("Start").toLocalDateTime();
+                LocalDateTime endDate = rs.getTimestamp("End").toLocalDateTime();
+                int contactID = rs.getInt("Contact_ID");
+                String customerID = rs.getString("Customer_ID");
+
+                Appointments appointments = new Appointments(id, title, type, description, type, startDate, endDate, customerID);
+
+                contactList.add(appointments);            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return contactList;
+    }
     public static ObservableList<Appointments> getCustomerAppts(int customerID){
 
         ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();

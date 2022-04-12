@@ -332,11 +332,6 @@ public class ApptsController implements Initializable {
         Appointments appt = allApptsTable.getSelectionModel().getSelectedItem();
     }
 
-    public void onWeeklyTab(Event event) {
-        Appointments appt = weeklyTable.getSelectionModel().getSelectedItem();
-
-    }
-
     public void event(Event event) {
     }
 }

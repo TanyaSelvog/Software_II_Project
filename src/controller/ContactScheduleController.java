@@ -28,6 +28,7 @@ public class ContactScheduleController implements Initializable {
     public Button homeBtn;
     public Button reportsBtn;
     public ComboBox contactCB;
+    public Button generateBtn;
 
 
     @Override
@@ -58,6 +59,14 @@ public class ContactScheduleController implements Initializable {
         stage.show();
     }
 
+    public void onGenerateBtn (ActionEvent actionEvent) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsView.fxml"));
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Reports");
+        Scene scene = new Scene(root, 1000, 600);
+        stage.setScene(scene);
+        stage.show();
+    }
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

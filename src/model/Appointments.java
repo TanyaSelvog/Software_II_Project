@@ -147,6 +147,9 @@ public class Appointments {
         this.apptType=apptType;
     }
 
+    public Appointments(int id, String title, String type, String description, String type1, LocalDateTime startDate, LocalDateTime endDate, String customerID) {
+    }
+
 
     public String getApptTitle() {
         return apptTitle;

@@ -10,7 +10,7 @@
          <children>
             <TabPane fx:id="apptsTabPane" prefHeight="393.0" prefWidth="902.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
-                <Tab fx:id="weeklyTab" onSelectionChanged="#onWeeklyTab" text="Weekly">
+                <Tab fx:id="weeklyTab"  text="Weekly">
                   <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                       <TableView fx:id="weeklyTable" prefHeight="452.0" prefWidth="848.0">
