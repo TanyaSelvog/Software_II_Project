@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.text.Font?>
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CountryReportsController">
+
+
+
+      <Label layoutX="279.0" layoutY="77.0" text="Country Report">
+         <font>
+            <Font name="Verdana Bold" size="24.0" />
+         </font></Label>
+      <ComboBox fx:id="monthCB" layoutX="142.0" layoutY="192.0" prefHeight="29.0" prefWidth="174.0" />
+   <Label layoutX="72.0" layoutY="195.0" text="Country">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font></Label>
+
+   <TableView fx:id="monthCust" layoutX="365.0" layoutY="137.0" prefHeight="219.0" prefWidth="561.0">
+      <columns>
+         <TableColumn fx:id="monthCol" prefWidth="181.0" text="Month" />
+         <TableColumn fx:id="typeCol" prefWidth="255.0" text="Type" />
+         <TableColumn fx:id="apptCol" prefWidth="124.0" text="# of Appts" />
+
+      </columns>
+   </TableView>
+   <Button fx:id="home" layoutX="843.0" layoutY="449.0" mnemonicParsing="false" onAction="#onHomeBtn" text="Home">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="generateBtn" layoutX="142.0" layoutY="348.0" mnemonicParsing="false" onAction="#onGenerateRpt" text="Generate Report">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
+   <Button fx:id="reports" layoutX="704.0" layoutY="449.0" mnemonicParsing="false" onAction="#onReportsBtn" text="Reports ">
+      <font>
+         <Font name="Verdana" size="18.0" />
+      </font>
+   </Button>
+</AnchorPane>
