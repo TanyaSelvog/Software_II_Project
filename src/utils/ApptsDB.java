@@ -251,8 +251,11 @@ public class ApptsDB {
                 String apptTitle = rs.getString("Title");
                 System.out.println("Title: " + apptTitle);
                 String apptDescription = rs.getString("Description");
+                System.out.println("description: " + apptDescription);
                 String apptType = rs.getString("Type");
+                System.out.println("Type: " + apptType);
                 LocalDateTime startDate = rs.getTimestamp("Start").toLocalDateTime();
+                System.out.println("StartTime: " + startDate);
                 LocalDateTime endDate = rs.getTimestamp("End").toLocalDateTime();
                 int customerID = rs.getInt("Customer_ID");
 

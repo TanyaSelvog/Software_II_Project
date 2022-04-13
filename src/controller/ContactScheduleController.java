@@ -8,15 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.Contact;
 import model.Division;
+import utils.ApptsDB;
 import utils.ContactDB;
 
 import java.net.URL;
@@ -73,7 +71,25 @@ public class ContactScheduleController implements Initializable {
         int contactID = cb.getContactID();
 
         getContactList(contactID);
+
         System.out.println("ok");
+
+
+        contactTable.setItems(getContactList(contactID));
+        if (getContactList(contactID).isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No Appointments");
+            alert.setContentText("No appointments in this month.");
+            alert.showAndWait();
+
+        }
+
+
+
+
+
+
 
     }
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {
