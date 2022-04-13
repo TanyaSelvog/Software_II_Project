@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,9 +14,15 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import model.Appointments;
+import model.Contact;
+import model.Division;
+import utils.ContactDB;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static utils.ApptsDB.getContactList;
 
 public class ContactScheduleController implements Initializable {
     public TableView contactTable;
@@ -45,8 +53,8 @@ public class ContactScheduleController implements Initializable {
         custIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 
 
-
-        contactCB.getItems().addAll("Anika Costa", "Daniel Garcia", "Li Lee");
+        // countryComboBox.setItems(CountryDB.getCountryList());
+        contactCB.setItems(ContactDB.getContactList());
 
 
     }
@@ -60,12 +68,13 @@ public class ContactScheduleController implements Initializable {
     }
 
     public void onGenerateBtn (ActionEvent actionEvent) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsView.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("Reports");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
+
+        Contact cb = (Contact)contactCB.getValue();
+        int contactID = cb.getContactID();
+
+        getContactList(contactID);
+        System.out.println("ok");
+
     }
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));

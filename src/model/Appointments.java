@@ -147,7 +147,23 @@ public class Appointments {
         this.apptType=apptType;
     }
 
-    public Appointments(int id, String title, String type, String description, String type1, LocalDateTime startDate, LocalDateTime endDate, String customerID) {
+
+
+    public Appointments(int apptID,
+                        String apptTitle,
+                        String apptType,
+                        String apptDescription, LocalDateTime startDate, LocalDateTime endDate, int contactID, int customerID) {
+
+        this.apptID = apptID;
+        this.apptTitle = apptTitle;
+        this.apptType = apptType;
+        this.apptDescription =apptDescription;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.contactID = contactID;
+        this.customerID = customerID;
+
+
     }
 
 

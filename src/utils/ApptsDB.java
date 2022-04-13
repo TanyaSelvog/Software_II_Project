@@ -234,27 +234,29 @@ public class ApptsDB {
         return monthTypeList;
     }
 
-    public static ObservableList<Appointments> getContactList(){
+    public static ObservableList<Appointments> getContactList(int contactID){
 
         ObservableList<Appointments> contactList = FXCollections.observableArrayList();
 
         try {
-            String sqlStatement = "SELECT * From Appointments WHERE CONTACT_ID = ?";
+            String sqlStatement = "SELECT Appointment_ID, Title, Description, Type, Start, End, Contact_ID, Customer_ID From Appointments WHERE CONTACT_ID = ?";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
+            ps.setInt(1, contactID);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()) {
-                int id = rs.getInt("Appointment_ID");
-                String title = rs.getString("Title");
-                String description = rs.getString("Description");
-                String type = rs.getString("Type");
+                int apptID = rs.getInt("Appointment_ID");
+                System.out.println("apptID" + apptID);
+                String apptTitle = rs.getString("Title");
+                System.out.println("Title: " + apptTitle);
+                String apptDescription = rs.getString("Description");
+                String apptType = rs.getString("Type");
                 LocalDateTime startDate = rs.getTimestamp("Start").toLocalDateTime();
                 LocalDateTime endDate = rs.getTimestamp("End").toLocalDateTime();
-                int contactID = rs.getInt("Contact_ID");
-                String customerID = rs.getString("Customer_ID");
+                int customerID = rs.getInt("Customer_ID");
 
-                Appointments appointments = new Appointments(id, title, type, description, type, startDate, endDate, customerID);
+                Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptType, startDate, endDate, contactID,customerID);
 
                 contactList.add(appointments);            }
         } catch (SQLException e) {
