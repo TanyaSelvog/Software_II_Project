@@ -250,11 +250,6 @@ public class ApptsController implements Initializable {
         monthlyTable.setItems(apptMonthFilter);
     }
 
-
-
-
-    public void event(Event event) {
-    }
 }
 
 

@@ -126,9 +126,3 @@ public class LoginController implements Initializable {
 
 
 
-
-    //getCurrentUser()
-
-
-
-
