@@ -64,7 +64,6 @@ public class UserDB {
             if (!passwordDB.equals(password)) {
                 System.out.println("PasswordDB != password");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
                 alert.setContentText(rb.getString("errorMsg"));
                 alert.showAndWait();
                 return null;
@@ -74,12 +73,10 @@ public class UserDB {
         }catch (SQLException exception) {
         System.out.println("Error in DB");
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setContentText("Invalid username.");
+            alert.setContentText(rb.getString("errorMsg"));
             alert.showAndWait();
 
         }
-        System.out.println("after catch");
         return null;}}
 
 

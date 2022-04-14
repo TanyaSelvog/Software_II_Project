@@ -2,3 +2,6 @@
 User test successfully logged in on 2022-04-14 10:06:39.4074013 UTC. 
 User test successfully logged in on 2022-04-14 10:08:08.2691481 UTC. 
 User test successfully logged in on 2022-04-14 20:27:37.8643118 UTC. 
+User test was unable to log in on 2022-04-14 20:46:46.2421131 UTC. 
+User Sparrow was unable to log in on 2022-04-14 20:53:46.7340835 UTC. 
+User pass was unable to log in on 2022-04-14 21:00:57.272965 UTC. 
