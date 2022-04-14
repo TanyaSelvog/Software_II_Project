@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 import static utils.ApptsDB.getCustomerAppts;
 
-public class NewApptController extends AuthorizedController implements Initializable {
+public class NewApptController implements Initializable {
 
     public TextField titleTF;
     public TextField descTF;

@@ -26,7 +26,7 @@ import utils.UserDB;
 import static utils.ApptsDB.getUserAppt;
 
 
-public class LoginController extends AuthorizedController implements Initializable {
+public class LoginController implements Initializable {
 
 
     public Button loginBtn;

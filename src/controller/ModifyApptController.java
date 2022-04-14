@@ -25,7 +25,6 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import static controller.AuthorizedController.currentUser;
 import static utils.ApptsDB.getCustomerAppts;
 
 public class ModifyApptController implements Initializable {

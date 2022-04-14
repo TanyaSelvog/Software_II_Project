@@ -7,7 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-//todo write three reports
+
 public class ReportsController {
     public Button monthlyCust;
     public Button contact;

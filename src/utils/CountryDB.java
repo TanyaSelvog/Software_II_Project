@@ -50,18 +50,11 @@ public class CountryDB {
 
             while (result.next()) {
                 int customerID = result.getInt("Customer_ID");
-                System.out.println(customerID);
                 String customerName = result.getString("Customer_Name");
-                System.out.println(customerName + " Customer Name");
                 int divisionID = result.getInt("Division_ID");
 
-
-               // String customerDivision = result.getString("Division");
-              //  String customerCountry = result.getString("Country");
-                // System.out.println(customerName + " " + customerAddress + " " + customerPostal);
                 Customer customer = new Customer(customerID, customerName, divisionID);
                 countryCustList.add(customer);
-
 
             }
 

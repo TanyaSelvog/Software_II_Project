@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.Contact;
 import model.Country;
 import model.Customer;
+import utils.ApptsDB;
 import utils.ContactDB;
 import utils.CountryDB;
 import utils.CustDB;
@@ -40,8 +41,6 @@ public class CountryReportsController implements Initializable {
 
         custIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        //custIDCol.setCellValueFactory(new PropertyValueFactory<>("apptID"));
-
 
         countryCB.setItems(CountryDB.getCountryList());
     }
@@ -60,7 +59,14 @@ public class CountryReportsController implements Initializable {
         Country cb = (Country)countryCB.getValue();
         int country_ID = cb.getCountryID();
 
-          countryTable.setItems(getCountryCustList(country_ID));
+        countryTable.setItems(getCountryCustList(country_ID));
+        if (CountryDB.getCountryCustList(country_ID).isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("No customers.");
+            alert.setContentText("No customers in this country.");
+            alert.showAndWait();
+        }
 
     }
 
