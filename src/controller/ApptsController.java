@@ -177,7 +177,7 @@ public class ApptsController implements Initializable {
                 e.printStackTrace();
         }}
         }
-    public void onDeleteAppt(ActionEvent actionEvent){
+    public void onDeleteAppt(ActionEvent actionEvent)throws Exception{
 
         TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
                 monthlyTab.isSelected() ? monthlyTable: allApptsTable;
@@ -251,9 +251,7 @@ public class ApptsController implements Initializable {
     }
 
 
-    public void onAllApptsTab(Event event) {
-        Appointments appt = allApptsTable.getSelectionModel().getSelectedItem();
-    }
+
 
     public void event(Event event) {
     }
