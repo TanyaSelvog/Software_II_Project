@@ -12,13 +12,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class UserDB {
     public static String userName;
     public static String password;
+    public static ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
     public static ObservableList<User> getUserList() {
         ObservableList<User> userList = FXCollections.observableArrayList();
-
+    //    public ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
         try {
             String sqlStatement = "SELECT User_ID, User_Name FROM Users";
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
@@ -62,7 +65,7 @@ public class UserDB {
                 System.out.println("PasswordDB != password");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");
-                alert.setContentText("Invalid password.");
+                alert.setContentText(rb.getString("errorMsg"));
                 alert.showAndWait();
                 return null;
             }

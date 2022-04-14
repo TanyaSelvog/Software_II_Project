@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     public static LocalDateTime loginTime;
 
 
-    // private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
+    private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

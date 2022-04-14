@@ -83,7 +83,6 @@ public class ApptsController implements Initializable {
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
-    public static String ap;
     public static  ObservableList<Appointments> selectedItems;
 
 

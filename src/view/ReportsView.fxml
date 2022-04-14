@@ -4,7 +4,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReportsController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.ReportsController">
     <children>
         <Button fx:id="homeBtn" layoutX="822.0" layoutY="495.0" mnemonicParsing="false" onAction="#onHomeClick" text="Home">
             <font>
