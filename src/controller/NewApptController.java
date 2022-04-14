@@ -192,9 +192,9 @@ public class NewApptController implements Initializable {
                     || endDate.isAfter(appointments.getStartDate())
                         && endDate.isBefore(appointments.getEndDate())
                     || startDate.isBefore(appointments.getStartDate())
-                        && endDate.isAfter(appointments.getEndDate())){
-                  //  || startDateTime.isEqual(appt.getStartDate())
-                    //&& endDateTime.isEqual(appt.getEndDate())){
+                        && endDate.isAfter(appointments.getEndDate())
+                    || startDate.isEqual(appointments.getStartDate())
+                    && endDate.isEqual(appointments.getEndDate())){
 
                 Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
                 alert.showAndWait();
