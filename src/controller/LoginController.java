@@ -63,11 +63,6 @@ public class LoginController implements Initializable {
         String login = dtf.format(loginTime);
         System.out.println("String login: " + login + " this currently is activated at init; will need to move to work with login button");
 */
-    //zoneIdLbl.setText(ZoneId.systemDefault().getId());
-
-
-
-
     }
     public void trackUserLogin() throws IOException{
         String userName = usernameTF.getText();
@@ -99,26 +94,25 @@ public class LoginController implements Initializable {
             Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
             msg.setTitle("No appointments");
             msg.showAndWait();
-            System.out.println("User has no appointments in the next 15 minutes.");
+
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.setTitle("Scheduler Homepage");
             Scene scene = new Scene(root, 1000, 600);
             stage.setScene(scene);
-            stage.show();}}
+            stage.show();}
+        }
 
         public boolean userLogin() {
             boolean isLoginValid = true;
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
-//3.19 working on
 
             User currentUser = UserDB.getUser(userName, userPassword);
-            System.out.println("Result: " + currentUser);
 
             if (currentUser == null) {
                 isLoginValid = false;
-                System.out.println("isLoginValid = false " );
+
             }
             if (currentUser!=null){
                // currentUser = result;
