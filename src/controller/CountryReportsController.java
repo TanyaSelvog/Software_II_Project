@@ -28,7 +28,7 @@ import static utils.CountryDB.getCountryCustList;
 
 public class CountryReportsController implements Initializable {
     public TableView countryTable;
-    public TableColumn countryCol;
+    public TableColumn custIDCol;
 
     public ComboBox countryCB;
     public TableColumn customerCol;
@@ -40,7 +40,7 @@ public class CountryReportsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-      //  countryCol.setCellValueFactory(new PropertyValueFactory<>("countryID"));
+        custIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         //custIDCol.setCellValueFactory(new PropertyValueFactory<>("apptID"));
 
@@ -62,7 +62,7 @@ public class CountryReportsController implements Initializable {
         Country cb = (Country)countryCB.getValue();
         int country_ID = cb.getCountryID();
 
-        //  countryTable.setItems(getContactList(country_ID));
+          countryTable.setItems(getCountryCustList(country_ID));
 
     }
 

@@ -21,7 +21,7 @@
 
    <TableView fx:id="countryTable" layoutX="365.0" layoutY="137.0" prefHeight="219.0" prefWidth="561.0">
       <columns>
-         <TableColumn fx:id="countryCol" prefWidth="181.0" text="Country" />
+         <TableColumn fx:id="custIDCol" prefWidth="181.0" text="Customer ID" />
          <TableColumn fx:id="customerCol" prefWidth="255.0" text="Customer Name" />
 
 

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import model.Appointments;
 import model.Country;
 import model.Customer;
+import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -53,6 +54,7 @@ public class CountryDB {
                 String customerName = result.getString("Customer_Name");
                 System.out.println(customerName + " Customer Name");
                 int divisionID = result.getInt("Division_ID");
+
 
                // String customerDivision = result.getString("Division");
               //  String customerCountry = result.getString("Country");
