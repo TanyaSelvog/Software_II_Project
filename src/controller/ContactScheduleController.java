@@ -71,16 +71,12 @@ public class ContactScheduleController implements Initializable {
         int contactID = cb.getContactID();
 
         getContactList(contactID);
-
-        System.out.println("ok");
-
-
         contactTable.setItems(getContactList(contactID));
         if (getContactList(contactID).isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("No Appointments");
-            alert.setContentText("No appointments in this month.");
+            alert.setTitle("No Schedule");
+            alert.setContentText("No schedule available.");
             alert.showAndWait();
 
         }

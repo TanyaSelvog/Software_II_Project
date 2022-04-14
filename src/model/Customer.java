@@ -2,6 +2,7 @@ package model;
 
 public class Customer {
 
+
     private int customerID;
     private String customerName;
     private String customerAddress;
@@ -47,6 +48,15 @@ public class Customer {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;
+    }
+
+    public Customer(int customerID, String customerName, int divisionID) {
+        this.customerID = customerID;
+        this.customerName = customerName;
+
+        this.divisionID = divisionID;
+
+       // this.customerCountry = customerCountry;
     }
 
     /**

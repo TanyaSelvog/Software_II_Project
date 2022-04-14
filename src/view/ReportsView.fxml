@@ -28,7 +28,7 @@
                     <Font name="Verdana" size="18.0" />
                 </font>
                 </Button>
-                <Button mnemonicParsing="false" text="Country Report">
+                <Button fx:id="country" mnemonicParsing="false" onAction="#onCountryBtn" text="Country Report">
                     <font>
                     <Font name="Verdana" size="18.0" />
                     </font>
