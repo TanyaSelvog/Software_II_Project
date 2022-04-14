@@ -85,12 +85,6 @@ public class ApptsController implements Initializable {
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static String ap;
     public static  ObservableList<Appointments> selectedItems;
-    //private ObservableList<Appointments> weeklyApptList = ApptsDB.getWeeklyList();
-   // private static Appointments modCustomer;
-
-
-
-    private int index;
 
 
     @Override
@@ -137,74 +131,7 @@ public class ApptsController implements Initializable {
 
     }
 
-        public void decisionTab(){
-        if (weeklyTab.isSelected()){
-            ap = "a";
-            ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
-            Appointments appointment = selectedItems.get(0);
-            System.out.println("weekTab is selected");
-            System.out.println("appt weekly table: " + appointment);
-        }
-        if (monthlyTab.isSelected()){
-            ap = "b";
-            ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
-            Appointments appointment = selectedItems.get(0);
-            System.out.println("appt monthly table: " + appointment);
-
-            System.out.println("monthTab");
-        }
-        if (allApptsTab.isSelected()){
-            ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
-            Appointments appointment = selectedItems.get(0);
-            System.out.println("appt allAppts table: " + appointment);
-            ap = "c";
-            System.out.println("allAppts tab is selected");
-        }
-        }
-        public void tabSelection() {
-            weeklyTab.setOnSelectionChanged(event -> {
-                if (weeklyTab.isSelected()) {
-                    updateWeeklyTable();
-                    ap = "a";
-                    ObservableList<Appointments> selectedItems = weeklyTable.getSelectionModel().getSelectedItems();
-                    selectedItems.addListener(
-                            (ListChangeListener<Appointments>) change -> change.getList());}
-                });
-
-            allApptsTab.setOnSelectionChanged(event-> {
-                if (allApptsTab.isSelected()){
-                    allApptsTable.setItems(appointmentList);
-                    System.out.println("All appts tab");
-               //      Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
-                    ObservableList<Appointments> selectedItems = allApptsTable.getSelectionModel().getSelectedItems();
-
-
-                    selectedItems.addListener(
-                            (ListChangeListener<Appointments>) change -> System.out.println(
-                                    "All appointments table changed: " + change.getList()));
-                }});
-            monthlyTab.setOnSelectionChanged(event-> {
-                if (monthlyTab.isSelected()) {
-                    updateMonthlyTable();
-                    ObservableList<Appointments> selectedItems = monthlyTable.getSelectionModel().getSelectedItems();
-               //     Appointments appointment = monthlyTable.getSelectionModel().getSelectedItem();
-                    selectedItems.addListener(
-                            new ListChangeListener<>() {
-                                @Override
-                                public void onChanged(
-                                        Change<? extends Appointments> change) {
-                                    System.out.println(
-                                            "Monthly appts changed: " + change.getList());
-                                    System.out.println(change);
-                                }
-                            });
-                }});
-
-
-
-        }
-
-        public void onNewAppt(ActionEvent actionEvent) throws Exception{
+    public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("New Appointment");
@@ -214,11 +141,7 @@ public class ApptsController implements Initializable {
 
     }
 
-
-
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
-        tabSelection();
-        decisionTab();
 
         TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
           monthlyTab.isSelected() ? monthlyTable: allApptsTable;
