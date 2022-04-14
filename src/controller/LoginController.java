@@ -4,8 +4,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -66,28 +69,43 @@ public class LoginController implements Initializable {
 
 
     }
-
+    public void trackUserLogin() throws IOException{
+        String userName = usernameTF.getText();
+        String userPassword = passwordTF.getText();
+        User currentUser = UserDB.getUser(userName, userPassword);
+        LocalDate loginAttempt = LocalDateTime.now().toLocalDate();
+        Timestamp timeAttempt = Timestamp.valueOf(LocalDateTime.now());
+        FileWriter fw = new FileWriter("login_activity.txt", true);
+        PrintWriter output = new PrintWriter(fw);
+        output.println("User " + currentUser  + " successfully logged in on " + timeAttempt + " UTC. ");
+        output.close();
+    }
+    public void invalidUser() throws IOException{
+        String userName = usernameTF.getText();
+        LocalDate loginAttempt = LocalDateTime.now().toLocalDate();
+        Timestamp timeAttempt = Timestamp.valueOf(LocalDateTime.now());
+        FileWriter fw = new FileWriter("login_activity.txt", true);
+        PrintWriter output = new PrintWriter(fw);
+        output.println("User " + userName  + " was unable to log in on " + timeAttempt + " UTC. ");
+        output.close();
+    }
     public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
-
-
-            if (userLogin() != true) {
-                returnLoginWindow(actionEvent);
-
-            } else {
-                getUserAppt();
-
-                Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
-                msg.setTitle("No appointments");
-                msg.showAndWait();
-                System.out.println("User has no appointments in the next 15 minutes.");
-                Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                stage.setTitle("Scheduler Homepage");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.show();}}
-
-
+        if (userLogin() != true) {
+            returnLoginWindow(actionEvent);
+            invalidUser();
+        } else {
+            getUserAppt();
+            trackUserLogin();
+            Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
+            msg.setTitle("No appointments");
+            msg.showAndWait();
+            System.out.println("User has no appointments in the next 15 minutes.");
+            Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Scheduler Homepage");
+            Scene scene = new Scene(root, 1000, 600);
+            stage.setScene(scene);
+            stage.show();}}
 
         public boolean userLogin() {
             boolean isLoginValid = true;
