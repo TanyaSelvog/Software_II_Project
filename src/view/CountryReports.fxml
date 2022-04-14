@@ -2,27 +2,26 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<?import javafx.scene.text.Font?>
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #f9df69;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CountryReportsController">
 
 
 
-      <Label layoutX="279.0" layoutY="77.0" text="Country Report">
+      <Label layoutX="440.0" layoutY="78.0" text="Country Report">
          <font>
             <Font name="Verdana Bold" size="24.0" />
          </font></Label>
       <ComboBox fx:id="countryCB" layoutX="142.0" layoutY="192.0" prefHeight="29.0" prefWidth="174.0" />
-   <Label layoutX="72.0" layoutY="195.0" text="Country">
+   <Label layoutX="53.0" layoutY="195.0" text="Country">
       <font>
          <Font name="Verdana" size="18.0" />
       </font></Label>
 
    <TableView fx:id="countryTable" layoutX="365.0" layoutY="137.0" prefHeight="219.0" prefWidth="561.0">
       <columns>
-         <TableColumn fx:id="custIDCol" prefWidth="181.0" text="Customer ID" />
-         <TableColumn fx:id="customerCol" prefWidth="255.0" text="Customer Name" />
+         <TableColumn fx:id="custIDCol" prefWidth="123.0" text="Customer ID" />
+         <TableColumn fx:id="customerCol" prefWidth="437.0" text="Customer Name" />
 
 
       </columns>
@@ -32,7 +31,7 @@
          <Font name="Verdana" size="18.0" />
       </font>
    </Button>
-   <Button fx:id="generateBtn" layoutX="142.0" layoutY="348.0" mnemonicParsing="false" onAction="#onGenerateRpt" text="Generate Report">
+   <Button fx:id="generateBtn" layoutX="142.0" layoutY="253.0" mnemonicParsing="false" onAction="#onGenerateRpt" text="Generate Report">
       <font>
          <Font name="Verdana" size="18.0" />
       </font>
@@ -42,4 +41,9 @@
          <Font name="Verdana" size="18.0" />
       </font>
    </Button>
+   <Label fx:id="resultsLBL" layoutX="365.0" layoutY="379.0">
+      <font>
+         <Font name="Verdana" size="13.0" />
+      </font>
+   </Label>
 </AnchorPane>
