@@ -264,12 +264,6 @@ public class ModifyApptController implements Initializable {
        endDateDP.setValue(ldtTestDate);
      //   endTimeCB.setValue(endLDT);
 
-
-
-
-
-
-
     }
 
     //look at java 1 project maincontroller for similar-ish example
@@ -285,7 +279,9 @@ public class ModifyApptController implements Initializable {
                     || endDate.isAfter(appointments.getStartDate())
                     && endDate.isBefore(appointments.getEndDate())
                     || startDate.isBefore(appointments.getStartDate())
-                    && endDate.isAfter(appointments.getEndDate())){
+                    && endDate.isAfter(appointments.getEndDate())
+                    || startDate.isBefore(appointments.getStartDate())
+                    && endDate.isEqual(appointments.getEndDate())){
                 //  || startDateTime.isEqual(appt.getStartDate())
                 //&& endDateTime.isEqual(appt.getEndDate())){
                 Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
