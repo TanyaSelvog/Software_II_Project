@@ -1,19 +1,29 @@
 package model;
 
-public class Contact {
+/**
+ * This class holds general data about Contacts
+ */
 
+public class Contact {
+    /**
+     * Contact ID as int
+     */
     private int contactID;
+
+    /**
+     * Contact Name
+     */
     private String contactName;
-    private String contactEmail;
+
 
     /**
      * Constructor
      *
      */
-    public Contact(int contactID, String contactName, String contactEmail){
+    public Contact(int contactID, String contactName){
         this.contactID = contactID;
         this.contactName = contactName;
-        this.contactEmail = contactEmail;
+
     }
 
     /**
@@ -50,24 +60,11 @@ public class Contact {
     }
 
     /**
-     * Getter for Contact Email
-     * @return contactEmail
+     * Using toString to return Contact Name
+     * @return Contact Name
      */
-    public String getContactEmail() {
-        return contactEmail;
-    }
-
-    /**
-     * Setter for Contact Email
-     * @param contactEmail
-     */
-    public void setContactEmail(String contactEmail) {
-        this.contactEmail = contactEmail;
-    }
-
     @Override
     public String toString(){
-        // return (getClass().getName() + '@' + Integer.toHexString(hashCode()));
         return (contactName);
     }
 }

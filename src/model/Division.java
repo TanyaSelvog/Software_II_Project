@@ -1,9 +1,22 @@
 package model;
 
+/**
+ * This class provides general data about Division
+ */
 public class Division {
+    /**
+     * Name of Division
+     */
     private String divisionName;
+    /**
+     * Division ID
+     */
     private int divisionID;
-    private int countryID; //country_ID is foreign key in First_Level_Divisions table
+    /**
+     * Country ID
+     * Also Foreign Key in First_Level_Divisions Table
+     */
+    private int countryID;
 
     /**
      * Constructor for Division
@@ -64,6 +77,11 @@ public class Division {
     public void setDivisionName(String divisionName){
         this.divisionName = divisionName;
     }
+
+    /**
+     * To String for Division Name
+     * @return Division Name
+     */
     @Override
     public String toString(){
         // return (getClass().getName() + '@' + Integer.toHexString(hashCode()));

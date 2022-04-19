@@ -23,9 +23,9 @@ public class ContactDB {
 
                 int contactID = result.getInt("Contact_ID");
                 String contactName = result.getString("Contact_Name");
-                String contactEmail = result.getString("Email");
+               // String contactEmail = result.getString("Email");
 
-                Contact contact = new Contact(contactID, contactName, contactEmail);
+                Contact contact = new Contact(contactID, contactName);
                 contactsList.add(contact);
             }
         } catch (SQLException exception) {
@@ -44,9 +44,9 @@ public class ContactDB {
             result.next();
                 int contactID = result.getInt("Contact_ID");
                 String contactName = result.getString("Contact_Name");
-                String contactEmail = result.getString("Email");
+            //    String contactEmail = result.getString("Email");
 
-                 con = new Contact(contactID, contactName, contactEmail);
+                 con = new Contact(contactID, contactName );
 
             } catch (SQLException e) {
             e.printStackTrace();
