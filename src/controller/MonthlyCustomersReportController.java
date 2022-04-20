@@ -40,6 +40,10 @@ public class MonthlyCustomersReportController implements Initializable {
 
     private static ObservableList<Month> months = FXCollections.observableArrayList(Month.JANUARY, Month.FEBRUARY, Month.MARCH,
             Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER);
+    /** Method initializes the controller
+     * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
+    */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

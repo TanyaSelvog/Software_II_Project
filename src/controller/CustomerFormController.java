@@ -97,26 +97,35 @@ public class CustomerFormController implements Initializable {
         String customerPostal =customerPostalCode.getText();
         String custPhone = customerPhone.getText();
         Country countryName = (Country) countryComboBox.getValue();
-        Division division = (Division)divisionComboBox.getValue();
-        int divisionID = division.getDivisionID();
+      //  Division division = (Division)divisionComboBox.getValue();
+        Division division = (Division)divisionComboBox.getSelectionModel().getSelectedItem();
+        System.out.println(division);
+       // int divisionID = division.getDivisionID();
 
-        if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || customerPostal.isEmpty()){
+        if (custName.isEmpty() || custAddress.isEmpty() || custPhone.isEmpty() || countryName == null  || divisionComboBox == null ||
+                customerPostal.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Missing input.");
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
         }else{
-            CustDB.createCustomer(custName, custAddress, customerPostal, custPhone, divisionID);
-            System.out.println(custName + " " + custAddress + " " +custPhone + " " +" "+  customerPostal+ " " + " " + division + " " + countryName + " " + divisionID);
+            int divisionID = division.getDivisionID();
+           CustDB.createCustomer(custName, custAddress, customerPostal, custPhone, divisionID);
+            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("All Customers");
+            Scene scene = new Scene(root, 1000, 600);
+            stage.setScene(scene);
         }
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
+     /**   Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("All Customers");
         Scene scene = new Scene(root, 1000, 600);
         stage.setScene(scene);
         stage.show();
 
+*/
 
     }
 

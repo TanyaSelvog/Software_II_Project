@@ -244,6 +244,7 @@ public class ApptsController implements Initializable {
                 String apptType = deletedAppt.getApptType();
                 System.out.println(apptType);
                 ApptsDB.deleteAppointment(deletedAppt.getApptID());
+                currentTable.getItems().remove(deletedAppt);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION,
                         (apptType +" with appointment ID: " + apptID + " has been deleted."));
 
