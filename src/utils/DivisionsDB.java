@@ -9,8 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class involves Divisions and queries to the database.
+ */
 public class DivisionsDB {
-
+    /**
+     * Method for getting a list of all divisions
+     * @param countryID
+     * @return divisionList - List of all Divisions
+     */
     public static ObservableList<Division> getDivisionList(int countryID){
         ObservableList<Division> divisionList = FXCollections.observableArrayList();
 
@@ -36,6 +43,11 @@ public class DivisionsDB {
         return divisionList;
         }
 
+    /**
+     * Method for getting Customer's Division in the database
+     * @param divisionID
+     * @return division
+     */
     public static Division getCustomerDivision(int divisionID){
         Division div = null;
 

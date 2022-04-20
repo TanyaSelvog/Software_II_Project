@@ -15,35 +15,21 @@ import java.sql.Statement;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * This class relates to Users and the database
+ */
 public class UserDB {
     public static String userName;
     public static String password;
     public static ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
-    public static ObservableList<User> getUserList() {
-        ObservableList<User> userList = FXCollections.observableArrayList();
-    //    public ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
-        try {
-            String sqlStatement = "SELECT User_ID, User_Name FROM Users";
-            PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
-            ResultSet result = ps.executeQuery();
-            while (result.next()) {
+    /**
+     * Method for getting username and password and checking credentials
+     * @param username
+     * @param password
+     * @return Null if no user is found or user
+     */
 
-                int userID = result.getInt("User_ID");
-                String userName = result.getString("User_Name");
-
-                User user = new User(userID, userName);
-                userList.add(user);
-                System.out.println(userID);
-                System.out.println(userName);
-
-            }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        return userList;
-
-    }
     public static User getUser(String username, String password) {
         try {
             String sqlStatement = "SELECT * FROM users WHERE User_Name = ?";
@@ -58,11 +44,8 @@ public class UserDB {
             String passwordDB= result.getString("Password");
 
             User user = new User(id, username, password);
-            System.out.println("username from DB: " + username + " password: " + passwordDB);
-            System.out.println("passwordStatic and what the user enters: " + password);
-            System.out.println("passwordDB - what is in DB: " + passwordDB);
+
             if (!passwordDB.equals(password)) {
-                System.out.println("PasswordDB != password");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText(rb.getString("errorMsg"));
                 alert.showAndWait();
