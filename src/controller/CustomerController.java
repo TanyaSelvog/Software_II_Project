@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -23,17 +24,29 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CustomerController implements Initializable {
+    @FXML
     public TableColumn customerID;
+    @FXML
     public TableColumn name;
+    @FXML
     public TableColumn address;
+    @FXML
     public TableColumn postalCode;
+    @FXML
     public TableColumn phone;
+    @FXML
     public TableColumn country;
+    @FXML
     public TableColumn division;
+    @FXML
     public Button addNewBtn;
+    @FXML
     public Button modifyBtn;
+    @FXML
     public Button backBtn;
+    @FXML
     public TableView <Customer>customersTable;
+    @FXML
     public Button deleteCustomerBtn;
     private Stage stage;
     private Parent scene;
@@ -46,7 +59,11 @@ public class CustomerController implements Initializable {
         return modCustomer;
     }
 
-
+    /**
+     * Method that initializes the controller
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -66,6 +83,11 @@ public class CustomerController implements Initializable {
 
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -75,6 +97,11 @@ public class CustomerController implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onModifyCurrent(ActionEvent actionEvent) throws Exception {
 
         Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
@@ -108,8 +135,11 @@ public class CustomerController implements Initializable {
             }
         }}
 
-
-
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
 
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
@@ -120,6 +150,11 @@ public class CustomerController implements Initializable {
             stage.show();
         }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onDeleteClick(ActionEvent actionEvent) throws Exception {
         Customer deletedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
         if (deletedCustomer != null) {

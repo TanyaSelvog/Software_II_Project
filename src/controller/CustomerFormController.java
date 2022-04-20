@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -23,17 +24,30 @@ import utils.DivisionsDB;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Class for Customer Form Controller
+ */
 public class CustomerFormController implements Initializable {
 
+    @FXML
     public ComboBox countryComboBox;
+    @FXML
     public ComboBox divisionComboBox;
+    @FXML
     public Button homeBtn;
+    @FXML
     public Button cancelBtn;
+    @FXML
     public Button saveBtn;
+    @FXML
     public TextField customerName;
+    @FXML
     public TextField customerPhone;
+    @FXML
     public TextField customerPostalCode;
+    @FXML
     public TextField customerAddress;
+    @FXML
     public TextField customerID;
     private static Customer modCustomer;
     private ObservableList<Country> countriesList = FXCollections.observableArrayList();
@@ -55,6 +69,11 @@ public class CustomerFormController implements Initializable {
         countryComboBox.setItems(CountryDB.getCountryList());
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -64,6 +83,12 @@ public class CustomerFormController implements Initializable {
         stage.show();
 
     }
+
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
 
     public void onSaveBtn(ActionEvent actionEvent) throws Exception {
         String custName = customerName.getText();
@@ -95,6 +120,11 @@ public class CustomerFormController implements Initializable {
 
     }
 
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -104,6 +134,10 @@ public class CustomerFormController implements Initializable {
         stage.show();
     }
 
+    /**
+     *
+     * @param actionEvent
+     */
     public void onCountrySelected(ActionEvent actionEvent) {
         Country selectedCountry = (Country) countryComboBox.getValue();
         divisionComboBox.setItems(DivisionsDB.getDivisionList(selectedCountry.getCountryID()));
