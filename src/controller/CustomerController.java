@@ -19,6 +19,7 @@ import utils.ApptsDB;
 import utils.CountryDB;
 import utils.CustDB;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -51,7 +52,7 @@ public class CustomerController implements Initializable {
     private Stage stage;
     private Parent scene;
 
-    private ObservableList<Customer> customersList = FXCollections.observableArrayList();
+    private static ObservableList<Customer> customersList = FXCollections.observableArrayList();
    private  ObservableList<Country> countriesList = FXCollections.observableArrayList();
     private static Customer modCustomer;
 
@@ -155,27 +156,35 @@ public class CustomerController implements Initializable {
      * @param actionEvent
      * @throws Exception
      */
-    public void onDeleteClick(ActionEvent actionEvent) throws Exception {
+    public void onDeleteClick(ActionEvent actionEvent) throws IOException {
         Customer deletedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();
+
         if (deletedCustomer != null) {
             Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
             alertDelete.setContentText("Do you want to delete the selected customer?");
             Optional<ButtonType> userAnswer = alertDelete.showAndWait();
 
             if (userAnswer.isPresent() && userAnswer.get() == ButtonType.OK) {
+
                 int custID = deletedCustomer.getCustomerID();
                 System.out.println(custID);
                 CustDB.deleteCustomer(custID);
+                customersTable.getItems().remove(deletedCustomer);
                 Alert alert = new Alert(Alert.AlertType.INFORMATION,
                         ("The records for " + deletedCustomer.getCustomerName()  + " have been deleted."));
 
                 alert.setTitle("Customer deleted.");
                 alert.showAndWait();
+
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to delete."));
             alert.showAndWait();
         }
+
     }
+
+
+
 }
 
