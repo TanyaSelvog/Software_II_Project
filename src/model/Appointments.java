@@ -81,6 +81,11 @@ public class Appointments {
      */
     private Month monthA;
 
+
+
+    private String endTimeString;
+    private String startTimeString;
+
     /**
      * Constructor for Appointments object
      * @param apptID AppointmentID
@@ -230,19 +235,22 @@ public class Appointments {
                         String apptTitle,
                         String apptType,
                         String apptDescription,
-                        LocalDateTime startDate, LocalDateTime endDate, int contactID, int customerID) {
+                        String startDateString,
+                        String endDateString, int contactID, int customerID) {
 
         this.apptID = apptID;
         this.apptTitle = apptTitle;
         this.apptType = apptType;
         this.apptDescription =apptDescription;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.startDateString = startDateString;
+        this.endDateString = endDateString;
         this.contactID = contactID;
         this.customerID = customerID;
 
 
     }
+
+
 
     /**
      * Getter for Appointment Title
@@ -432,9 +440,7 @@ public class Appointments {
         return startDateString;
     }
 
-    public String getEndDateString(){
-        return endDateString;
-    }
+
 
     public void setEndDateString(String endDateString){
         this.endDateString = endDateString;
@@ -455,6 +461,22 @@ public class Appointments {
         this.startDate = startDate;
     }
 
+
+    public String getEndTimeString() {
+        return endTimeString;
+    }
+
+    public String getStartTimeString() {
+        return startTimeString;
+    }
+
+    public void setStartDateString(String startDate) {
+        this.startDateString = startDateString;
+    }
+
+    public String getEndDateString() {
+        return endDateString;
+    }
     /**
      * Getter for End Date
      * @return End Date

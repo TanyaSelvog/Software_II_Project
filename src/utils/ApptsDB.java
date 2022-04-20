@@ -293,11 +293,13 @@ public class ApptsDB {
                 String apptType = rs.getString("Type");
                 System.out.println("Type: " + apptType);
                 LocalDateTime startDate = rs.getTimestamp("Start").toLocalDateTime();
+                String startDateString = dateTime.format(startDate);
                 System.out.println("StartTime: " + startDate);
                 LocalDateTime endDate = rs.getTimestamp("End").toLocalDateTime();
+                String endDateString = dateTime.format(endDate);
                 int customerID = rs.getInt("Customer_ID");
 
-                Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptType, startDate, endDate, contactID,customerID);
+                Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptType, startDateString, endDateString, contactID,customerID);
 
                 contactList.add(appointments);            }
         } catch (SQLException e) {
