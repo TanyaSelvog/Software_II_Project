@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -22,24 +23,34 @@ import java.util.ResourceBundle;
 
 public class ModifyCustomerFormController implements Initializable {
 
-    public TextField customerName;
-    public TextField customerPhone;
-    public TextField customerPostalCode;
-    public TextField customerAddress;
-    public ComboBox  countryComboBox;
-    public ComboBox<Division> divisionComboBox;
-    public TextField customerID;
+    @FXML
+    private TextField customerName;
+    @FXML
+    private TextField customerPhone;
+    @FXML
+    private TextField customerPostalCode;
+    @FXML
+    private TextField customerAddress;
+    @FXML
+    private ComboBox  countryComboBox;
+    @FXML
+    private ComboBox<Division> divisionComboBox;
+    @FXML
+    private TextField customerID;
+
 
     public Customer customerModify = null;
 
 
-
+    /**
+     * Method for initializing the Modify Customer Form Controller
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
 
-
         countryComboBox.setItems(CountryDB.getCountryList());
-
 
     }
 
@@ -50,56 +61,23 @@ public class ModifyCustomerFormController implements Initializable {
         divisionComboBox.setItems(DivisionsDB.getDivisionList(countrySelected.getCountryID()));
     }
 
+    /**
+     * Method for setting the customer to be modified
+     * @param customer
+     */
     public void modCustomer(Customer customer){
 
         Division division = DivisionsDB.getCustomerDivision(customer.getDivisionID());
         divisionComboBox.getSelectionModel().select(division);
-        System.out.println("Division division from modCustomer(): " +division);
         int id = customer.getCustomerID();
         customerID.setText(String.valueOf(id));
-        System.out.println("int customerID from modCustomer(): " +id);
-
-      //  customerID.setText(String.valueOf(customer.getCustomerID()));
-
-        String nameTest = customer.getCustomerName();
-        customerName.setText(nameTest);
-        System.out.println("String nametest from modCustomer() " +nameTest);
-
-        String phone = customer.getCustomerPhone();
-        customerPhone.setText(phone);
-        System.out.println(phone);
-       // customerPhone.setText(customer.getCustomerPhone());
-
-        String address = customer.getCustomerAddress();
-        customerAddress.setText(address);
-        System.out.println(address);
-        //customerAddress.setText(customer.getCustomerAddress());
-
-        String postalCode = customer.getCustomerPostal();
-        customerPostalCode.setText(postalCode);
-        System.out.println(postalCode);
-       // customerPostalCode.setText(customer.getCustomerPostal());
-
-
+        customerName.setText(customer.getCustomerName());
+        customerPhone.setText(customer.getCustomerPhone());
+        customerAddress.setText(customer.getCustomerAddress());
+        customerPostalCode.setText(customer.getCustomerPostal());
         String countryTest = customer.getCustomerCountry();
         countryComboBox.setValue(countryTest);
         System.out.println(countryTest);
-
-
-/**
-        Stri/ng divisionTest = customer.getCustomerDivision();
-        divisionComboBox.setValue(divisionTest);
-        System.out.println(divisionTest);
-*/
-        int customerID = customer.getDivisionID();
-        System.out.println("modcustomer() customerID : " +customerID);
-        //Country country = (Country) countryComboBox.getValue();
-        //Division division = (Division)divisionComboBox.getValue();
-        //countryComboBox.setValue(customer.getCustomerCountry());
-       // divisionComboBox.setValue(customer.getCustomerDivision());
-
-
-
 
     }
 //3.14. working on - similar to getproduct in project one

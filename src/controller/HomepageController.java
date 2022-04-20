@@ -2,6 +2,7 @@ package controller;
 
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -18,20 +19,14 @@ import java.util.ResourceBundle;
  */
 public class HomepageController implements Initializable {
 
-    /**
-     * Button for link to Customer View screen
-     */
-    public Button customersBtn;
-    /**
-     * Button for link to Appointment View screen
-     */
+   @FXML
+    private Button customersBtn;
+
+   @FXML
     public Button apptsBtn;
 
-    /**
-     * Button for link to Reports View screen
-     */
+    @FXML
     public Button reportsBtn;
-
 
     /**
      * This method links to Customer View window when clicked.

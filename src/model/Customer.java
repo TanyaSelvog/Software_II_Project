@@ -95,6 +95,18 @@ public class Customer {
     }
 
     /**
+     * Constructor for Modify Customer Form Controller's getCustomerModification()
+     * @param id
+     * @param custName
+     * @param custAddress
+     * @param custPhone
+     * @param customerPostal
+     * @param divisionID
+     */
+    public Customer(int id, String custName, String custAddress, String custPhone, String customerPostal, int divisionID) {
+    }
+
+    /**
      * Getter for customerID
      * @return customerID Unique ID for each customer
      */

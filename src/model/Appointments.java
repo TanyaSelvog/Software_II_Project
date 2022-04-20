@@ -432,7 +432,13 @@ public class Appointments {
         return startDateString;
     }
 
+    public String getEndDateString(){
+        return endDateString;
+    }
 
+    public void setEndDateString(String endDateString){
+        this.endDateString = endDateString;
+    }
     /**
      * Getter for Start Date
      * @return Start Date as LocalDateTime

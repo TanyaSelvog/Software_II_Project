@@ -9,8 +9,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class provides utlity relating to Contacts and the database.
+ */
 public class ContactDB {
 
+    /**
+     * Method for getting all Contacts in an Observable List
+     * @return contactsList - List of all Contacts
+     */
     public static ObservableList<Contact> getContactList() {
         ObservableList<Contact> contactsList = FXCollections.observableArrayList();
 
@@ -23,7 +30,6 @@ public class ContactDB {
 
                 int contactID = result.getInt("Contact_ID");
                 String contactName = result.getString("Contact_Name");
-               // String contactEmail = result.getString("Email");
 
                 Contact contact = new Contact(contactID, contactName);
                 contactsList.add(contact);
@@ -33,6 +39,12 @@ public class ContactDB {
         }
         return contactsList;
     }
+
+    /**
+     * Method for getting Contacts from database
+     * @param contact_ID
+     * @return
+     */
     public static Contact getCustomerContact(int contact_ID) {
        Contact con = null;
         try {
@@ -44,7 +56,6 @@ public class ContactDB {
             result.next();
                 int contactID = result.getInt("Contact_ID");
                 String contactName = result.getString("Contact_Name");
-            //    String contactEmail = result.getString("Email");
 
                  con = new Contact(contactID, contactName );
 
