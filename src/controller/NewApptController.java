@@ -6,6 +6,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -24,22 +25,37 @@ import java.util.ResourceBundle;
 
 import static utils.ApptsDB.getCustomerAppts;
 
+/**
+ * Controller class for New Appointment
+ */
 public class NewApptController implements Initializable {
 
+    @FXML
     public TextField titleTF;
+    @FXML
     public TextField descTF;
+    @FXML
     public TextField locationTF;
+    @FXML
     public Button saveBtn;
+    @FXML
     public Button cancelBtn;
 
-
+    @FXML
     public ComboBox<Contact> contactComboBox;
+    @FXML
     public ComboBox <String> typeComboBox;
+    @FXML
     public ComboBox<String> startTimeCB;
+    @FXML
     public ComboBox <String>endTimeCB;
+    @FXML
     public ComboBox <Customer> customerComboBox;
+    @FXML
     public DatePicker newApptDate;
+    @FXML
     public DatePicker endDatePicker;
+
     public ObservableList<String> timeList = FXCollections.observableArrayList();
     public static ObservableList<Appointments>getCustomerAppts = FXCollections.observableArrayList();
     public static ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
@@ -106,6 +122,10 @@ public class NewApptController implements Initializable {
 
     //Working on this; need to adjust time 3.16
 
+    /**
+     *
+     * @return
+     */
     private LocalDateTime getStartDateTime() {
 
         LocalDate startDate = newApptDate.getValue();
@@ -115,6 +135,11 @@ public class NewApptController implements Initializable {
         return startDateTime;
 
     }
+
+    /**
+     *
+     * @return
+     */
     private LocalDateTime getEndDateTime() {
 
         LocalDate endDate = endDatePicker.getValue();
@@ -162,12 +187,11 @@ public class NewApptController implements Initializable {
         }
 
 
-
-
-
-
-
-
+    /**
+     *
+     * @param actionEvent
+     * @throws Exception
+     */
 
     public void onCancel(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
@@ -178,8 +202,13 @@ public class NewApptController implements Initializable {
         stage.show();
     }
 
-    //4.3.2022 WORKING ON
-    //look at java 1 project maincontroller for similar-ish example
+    /**
+     *
+     * @param customerID
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     private boolean getCustApptsCompare(int customerID, LocalDateTime startDate, LocalDateTime endDate) {
 
 // || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {

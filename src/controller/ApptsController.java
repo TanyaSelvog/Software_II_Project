@@ -29,47 +29,77 @@ import java.util.ResourceBundle;
 import java.util.logging.Filter;
 
 public class ApptsController implements Initializable {
+
     public TableView <Appointments> monthlyTable;
+
     public TableColumn titleMonthly;
+
     public TableColumn descMonthly;
+
     public TableColumn locationMonthly;
+
     public TableColumn contactMonthly;
+
     public TableColumn typeMonthly;
+
     public TableColumn startMonthly;
+
     public TableColumn customerMonthly;
     public TableColumn endMonthly;
+
     public TableColumn userIDmonthly;
+
     public TableColumn apptIDmonthly;
     public Tab weeklyApptTab;
     public TableColumn titleWeekly;
+
     public TableView <Appointments> weeklyTable;
     public TableColumn descWeekly;
+
     public TableColumn locationWeekly;
+
     public TableColumn typeWeekly;
+
     public TableColumn contactWeekly;
     public TableColumn startWeekly;
+
     public TableColumn endWeekly;
     public TableColumn userIDweekly;
+
     public TableColumn customerWeekly;
     public TableColumn apptIDweekly;
+
     public Button newApptBtn;
+
     public Button modifyApptBtn;
+
     public Button deleteApptBtn;
+
     public Button backBtn;
 
     public Appointments deletedAppt;
     public Tab allApptsTab;
     public TableView <Appointments> allApptsTable;
     public TableColumn titleAllAppts;
+
     public TableColumn descAllAppts;
+
     public TableColumn locationAllAppts;
+
+
     public TableColumn contactAllAppts;
+
     public TableColumn typeAllAppts;
+
     public TableColumn  startAllAppts;
+
     public TableColumn endAllAppts;
     public TableColumn customerAllAppts;
+
     public TableColumn idUserAllAppts;
+
     public TableColumn idApptAllAppt;
+
     public TabPane apptsTabPane;
 
     public Tab weeklyTab;
@@ -85,6 +115,11 @@ public class ApptsController implements Initializable {
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static  ObservableList<Appointments> selectedItems;
 
+    /**
+     * Method that initializes the controller
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -130,6 +165,11 @@ public class ApptsController implements Initializable {
 
     }
 
+    /**
+     * Method for on New Appointment button click
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onNewAppt(ActionEvent actionEvent) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/view/NewAppointmentForm.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -140,6 +180,11 @@ public class ApptsController implements Initializable {
 
     }
 
+    /**
+     * Method for on Modify Appointment button
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
 
         TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
@@ -176,6 +221,12 @@ public class ApptsController implements Initializable {
                 e.printStackTrace();
         }}
         }
+
+    /**
+     * Method for on Delete Appointment button
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onDeleteAppt(ActionEvent actionEvent)throws Exception{
 
         TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
@@ -214,6 +265,11 @@ public class ApptsController implements Initializable {
            */
         }
 
+    /**
+     * Method for Back to Main button
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
@@ -225,8 +281,9 @@ public class ApptsController implements Initializable {
     }
 
 
-
-
+    /**
+     * Method that displays weekly table contents
+     */
     public void updateWeeklyTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
         FilteredList<Appointments> apptWeekFilter = new FilteredList<>(appointmentList, n -> true);
@@ -238,6 +295,10 @@ public class ApptsController implements Initializable {
         weeklyTable.setItems(apptWeekFilter);
 
     }
+
+    /**
+     * Method that displays monthly table contents
+     */
     public void updateMonthlyTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
         FilteredList<Appointments> apptMonthFilter = new FilteredList<>(appointmentList, n -> true);

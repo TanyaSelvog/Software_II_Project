@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -26,27 +27,44 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import static utils.ApptsDB.getCustomerAppts;
 
+/**
+ * Controller class for Modify Appointment
+ */
 public class ModifyApptController implements Initializable {
+    @FXML
     public Button saveBtn;
+    @FXML
     public Button cancelBtn;
-
+    @FXML
     public ComboBox <Contact>contactComboBox;
+    @FXML
     public TextField titleTF;
+    @FXML
     public TextField descriptionTF;
+    @FXML
     public TextField locationTF;
-
+    @FXML
     public TextField typeTF;
+    @FXML
     public ComboBox typeComboBox;
+    @FXML
     public ComboBox customerComboBox;
+    @FXML
     public ComboBox <String> startTimeCB;
+    @FXML
     public ComboBox <String> endTimeCB;
-
+    @FXML
     public TextField apptIDTF;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public DatePicker startDateDP;
     public DatePicker endDateDP;
 
+    /**
+     * Method for on Click
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onCancelClick(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -84,7 +102,11 @@ public class ModifyApptController implements Initializable {
 */
 
 
-    //3.30 METHOD to for getting Appts object and passing to next controller
+    /**
+     * Method for on Save Button
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
 
         String apptTitle = titleTF.getText();
@@ -178,6 +200,10 @@ public class ModifyApptController implements Initializable {
  stage.show();
 */
 
+    /**
+     * Method for getting timelist
+     * @return
+     */
     public ObservableList<String> getTimeList() {
         ObservableList<String> timeList = FXCollections.observableArrayList();
 
@@ -202,6 +228,11 @@ public class ModifyApptController implements Initializable {
 
     }
 
+    /**
+     * Method that initializes the controller
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         contactComboBox.setItems(ContactDB.getContactList());
@@ -213,6 +244,11 @@ public class ModifyApptController implements Initializable {
         // descriptionTF.setText(Appointments.getApptDescription());
 
     }
+
+    /**
+     * Method for setting up object from modifyApptController
+     * @param appointment
+     */
     // 3.28.2022 Setting up to get object from modifyApptController
     public void modAppointment(Appointments appointment){
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time
@@ -266,7 +302,14 @@ public class ModifyApptController implements Initializable {
 
     }
 
-    //look at java 1 project maincontroller for similar-ish example
+    /**
+     * Method to compare appointments to make sure no overlaps for customer appointments
+     * @param apptID
+     * @param customerID
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     private boolean compareAppts (int apptID, int customerID, LocalDateTime startDate, LocalDateTime endDate) {
 
 // || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {

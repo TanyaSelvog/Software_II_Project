@@ -22,6 +22,9 @@ import java.util.ResourceBundle;
 
 import static utils.ApptsDB.getContactList;
 
+/**
+ * Class for Contact Scheduler Controller
+ */
 public class ContactScheduleController implements Initializable {
     public TableView contactTable;
     public TableColumn apptIDCol;
@@ -36,6 +39,11 @@ public class ContactScheduleController implements Initializable {
     public ComboBox contactCB;
     public Button generateBtn;
 
+    /**
+     * Method that initializes the controller for Contact Scheduler
+     * @param url
+     * @param resourceBundle
+     */
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,6 +73,11 @@ public class ContactScheduleController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Method for on Generate Button
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onGenerateBtn (ActionEvent actionEvent) throws Exception {
 
         Contact cb = (Contact)contactCB.getValue();
@@ -81,13 +94,13 @@ public class ContactScheduleController implements Initializable {
 
         }
 
-
-
-
-
-
-
     }
+
+    /**
+     * Method for on Home button
+     * @param actionEvent
+     * @throws Exception
+     */
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
