@@ -21,6 +21,10 @@ import utils.DivisionsDB;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the Modify Customer Form
+ */
+
 public class ModifyCustomerFormController implements Initializable {
 
     @FXML
@@ -44,8 +48,8 @@ public class ModifyCustomerFormController implements Initializable {
 
     /**
      * Method for initializing the Modify Customer Form Controller
-     * @param url
-     * @param resourceBundle
+     * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
@@ -54,6 +58,11 @@ public class ModifyCustomerFormController implements Initializable {
 
     }
 
+    /**
+     * Event handler for when a country is selected
+     * @param actionEvent Country selected from Combo Box
+     * @throws Exception
+     */
     public void countrySelected(ActionEvent actionEvent) throws Exception{
 
         Country countrySelected = (Country) countryComboBox.getSelectionModel().getSelectedItem();
@@ -80,7 +89,11 @@ public class ModifyCustomerFormController implements Initializable {
         System.out.println(countryTest);
 
     }
-//3.14. working on - similar to getproduct in project one
+
+    /**
+     * Method for validating input fields and saving modified customer data to database
+     * @return null
+     */
 
     public Customer getCustomerModification() {
         try{
@@ -112,19 +125,28 @@ public class ModifyCustomerFormController implements Initializable {
         return null;
         }
 
+    /**
+     * Event handler for Save button
+     * @param actionEvent On click
+     * @throws Exception
+     */
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
-
-            Customer customer =  getCustomerModification();
+        Customer customer =  getCustomerModification();
             if (customer !=null){
-            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("All Customers");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
+                Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("All Customers");
+                Scene scene = new Scene(root, 1000, 600);
+                stage.setScene(scene);
+                stage.show();
         }
     }
 
+    /**
+     * Event handler for Cancel button
+     * @param actionEvent On click
+     * @throws Exception
+     */
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -135,6 +157,11 @@ public class ModifyCustomerFormController implements Initializable {
 
     }
 
+    /**
+     * Event handler for Home button
+     * @param actionEvent On click
+     * @throws Exception
+     */
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomePageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
