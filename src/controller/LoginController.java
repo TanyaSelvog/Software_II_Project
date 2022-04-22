@@ -31,15 +31,39 @@ import static utils.ApptsDB.getUserAppt;
 
 public class LoginController implements Initializable {
 
-
+    /**
+     * Button for login
+     */
     public Button loginBtn;
+
+    /**
+     * Label for username textfield
+     */
     public Label usernameLbl;
+
+    /**
+     * Label for password textfield
+     */
     public Label passwordLbl;
+
+    /**
+     * Textfield for username
+     */
     public TextField usernameTF;
+
+    /**
+     * Textfield for password
+     */
     public TextField passwordTF;
+
+    /**
+     * Label for zoneID
+     */
     public Label zoneIdLbl;
 
-
+    /**
+     * Label for header
+     */
     public Label headerLbl;
    public static String password;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");

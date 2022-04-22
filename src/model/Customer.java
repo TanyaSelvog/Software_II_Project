@@ -1,19 +1,47 @@
 package model;
 
+/**
+ * This class provides general data about Customers
+ */
 public class Customer {
 
-
+    /**
+     * Customer ID
+     */
     private int customerID;
+    /**
+     * Customer Name
+     */
     private String customerName;
+    /**
+     * Customer Address
+     */
     private String customerAddress;
 
+    /**
+     * Customer Phone Number
+     */
+
     private String customerPhone;
+
+    /**
+     * Customer Postal Code
+     */
     private String customerPostal;
 
-    private String customerCountry;
+    /**
+     * Customer Country
+     */
 
+    private String customerCountry;
+    /**
+     * Customer Division ID
+     */
     private int divisionID;
 
+    /**
+     * Customer Division Name
+     */
     private String customerDivision;
 
 
@@ -41,9 +69,16 @@ public class Customer {
         this.customerCountry = customerCountry;
     }
 
-    public Customer(int id, String custName, String custAddress, String customerPostal, String customerPhone, int divisionID) {
-    }
 
+//public Customer(int id, String custName, String custAddress, String customerPostal, String customerPhone, int divisionID) {
+//    }
+
+    /**
+     * Constructor for Customer
+     * @param customerID
+     * @param customerName
+     * @param customerAddress
+     */
     public Customer(int customerID, String customerName, String customerAddress){
         this.customerID = customerID;
         this.customerName = customerName;
@@ -57,6 +92,18 @@ public class Customer {
         this.divisionID = divisionID;
 
        // this.customerCountry = customerCountry;
+    }
+
+    /**
+     * Constructor for Modify Customer Form Controller's getCustomerModification()
+     * @param id
+     * @param custName
+     * @param custAddress
+     * @param custPhone
+     * @param customerPostal
+     * @param divisionID
+     */
+    public Customer(int id, String custName, String custAddress, String custPhone, String customerPostal, int divisionID) {
     }
 
     /**
@@ -172,10 +219,18 @@ public class Customer {
         this.customerPostal = customerPostal;
     }
 
+    /**
+     * Getter for Customer Division
+     * @return Customer Division
+     */
     public String getCustomerDivision(){
         return customerDivision;
     }
 
+    /**
+     * Setter for Customer Division
+     * @param customerDivision Customer Division
+     */
     public void setCustomerDivision(String customerDivision){
         this.customerDivision = customerDivision;
     }

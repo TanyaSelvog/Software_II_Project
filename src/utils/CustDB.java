@@ -11,8 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * This class involves Customer-related queries for the database.
+ */
 public class CustDB {
-
+    /**
+     * Method to get list of all customers
+     * @return customersList - List of all customers
+     */
     public static ObservableList<Customer> getCustomersList() {
         ObservableList<Customer> customersList = FXCollections.observableArrayList();
         try {
@@ -41,7 +47,6 @@ public class CustDB {
                         customerPostal, customerPhone, divisionID, customerDivision, customerCountry);
                 customersList.add(customer);
 
-
             }
 
         } catch (SQLException exception) {
@@ -50,11 +55,16 @@ public class CustDB {
         }
         return customersList;
 
-
-
     }
 
-
+    /**
+     * Method for creating new customer in the database
+     * @param name
+     * @param address
+     * @param postalCode
+     * @param phone
+     * @param divisionID
+     */
     public static void createCustomer(String name, String address, String postalCode, String phone, int divisionID) {
         try {
             String sql = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Division_ID) VALUES (?,?,?,?,?)";
@@ -73,7 +83,15 @@ public class CustDB {
         }
     }
 
-    //3.3
+    /**
+     * Method for updating/modifiying Customer's information in the database
+     * @param customer_id
+     * @param name
+     * @param address
+     * @param postalCode
+     * @param phone
+     * @param divisionID
+     */
     public static void modifyCustomer(int customer_id, String name, String address, String postalCode, String phone, int divisionID){
         try {
             String sql = "UPDATE Customers set Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Division_ID = ? WHERE Customer_ID =?";
@@ -93,7 +111,11 @@ public class CustDB {
 
         }
     }
-    //3.3.
+
+    /**
+     * Method for deleting Customer in the database
+     * @param customerID
+     */
     public static void deleteCustomer (int customerID){
 
             try {
@@ -115,7 +137,11 @@ public class CustDB {
         }
 
 
-
+    /**
+     * Method for getting Customer's name in database
+     * @param customer_ID
+     * @return
+     */
     public static Customer getCustomerName(int customer_ID) {
         Customer con = null;
         try {

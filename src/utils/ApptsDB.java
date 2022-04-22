@@ -13,7 +13,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
+/**
+ * This class involves utilities that are appointment-related and are for the mySQL DB.
+ */
 public class ApptsDB {
+
+    /**
+     * Current User as User
+     */
 
     public static User currentUser;
     public static int userID;
@@ -23,31 +30,23 @@ public class ApptsDB {
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static ObservableList<Appointments> custApptsList;
 
+    /**
+     * Method for getting all appointments in Observable List
+     * @return apptsList List of all appointments
+     */
     public static ObservableList<Appointments> getApptsList(){
         ObservableList<Appointments> apptsList = FXCollections.observableArrayList();
 
         try {
-           /** String sqlStatement = "SELECT title, description, location, type, start, end, customer_ID, " +
-                    " user_ID, appointment_ID, contacts.contact_ID, contacts.contact_name FROM Appointments, Contacts WHERE " +
-                    "contacts.contact_ID = appointments.contact_ID";
-            */
-               /** String sqlStatement = "SELECT * FROM appointments LEFT OUTER JOIN contacts ON " +
-                        "appointments.Contact_ID = contacts.Contact_ID";
-                */
-               String sqlStatement = "SELECT Appointments.*, Customers.Customer_Name, Contacts.Contact_Name " +
-                       "FROM appointments JOIN customers ON appointments.customer_ID = " +
-                       "customers.customer_ID JOIN contacts ON appointments.Contact_ID = Contacts.Contact_ID";
+            String sqlStatement = "SELECT Appointments.*, Customers.Customer_Name, Contacts.Contact_Name " +
+                "FROM appointments JOIN customers ON appointments.customer_ID = " +
+                "customers.customer_ID JOIN contacts ON appointments.Contact_ID = Contacts.Contact_ID";
 
-                      /** "SELECT * FROM appointments, Customers.Customer_Name, Contacts.Contact_Name FROM" +
-                       "appointments JOIN customers ON appointments.customer_ID = customers.customer_ID JOIN contacts" +
-                       "ON appointments.Contact_ID = Contacts.Contact_ID";
-                       */
             PreparedStatement ps = ConnectionJDBC.openConnection().prepareStatement(sqlStatement);
 
             ResultSet result = ps.executeQuery();
             while(result.next()){
                 int apptID = result.getInt("Appointment_ID");
-                //System.out.println("apptID from apptsDB: " + apptID);
                 int contactID = result.getInt("Contact_ID");
                 int customerID = result.getInt("Customer_ID");
                 String custName = result.getString("Customer_Name");
@@ -58,7 +57,6 @@ public class ApptsDB {
                 String apptContact = result.getString("Contact_Name");
                 String apptType = result.getString("Type");
                 LocalDateTime startDate = result.getTimestamp("Start").toLocalDateTime();
-               // System.out.println("StartDate from LIST: " + startDate);
                 String startDateString = dateTime.format(startDate);
                 LocalDateTime endDate = result.getTimestamp("End").toLocalDateTime();
                 String endTimeString = dateOnlyTime.format(endDate);
@@ -75,7 +73,20 @@ public class ApptsDB {
             return apptsList;
             }
 
-            //MODIFY/UPDATE APPOINTENTS
+    /**
+     * Method for modifying Customer's appointments in the database
+     * @param apptID
+     * @param apptTitle
+     * @param apptDesc
+     * @param apptLocation
+     * @param apptType
+     * @param startAppt
+     * @param endAppt
+     * @param lastUpdatedBy
+     * @param customerID
+     * @param userID
+     * @param contactID
+     */
 
     public static void modifyAppt(int apptID, String apptTitle, String apptDesc, String apptLocation,
                 String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
@@ -105,7 +116,17 @@ public class ApptsDB {
         }
     }
 
-    //3.16
+    /**
+     * Method for creating an appointment in the database
+     * @param apptTitle
+     * @param apptDesc
+     * @param apptLocation
+     * @param apptType
+     * @param startAppt
+     * @param endAppt
+     * @param customerID
+     * @param contactID
+     */
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
                                          String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
                                          int customerID, int contactID) {
@@ -132,6 +153,10 @@ public class ApptsDB {
         }
     }
 
+    /**
+     * Method for getting Users' appointments
+     * @return
+     */
     public static Appointments getUserAppt() {
         Appointments userAppt = null;
         LocalDateTime loginTime = LocalDateTime.now();
@@ -189,7 +214,10 @@ public class ApptsDB {
 
     }
 
-
+    /**
+     * Method for deleting an appointment in the database
+     * @param apptID
+     */
     public static void deleteAppointment(int apptID){
             try {
         String sqlStatement = "DELETE From Appointments WHERE Appointment_ID = ?";
@@ -202,6 +230,11 @@ public class ApptsDB {
     }
 }
 
+    /**
+     * Method for getting appointments per month
+     * @param month
+     * @return
+     */
     public static ObservableList<Appointments> getMonthType(int month) {
         ObservableList<Appointments> monthTypeList = FXCollections.observableArrayList();
         Locale locale = Locale.getDefault();
@@ -234,6 +267,11 @@ public class ApptsDB {
         return monthTypeList;
     }
 
+    /**
+     * Method for getting list of Contacts
+     * @param contactID
+     * @return
+     */
     public static ObservableList<Appointments> getContactList(int contactID){
 
         ObservableList<Appointments> contactList = FXCollections.observableArrayList();
@@ -255,11 +293,13 @@ public class ApptsDB {
                 String apptType = rs.getString("Type");
                 System.out.println("Type: " + apptType);
                 LocalDateTime startDate = rs.getTimestamp("Start").toLocalDateTime();
+                String startDateString = dateTime.format(startDate);
                 System.out.println("StartTime: " + startDate);
                 LocalDateTime endDate = rs.getTimestamp("End").toLocalDateTime();
+                String endDateString = dateTime.format(endDate);
                 int customerID = rs.getInt("Customer_ID");
 
-                Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptType, startDate, endDate, contactID,customerID);
+                Appointments appointments = new Appointments(apptID, apptTitle, apptDescription, apptType, startDateString, endDateString, contactID,customerID);
 
                 contactList.add(appointments);            }
         } catch (SQLException e) {
@@ -268,6 +308,12 @@ public class ApptsDB {
 
         return contactList;
     }
+
+    /**
+     * Method for getting Customer appointments by Customer ID
+     * @param customerID
+     * @return
+     */
     public static ObservableList<Appointments> getCustomerAppts(int customerID){
 
         ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();

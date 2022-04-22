@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -20,29 +21,48 @@ import utils.DivisionsDB;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the Modify Customer Form
+ */
+
 public class ModifyCustomerFormController implements Initializable {
 
-    public TextField customerName;
-    public TextField customerPhone;
-    public TextField customerPostalCode;
-    public TextField customerAddress;
-    public ComboBox  countryComboBox;
-    public ComboBox<Division> divisionComboBox;
-    public TextField customerID;
+    @FXML
+    private TextField customerName;
+    @FXML
+    private TextField customerPhone;
+    @FXML
+    private TextField customerPostalCode;
+    @FXML
+    private TextField customerAddress;
+    @FXML
+    private ComboBox  countryComboBox;
+    @FXML
+    private ComboBox<Division> divisionComboBox;
+    @FXML
+    private TextField customerID;
+
 
     public Customer customerModify = null;
 
 
-
+    /**
+     * Method for initializing the Modify Customer Form Controller
+     * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
+     */
     @Override
     public void initialize (URL url, ResourceBundle resourceBundle) {
 
-
         countryComboBox.setItems(CountryDB.getCountryList());
-
 
     }
 
+    /**
+     * Event handler for when a country is selected
+     * @param actionEvent Country selected from Combo Box
+     * @throws Exception
+     */
     public void countrySelected(ActionEvent actionEvent) throws Exception{
 
         Country countrySelected = (Country) countryComboBox.getSelectionModel().getSelectedItem();
@@ -50,59 +70,30 @@ public class ModifyCustomerFormController implements Initializable {
         divisionComboBox.setItems(DivisionsDB.getDivisionList(countrySelected.getCountryID()));
     }
 
+    /**
+     * Method for setting the customer to be modified
+     * @param customer
+     */
     public void modCustomer(Customer customer){
 
         Division division = DivisionsDB.getCustomerDivision(customer.getDivisionID());
         divisionComboBox.getSelectionModel().select(division);
-        System.out.println("Division division from modCustomer(): " +division);
         int id = customer.getCustomerID();
         customerID.setText(String.valueOf(id));
-        System.out.println("int customerID from modCustomer(): " +id);
-
-      //  customerID.setText(String.valueOf(customer.getCustomerID()));
-
-        String nameTest = customer.getCustomerName();
-        customerName.setText(nameTest);
-        System.out.println("String nametest from modCustomer() " +nameTest);
-
-        String phone = customer.getCustomerPhone();
-        customerPhone.setText(phone);
-        System.out.println(phone);
-       // customerPhone.setText(customer.getCustomerPhone());
-
-        String address = customer.getCustomerAddress();
-        customerAddress.setText(address);
-        System.out.println(address);
-        //customerAddress.setText(customer.getCustomerAddress());
-
-        String postalCode = customer.getCustomerPostal();
-        customerPostalCode.setText(postalCode);
-        System.out.println(postalCode);
-       // customerPostalCode.setText(customer.getCustomerPostal());
-
-
+        customerName.setText(customer.getCustomerName());
+        customerPhone.setText(customer.getCustomerPhone());
+        customerAddress.setText(customer.getCustomerAddress());
+        customerPostalCode.setText(customer.getCustomerPostal());
         String countryTest = customer.getCustomerCountry();
         countryComboBox.setValue(countryTest);
         System.out.println(countryTest);
 
-
-/**
-        Stri/ng divisionTest = customer.getCustomerDivision();
-        divisionComboBox.setValue(divisionTest);
-        System.out.println(divisionTest);
-*/
-        int customerID = customer.getDivisionID();
-        System.out.println("modcustomer() customerID : " +customerID);
-        //Country country = (Country) countryComboBox.getValue();
-        //Division division = (Division)divisionComboBox.getValue();
-        //countryComboBox.setValue(customer.getCustomerCountry());
-       // divisionComboBox.setValue(customer.getCustomerDivision());
-
-
-
-
     }
-//3.14. working on - similar to getproduct in project one
+
+    /**
+     * Method for validating input fields and saving modified customer data to database
+     * @return null
+     */
 
     public Customer getCustomerModification() {
         try{
@@ -134,19 +125,28 @@ public class ModifyCustomerFormController implements Initializable {
         return null;
         }
 
+    /**
+     * Event handler for Save button
+     * @param actionEvent On click
+     * @throws Exception
+     */
     public void onSaveBtn(ActionEvent actionEvent) throws Exception{
-
-            Customer customer =  getCustomerModification();
+        Customer customer =  getCustomerModification();
             if (customer !=null){
-            Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("All Customers");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
+                Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("All Customers");
+                Scene scene = new Scene(root, 1000, 600);
+                stage.setScene(scene);
+                stage.show();
         }
     }
 
+    /**
+     * Event handler for Cancel button
+     * @param actionEvent On click
+     * @throws Exception
+     */
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -157,6 +157,11 @@ public class ModifyCustomerFormController implements Initializable {
 
     }
 
+    /**
+     * Event handler for Home button
+     * @param actionEvent On click
+     * @throws Exception
+     */
     public void onHome(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomePageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
