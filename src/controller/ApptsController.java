@@ -123,10 +123,10 @@ public class ApptsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //need to show monthly & weekly appts
-       allApptsTable.setItems(appointmentList);
+        allApptsTable.setItems(appointmentList);
         updateWeeklyTable();
         updateMonthlyTable();
+
 
         titleMonthly.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         descMonthly.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
@@ -222,6 +222,20 @@ public class ApptsController implements Initializable {
         }}
         }
 
+        public void tabSelection(){
+            Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
+            ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+            apptFilteredList =new FilteredList<>(appointmentList, n -> true);
+
+            if (selectedTab == allApptsTab) {
+               updateAllTable();
+            }else if (selectedTab == weeklyTab) {
+                updateWeeklyTable();
+            } else if (selectedTab == monthlyTab) {
+                updateMonthlyTable();
+            }
+        }
+
     /**
      * Method for on Delete Appointment button
      * @param actionEvent
@@ -232,6 +246,7 @@ public class ApptsController implements Initializable {
         TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
                 monthlyTab.isSelected() ? monthlyTable: allApptsTable;
                 Appointments deletedAppt = currentTable.getSelectionModel().getSelectedItem();
+                System.out.println(currentTable);
 
         if (deletedAppt != null) {
             Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
@@ -242,7 +257,7 @@ public class ApptsController implements Initializable {
                 int apptID = deletedAppt.getApptID();
                 System.out.println(apptID);
                 String apptType = deletedAppt.getApptType();
-                System.out.println(apptType);
+                System.out.println(apptType + " " + "currentTable " + currentTable);
                 ApptsDB.deleteAppointment(deletedAppt.getApptID());
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION,
@@ -250,6 +265,8 @@ public class ApptsController implements Initializable {
 
                 alert.setTitle("Appointment deleted.");
                 alert.showAndWait();
+                tabSelection();
+
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to delete."));
@@ -309,6 +326,13 @@ public class ApptsController implements Initializable {
 
         apptMonthFilter.setPredicate(appt -> appt.getStartDate().isAfter(userLogin) && appt.getStartDate().isBefore(logTimePlusMonth));
         monthlyTable.setItems(apptMonthFilter);
+    }
+
+    public void updateAllTable(){
+        ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+        FilteredList<Appointments> allApptFilter = new FilteredList<>(appointmentList, n -> true);
+        allApptsTable.setItems(allApptFilter);
+
     }
 
 }
