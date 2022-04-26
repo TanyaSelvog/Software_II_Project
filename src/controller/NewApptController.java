@@ -141,15 +141,21 @@ public class NewApptController implements Initializable {
      */
     private LocalDateTime getEndDateTime() {
 
-        LocalDate endDate = endDatePicker.getValue();
-        LocalTime endTime = LocalTime.parse(endTimeCB.getValue(), dtf);
-        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-        System.out.println(endDateTime);
-        return endDateTime;
-
+            LocalDate endDate = endDatePicker.getValue();
+            LocalTime endTime = LocalTime.parse(endTimeCB.getValue(), dtf);
+            LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+            System.out.println(endDateTime);
+            return endDateTime;
     }
-
-
+    private void compareTimeValidation(){
+    LocalDateTime startDateTime = getStartDateTime();
+    LocalDateTime endDateTime = getEndDateTime();
+            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("End time is before start time.");
+        alert.setContentText("Start time needs to be before end time.");
+        alert.showAndWait();
+    }}
 
     /**
      *
@@ -158,30 +164,52 @@ public class NewApptController implements Initializable {
      */
     //fields in here so far gets user input
     public void onSave(ActionEvent actionEvent) throws Exception {
-        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
-        int customerID = customerSelected.getCustomerID();
-
-        System.out.println("customerID " + customerID);
-        String apptType = typeComboBox.getSelectionModel().getSelectedItem();
-        LocalDateTime startDateTime = getStartDateTime();
-
-        //LocalDate startDate = newApptDate.getValue();
-        LocalDateTime endDateTime = getEndDateTime();
-        if (startDateTime.isAfter(endDateTime)){
-            System.out.println("oops");
+        Appointments appt = newAppt();
+        if (appt != null) {
+            Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("All Appointments");
+            Scene scene = new Scene(root, 1000, 600);
+            stage.setScene(scene);
+            stage.show();
         }
+    }
+        /**
+        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+    //    int customerID = customerSelected.getCustomerID();
+        compareTimeValidation();
+        String apptType = typeComboBox.getSelectionModel().getSelectedItem();
+
+      LocalDateTime startDateTime = getStartDateTime();
+            LocalDateTime endDateTime = getEndDateTime();
+            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("End time is before start time.");
+                alert.setContentText("Start time needs to be before end time.");
+                alert.showAndWait();
+            }
+
+
+
         String apptDescription = descTF.getText();
         String apptLocation = locationTF.getText();
         String apptTitle = titleTF.getText();
         Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
-        int contactID = contactSelected.getContactID();
+   //     int contactID = contactSelected.getContactID();
+        if (contactSelected == null || apptType == null ||customerSelected == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Missing input.");
+            alert.setContentText("Data is missing in one or more fields.");
+            alert.showAndWait();
+        }
 
-        if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
+        /**if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("End time is before start time.");
             alert.setContentText("Start time needs to be before end time.");
             alert.showAndWait();
         }
+
 
         if (apptDescription.isEmpty() || apptTitle.isEmpty() || apptLocation.isEmpty()){
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -189,6 +217,8 @@ public class NewApptController implements Initializable {
             alert.setContentText("Data is missing in one or more fields.");
             alert.showAndWait();
         } else {
+            int contactID = contactSelected.getContactID();
+            int customerID = customerSelected.getCustomerID();
             getCustApptsCompare(customerID, startDateTime, endDateTime);
             ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
                     contactID);
@@ -204,6 +234,47 @@ public class NewApptController implements Initializable {
         }
 
         }
+*/
+
+    public Appointments newAppt(){
+        try {
+            Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
+            LocalDateTime startDateTime = getStartDateTime();
+            LocalDateTime endDateTime = getEndDateTime();
+                if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("End time is before start time.");
+                    alert.setContentText("Start time needs to be before end time.");
+                    alert.showAndWait();
+                }
+
+            String apptType = typeComboBox.getSelectionModel().getSelectedItem();
+            String apptDescription = descTF.getText();
+            String apptLocation = locationTF.getText();
+            String apptTitle = titleTF.getText();
+            Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
+            //     int contactID = contactSelected.getContactID();
+            if (contactSelected == null || apptType == null ||customerSelected == null || apptDescription.isEmpty()
+                    || apptTitle.isEmpty() || apptLocation.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Missing input.");
+                alert.setContentText("Data is missing in one or more fields.");
+                alert.showAndWait();
+            } else {
+                int contactID = contactSelected.getContactID();
+                int customerID = customerSelected.getCustomerID();
+                getCustApptsCompare(customerID, startDateTime, endDateTime);
+                ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
+                        contactID);
+        }
+    } catch(Exception displayE){
+        Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+        alert.showAndWait();
+
+    }
+
+            return null;
+}
 
 
     /**
