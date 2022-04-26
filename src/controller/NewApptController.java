@@ -231,12 +231,7 @@ public class NewApptController implements Initializable {
             Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
             LocalDateTime startDateTime = getStartDateTime();
             LocalDateTime endDateTime = getEndDateTime();
-            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("End time is before start time.");
-                alert.setContentText("Start time needs to be before end time.");
-                alert.showAndWait();
-            }
+
 
             String apptType = typeComboBox.getSelectionModel().getSelectedItem();
             String apptDescription = descTF.getText();
@@ -244,7 +239,12 @@ public class NewApptController implements Initializable {
             String apptTitle = titleTF.getText();
             Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
             //     int contactID = contactSelected.getContactID();
-            if (contactSelected == null || apptType == null || customerSelected == null || apptDescription.isEmpty()
+                if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setHeaderText("End time is before start time.");
+                    alert.setContentText("Start time needs to be before end time.");
+                    alert.showAndWait();
+                } else if (contactSelected == null || apptType == null || customerSelected == null || apptDescription.isEmpty()
                     || apptTitle.isEmpty() || apptLocation.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Missing input.");
