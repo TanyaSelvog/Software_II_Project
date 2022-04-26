@@ -163,17 +163,7 @@ public class NewApptController implements Initializable {
      * @throws Exception
      */
     //fields in here so far gets user input
-    public void onSave(ActionEvent actionEvent) throws Exception {
-        Appointments appt = newAppt();
-        if (appt != null) {
-            Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("All Appointments");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
+
         /**
         Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
     //    int customerID = customerSelected.getCustomerID();
@@ -236,17 +226,17 @@ public class NewApptController implements Initializable {
         }
 */
 
-    public Appointments newAppt(){
-        try {
+        public void onSave(ActionEvent actionEvent) throws Exception {
+            try {
             Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
             LocalDateTime startDateTime = getStartDateTime();
             LocalDateTime endDateTime = getEndDateTime();
-                if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("End time is before start time.");
-                    alert.setContentText("Start time needs to be before end time.");
-                    alert.showAndWait();
-                }
+            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("End time is before start time.");
+                alert.setContentText("Start time needs to be before end time.");
+                alert.showAndWait();
+            }
 
             String apptType = typeComboBox.getSelectionModel().getSelectedItem();
             String apptDescription = descTF.getText();
@@ -254,8 +244,8 @@ public class NewApptController implements Initializable {
             String apptTitle = titleTF.getText();
             Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
             //     int contactID = contactSelected.getContactID();
-            if (contactSelected == null || apptType == null ||customerSelected == null || apptDescription.isEmpty()
-                    || apptTitle.isEmpty() || apptLocation.isEmpty()){
+            if (contactSelected == null || apptType == null || customerSelected == null || apptDescription.isEmpty()
+                    || apptTitle.isEmpty() || apptLocation.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setHeaderText("Missing input.");
                 alert.setContentText("Data is missing in one or more fields.");
@@ -266,15 +256,21 @@ public class NewApptController implements Initializable {
                 getCustApptsCompare(customerID, startDateTime, endDateTime);
                 ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
                         contactID);
+                Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                stage.setTitle("All Appointments");
+                Scene scene = new Scene(root, 1000, 600);
+                stage.setScene(scene);
+                stage.show();
+
+            }
+        } catch (Exception displayE) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+            alert.showAndWait();
+
         }
-    } catch(Exception displayE){
-        Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
-        alert.showAndWait();
 
     }
-
-            return null;
-}
 
 
     /**
