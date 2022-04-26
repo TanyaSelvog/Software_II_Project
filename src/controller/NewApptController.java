@@ -253,9 +253,12 @@ public class NewApptController implements Initializable {
             } else {
                 int contactID = contactSelected.getContactID();
                 int customerID = customerSelected.getCustomerID();
-                getCustApptsCompare(customerID, startDateTime, endDateTime);
-                ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
-                        contactID);
+               // getCustApptsCompare(customerID, startDateTime, endDateTime);
+
+                if (getCustApptsCompare(customerID, startDateTime, endDateTime) ){
+                        ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
+                                contactID);
+                    }
                 Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
                 Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 stage.setTitle("All Appointments");
@@ -305,20 +308,16 @@ public class NewApptController implements Initializable {
                     || startDate.isAfter(appointments.getStartDate())
                     && startDate.isBefore(appointments.getEndDate())
                     || endDate.isAfter(appointments.getStartDate())
-                        && endDate.isBefore(appointments.getEndDate())
+                    && endDate.isBefore(appointments.getEndDate())
                     || startDate.isBefore(appointments.getStartDate())
-                        && endDate.isAfter(appointments.getEndDate())
+                    && endDate.isAfter(appointments.getEndDate())
                     || startDate.isEqual(appointments.getStartDate())
-                    && endDate.isEqual(appointments.getEndDate())){
+                    && endDate.isEqual(appointments.getEndDate())) {
 
                 Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
                 alert.showAndWait();
                 return false;
             }
+        }return true;}
+}
 
-
-
-
-        }
-        return true;
-    }}
