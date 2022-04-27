@@ -258,13 +258,23 @@ public class NewApptController implements Initializable {
                 if (getCustApptsCompare(customerID, startDateTime, endDateTime) ){
                         ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
                                 contactID);
-                    }
-                Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                stage.setTitle("All Appointments");
-                Scene scene = new Scene(root, 1000, 600);
-                stage.setScene(scene);
-                stage.show();
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+                    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    stage.setTitle("All Appointments");
+                    Scene scene = new Scene(root, 1000, 600);
+                    stage.setScene(scene);
+                    stage.show();
+                    } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
+                    alert.showAndWait();
+
+                }
+            //    Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+              //  Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                //stage.setTitle("All Appointments");
+                //Scene scene = new Scene(root, 1000, 600);
+                //stage.setScene(scene);
+                //stage.show();
 
             }
         } catch (Exception displayE) {
@@ -314,8 +324,7 @@ public class NewApptController implements Initializable {
                     || startDate.isEqual(appointments.getStartDate())
                     && endDate.isEqual(appointments.getEndDate())) {
 
-                Alert alert = new Alert(Alert.AlertType.ERROR, ("Appointment can not be saved. This appointment conflicts with another appointment."));
-                alert.showAndWait();
+
                 return false;
             }
         }return true;}
