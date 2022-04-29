@@ -108,48 +108,55 @@ public class ModifyApptController implements Initializable {
      * @throws Exception
      */
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
+        try {
+            String apptTitle = titleTF.getText();
+            System.out.println(apptTitle);
+            String apptDescription = descriptionTF.getText();
+            System.out.println("apptDescription from MAC: " + apptDescription);
+            String apptLocation = locationTF.getText();
+            int apptID = Integer.parseInt(apptIDTF.getText());
+            Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
+            int contactID = contactSelected.getContactID();
+            System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
+            System.out.println(contactID);
+            //int contactID = contactSelected.getContactID();
 
-        String apptTitle = titleTF.getText();
-        System.out.println(apptTitle);
-        String apptDescription = descriptionTF.getText();
-        System.out.println("apptDescription from MAC: " + apptDescription);
-        String apptLocation = locationTF.getText();
-        int apptID = Integer.parseInt(apptIDTF.getText());
-        Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
-        int contactID = contactSelected.getContactID();
-        System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
-        System.out.println(contactID);
-        //int contactID = contactSelected.getContactID();
+            Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
+            int customerID = customerSelected.getCustomerID();
+            String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
+            System.out.println("apptType: " + apptType);
+            String startTime = startTimeCB.getValue();
+            LocalTime startLT = LocalTime.parse(startTime, dtf);
+            LocalDate startDate = startDateDP.getValue();
+            LocalDateTime startDateTime = startDate.atTime(startLT);
+            String endTime = endTimeCB.getValue();
+            LocalTime endLT = LocalTime.parse(endTime, dtf);
+            LocalDate endLD = endDateDP.getValue();
+            LocalDateTime endDateTime = endLD.atTime(endLT);
+            System.out.println("EndDateTime: " + endDateTime);
+            //LocalDateTime lastUpdate = LocalDateTime.now();
+            String lastUpdatedBy = User.getUserName();
+            System.out.println(lastUpdatedBy);
+            int userID = User.getUserID();
+            System.out.println(userID);
 
-        Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
-        int customerID = customerSelected.getCustomerID();
-        String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
-        System.out.println("apptType: " + apptType);
-        String startTime = startTimeCB.getValue();
-        LocalTime startLT = LocalTime.parse(startTime, dtf);
-        LocalDate startDate = startDateDP.getValue();
-        LocalDateTime startDateTime = startDate.atTime(startLT);
-        String endTime = endTimeCB.getValue();
-        LocalTime endLT = LocalTime.parse(endTime, dtf);
-        LocalDate endLD = endDateDP.getValue();
-        LocalDateTime endDateTime = endLD.atTime(endLT);
-        System.out.println("EndDateTime: " + endDateTime);
-        //LocalDateTime lastUpdate = LocalDateTime.now();
-        String lastUpdatedBy = User.getUserName();
-        System.out.println(lastUpdatedBy);
-        int userID = User.getUserID();
-        System.out.println(userID);
+            if (compareAppts(apptID, customerID, startDateTime, endDateTime))
+                ApptsDB.modifyAppt(apptID, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
+                        lastUpdatedBy, customerID, userID, contactID);
 
-        if (compareAppts(apptID, customerID, startDateTime, endDateTime))
-            ApptsDB.modifyAppt(apptID, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
-                lastUpdatedBy, customerID, userID, contactID);
+            Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("All Appointments");
+            Scene scene = new Scene(root, 1000, 600);
+            stage.setScene(scene);
+            stage.show();
+        }
+     catch (Exception displayE)
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("All Appointments");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+        alert.showAndWait();
+    }
     }
         /** private Appointments getApptModification() {
 
@@ -249,7 +256,7 @@ public class ModifyApptController implements Initializable {
      * Method for setting up object from modifyApptController
      * @param appointment
      */
-    // 3.28.2022 Setting up to get object from modifyApptController
+
     public void modAppointment(Appointments appointment){
         //need contact, apptid, title, description, location, type, customer, start date/time, end date/time
 
