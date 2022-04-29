@@ -29,7 +29,7 @@ public class ApptsDB {
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static ObservableList<Appointments> custApptsList;
-    public static boolean apptTest;
+    public static boolean apptTest = true;
     public static boolean getApptTest(){
         return apptTest;
     }
@@ -201,19 +201,16 @@ public class ApptsDB {
                 //checking to see if a time is between two times
 
                 if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)) {
-                    apptTest = true;
+                    apptTest = false;
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, ("You have an appointment (Appointment ID: " + apptID + ") "
                             + "on " + apptTimeNotice + "."));
                     alert.setTitle("Upcoming appointment");
                     alert.showAndWait();
-
-                } else {
-                    apptTest = false;
                 }
             }
 
-        } catch (SQLException exception) {
-            exception.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
 

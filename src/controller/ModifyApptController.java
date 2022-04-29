@@ -169,54 +169,8 @@ public class ModifyApptController implements Initializable {
                 alert.showAndWait();
             }
         }
-        /** private Appointments getApptModification() {
 
-         String apptTitle = titleTF.getText();
-         System.out.println(apptTitle);
-         String apptDescription = descriptionTF.getText();
-         System.out.println("apptDescription from MAC: " + apptDescription);
-         String apptLocation = locationTF.getText();
-         int id = Integer.parseInt(apptIDTF.getText());
-         Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
-         int contactID = contactSelected.getContactID();
-         System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
-         System.out.println(contactID);
-         //int contactID = contactSelected.getContactID();
 
-         Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
-         int customerID = customerSelected.getCustomerID();
-         String apptType = String.value
-         String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
-         System.out.println("apptType: " + apptType);
-         String startTime = startTimeCB.getValue();
-         LocalTime startLT = LocalTime.parse(startTime,dtf);
-         LocalDate startDate = startDateDP.getValue();
-         LocalDateTime startDateTime = startDate.atTime(startLT);
-         String endTime = endTimeCB.getValue();
-         LocalTime endLT = LocalTime.parse(endTime,dtf);
-         LocalDate endLD = endDateDP.getValue();
-         LocalDateTime endDateTime = endLD.atTime(endLT);
-         System.out.println("EndDateTime: " + endDateTime);
-         //LocalDateTime lastUpdate = LocalDateTime.now();
-         String lastUpdatedBy = User.getUserName();
-         System.out.println(lastUpdatedBy);
-         int userID = User.getUserID();
-         System.out.println(userID);
-
-         ApptsDB.modifyAppt(id, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
-         lastUpdatedBy, customerID, userID, contactID);
-         ???
-
-        /**
- ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, currentUser.getUserName(), customerID, currentUser.getUserID(),
- contactID);
- Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
- Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
- stage.setTitle("All Appointments");
- Scene scene = new Scene(root, 1000, 600);
- stage.setScene(scene);
- stage.show();
-*/
 
     /**
      * Displays list of times that are within the business hours (8am-10pm EST)

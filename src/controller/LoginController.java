@@ -133,8 +133,8 @@ public class LoginController implements Initializable {
             getUserAppt();
             trackUserLogin();
             apptTest = ApptsDB.getApptTest();
-            if (!apptTest){
-                 Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
+            if (apptTest){
+                Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
                 msg.setTitle("No appointments");
                 msg.showAndWait();}}
 
