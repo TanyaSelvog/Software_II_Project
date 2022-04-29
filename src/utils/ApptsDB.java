@@ -30,7 +30,9 @@ public class ApptsDB {
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static ObservableList<Appointments> custApptsList;
     public static boolean testFlag;
-
+    public static boolean getTestFlag(){
+        return testFlag;
+    }
     /**
      * Method for getting all appointments in Observable List
      * @return apptsList List of all appointments
@@ -177,8 +179,8 @@ public class ApptsDB {
                 LocalDateTime startDateTime = result.getTimestamp("Start").toLocalDateTime();
 
                 userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
-                String apptTimeNotice = dtf.format(startDateTime);
-              //  System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
+                String apptTimeNotice = dateTime.format(startDateTime);
+                //  System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
 
                 //  if (loginTime.isBefore(startDateTime)){
                 //    System.out.println("Login time is before startDateTime " + loginTime);
@@ -196,19 +198,20 @@ public class ApptsDB {
                 String afterTime = dtf.format(timeAfterAppt);
 
 
-
                 //checking to see if a time is between two times
 
                 if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)) {
-                       testFlag = true;
+                    testFlag = true;
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, ("You have an appointment (Appointment ID: " + apptID + ") "
-                            + "at " + apptTimeNotice + "."));
+                            + "on " + apptTimeNotice + "."));
                     alert.setTitle("Upcoming appointment");
                     alert.showAndWait();
 
+                } else {
+                    testFlag = false;
                 }
-
             }
+
         } catch (SQLException exception) {
             exception.printStackTrace();
         }

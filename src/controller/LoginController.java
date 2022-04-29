@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Appointments;
 import model.User;
+import utils.ApptsDB;
 import utils.UserDB;
 
 import static utils.ApptsDB.getUserAppt;
@@ -116,10 +117,12 @@ public class LoginController implements Initializable {
         } else {
             getUserAppt();
             trackUserLogin();
+            testFlag = ApptsDB.getTestFlag();
             if (!testFlag){
-                Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
+                System.out.println("testFlag is false");
+                 Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
                 msg.setTitle("No appointments");
-                msg.showAndWait();}
+                msg.showAndWait();}}
             //trackUserLogin();
 
 
@@ -128,7 +131,7 @@ public class LoginController implements Initializable {
             stage.setTitle("Scheduler Homepage");
             Scene scene = new Scene(root, 1000, 600);
             stage.setScene(scene);
-            stage.show();}
+            stage.show();
         }
 
         public boolean userLogin() {
