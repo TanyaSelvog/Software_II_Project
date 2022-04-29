@@ -109,22 +109,12 @@ public class ModifyApptController implements Initializable {
      */
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
         try {
-            String apptTitle = titleTF.getText();
-            System.out.println(apptTitle);
-            String apptDescription = descriptionTF.getText();
-            System.out.println("apptDescription from MAC: " + apptDescription);
-            String apptLocation = locationTF.getText();
-            int apptID = Integer.parseInt(apptIDTF.getText());
-            Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
-            int contactID = contactSelected.getContactID();
-            System.out.println("Contact contactSelected from getApptModification(): " + contactSelected);
-            System.out.println(contactID);
-            //int contactID = contactSelected.getContactID();
 
             Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
-            int customerID = customerSelected.getCustomerID();
+            //  int customerID = customerSelected.getCustomerID();
             String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
-            System.out.println("apptType: " + apptType);
+
+
             String startTime = startTimeCB.getValue();
             LocalTime startLT = LocalTime.parse(startTime, dtf);
             LocalDate startDate = startDateDP.getValue();
@@ -133,31 +123,52 @@ public class ModifyApptController implements Initializable {
             LocalTime endLT = LocalTime.parse(endTime, dtf);
             LocalDate endLD = endDateDP.getValue();
             LocalDateTime endDateTime = endLD.atTime(endLT);
-            System.out.println("EndDateTime: " + endDateTime);
-            //LocalDateTime lastUpdate = LocalDateTime.now();
             String lastUpdatedBy = User.getUserName();
-            System.out.println(lastUpdatedBy);
             int userID = User.getUserID();
-            System.out.println(userID);
 
-            if (compareAppts(apptID, customerID, startDateTime, endDateTime))
-                ApptsDB.modifyAppt(apptID, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
-                        lastUpdatedBy, customerID, userID, contactID);
+            String apptTitle = titleTF.getText();
+            String apptDescription = descriptionTF.getText();
+            String apptLocation = locationTF.getText();
+            int apptID = Integer.parseInt(apptIDTF.getText());
+            Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
 
-            Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("All Appointments");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
+
+            //int contactID = contactSelected.getContactID();
+
+            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("End time is before start time.");
+                alert.setContentText("Start time needs to be before end time.");
+                alert.showAndWait();
+            } else if (contactSelected == null || apptType == null || customerSelected == null || apptDescription.isEmpty()
+                    || apptTitle.isEmpty() || apptLocation.isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("Missing input.");
+                alert.setContentText("Data is missing in one or more fields.");
+                alert.showAndWait();
+            } else {
+                int contactID = contactSelected.getContactID();
+                int customerID = customerSelected.getCustomerID();
+
+
+                if (compareAppts(apptID, customerID, startDateTime, endDateTime)) {
+                    ApptsDB.modifyAppt(apptID, apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime,
+                            lastUpdatedBy, customerID, userID, contactID);
+
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
+                    Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    stage.setTitle("All Appointments");
+                    Scene scene = new Scene(root, 1000, 600);
+                    stage.setScene(scene);
+                    stage.show();
+
+                }}}
+
+     catch(Exception displayE) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
+                alert.showAndWait();
+            }
         }
-     catch (Exception displayE)
-
-    {
-        Alert alert = new Alert(Alert.AlertType.ERROR, ("Data is missing or contains invalid values."));
-        alert.showAndWait();
-    }
-    }
         /** private Appointments getApptModification() {
 
          String apptTitle = titleTF.getText();
