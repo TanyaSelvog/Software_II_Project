@@ -25,8 +25,8 @@ public class ReportsController implements Initializable {
     private Button country;
 
     /**
-     * Method for on click Home button
-     * @param actionEvent
+     * Event handler for Home button that returns user to Home page
+     * @param actionEvent Home button click
      * @throws Exception
      */
     public void onHomeClick(ActionEvent actionEvent) throws Exception {
@@ -40,8 +40,8 @@ public class ReportsController implements Initializable {
 
 
     /**
-     * Method for on click Contact Button
-     * @param actionEvent
+     * Event handler for on click Contact Button
+     * @param actionEvent Contact click button
      * @throws Exception
      */
     public void onContactBtn(ActionEvent actionEvent) throws Exception {
@@ -54,8 +54,8 @@ public class ReportsController implements Initializable {
     }
 
     /**
-     * Method for on click Monthly button
-     * @param actionEvent
+     * Event handler Monthly button that sends users to Monthly Customers Report page
+     * @param actionEvent Monthly button click
      * @throws Exception
      */
     public void onMonthlyBtn(ActionEvent actionEvent) throws Exception {
@@ -68,8 +68,8 @@ public class ReportsController implements Initializable {
     }
 
     /**
-     * Method for on click Country Button
-     * @param actionEvent
+     * Event handler for Country button that sends users to Country Reports page
+     * @param actionEvent Country button click
      * @throws Exception
      */
     public void onCountryBtn(ActionEvent actionEvent) throws Exception {
@@ -83,8 +83,8 @@ public class ReportsController implements Initializable {
 
     /**
      * Method that intializes the controller
-     * @param url
-     * @param resourceBundle
+     * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

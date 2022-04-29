@@ -74,33 +74,6 @@ public class ModifyApptController implements Initializable {
         stage.show();
     }
 
-   /** public LocalDateTime getModStartDateTime(String startTime, String sDate){
-        LocalTime lt = LocalTime.parse(startTime, dtf);
-        LocalDate ld = LocalDate.parse(sDate, dateOnlyTime);
-        System.out.println("localTime: " + lt);
-        LocalDateTime ltd = ld.atTime(lt);
-        return ltd;
-    }
-    /**
-    private LocalDateTime getStartDateTime() {
-
-        LocalDate startDate = startDateDP.getValue();
-        LocalTime startTime = (LocalTime) startTimeCB.getValue();
-        LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
-        System.out.println(startDateTime);
-        return startDateTime;
-
-    }
-    private LocalDateTime getEndDateTime() {
-
-        LocalDate endDate = endDateDP.getValue();
-        LocalTime endTime = (LocalTime) endTimeCB.getValue();
-        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-        System.out.println(endDateTime);
-        return endDateTime;
-    }
-*/
-
 
     /**
      * Event handler for on Save Button
@@ -111,7 +84,6 @@ public class ModifyApptController implements Initializable {
         try {
 
             Customer customerSelected = (Customer) customerComboBox.getSelectionModel().getSelectedItem();
-            //  int customerID = customerSelected.getCustomerID();
             String apptType = String.valueOf(typeComboBox.getSelectionModel().getSelectedItem());
 
 
@@ -130,10 +102,8 @@ public class ModifyApptController implements Initializable {
             String apptDescription = descriptionTF.getText();
             String apptLocation = locationTF.getText();
             int apptID = Integer.parseInt(apptIDTF.getText());
-            Contact contactSelected = (Contact) contactComboBox.getSelectionModel().getSelectedItem();
+            Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
 
-
-            //int contactID = contactSelected.getContactID();
 
             if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -195,15 +165,14 @@ public class ModifyApptController implements Initializable {
 
         }
 
-
         return timeList;
 
     }
 
     /**
      * Method that initializes the controller and sets contact, customer, type, start & end Combo Boxes
-     * @param url
-     * @param resourceBundle
+     * @param url Used to rseolve relative paths for the root object, or null lif the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -225,26 +194,18 @@ public class ModifyApptController implements Initializable {
         contactComboBox.getSelectionModel().select(ContactDB.getCustomerContact(appointment.getContactID()));
         customerComboBox.getSelectionModel().select(CustDB.getCustomerName(appointment.getCustomerID()));
 
-        String titleTest = appointment.getApptTitle();
-        titleTF.setText(titleTest);
-       // titleTF.setText(appointment.getApptTitle());
 
-        String descriptionTest = appointment.getApptDescription();
-        descriptionTF.setText(descriptionTest);
-
-        //descriptionTF.setText(appointment.getApptDescription());
+        titleTF.setText(appointment.getApptTitle());
+        descriptionTF.setText(appointment.getApptDescription());
 
         String location = appointment.getApptLocation();
         locationTF.setText(location);
-       // locationTF.setText(appointment.getApptLocation());
-       // typeTF.setText(appointment.getApptType());
-     //  customerComboBox.setItems(CustDB.getCustomersList());
+
         int id = appointment.getApptID();
         apptIDTF.setText(String.valueOf(id));
 
         String typeTest = appointment.getApptType();
         typeComboBox.setValue(typeTest);
-        System.out.println("typeTest from MAC: " + typeTest);
 
         //modify startTime
         LocalDateTime ldtStart = appointment.getStartDate();
@@ -267,21 +228,20 @@ public class ModifyApptController implements Initializable {
         LocalDateTime ld = appointment.getEndDate();
         LocalDate ldtTestDate = ld.toLocalDate();
        endDateDP.setValue(ldtTestDate);
-     //   endTimeCB.setValue(endLDT);
+
 
     }
 
     /**
-     * Method to compare appointments to make sure no overlaps for customer appointments
-     * @param apptID
-     * @param customerID
-     * @param startDate
-     * @param endDate
-     * @return
+     * Compares appointments to make sure no overlaps for customer appointments
+     * @param apptID apptID
+     * @param customerID customerID
+     * @param startDate startDate
+     * @param endDate endDate
+     * @return false if appointment times overlap, true if not
      */
     private boolean compareAppts (int apptID, int customerID, LocalDateTime startDate, LocalDateTime endDate) {
 
-// || start.isBefore(appointment.getStart()) && end.isAfter(appointment.getEnd())) {
         ObservableList<Appointments> custApptsList = getCustomerAppts(customerID);
         for (Appointments appointments : custApptsList) {
           if (apptID != appointments.getApptID()){
@@ -300,9 +260,6 @@ public class ModifyApptController implements Initializable {
                 alert.showAndWait();
                 return false;
             }
-
-
-
 
         }}
         return true;

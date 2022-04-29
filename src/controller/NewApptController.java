@@ -57,8 +57,7 @@ public class NewApptController implements Initializable {
     public DatePicker endDatePicker;
 
     public ObservableList<String> timeList = FXCollections.observableArrayList();
-    public static ObservableList<Appointments> getCustomerAppts = FXCollections.observableArrayList();
-    public static ObservableList<Appointments> custApptsList = FXCollections.observableArrayList();
+
     public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public TextField apptIDTF;
 
@@ -81,6 +80,10 @@ public class NewApptController implements Initializable {
 
     }
 
+    /**
+     * Sets and displays the business hours of 8am-10pm EST
+     * @return timeList
+     */
     public ObservableList<String> getTimeList() {
         ObservableList<String> timeList = FXCollections.observableArrayList();
 
@@ -104,7 +107,6 @@ public class NewApptController implements Initializable {
         return timeList;
 
     }
-
 
 
     /**
@@ -134,9 +136,9 @@ public class NewApptController implements Initializable {
 
 
     /**
-     * Event handler for the Save button
+     * Event handler for the Save button that validates user input and saves the appointment
      *
-     * @param actionEvent
+     * @param actionEvent On Save button click
      * @throws Exception
      */
     //working on 4.27
@@ -167,7 +169,7 @@ public class NewApptController implements Initializable {
             } else {
                 int contactID = contactSelected.getContactID();
                 int customerID = customerSelected.getCustomerID();
-               // getCustApptsCompare(customerID, startDateTime, endDateTime);
+
 
                 if (getCustApptsCompare(customerID, startDateTime, endDateTime) ){
                         ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
@@ -183,12 +185,7 @@ public class NewApptController implements Initializable {
                     alert.showAndWait();
 
                 }
-            //    Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-              //  Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                //stage.setTitle("All Appointments");
-                //Scene scene = new Scene(root, 1000, 600);
-                //stage.setScene(scene);
-                //stage.show();
+
 
             }
         } catch (Exception displayE) {
@@ -201,8 +198,8 @@ public class NewApptController implements Initializable {
 
 
     /**
-     *
-     * @param actionEvent
+     * Event handler for Cancel button that returns user to Appointments View page
+     * @param actionEvent Clicked Cancel button
      * @throws Exception
      */
 
@@ -216,11 +213,11 @@ public class NewApptController implements Initializable {
     }
 
     /**
-     *
+     * Compares customer appointments to make sure no overlapping appointments can be scheduled
      * @param customerID
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate startDate for appointment to be scheduled
+     * @param endDate endDate for appointment to be scheduled
+     * @return false, if any conflict
      */
     private boolean getCustApptsCompare(int customerID, LocalDateTime startDate, LocalDateTime endDate) {
 

@@ -41,8 +41,8 @@ public class ContactScheduleController implements Initializable {
 
     /**
      * Method that initializes the controller for Contact Scheduler
-     * @param url
-     * @param resourceBundle
+     * @param url Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
 
     @Override
@@ -64,6 +64,12 @@ public class ContactScheduleController implements Initializable {
 
 
     }
+
+    /**
+     * Event handler for Reports button that returns users to Reports page
+     * @param actionEvent Reports button click
+     * @throws Exception
+     */
     public void onReportsBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -74,8 +80,8 @@ public class ContactScheduleController implements Initializable {
     }
 
     /**
-     * Method for on Generate Button
-     * @param actionEvent
+     * Event handler for Generate button that shows a Contact's schedule based on contact selected
+     * @param actionEvent Generate button click
      * @throws Exception
      */
     public void onGenerateBtn (ActionEvent actionEvent) throws Exception {
@@ -97,8 +103,8 @@ public class ContactScheduleController implements Initializable {
     }
 
     /**
-     * Method for on Home button
-     * @param actionEvent
+     * Event handler for on Home button click that returns users to Home page
+     * @param actionEvent Home button clicked
      * @throws Exception
      */
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {

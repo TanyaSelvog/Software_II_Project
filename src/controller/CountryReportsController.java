@@ -44,9 +44,9 @@ public class CountryReportsController implements Initializable {
     public Label resultsLBL;
 
     /**
-     * Method that initializes the Country Reports Controller
-     * @param url
-     * @param resourceBundle
+     * Method that initializes the Country Reports Controller and sets the table columns and country combo box
+     * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,8 +59,8 @@ public class CountryReportsController implements Initializable {
     }
 
     /**
-     * Method for on click Home Button
-     * @param actionEvent
+     * Event handler for on Home button that sends user back to Home page
+     * @param actionEvent Home button click
      * @throws Exception
      */
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {
@@ -73,7 +73,8 @@ public class CountryReportsController implements Initializable {
     }
 
     /**
-     * Method for on Generate Report button
+     * Gets Country combo box value and sets table display when Generate button is clicked
+     * If no customers in selected Country, alert message is displayed
      */
     public void onGenerateRpt(ActionEvent actionEvent) throws Exception{
 
@@ -92,8 +93,8 @@ public class CountryReportsController implements Initializable {
     }
 
     /**
-     * Method for on Reports Button
-     * @param actionEvent
+     * Event handler for Reports button that sends user to Reports View page
+     * @param actionEvent Reports button click
      * @throws Exception
      */
     public void onReportsBtn(ActionEvent actionEvent) throws Exception {
