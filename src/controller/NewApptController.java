@@ -134,74 +134,12 @@ public class NewApptController implements Initializable {
 
 
     /**
+     * Event handler for the Save button
      *
      * @param actionEvent
      * @throws Exception
      */
-    //fields in here so far gets user input
-
-        /**
-        Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();
-    //    int customerID = customerSelected.getCustomerID();
-        compareTimeValidation();
-        String apptType = typeComboBox.getSelectionModel().getSelectedItem();
-
-      LocalDateTime startDateTime = getStartDateTime();
-            LocalDateTime endDateTime = getEndDateTime();
-            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setHeaderText("End time is before start time.");
-                alert.setContentText("Start time needs to be before end time.");
-                alert.showAndWait();
-            }
-
-
-
-        String apptDescription = descTF.getText();
-        String apptLocation = locationTF.getText();
-        String apptTitle = titleTF.getText();
-        Contact contactSelected = contactComboBox.getSelectionModel().getSelectedItem();
-   //     int contactID = contactSelected.getContactID();
-        if (contactSelected == null || apptType == null ||customerSelected == null){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Missing input.");
-            alert.setContentText("Data is missing in one or more fields.");
-            alert.showAndWait();
-        }
-
-        /**if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("End time is before start time.");
-            alert.setContentText("Start time needs to be before end time.");
-            alert.showAndWait();
-        }
-
-
-        if (apptDescription.isEmpty() || apptTitle.isEmpty() || apptLocation.isEmpty()){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Missing input.");
-            alert.setContentText("Data is missing in one or more fields.");
-            alert.showAndWait();
-        } else {
-            int contactID = contactSelected.getContactID();
-            int customerID = customerSelected.getCustomerID();
-            getCustApptsCompare(customerID, startDateTime, endDateTime);
-            ApptsDB.createAppointment(apptTitle, apptDescription, apptLocation, apptType, startDateTime, endDateTime, customerID,
-                    contactID);
-
-
-            System.out.println(apptTitle + " " + apptDescription + " " + contactSelected + " " + apptType + " " + endDateTime + " " + customerID + "");
-            Parent root = FXMLLoader.load(getClass().getResource("/view/AppointmentsView.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("All Appointments");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
-        }
-
-        }
-*/
-        //working on 4.27
+    //working on 4.27
         public void onSave(ActionEvent actionEvent) throws Exception {
             try {
             Customer customerSelected = customerComboBox.getSelectionModel().getSelectedItem();

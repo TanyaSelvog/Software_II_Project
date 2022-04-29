@@ -103,8 +103,8 @@ public class ModifyApptController implements Initializable {
 
 
     /**
-     * Method for on Save Button
-     * @param actionEvent
+     * Event handler for on Save Button
+     * @param actionEvent on Save button click
      * @throws Exception
      */
     public void onSaveClick(ActionEvent actionEvent) throws Exception {
@@ -219,8 +219,8 @@ public class ModifyApptController implements Initializable {
 */
 
     /**
-     * Method for getting timelist
-     * @return
+     * Displays list of times that are within the business hours (8am-10pm EST)
+     * @return timelist
      */
     public ObservableList<String> getTimeList() {
         ObservableList<String> timeList = FXCollections.observableArrayList();
@@ -247,7 +247,7 @@ public class ModifyApptController implements Initializable {
     }
 
     /**
-     * Method that initializes the controller
+     * Method that initializes the controller and sets contact, customer, type, start & end Combo Boxes
      * @param url
      * @param resourceBundle
      */
@@ -259,17 +259,14 @@ public class ModifyApptController implements Initializable {
         customerComboBox.setItems(CustDB.getCustomersList());
         typeComboBox.getItems().addAll("Initial Meeting", "Follow-Up Consultation", "Lunch Meeting", "Closing Session");
 
-        // descriptionTF.setText(Appointments.getApptDescription());
-
     }
 
     /**
      * Method for setting up object from modifyApptController
-     * @param appointment
+     * @param appointment Appointment to be modified
      */
 
     public void modAppointment(Appointments appointment){
-        //need contact, apptid, title, description, location, type, customer, start date/time, end date/time
 
         contactComboBox.getSelectionModel().select(ContactDB.getCustomerContact(appointment.getContactID()));
         customerComboBox.getSelectionModel().select(CustDB.getCustomerName(appointment.getCustomerID()));
