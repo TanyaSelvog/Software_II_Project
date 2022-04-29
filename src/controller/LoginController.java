@@ -68,6 +68,7 @@ public class LoginController implements Initializable {
    public static String password;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static LocalDateTime loginTime;
+    public static boolean testFlag;
 
 
     private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
@@ -115,9 +116,12 @@ public class LoginController implements Initializable {
         } else {
             getUserAppt();
             trackUserLogin();
-            Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
-            msg.setTitle("No appointments");
-            msg.showAndWait();
+            if (!testFlag){
+                Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
+                msg.setTitle("No appointments");
+                msg.showAndWait();}
+            //trackUserLogin();
+
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

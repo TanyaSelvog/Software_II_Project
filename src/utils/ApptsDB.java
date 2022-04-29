@@ -29,6 +29,7 @@ public class ApptsDB {
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static ObservableList<Appointments> custApptsList;
+    public static boolean testFlag;
 
     /**
      * Method for getting all appointments in Observable List
@@ -199,6 +200,7 @@ public class ApptsDB {
                 //checking to see if a time is between two times
 
                 if (loginTime.isAfter(timeBeforeAppt) && loginTime.isBefore(timeAfterAppt)) {
+                       testFlag = true;
                     Alert alert = new Alert(Alert.AlertType.INFORMATION, ("You have an appointment (Appointment ID: " + apptID + ") "
                             + "at " + apptTimeNotice + "."));
                     alert.setTitle("Upcoming appointment");
