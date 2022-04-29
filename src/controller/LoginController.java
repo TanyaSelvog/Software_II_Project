@@ -69,7 +69,10 @@ public class LoginController implements Initializable {
    public static String password;
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public static LocalDateTime loginTime;
-    public static boolean testFlag;
+    /**
+     * flag to determine which message to give log in user
+     */
+    public static boolean apptTest;
 
 
     private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
@@ -83,13 +86,13 @@ public class LoginController implements Initializable {
         usernameLbl.setText(rb.getString("userNameLabel"));
         passwordLbl.setText(rb.getString("passwordLabel"));
         loginBtn.setText(rb.getString("loginButton"));
-/**
-    LocalDate today = LocalDate.now();
-        LocalDateTime loginTime = LocalDateTime.now();
-        String login = dtf.format(loginTime);
-        System.out.println("String login: " + login + " this currently is activated at init; will need to move to work with login button");
-*/
+
     }
+
+    /**
+     * Method for tracking successful user log in attempts
+     * @throws IOException
+     */
     public void trackUserLogin() throws IOException{
         String userName = usernameTF.getText();
         String userPassword = passwordTF.getText();
@@ -101,6 +104,11 @@ public class LoginController implements Initializable {
         output.println("User " + currentUser  + " successfully logged in on " + timeAttempt + " UTC. ");
         output.close();
     }
+
+    /**
+     * Method for tracking invalid user log in attempts
+     * @throws IOException
+     */
     public void invalidUser() throws IOException{
         String userName = usernameTF.getText();
         LocalDate loginAttempt = LocalDateTime.now().toLocalDate();
@@ -110,6 +118,13 @@ public class LoginController implements Initializable {
         output.println("User " + userName  + " was unable to log in on " + timeAttempt + " UTC. ");
         output.close();
     }
+
+    /**
+     * Event handler for on Login Button.
+     * Authenticates user and displays message if no appointments within 15 minutes
+     * @param actionEvent Login Button click
+     * @throws Exception
+     */
     public void onLoginBtnClicked(ActionEvent actionEvent) throws Exception {
         if (userLogin() != true) {
             returnLoginWindow(actionEvent);
@@ -117,14 +132,11 @@ public class LoginController implements Initializable {
         } else {
             getUserAppt();
             trackUserLogin();
-            testFlag = ApptsDB.getTestFlag();
-            if (!testFlag){
-                System.out.println("testFlag is false");
+            apptTest = ApptsDB.getApptTest();
+            if (!apptTest){
                  Alert msg = new Alert(Alert.AlertType.INFORMATION, ("You have no appointments in the next 15 minutes."));
                 msg.setTitle("No appointments");
                 msg.showAndWait();}}
-            //trackUserLogin();
-
 
             Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -134,7 +146,11 @@ public class LoginController implements Initializable {
             stage.show();
         }
 
-        public boolean userLogin() {
+    /**
+     * Boolean method for authenticating user
+     * @return Boolean loginValid
+     */
+    public boolean userLogin() {
             boolean isLoginValid = true;
             String userName = usernameTF.getText();
             String userPassword = passwordTF.getText();
@@ -145,14 +161,15 @@ public class LoginController implements Initializable {
                 isLoginValid = false;
 
             }
-            if (currentUser!=null){
-               // currentUser = result;
-                System.out.println("Current user from LoginController: " + currentUser);
-            }
             return isLoginValid;
 
     }
 
+    /**
+     * Event handler for returning to Login Window
+     * @param actionEvent on Login button click
+     * @throws IOException
+     */
 
         public void returnLoginWindow(ActionEvent actionEvent) throws IOException{
             Parent root = FXMLLoader.load(getClass().getResource("/view/loginWindow.fxml"));
