@@ -62,7 +62,6 @@ public class NewApptController implements Initializable {
     public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
     public TextField apptIDTF;
 
-    //  public static User currentUser;
 
     /**
      * This method initializes the controller.
@@ -106,56 +105,33 @@ public class NewApptController implements Initializable {
 
     }
 
-    /**Example from Java Documentation - to look at
-     * LocalDate date = LocalDate.now();
-     *   DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy MM dd");
-     *   String text = date.format(formatter);
-     *   LocalDate parsedDate = LocalDate.parse(text, formatter);
-     *
-     *
-     *
-     *
-     * LocalTime time = time.plusMinutes(30);
-     * DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm a");
-     * String textTime = time.format(dtf);
-     * LocalTime timeAgain = LocalTime.parse(textTime, dtf);
-     */
 
-    //Working on this; need to adjust time 3.16
 
     /**
-     * @return
+     * Gets start time and date and changes it to a LocalDateTime object
+     * @return startDateTime in LocalDateTime
      */
     private LocalDateTime getStartDateTime() {
 
         LocalDate startDate = newApptDate.getValue();
         LocalTime startTime = LocalTime.parse(startTimeCB.getValue(), dtf);
         LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
-        System.out.println(startDateTime);
         return startDateTime;
 
     }
 
     /**
-     * @return
+     * Gets an end time and changes it to LocalDateTime object
+     * @return endDateTime in LocalDateTime
      */
     private LocalDateTime getEndDateTime() {
 
             LocalDate endDate = endDatePicker.getValue();
             LocalTime endTime = LocalTime.parse(endTimeCB.getValue(), dtf);
             LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
-            System.out.println(endDateTime);
             return endDateTime;
     }
-    private void compareTimeValidation(){
-    LocalDateTime startDateTime = getStartDateTime();
-    LocalDateTime endDateTime = getEndDateTime();
-            if (startDateTime.isAfter(endDateTime) || startDateTime.isEqual(endDateTime)){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText("End time is before start time.");
-        alert.setContentText("Start time needs to be before end time.");
-        alert.showAndWait();
-    }}
+
 
     /**
      *
