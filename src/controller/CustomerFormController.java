@@ -70,8 +70,8 @@ public class CustomerFormController implements Initializable {
     }
 
     /**
-     *
-     * @param actionEvent
+     * Event handler for Home button that directs user back to Home page
+     * @param actionEvent Home button click
      * @throws Exception
      */
     public void onHome(ActionEvent actionEvent) throws Exception {
@@ -85,8 +85,8 @@ public class CustomerFormController implements Initializable {
     }
 
     /**
-     *
-     * @param actionEvent
+     * Validates and saves customer information and returns user back to Customer View page
+     * @param actionEvent on Save clicked
      * @throws Exception
      */
 
@@ -116,20 +116,13 @@ public class CustomerFormController implements Initializable {
             stage.setScene(scene);
         }
 
-     /**   Parent root = FXMLLoader.load(getClass().getResource("/view/CustomersView.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("All Customers");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
 
-*/
 
     }
 
     /**
-     *
-     * @param actionEvent
+     * Event handler for Cancel button that directs user back to Customers View page
+     * @param actionEvent Cancel button click
      * @throws Exception
      */
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
@@ -142,12 +135,13 @@ public class CustomerFormController implements Initializable {
     }
 
     /**
-     *
-     * @param actionEvent
+     * Sets division combo box based on country value
+     * @param actionEvent on country combo box change
      */
     public void onCountrySelected(ActionEvent actionEvent) {
-        Country selectedCountry = (Country) countryComboBox.getValue();
-        divisionComboBox.setItems(DivisionsDB.getDivisionList(selectedCountry.getCountryID()));
+
+            Country selectedCountry = (Country) countryComboBox.getValue();
+            divisionComboBox.setItems(DivisionsDB.getDivisionList(selectedCountry.getCountryID()));
 
 
     }

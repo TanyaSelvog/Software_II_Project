@@ -157,8 +157,8 @@ public class ApptsDB {
     }
 
     /**
-     * Method for getting Users' appointments
-     * @return
+     * Method for getting all appointments for a user and then if appointment is within 15 minutes, message is displayed
+     * @return null
      */
     public static Appointments getUserAppt() {
         Appointments userAppt = null;
@@ -194,7 +194,6 @@ public class ApptsDB {
                 //time after appt starts
 
                 LocalDateTime timeAfterAppt = startDateTime.plusMinutes(15);
-                //  System.out.println("timeAfterAppt: " + timeAfterAppt + " This is for 15 minutes after start of appt");
                 String afterTime = dtf.format(timeAfterAppt);
 
 
@@ -251,12 +250,10 @@ public class ApptsDB {
             while (resultSet.next()) {
                 Month monthA = Month.of(month);
 
-                //hardcoded this for testing; need to change it
                 int apptID = resultSet.getInt("COUNT(Appointment_ID)");
                 String apptType = resultSet.getString("Type");
 
                 Appointments appt = new Appointments(monthA, apptType, apptID);
-                System.out.println("apptID: " + apptID + " apptType " + apptType);
                 monthTypeList.add(appt);
 
             }

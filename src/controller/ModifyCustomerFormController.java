@@ -63,13 +63,12 @@ public class ModifyCustomerFormController implements Initializable {
      * @param actionEvent Country selected from Combo Box
      * @throws Exception
      */
-    public void countrySelected(ActionEvent actionEvent) throws Exception{
-
+    public void countrySelected(ActionEvent actionEvent) throws Exception {
         Country countrySelected = (Country) countryComboBox.getSelectionModel().getSelectedItem();
-        System.out.println("countrySelected from countrySelected method: " +countrySelected);
+        System.out.println("countrySelected from countrySelected method: " + countrySelected);
         divisionComboBox.setItems(DivisionsDB.getDivisionList(countrySelected.getCountryID()));
-    }
 
+    }
     /**
      * Method for setting the customer to be modified
      * @param customer

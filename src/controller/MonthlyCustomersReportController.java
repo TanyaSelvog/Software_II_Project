@@ -35,11 +35,12 @@ public class MonthlyCustomersReportController implements Initializable {
     public TableColumn typeCol;
     public TableColumn apptCol;
     private int month;
-    private static ObservableList<String> m = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December");
+
 
     private static ObservableList<Month> months = FXCollections.observableArrayList(Month.JANUARY, Month.FEBRUARY, Month.MARCH,
             Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER);
+
+
     /** Method initializes the controller
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
@@ -55,6 +56,11 @@ public class MonthlyCustomersReportController implements Initializable {
         monthCB.setItems(months);
     }
 
+    /**
+     * Event handler for Reports that returns user to Reports View
+     * @param actionEvent Reports button click
+     * @throws Exception
+     */
     public void onReportsBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/ReportsView.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -65,6 +71,11 @@ public class MonthlyCustomersReportController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Event handler for Home that returns user to Home page
+     * @param actionEvent Home button click
+     * @throws Exception
+     */
     public void onHomeBtn(ActionEvent actionEvent) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/HomepageWindow.fxml"));
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -74,12 +85,16 @@ public class MonthlyCustomersReportController implements Initializable {
         stage.show();
     }
 
+    /**
+     * Gets appointments based on month selected and displays them in table
+     * @param actionEvent Generate Report button click
+     * @throws Exception
+     */
     public void onGenerateRpt(ActionEvent actionEvent) throws Exception{
              ObservableList<Appointments> monthTypeList = FXCollections.observableArrayList();
-        //() to click to generate report based on user month & type selection
+
 
         month = monthCB.getSelectionModel().getSelectedItem().getValue();
-        System.out.println(month + "month from MonthlyController onGenerateReportBtn");
         monthCust.setItems(ApptsDB.getMonthType(month));
         if (ApptsDB.getMonthType(month).isEmpty()) {
 
@@ -89,7 +104,7 @@ public class MonthlyCustomersReportController implements Initializable {
             alert.showAndWait();
 
         }
-         //  monthCust.setItems(ApptsDB.getMonthType(month));
+
 
 
 

@@ -85,8 +85,8 @@ public class CustomerController implements Initializable {
     }
 
     /**
-     *
-     * @param actionEvent
+     * Event that takes user to Add New Customer page on click
+     * @param actionEvent Add New Customer button click
      * @throws Exception
      */
     public void onAddNewCustomer(ActionEvent actionEvent) throws Exception {
@@ -99,14 +99,13 @@ public class CustomerController implements Initializable {
     }
 
     /**
-     *
-     * @param actionEvent
+     * Gets customer from customers table or displays error if no customer is selected
+     * @param actionEvent Modify button
      * @throws Exception
      */
     public void onModifyCurrent(ActionEvent actionEvent) throws Exception {
 
         Customer modCustomer = customersTable.getSelectionModel().getSelectedItem();
-        System.out.println("modCustomer from onModifyCurrent() in custController: " + modCustomer);
         if (modCustomer == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Modify a Customer");
@@ -137,8 +136,8 @@ public class CustomerController implements Initializable {
         }}
 
     /**
-     *
-     * @param actionEvent
+     * Event handler for returning user back to home page
+     * @param actionEvent on click
      * @throws Exception
      */
 
@@ -152,8 +151,8 @@ public class CustomerController implements Initializable {
         }
 
     /**
-     *
-     * @param actionEvent
+     * Deletes customer based on user selection and confirmation
+     * @param actionEvent delete button click
      * @throws Exception
      */
     public void onDeleteClick(ActionEvent actionEvent) throws IOException {

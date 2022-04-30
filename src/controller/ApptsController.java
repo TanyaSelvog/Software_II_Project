@@ -116,7 +116,7 @@ public class ApptsController implements Initializable {
     public static  ObservableList<Appointments> selectedItems;
 
     /**
-     * Method that initializes the controller
+     * Method that initializes the controller and sets the table columns
      * @param url
      * @param resourceBundle
      */
@@ -166,8 +166,8 @@ public class ApptsController implements Initializable {
     }
 
     /**
-     * Method for on New Appointment button click
-     * @param actionEvent
+     * Method for on New Appointment button click that directs user to New Appointment page
+     * @param actionEvent New Appointment button clicked
      * @throws Exception
      */
     public void onNewAppt(ActionEvent actionEvent) throws Exception{
@@ -181,8 +181,8 @@ public class ApptsController implements Initializable {
     }
 
     /**
-     * Method for on Modify Appointment button
-     * @param actionEvent
+     * Method for on Modify Appointment button that gets appointment object from table based on which one is selected
+     * @param actionEvent Modify Appointment button click
      * @throws Exception
      */
     public void onModifyAppt(ActionEvent actionEvent) throws Exception {
@@ -210,22 +210,19 @@ public class ApptsController implements Initializable {
              scene = loader.getRoot();
              stage.setScene(new Scene(scene));
              stage.show();
-          /**  Parent root = FXMLLoader.load(getClass().getResource("/view/ModifyAppointmentForm.fxml"));
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setTitle("Modify Appointment");
-            Scene scene = new Scene(root, 1000, 600);
-            stage.setScene(scene);
-            stage.show();
-             */
+
             } catch (Exception e) {
                 e.printStackTrace();
         }}
         }
 
-        public void tabSelection(){
-            Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
-            ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
-            apptFilteredList =new FilteredList<>(appointmentList, n -> true);
+    /**
+     * Displays appointments when tab is selected and updates/refreshes table contents
+     */
+    public void tabSelection(){
+        Tab selectedTab = apptsTabPane.getSelectionModel().getSelectedItem();
+        ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+        apptFilteredList =new FilteredList<>(appointmentList, n -> true);
 
             if (selectedTab == allApptsTab) {
                updateAllTable();
@@ -237,8 +234,8 @@ public class ApptsController implements Initializable {
         }
 
     /**
-     * Method for on Delete Appointment button
-     * @param actionEvent
+     * Deletes appointment based on selection and confirmation; refreshes table contents after successful deletion
+     * @param actionEvent Delete button click
      * @throws Exception
      */
     public void onDeleteAppt(ActionEvent actionEvent)throws Exception{
@@ -246,7 +243,7 @@ public class ApptsController implements Initializable {
         TableView<Appointments> currentTable = weeklyTab.isSelected() ? weeklyTable:
                 monthlyTab.isSelected() ? monthlyTable: allApptsTable;
                 Appointments deletedAppt = currentTable.getSelectionModel().getSelectedItem();
-                System.out.println(currentTable);
+
 
         if (deletedAppt != null) {
             Alert alertDelete = new Alert(Alert.AlertType.CONFIRMATION);
@@ -255,9 +252,7 @@ public class ApptsController implements Initializable {
 
             if (userAnswer.isPresent() && userAnswer.get() == ButtonType.OK) {
                 int apptID = deletedAppt.getApptID();
-                System.out.println(apptID);
                 String apptType = deletedAppt.getApptType();
-                System.out.println(apptType + " " + "currentTable " + currentTable);
                 ApptsDB.deleteAppointment(deletedAppt.getApptID());
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION,
@@ -272,20 +267,12 @@ public class ApptsController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR, ("Select an appointment to delete."));
             alert.showAndWait();
         }
-        /**
-        Parent root = FXMLLoader.load(getClass().getResource("/view/CustomerForm.fxml"));
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("Modify Current Customer");
-        Scene scene = new Scene(root, 1000, 600);
-        stage.setScene(scene);
-        stage.show();
-    }
-           */
+
         }
 
     /**
-     * Method for Back to Main button
-     * @param actionEvent
+     * Event handler for BackToMain button that sends user to Home page
+     * @param actionEvent on button click
      * @throws Exception
      */
     public void onBackToMain(ActionEvent actionEvent) throws Exception {
@@ -300,7 +287,8 @@ public class ApptsController implements Initializable {
 
 
     /**
-     * Method that displays weekly table contents
+     * Shows filtered list of all appointments within the upcoming week
+     * Used lambda expression for reducing lines of code needed for filtering appointments
      */
     public void updateWeeklyTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
@@ -315,7 +303,8 @@ public class ApptsController implements Initializable {
     }
 
     /**
-     * Method that displays monthly table contents
+     * Method that displays monthly table contents via filtered list
+     * Used lambda expression for reducing lines of code needed for filtering appointments
      */
     public void updateMonthlyTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
@@ -328,6 +317,9 @@ public class ApptsController implements Initializable {
         monthlyTable.setItems(apptMonthFilter);
     }
 
+    /**
+     * Shows filtered list of all appointments in All Appointments table
+      */
     public void updateAllTable(){
         ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
         FilteredList<Appointments> allApptFilter = new FilteredList<>(appointmentList, n -> true);
