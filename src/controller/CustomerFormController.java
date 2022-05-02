@@ -29,36 +29,82 @@ import java.util.ResourceBundle;
  */
 public class CustomerFormController implements Initializable {
 
+    /**
+     * Combobox for customer's country
+     */
     @FXML
     public ComboBox countryComboBox;
+
+    /**
+     * Combobox for customer's division
+     */
     @FXML
     public ComboBox divisionComboBox;
+
+    /**
+     * Button for returning to Homepage
+     */
     @FXML
     public Button homeBtn;
+
+    /**
+     * Cancel button
+     */
     @FXML
     public Button cancelBtn;
+
+    /**
+     * Save button for saving customer data
+     */
     @FXML
     public Button saveBtn;
+
+    /**
+     * Textfield for customer name
+     */
     @FXML
     public TextField customerName;
+
+    /**
+     * Textfield for customer phone number
+     */
     @FXML
     public TextField customerPhone;
+
+    /**
+     * Textfield for customer postal code
+     */
     @FXML
     public TextField customerPostalCode;
+
+    /**
+     * Textfield for customer address
+     */
     @FXML
     public TextField customerAddress;
+
+    /**
+     * Textfield for customer ID
+     */
     @FXML
     public TextField customerID;
+
+    /**
+     * Customer object
+     */
     private static Customer modCustomer;
+
+    /**
+     * List of countries
+     */
     private ObservableList<Country> countriesList = FXCollections.observableArrayList();
     public static Customer getModCustomer(){
         return modCustomer;
 
     }
 
-    private static int index;
     /**
-     * This method initializes the controller.
+     * This method initializes the Customer form controller.
      *
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.

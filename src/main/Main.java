@@ -10,8 +10,8 @@ import utils.ConnectionJDBC;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-/** From Part 1 Video - notes
- * "To test, in the "main" method, first line, do Locale.setDefault(newLocale("fr"));
+/**
+ * Application main class
  */
 public class Main extends Application {
     @Override
@@ -23,6 +23,10 @@ public class Main extends Application {
 
     }
 
+    /**
+     * Application main method and starts application and starts DB connection
+     * @param args
+     */
     public static void main(String [] args){
         //For testing
        // Locale.setDefault(new Locale("fr"));

@@ -25,21 +25,53 @@ import java.util.ResourceBundle;
 import static utils.ApptsDB.getContactList;
 import static utils.CountryDB.getCountryCustList;
 
+/**
+ * Controller class for the Country Report page
+ */
+
 public class CountryReportsController implements Initializable {
+    /**
+     * Table that displays the data
+     */
     @FXML
     public TableView countryTable;
+
+    /**
+     * Customer ID column for the table
+     */
     @FXML
     public TableColumn custIDCol;
+
+    /**
+     * Combobox with countries to select from
+     */
     @FXML
     public ComboBox countryCB;
+
+    /**
+     * Customer name column for table
+     */
     @FXML
     public TableColumn customerCol;
+
+    /**
+     * Button for returning to Homepage
+     */
     @FXML
     public Button home;
+
+    /**
+     * Button for generating report
+     */
     @FXML
     public Button generateBtn;
+
+    /**
+     * Button for returning to Reports page
+     */
     @FXML
     public Button reports;
+
     @FXML
     public Label resultsLBL;
 

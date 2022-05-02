@@ -29,41 +29,93 @@ import static utils.ApptsDB.getCustomerAppts;
  * Controller class for New Appointment
  */
 public class NewApptController implements Initializable {
-
+    /**
+     * Textfield for appointment title
+     */
     @FXML
     public TextField titleTF;
+
+    /**
+     * Textfield appointment description
+     */
     @FXML
     public TextField descTF;
+
+    /**
+     * Textfield for location
+     */
     @FXML
     public TextField locationTF;
+
+    /**
+     * Save button
+     */
     @FXML
     public Button saveBtn;
+
+    /**
+     * Cancel button
+     */
     @FXML
     public Button cancelBtn;
 
+    /**
+     * Combobox for contacts
+     */
     @FXML
     public ComboBox<Contact> contactComboBox;
+
+    /**
+     * Combobox for appointment types
+     */
     @FXML
     public ComboBox<String> typeComboBox;
+
+    /**
+     * Combobox for appointment start times
+     */
     @FXML
     public ComboBox<String> startTimeCB;
+
+    /**
+     * Combobox for appointment end times
+     */
     @FXML
     public ComboBox<String> endTimeCB;
+
+    /**
+     * Combobox for customers
+     */
     @FXML
     public ComboBox<Customer> customerComboBox;
+
+    /**
+     * Date picker for start date for new appointment
+     */
     @FXML
     public DatePicker newApptDate;
+
+    /**
+     * Date picker for end date for new appointment
+     */
     @FXML
     public DatePicker endDatePicker;
 
     public ObservableList<String> timeList = FXCollections.observableArrayList();
 
+    /**
+     * Time formatter (in the form of hh:mm a)
+     */
     public DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+
+    /**
+     * Textfield (uneditable) for appointment ID
+     */
     public TextField apptIDTF;
 
 
     /**
-     * This method initializes the controller.
+     * This method initializes the New Appointment controller.
      *
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.

@@ -29,7 +29,9 @@ import utils.UserDB;
 
 import static utils.ApptsDB.getUserAppt;
 
-
+/**
+ * Controller for the login page
+ */
 public class LoginController implements Initializable {
 
     /**
@@ -67,7 +69,13 @@ public class LoginController implements Initializable {
      */
     public Label headerLbl;
    public static String password;
+    /**
+     * Formatter for time (hh:mm a)
+     */
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+    /**
+     * login time for when user logs in
+     */
     public static LocalDateTime loginTime;
     /**
      * flag to determine which message to give log in user
@@ -77,6 +85,11 @@ public class LoginController implements Initializable {
 
     private ResourceBundle rb = ResourceBundle.getBundle("Resources/Login", Locale.getDefault());
 
+    /**
+     * Initializes the login controller and displays the zoneID
+     * @param url
+     * @param resourceBundle
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 

@@ -21,19 +21,49 @@ import java.time.Month;
 
 import java.util.ResourceBundle;
 
+/**
+ * Controller for Monthly Customers Report
+ */
+
 public class MonthlyCustomersReportController implements Initializable {
+    /**
+     * Button for returning to Reports page
+     */
     public Button reports;
+
+    /**
+     * Button for returning to Homepage
+     */
     public Button home;
 
+    /**
+     * Combobox with months of year
+     */
 
     public ComboBox<Month> monthCB;
 
+    /**
+     * Button to generate report
+     */
     public Button generateBtn;
     public TextArea reportsTA;
+    /**
+     * Monthly Customers table
+     */
     public TableView monthCust;
+    /**
+     * Month column for table
+     */
     public TableColumn monthCol;
+    /**
+     * Type column for table
+     */
     public TableColumn typeCol;
+    /**
+     * Appointment ID column for table
+     */
     public TableColumn apptCol;
+
     private int month;
 
 
@@ -41,7 +71,7 @@ public class MonthlyCustomersReportController implements Initializable {
             Month.APRIL, Month.MAY, Month.JUNE, Month.JULY, Month.AUGUST, Month.SEPTEMBER, Month.OCTOBER, Month.NOVEMBER, Month.DECEMBER);
 
 
-    /** Method initializes the controller
+    /** Method initializes the Monthly Customers Report page
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
     */

@@ -25,8 +25,8 @@ public class UserDB {
 
     /**
      * Method for getting username and password and checking credentials
-     * @param username
-     * @param password
+     * @param username Username
+     * @param password Password
      * @return Null if no user is found or user
      */
 
@@ -51,7 +51,7 @@ public class UserDB {
                 alert.showAndWait();
                 return null;
             }
-            //if (password != )
+
             return user;
         }catch (SQLException exception) {
         System.out.println("Error in DB");

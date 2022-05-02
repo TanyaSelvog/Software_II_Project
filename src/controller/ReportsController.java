@@ -17,10 +17,22 @@ import java.util.ResourceBundle;
  * Class for Reports Controller
  */
 public class ReportsController implements Initializable {
+
+    /**
+     * Button to link to Monthly Customers Report page
+     */
     @FXML
     private Button monthlyCust;
+
+    /**
+     * Button to link to Contact Scheduler Report page
+     */
     @FXML
     private Button contact;
+
+    /**
+     * Button to link to Country Report page
+     */
     @FXML
     private Button country;
 
@@ -82,7 +94,7 @@ public class ReportsController implements Initializable {
     }
 
     /**
-     * Method that intializes the controller
+     * Method that intializes the Reports controller.
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */

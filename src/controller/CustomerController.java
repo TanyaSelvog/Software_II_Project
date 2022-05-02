@@ -24,46 +24,119 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for Customer view
+ */
 public class CustomerController implements Initializable {
+    /**
+     * Customer ID column
+     */
     @FXML
     public TableColumn customerID;
+
+    /**
+     * Customer name column
+     */
     @FXML
     public TableColumn name;
+
+    /**
+     * Customer address column
+     */
     @FXML
     public TableColumn address;
+
+    /**
+     * Customer postal code column
+     */
     @FXML
     public TableColumn postalCode;
+
+    /**
+     * Customer phone column
+     */
     @FXML
     public TableColumn phone;
+
+    /**
+     * Customer country column
+     */
     @FXML
     public TableColumn country;
+
+    /**
+     * Customer division column
+     */
     @FXML
     public TableColumn division;
+
+    /**
+     * Button for add a new customer
+     */
     @FXML
     public Button addNewBtn;
+
+    /**
+     * Button for modify a customer
+     */
     @FXML
     public Button modifyBtn;
+
+    /**
+     * Back button (for returning to Homepage)
+     */
     @FXML
     public Button backBtn;
+
+    /**
+     * Customer table
+     */
     @FXML
     public TableView <Customer>customersTable;
+
+    /**
+     * Delete customer button
+     */
     @FXML
     public Button deleteCustomerBtn;
+
+    /**
+     * Stage
+     */
     private Stage stage;
+
+    /**
+     * Scene
+     */
     private Parent scene;
 
+    /**
+     * List of customers
+     */
     private static ObservableList<Customer> customersList = FXCollections.observableArrayList();
-   private  ObservableList<Country> countriesList = FXCollections.observableArrayList();
+
+    /**
+     * List of countries
+     */
+    private  ObservableList<Country> countriesList = FXCollections.observableArrayList();
+
+    /**
+     * Customer object
+     */
     private static Customer modCustomer;
 
+    /**
+     * Getter for customer object
+     * @return modCustomer
+     */
     public static Customer getModCustomer(){
         return modCustomer;
     }
 
     /**
-     * Method that initializes the controller
-     * @param url
-     * @param resourceBundle
+     * Method that initializes the controller and sets the table
+     * @param url Used to rseolve relative paths for the root object, or null lif the location is not known.
+     * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -153,7 +226,7 @@ public class CustomerController implements Initializable {
     /**
      * Deletes customer based on user selection and confirmation
      * @param actionEvent delete button click
-     * @throws Exception
+     * @throws IOException
      */
     public void onDeleteClick(ActionEvent actionEvent) throws IOException {
         Customer deletedCustomer = (Customer) customersTable.getSelectionModel().getSelectedItem();

@@ -19,12 +19,20 @@ import java.util.ResourceBundle;
  */
 public class HomepageController implements Initializable {
 
-   @FXML
-    private Button customersBtn;
 
+    /**
+     * Button to link to Customers view page
+     */
+    @FXML
+    private Button customersBtn;
+    /**
+     * Button to link to Appointments view page
+     */
    @FXML
     public Button apptsBtn;
-
+    /**
+     * Button to link to Reports view page
+     */
     @FXML
     public Button reportsBtn;
 
@@ -73,7 +81,7 @@ public class HomepageController implements Initializable {
     }
 
     /**
-     * This method initializes the controller.
+     * This method initializes the Homepage controller.
      *
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.

@@ -27,18 +27,45 @@ import java.util.ResourceBundle;
 
 public class ModifyCustomerFormController implements Initializable {
 
+    /**
+     * Textfield for customer name
+     */
     @FXML
     private TextField customerName;
+
+    /**
+     * Textfield for customer phone
+     */
     @FXML
     private TextField customerPhone;
+
+    /**
+     * Textfield for customer postal code
+     */
     @FXML
     private TextField customerPostalCode;
+
+    /**
+     * Textfield for customer address
+     */
     @FXML
     private TextField customerAddress;
+
+    /**
+     * Combobox for countries
+     */
     @FXML
     private ComboBox  countryComboBox;
+
+    /**
+     * Combobox for divisions
+     */
     @FXML
     private ComboBox<Division> divisionComboBox;
+
+    /**
+     * Textfield for customer ID
+     */
     @FXML
     private TextField customerID;
 
@@ -47,7 +74,7 @@ public class ModifyCustomerFormController implements Initializable {
 
 
     /**
-     * Method for initializing the Modify Customer Form Controller
+     * Method for initializing the Modify Customer Form Controller and sets country combo box based on selected customer
      * @param url            Used to resolve relative paths for the root object, or null if the location is not known.
      * @param resourceBundle Used to localize the root object, or null if the root object was not localized.
      */
@@ -143,7 +170,7 @@ public class ModifyCustomerFormController implements Initializable {
 
     /**
      * Event handler for Cancel button
-     * @param actionEvent On click
+     * @param actionEvent On click of Cancel button
      * @throws Exception
      */
     public void onCancelBtn(ActionEvent actionEvent) throws Exception {
@@ -158,7 +185,7 @@ public class ModifyCustomerFormController implements Initializable {
 
     /**
      * Event handler for Home button
-     * @param actionEvent On click
+     * @param actionEvent On click of Home button
      * @throws Exception
      */
     public void onHome(ActionEvent actionEvent) throws Exception {

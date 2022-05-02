@@ -28,95 +28,258 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Filter;
 
+/**
+ * This class is a controller for the Appointments view page.
+ */
 public class ApptsController implements Initializable {
 
+    /**
+     * Table for monthly appointments only
+     */
     public TableView <Appointments> monthlyTable;
 
+    /**
+     * Title column for monthly table
+     */
     public TableColumn titleMonthly;
 
+    /**
+     * Description column for monthly table
+     */
     public TableColumn descMonthly;
 
+    /**
+     * Location column for monthly table
+     */
     public TableColumn locationMonthly;
-
+    /**
+     * Contact column for monthly table
+     */
     public TableColumn contactMonthly;
 
+    /**
+     * Type column for monthly table
+     */
     public TableColumn typeMonthly;
 
+    /**
+     * Start time column for monthly table
+     */
     public TableColumn startMonthly;
 
+    /**
+     * Customer column for monthly table
+     */
     public TableColumn customerMonthly;
+
+    /**
+     * End time for monthly table
+     */
     public TableColumn endMonthly;
 
+    /**
+     * User ID column for monthly table
+     */
     public TableColumn userIDmonthly;
 
+    /**
+     * Appointment ID column for monthly table
+     */
     public TableColumn apptIDmonthly;
-    public Tab weeklyApptTab;
-    public TableColumn titleWeekly;
 
+    /**
+     * Tab for weekly appointment table
+     */
+    public Tab weeklyApptTab;
+
+    /**
+     * Title column for weekly table
+     */
+    public TableColumn titleWeekly;
+    /**
+     * Table for displaying weekly appointments
+     */
     public TableView <Appointments> weeklyTable;
+    /**
+     * Description column for weekly table
+     */
     public TableColumn descWeekly;
+
+    /**
+     * Location column for weekly table
+     */
 
     public TableColumn locationWeekly;
 
+    /**
+     * Type column for weekly table
+     */
+
     public TableColumn typeWeekly;
+    /**
+     * Contact column for weekly table
+     */
 
     public TableColumn contactWeekly;
+
+    /**
+     * Start time column for weekly table
+     */
     public TableColumn startWeekly;
 
+    /**
+     * End time column for weekly table
+     */
     public TableColumn endWeekly;
-    public TableColumn userIDweekly;
 
+    /**
+     * User ID column for weekly table
+     */
+    public TableColumn userIDweekly;
+    /**
+     * Customer column for weekly table
+     */
     public TableColumn customerWeekly;
+
+    /**
+     * Appointment ID column for weekly table
+     */
     public TableColumn apptIDweekly;
 
+    /**
+     * Button for creating new appointments
+     */
     public Button newApptBtn;
 
+    /**
+     * Button for modifying existing appointments
+     */
     public Button modifyApptBtn;
-
+    /**
+     * Button for deleting appointments
+     */
     public Button deleteApptBtn;
-
+    /**
+     * Back button (for returning to Homepage)
+     */
     public Button backBtn;
-
-    public Appointments deletedAppt;
+    /**
+     * Tab for all appointments table
+     */
     public Tab allApptsTab;
+    /**
+     * Table that displays all appointments in system
+     */
     public TableView <Appointments> allApptsTable;
+    /**
+     * Title column for all appointments table
+     */
     public TableColumn titleAllAppts;
-
+    /**
+     * Description column for all appointments table
+     */
     public TableColumn descAllAppts;
+    /**
+     * Location column for all appointments table
+     */
 
     public TableColumn locationAllAppts;
 
-
+    /**
+     * Contact column for all appointments table
+     */
     public TableColumn contactAllAppts;
 
+    /**
+     * Type column for all appointments table
+     */
     public TableColumn typeAllAppts;
 
+    /**
+     * Start time column for all appointments table
+     */
     public TableColumn  startAllAppts;
 
+    /**
+     * End time column for all appointments table
+     */
+
     public TableColumn endAllAppts;
+
+    /**
+     * Customer column for all appointments table
+     */
     public TableColumn customerAllAppts;
 
+    /**
+     * User ID column for all appointments table
+     */
     public TableColumn idUserAllAppts;
 
+    /**
+     * Appointment ID column for all appointments table
+     */
     public TableColumn idApptAllAppt;
 
+    /**
+     * Tab pane for appointment tables
+     */
     public TabPane apptsTabPane;
 
+    /**
+     * Tab for weekly appointments table
+     */
     public Tab weeklyTab;
+
+    /**
+     * Tab for monthly appointments table
+     */
     public Tab monthlyTab;
     private Appointments modAppointments;
+    /**
+     * Stage
+     */
     private Stage stage;
+
+    /**
+     * Scene
+     */
     private Parent scene;
+
+    /**
+     * List of all appointments (from the database)
+     */
     private ObservableList<Appointments> appointmentList = ApptsDB.getApptsList();
+
+    /**
+     * Filtered list of appointments
+     */
     private FilteredList<Appointments> apptFilteredList = new FilteredList<>(appointmentList, n -> true);
+
+    /**
+     * Login time from when the user logs in
+     */
     public static LocalDateTime loginTime;
+
+    /**
+     * Formatter for time (hh:mm a)
+     */
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+
+    /**
+     * Formatter for date and time (MM-dd-yyyy hh:mm a)
+     */
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
+
+    /**
+     * Formatter for date (MM-dd-yyyy)
+     */
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+
     public static  ObservableList<Appointments> selectedItems;
 
     /**
-     * Method that initializes the controller and sets the table columns
+     * Method that initializes the controller and displays the tables
      * @param url
      * @param resourceBundle
      */

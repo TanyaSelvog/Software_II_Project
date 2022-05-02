@@ -31,38 +31,100 @@ import static utils.ApptsDB.getCustomerAppts;
  * Controller class for Modify Appointment
  */
 public class ModifyApptController implements Initializable {
+    /**
+     * Button for saving modified appointment details
+     */
     @FXML
     public Button saveBtn;
+
+    /**
+     * Button for canceling appointment modifications
+     */
     @FXML
     public Button cancelBtn;
+
+    /**
+     * Combobox with list of contacts
+     */
     @FXML
     public ComboBox <Contact>contactComboBox;
+
+    /**
+     * TextField for appointment title
+     */
     @FXML
     public TextField titleTF;
+
+    /**
+     * Textfield for appointment description
+     */
     @FXML
     public TextField descriptionTF;
+
+    /**
+     * Textfield for appointment location
+     */
     @FXML
     public TextField locationTF;
+
+    /**
+     * Textfield for appointment type
+     */
     @FXML
     public TextField typeTF;
+
+
     @FXML
+    /**
+     * Combobox with list of appointment types
+     */
     public ComboBox typeComboBox;
+
+    /**
+     * Combobox with list of customers
+     */
     @FXML
     public ComboBox customerComboBox;
+
+    /**
+     * Combobox for start times
+     */
     @FXML
     public ComboBox <String> startTimeCB;
+
+    /**
+     * Combobox for end times
+     */
     @FXML
     public ComboBox <String> endTimeCB;
+
+    /**
+     * Textfield for appointment ID
+     */
     @FXML
     public TextField apptIDTF;
+    /**
+     * Formatter for time (hh:mm a)
+     */
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+
+    /**
+     * Formatter for date (MM-dd-yyyy)
+     */
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+    /**
+     * Date picker for appointment start date
+     */
     public DatePicker startDateDP;
+
+    /**
+     * Date picker for appointment end date
+     */
     public DatePicker endDateDP;
 
     /**
-     * Method for on Click
-     * @param actionEvent
+     * Canceling modified appointment
+     * @param actionEvent On clicking Cancel button
      * @throws Exception
      */
     public void onCancelClick(ActionEvent actionEvent) throws Exception {

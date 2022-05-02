@@ -59,11 +59,11 @@ public class CustDB {
 
     /**
      * Method for creating new customer in the database
-     * @param name
-     * @param address
-     * @param postalCode
-     * @param phone
-     * @param divisionID
+     * @param name Customer name
+     * @param address Customer address
+     * @param postalCode Customer postal code
+     * @param phone Customer phone number
+     * @param divisionID Customer division ID
      */
     public static void createCustomer(String name, String address, String postalCode, String phone, int divisionID) {
         try {
@@ -85,12 +85,12 @@ public class CustDB {
 
     /**
      * Method for updating/modifiying Customer's information in the database
-     * @param customer_id
-     * @param name
-     * @param address
-     * @param postalCode
-     * @param phone
-     * @param divisionID
+     * @param customer_id Customer ID
+     * @param name Customer name
+     * @param address Customer address
+     * @param postalCode Customer postal code
+     * @param phone Customer phone number
+     * @param divisionID Customer division ID
      */
     public static void modifyCustomer(int customer_id, String name, String address, String postalCode, String phone, int divisionID){
         try {
@@ -114,7 +114,7 @@ public class CustDB {
 
     /**
      * Method for deleting Customer in the database
-     * @param customerID
+     * @param customerID customer ID
      */
     public static void deleteCustomer (int customerID){
 
@@ -139,8 +139,8 @@ public class CustDB {
 
     /**
      * Method for getting Customer's name in database
-     * @param customer_ID
-     * @return
+     * @param customer_ID customer ID
+     * @return Customer object
      */
     public static Customer getCustomerName(int customer_ID) {
         Customer con = null;

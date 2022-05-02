@@ -23,10 +23,28 @@ public class ApptsDB {
      */
 
     public static User currentUser;
+    /**
+     * User ID
+     */
     public static int userID;
+
+    /**
+     * Login time when user logs in
+     */
     public static LocalDateTime loginTime;
+    /**
+     * Time formatter (in format of hh:mm a)
+     */
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("hh:mm a");
+
+    /**
+     * Date and time formatter (in format of MM-dd-yyyy hh:mm a)
+     */
     public static DateTimeFormatter dateTime = DateTimeFormatter.ofPattern("MM-dd-yyyy hh:mm a");
+
+    /**
+     * Date formatter (in format of MM-dd-yyyy)
+     */
     public static DateTimeFormatter dateOnlyTime = DateTimeFormatter.ofPattern("MM-dd-yyyy");
     public static ObservableList<Appointments> custApptsList;
     public static boolean apptTest = true;
@@ -78,17 +96,17 @@ public class ApptsDB {
 
     /**
      * Method for modifying Customer's appointments in the database
-     * @param apptID
-     * @param apptTitle
-     * @param apptDesc
-     * @param apptLocation
-     * @param apptType
-     * @param startAppt
-     * @param endAppt
-     * @param lastUpdatedBy
-     * @param customerID
-     * @param userID
-     * @param contactID
+     * @param apptID appointment ID
+     * @param apptTitle appointment title
+     * @param apptDesc appointment description
+     * @param apptLocation appointment location
+     * @param apptType appointment type
+     * @param startAppt start time
+     * @param endAppt end time
+     * @param lastUpdatedBy last updated by
+     * @param customerID customer ID
+     * @param userID user ID
+     * @param contactID contact ID
      */
 
     public static void modifyAppt(int apptID, String apptTitle, String apptDesc, String apptLocation,
@@ -121,14 +139,14 @@ public class ApptsDB {
 
     /**
      * Method for creating an appointment in the database
-     * @param apptTitle
-     * @param apptDesc
-     * @param apptLocation
-     * @param apptType
-     * @param startAppt
-     * @param endAppt
-     * @param customerID
-     * @param contactID
+     * @param apptTitle appointment title
+     * @param apptDesc appointment description
+     * @param apptLocation appointment location
+     * @param apptType appointment type
+     * @param startAppt start time
+     * @param endAppt end time
+     * @param customerID customer ID
+     * @param contactID contact ID
      */
     public static void createAppointment(String apptTitle, String apptDesc, String apptLocation,
                                          String apptType, LocalDateTime startAppt, LocalDateTime endAppt,
@@ -180,11 +198,7 @@ public class ApptsDB {
 
                 userAppt = new Appointments(apptID, apptDescription, startDateTime, userID);
                 String apptTimeNotice = dateTime.format(startDateTime);
-                //  System.out.println("Appt Time notice to compare actual log in time to: " + apptTimeNotice);
 
-                //  if (loginTime.isBefore(startDateTime)){
-                //    System.out.println("Login time is before startDateTime " + loginTime);
-                //}
 
                 //time before appt
                 LocalDateTime timeBeforeAppt = startDateTime.minusMinutes(15);
@@ -217,7 +231,7 @@ public class ApptsDB {
 
     /**
      * Method for deleting an appointment in the database
-     * @param apptID
+     * @param apptID appointment ID
      */
     public static void deleteAppointment(int apptID){
             try {

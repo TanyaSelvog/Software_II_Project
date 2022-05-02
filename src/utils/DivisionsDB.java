@@ -45,8 +45,8 @@ public class DivisionsDB {
 
     /**
      * Method for getting Customer's Division in the database
-     * @param divisionID
-     * @return division
+     * @param divisionID Division ID
+     * @return division Division object
      */
     public static Division getCustomerDivision(int divisionID){
         Division div = null;

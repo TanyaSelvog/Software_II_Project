@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * This class provides utlity relating to Contacts and the database.
+ * This class provides utility relating to Contacts and the database.
  */
 public class ContactDB {
 
@@ -42,8 +42,8 @@ public class ContactDB {
 
     /**
      * Method for getting Contacts from database
-     * @param contact_ID
-     * @return
+     * @param contact_ID contact ID
+     * @return Contact object
      */
     public static Contact getCustomerContact(int contact_ID) {
        Contact con = null;

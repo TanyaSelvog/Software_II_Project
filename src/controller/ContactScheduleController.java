@@ -3,6 +3,7 @@ package controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -26,17 +27,65 @@ import static utils.ApptsDB.getContactList;
  * Class for Contact Scheduler Controller
  */
 public class ContactScheduleController implements Initializable {
+    /**
+     * Contact table
+     */
+    @FXML
     public TableView contactTable;
+
+    /**
+     * Column for appointment ID
+     */
     public TableColumn apptIDCol;
+
+    /**
+     * Column for appointment title
+     */
     public TableColumn titleCol;
+
+    /**
+     * Column for appointment type
+     */
     public TableColumn typeCol;
+
+    /**
+     * Column for appointment description
+     */
     public TableColumn descCol;
+
+    /**
+     * Column for start time
+     */
     public TableColumn startCol;
+
+    /**
+     * Column for end time
+     */
     public TableColumn endCol;
+
+    /**
+     * Column for customer ID
+     */
     public TableColumn custIDCol;
+
+    /**
+     * Button for returning to Homepage
+     */
     public Button homeBtn;
+
+    /**
+     * Button for returning to Reports page
+     */
     public Button reportsBtn;
+
+    /**
+     * ComboBox with list of contacts
+     */
     public ComboBox contactCB;
+
+    /**
+     * Button for generating report
+     */
     public Button generateBtn;
 
     /**
@@ -52,14 +101,13 @@ public class ContactScheduleController implements Initializable {
         titleCol.setCellValueFactory(new PropertyValueFactory<>("apptTitle"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("apptType"));
         descCol.setCellValueFactory(new PropertyValueFactory<>("apptDescription"));
-        //contactAllAppts.setCellValueFactory(new PropertyValueFactory<>("apptContact"));
+
 
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDateString"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDateString"));
         custIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 
 
-        // countryComboBox.setItems(CountryDB.getCountryList());
         contactCB.setItems(ContactDB.getContactList());
 
 
